@@ -1,6 +1,17 @@
+/*
+
+- Plantações sem irrigação e sem reservatório: Muitas plantações, especialmente em regiões com chuvas regulares, 
+não possuem nenhum tipo de sistema de irrigação ou reservatório. A água da chuva é suficiente para suprir as necessidades das plantas.
+- Plantações com irrigação, mas sem reservatório: Algumas plantações utilizam água de rios ou poços para irrigação, sem a necessidade 
+de um reservatório.
+- Plantações com irrigação e reservatório: A combinação de um sistema de irrigação e um reservatório é comum em regiões com períodos de seca, 
+permitindo um melhor controle da disponibilidade de água para as plantas.
+
+*/
+
 function exibirComoHFSystemPodeAjudar(){
 
-    // CRIAÇÃO DE VARIÁVEIS E ATRIBUIÇÃO DE VALORES
+// CRIAÇÃO DE VARIÁVEIS E ATRIBUIÇÃO DE VALORES
 
     const tipoPlantacao = document.getElementById("input_tipo_plantacao").value
     const qtdCicloAnualProducao = document.getElementById("input_qtd_ciclo_anual_producao").value
@@ -34,6 +45,8 @@ function exibirComoHFSystemPodeAjudar(){
     }
 
     // lÓGICA
+
+    // SE POSSUÍ TRABALHA COM SISTEMA DE IRRIGAÇÃO
 
     if(possuiReservatorio){
         
