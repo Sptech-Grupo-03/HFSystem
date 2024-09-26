@@ -1,10 +1,13 @@
 function exibirComoHFSystemPodeAjudar(){
+
+    // CRIAÇÃO DE VARIÁVEIS E ATRIBUIÇÃO DE VALORES
+
     const tipoPlantacao = document.getElementById("input_tipo_plantacao").value
     const qtdCicloAnualProducao = document.getElementById("input_qtd_ciclo_anual_producao").value
     
-    if(document.getElementById("input_trabalha_com_sistemas_true").checked){
+    if(document.getElementById("input_trabalha_com_sistema_irrigacao_true").checked){
         const trabalhaSistemas = true
-    }else if(document.getElementById("input_trabalha_com_sistemas_false").checked){
+    }else if(document.getElementById("input_trabalha_com_sistema_irrigacao_false").checked){
         const trabalhaSistemas = false
     }
 
@@ -30,6 +33,13 @@ function exibirComoHFSystemPodeAjudar(){
         const possuiMonitoramentoReservatorio = false
     }
 
-    if()
+    // lÓGICA
+
+    if(possuiReservatorio){
+        
+    }
+
+
+
 
 }
