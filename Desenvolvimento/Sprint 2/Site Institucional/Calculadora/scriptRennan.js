@@ -13,14 +13,15 @@ não possuem nenhum tipo de
  */
 
 function exibirComoHFSystemPodeAjudar() {
-    // CRIAÇÃO DE VARIÁVEIS E ATRIBUIÇÃO DE VALORES TIPO DE PLANTAÇÃO
+    // CRIAÇÃO DE VARIÁVEIS E ATRIBUIÇÃO DE VALORES
+
     var exibicao = document.getElementById("p_resultado").value
 
-    //Informe o tipo da plantação
+    //TIPO DE PLANTAÇÃO
     const tipoPlantacao = document.getElementById("input_tipo_plantacao").value
 
-    //INFORME O VALOR BRUTO ANUAL
-    var valorBruto = document.getElementById("input_faturamento_anual").value
+    //VALOR BRUTO ANUAL
+    const valorBruto = document.getElementById("input_faturamento_anual").value
 
     // QUANTIDADE DE CICLOS ANUAL
     const qtdCiclosAnualProducao = document.getElementById("input_qtd_ciclos_anual_producao").value

@@ -13,75 +13,98 @@ não possuem nenhum tipo de
  */
 
 function exibirComoHFSystemPodeAjudar() {
-  // CRIAÇÃO DE VARIÁVEIS E ATRIBUIÇÃO DE VALORES TIPO DE PLANTAÇÃO
-  const tipoPlantacao = document
-      .getElementById("input_tipo_plantacao")
-      .value
+    // CRIAÇÃO DE VARIÁVEIS E ATRIBUIÇÃO DE VALORES
 
-  // QUANTIDADE DE CICLOS ANUAL
-  const qtdCiclosAnualProducao = document
-      .getElementById(
-          "input_qtd_ciclos_anual_producao"
-      )
-      .value
+    var exibicao = document.getElementById("p_resultado").value
 
-  // SE SABE CONSUMO DE ÁGUA MENSAL
+    //TIPO DE PLANTAÇÃO
+    const tipoPlantacao = document.getElementById("input_tipo_plantacao").value
 
-  if (document.getElementById("nao_sei_consumo_agua_mensal").checked) {
-      const consumoAguaMensal = document
-          .getElementById(
-              "nao_sei_consumo_agua_mensal"
-          )
-          .value
-  } else {
-      // SE NÃO SABE CONSUMO DE ÁGUA MENSAL
-      const consumoAguaMensal = document
-          .getElementById("input_consumo_agua_mensal")
-          .value
-  }
+    //VALOR BRUTO ANUAL
+    const valorBruto = document.getElementById("input_faturamento_anual").value
 
-  // SE TRABALHA COM SISTEMAS DE IRRIGAÇÃO
-  if (document.getElementById("input_trabalha_com_sistema_irrigacao_true").checked) {
-      const trabalhaSistemas = true
+    // QUANTIDADE DE CICLOS ANUAL
+    const qtdCiclosAnualProducao = document.getElementById("input_qtd_ciclos_anual_producao").value
 
-      // SE NÃO NÃO POSSUI SISTEMA DE IRRIGAÇÃO
-  } else if (document.getElementById("input_trabalha_com_sistema_irrigacao_false").checked) {
-      const trabalhaSistemas = false
-  }
+    // SE NÃO SABE CONSUMO DE ÁGUA MENSAL
+    if (document.getElementById("nao_sei_consumo_agua_mensal").checked) {
+        const consumoAguaMensal = document.getElementById("nao_sei_consumo_agua_mensal").value
+    } else {
+        // SE SABE CONSUMO DE ÁGUA MENSAL
+        const consumoAguaMensal = document.getElementById("input_consumo_agua_mensal").value // ESTIPULAR UM VALOR PARA CÁLCULO
+    }
 
-  // SE POSSUÍ RESERVATÓRIO
-  if (document.getElementById("input_possui_reservatorio_true").checked) {
-      const possuiReservatorio = true;
-      const capacidadeReservatorio = document
-          .getElementById(
-              "input_capacidade_reservatorio"
-          )
-          .value
+    // SE TRABALHA COM SISTEMAS DE IRRIGAÇÃO
+    if (document.getElementById("input_trabalha_com_sistema_irrigacao_true").checked) {
+        const trabalhaSistemasIrrigacao = true
 
-      // SE POSSUÍ SISTEMA DE MONITORAMENTO DE RESERVATÓRIO
-      if (document.getElementById("input_possui_sistema_monitoramento_reservatorio_true").checked) {
-          const possuiMonitoramentoReservatorio = true
+    // SE NÃO NÃO POSSUI SISTEMA DE IRRIGAÇÃO
+    } else if (document.getElementById("input_trabalha_com_sistema_irrigacao_false").checked) {
+        const trabalhaSistemasIrrigacao = false
+    }
 
-          // SE TIPO DO SISTEMA DE MONITORAMENTO DO RESERVATÓRIO FOR MANUAL
-          if (document.getElementById("input_tipo_sistema_manual").checked) {
-              const tipoMonitoramentoReservatorio = "manual"
+    // SE POSSUÍ RESERVATÓRIO
+    if (document.getElementById("input_possui_reservatorio_true").checked) {
+        const possuiReservatorio = true;
+        const capacidadeReservatorio = document.getElementById("input_capacidade_reservatorio").value
 
-              // SE TIPO DO SISTEMA DE MONITORAMENTO DO RESERVATÓRIO FOR AUTOMÁTICO
-          } else if (document.getElementById("input_tipo_sistema_automatico").checked) {
-              const tipoMonitoramentoReservatorio = "automático"
-          }
+        
+        // calculo de quando o reservatório deve ser reabastecido 
+        const duracaoDiasAguaReservatorio= capacidadeReservatorio/(consumoAguaMensal/30) - 1
 
-          // SE NÃO POSSUÍ SISTEMA DE MONITORAMENTO DE RESERVATÓRIO
-      } else if (document.getElementById("input_possui_sistema_monitoramento_reservatorio_false").checked) {
-          const possuiMonitoramentoReservatorio = false
-          // fim do código
-      }
+        // SE POSSUÍ SISTEMA DE MONITORAMENTO DE RESERVATÓRIO
+        if (document.getElementById("input_possui_sistema_monitoramento_reservatorio_true").checked) {
+            const possuiMonitoramentoReservatorio = true
 
-      // SE NÃO POSSUÍ RESERVATÓRIO
-  } else if (document.getElementById("input_possui_reservatorio_false").checked) {
-      const possuiReservatorio = false
+            // SE TIPO DO SISTEMA DE MONITORAMENTO DO RESERVATÓRIO FOR MANUAL
+            if (document.getElementById("input_tipo_sistema_manual").checked) {
+                const tipoMonitoramentoReservatorio = "manual"
 
-      //fim do código
-  }
+                // SE TIPO DO SISTEMA DE MONITORAMENTO DO RESERVATÓRIO FOR AUTOMÁTICO
+            } else if (document.getElementById("input_tipo_sistema_automatico").checked) {
+                const tipoMonitoramentoReservatorio = "automático"
+            }
+
+            // SE NÃO POSSUÍ SISTEMA DE MONITORAMENTO DE RESERVATÓRIO
+        } else if (document.getElementById("input_possui_sistema_monitoramento_reservatorio_false").checked) {
+            const possuiMonitoramentoReservatorio = false
+        }
+
+        // SE NÃO POSSUÍ RESERVATÓRIO
+    } else if (document.getElementById("input_possui_reservatorio_false").checked) {
+        const possuiReservatorio = false
+    }
+
+    var  faturamento_ciclo = 0
+    var perda_ciclo = 0
+    var aumento_producao = 0
+
+    if(trabalhaSistemasIrrigacao == true && possuiReservatorio == true && possuiMonitoramentoReservatorio == 'true' && tipoMonitoramentoReservatorio == 'automático'){
+        //// SE APROFUNDAR EM ALGUM CÁLCULO PARA ATENDER ESSE TIPO DE CLIENTE
+    }else if(trabalhaSistemasIrrigacao == true && possuiReservatorio == true && possuiMonitoramentoReservatorio == 'true' && tipoMonitoramentoReservatorio == 'manual'){
+        // Qualidades abaixo de um sistema automático + 50% perda
+        // 1.	Precisão: O controle automático permite ajustes precisos dos parâmetros do processo, garantindo a qualidade e eficiência do produto ou uso de recursos.
+        // 2.	Rapidez: O controle automático é mais rápido do que o controle manual, permitindo a resposta imediata a mudanças nas condições do processo.
+        // 3.	Consistência: O controle automático elimina erros e inconsistências causados pela intervenção humana, garantindo a uniformidade do processo.
+        // 4.	Otimização: O controle automático permite a otimização de processos complexos, melhorando a eficiência e reduzindo custos.
+        // 5.	Segurança: O controle automático pode ser utilizado em processos perigosos ou de difícil acesso para os operadores, garantindo a segurança no ambiente de trabalho.
+        // 6.	Verificação: Um sistema de monitoramento automático permite validar com maior precisão a eficiência de técnicas para auxiliar na redução de custos e permite identificar cenários adversos.
+
+            faturamento_ciclo = valorBruto / qtdCiclosAnualProducao 
+            perda_ciclo = faturamento_ciclo * .5 // prejuízo que pode atingir a cada ciclo
+
+    }else if(trabalhaSistemasIrrigacao == false){
+            faturamento_ciclo = valorBruto / qtdCiclosAnualProducao 
+            perda_ciclo = faturamento_ciclo * .5 // prejuízo que pode atingir a cada ciclo
+            aumento_producao = faturamento_ciclo * 2.5 // aumento de producao por ciclo
+            
+    }else if(trabalhaSistemasIrrigacao == true && possuiReservatorio == false){
+            faturamento_ciclo = valorBruto / qtdCiclosAnualProducao 
+            perda_ciclo = faturamento_ciclo * .5 // prejuízo que pode atingir a cada ciclo
+            aumento_producao = faturamento_ciclo * 2.5 // aumento de producao por ciclo
+
+    }else if(trabalhaSistemasIrrigacao == true && possuiReservatorio == true && possuiMonitoramentoReservatorio == false){
+        
+    }
 
 }
