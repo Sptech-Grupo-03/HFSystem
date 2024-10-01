@@ -12,6 +12,98 @@ não possuem nenhum tipo de
  * disponibilidade de água para as plantas.
  */
 
+function passarPerguntas(){ 
+    
+    document.getElementById('section_index').style.display = 'block';
+    document.getElementById('section_informacoes').style.display = 'none';
+    document.getElementById('section_perguntas_plantacao').style.display = 'none';
+    document.getElementById('section_perguntas_ciclo').style.display = 'none';
+    document.getElementById('section_valor_bruto').style.display = 'none';
+    document.getElementById('section_consumo_mensal').style.display = 'none';
+    document.getElementById('section_trabalha_sistema_irrigacao').style.display = 'none';
+    document.getElementById('section_possui_reservatorio').style.display = 'none';
+    document.getElementById('section_capacidade_reservatorio').style.display = 'none';
+    document.getElementById('section_monitoramento_reservatorio').style.display = 'none';
+    document.getElementById('section_tipo_monitoramento').style.display = 'none';
+    document.getElementById('section_tudo_pronto').style.display = 'none';
+    document.getElementById('section_mensagem_final').style.display = 'none';    
+}
+
+function mostrarInformacoes() {
+    passarPerguntas();
+    document.getElementById('section_index').style.display = 'none';
+    document.getElementById('section_informacoes').style.display = 'block';  // Exibe a próxima pergunta
+}
+
+function mostrarPerguntasPlantacao() {
+    passarPerguntas(); 
+    document.getElementById('section_index').style.display = 'none'; 
+    document.getElementById('section_perguntas_plantacao').style.display = 'block';
+}
+
+function mostrarPerguntasCiclo(){
+    passarPerguntas(); 
+    document.getElementById('section_index').style.display = 'none'; 
+    document.getElementById('section_perguntas_ciclo').style.display = 'block';
+}
+
+function mostrarPerguntasValorBruto(){
+    passarPerguntas(); 
+    document.getElementById('section_index').style.display = 'none'; 
+    document.getElementById('section_valor_bruto').style.display = 'block';
+}
+
+function mostrarConsumoMensal(){
+    passarPerguntas(); 
+    document.getElementById('section_index').style.display = 'none'; 
+    document.getElementById('section_consumo_mensal').style.display = 'block';
+}
+
+function trabalhaSistemaIrrigacao(){
+    passarPerguntas(); 
+    document.getElementById('section_index').style.display = 'none'; 
+    document.getElementById('section_trabalha_sistema_irrigacao').style.display = 'block';
+
+}
+
+function mostrarPossuiReservatorio(){
+    passarPerguntas(); 
+    document.getElementById('section_index').style.display = 'none'; 
+    document.getElementById('section_possui_reservatorio').style.display = 'block';
+}
+
+function mostrarCapacidadeReservatorio(){
+    passarPerguntas(); 
+    document.getElementById('section_index').style.display = 'none'; 
+    document.getElementById('section_capacidade_reservatorio').style.display = 'block';
+}
+
+function mostrarMonitoramentoReservatorio(){
+    passarPerguntas(); 
+    document.getElementById('section_index').style.display = 'none'; 
+    document.getElementById('section_monitoramento_reservatorio').style.display = 'block';
+
+}
+
+function mostrarTipoMonitoramento(){
+    passarPerguntas(); 
+        document.getElementById('section_index').style.display = 'none'; 
+    document.getElementById('section_tipo_monitoramento').style.display = 'block';
+    }
+
+function mostrarTudoPronto(){
+    passarPerguntas(); 
+    document.getElementById('section_index').style.display = 'none'; 
+    document.getElementById('section_tudo_pronto').style.display = 'block';
+}
+
+function mensagemFinal(){
+    passarPerguntas(); 
+    document.getElementById('section_index').style.display = 'none'; 
+    document.getElementById('section_mensagem_final').style.display = 'block';
+}
+
+
 function exibirComoHFSystemPodeAjudar() {
   // CRIAÇÃO DE VARIÁVEIS E ATRIBUIÇÃO DE VALORES
 
@@ -128,3 +220,18 @@ function exibirComoHFSystemPodeAjudar() {
   }
 
 }
+
+
+
+    // var sectionindex = document.getElementById('section_index').style.display = 'block'
+    // var sectionInformacoes = document.getElementById('section_informacoes').style.display = 'none'
+    // var sectionPerguntasPlantacao = document.getElementById('section_perguntas_plantacao').style.display = 'none'
+    // var sectionPerguntasCiclo = document.getElementById('section_perguntas_ciclo').style.display = 'none'
+    // var sectionValorBruto = document.getElementById('section_valor_bruto').style.display = 'none'
+    // var sectionConsumoMensal = document.getElementById('section_consumo_mensal').style.display = 'none'
+    // var sectionTrabalhaIrrigacao = document.getElementById('section_trabalha_sistema_irrigacao').style.display = 'none'
+    // var sectionPossuiReservatorio = document.getElementById('section_possui_reservatorio').style.display = 'none'
+    // var sectionCapacidadeReservatorio = document.getElementById('section_capacidade_reservatorio').style.display = 'none'
+    // var sectionMonitoramentoReservatorio = document.getElementById('section_monitoramento_reservatorio').style.display = 'none'
+    // var sectionTipoMonitoramentoReservatorio = document.getElementById('section_tipo_monitoramento').style.display = 'none'
+    // var sectionMensagemFinal = document.getElementById('section_mensagem_final').style.display = 'none'
