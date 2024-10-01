@@ -33,7 +33,7 @@ function mostrarInformacoes() {
     passarPerguntas();
     document.getElementById('section_index').style.display = 'none';
     document.getElementById('section_informacoes').style.display = 'block';  // Exibe a próxima pergunta
-}
+}//
 
 function mostrarPerguntasPlantacao() {
     passarPerguntas(); 
