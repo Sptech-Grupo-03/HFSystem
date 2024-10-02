@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simuladora HF System</title>
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://kit.fontawesome.com/041dbc8823.js" crossorigin="anonymous"></script>
     
 </head>
 
-<body onload="passarPerguntas()">
+<body>
     <main>
-        <section id="section_index" class="section_index">
+        <section id="section_index" class="section_index gradiente">
             <header>
+                <i class="fa-solid fa-arrow-left"></i>
                 <h1>ESTRESSE HÍDRICO</h1>
             </header>
             <div class="div_index">
@@ -25,6 +28,7 @@
         </section>
 
         <section id="section_informacoes" class="section_informacoes">
+            <header><i onclick="mostrarIndex()" class="fa-solid fa-arrow-left"></i></header>
             <div class="div_informacoes">
                 <h2>ANTES, PRECISAREMOS QUE VOCÊ RESPONDA ALGUMAS PERGUNTAS, TUDO BEM ?
                 </h2>
@@ -33,7 +37,9 @@
         </section>
 
         <section id="section_perguntas_plantacao" class="section_perguntas">
+            <header><i onclick="mostrarInformacoes()" class="fa-solid fa-arrow-left"></i></header>
             <div class="conteudoHome">
+                
                 <h2>
                     QUAL O SEU TIPO DE PLANTAÇÃO ?
                 </h2>
@@ -44,7 +50,9 @@
         </section>
 
         <section id="section_perguntas_ciclo" class="section_perguntas">
+            <header><i onclick="mostrarPerguntasPlantacao()" class="fa-solid fa-arrow-left"></i></header>
             <div class="conteudoHome">
+                
                 <h2>
                     QUANTOS CICLOS DE PRODUÇÃO ANUAL VOCÊ TEM ?
                 </h2>
@@ -55,7 +63,9 @@
         </section>
 
         <section id="section_valor_bruto" class="section_valor_bruto">
+            <header><i onclick="mostrarPerguntasCiclo()" class="fa-solid fa-arrow-left"></i></header>
             <div class="conteudoHome">
+                
                 <h2>
                     QUAL O SEU FATURAMENTO BRUTO ANUAL ?
                 </h2>
@@ -66,7 +76,9 @@
         </section>
 
         <section id="section_consumo_mensal" class="section_perguntas">
+            <header><i onclick="mostrarPerguntasValorBruto()" class="fa-solid fa-arrow-left"></i></header>
             <div class="conteudoHome">
+                
                 <h2>
                     QUAL O CONSUMO DE ÁGUA MENSAL NO LOCAL DA SUA PLANTAÇÃO ?
                 </h2>
@@ -79,7 +91,9 @@
         </section>
 
         <section id="section_trabalha_sistema_irrigacao" class="section_perguntas">
+            <header><i onclick="mostrarConsumoMensal()" class="fa-solid fa-arrow-left"></i></header>
             <div class="div_perguntas">
+                
                 <h2>VOCÊ JÁ TRABALHA COM SISTEMA DE IRRIGAÇÃO ?</h2>
             </div>
 
@@ -91,7 +105,9 @@
         </section>
 
         <section id="section_possui_reservatorio" class="section_perguntas">
+            <header><i onclick="trabalhaSistemaIrrigacao()" class="fa-solid fa-arrow-left"></i></header>
             <div class="conteudoHome">
+                
                 <h2>
                     VOCÊ POSSUI UM RESERVATÓRIO NO LOCAL DA SUA PLANTAÇÃO ?
                 </h2>
@@ -105,7 +121,9 @@
         </section>
 
         <section id="section_capacidade_reservatorio" class="section_perguntas">
+            <header><i onclick="mostrarPossuiReservatorio()" class="fa-solid fa-arrow-left"></i></header>
             <div class="conteudoHome">
+                
                 <h2>QUAL A CAPACIDADE DO SEU RESERVATÓRIO ?</h2>
             </div>
             <input type="text" id="input_capacidade_reservatorio" placeholder="| DIGITE AQUI A CAPACIDADE EM LITROS">
@@ -114,7 +132,9 @@
 
 
         <section id="section_monitoramento_reservatorio" class="section_perguntas">
+            <header><i onclick="mostrarCapacidadeReservatorio()" class="fa-solid fa-arrow-left"></i></header>
             <div class="conteudoHome">
+                
                 <h2>
                     VOCÊ POSSUI UM SISTEMA DE MONITORAMENTO NO SEU RESERVATÓRIO ?
                 </h2>
@@ -124,12 +144,14 @@
             <input type="radio" value = "true" name="input_possui_sistema_monitoramento_reservatorio" id="input_possui_sistema_monitoramento_reservatorio_true">
             <label for="input_possui_sistema_monitoramento_reservatorio">NÃO</label>
             <input type="radio" value = "false" name="input_possui_sistema_monitoramento_reservatorio" id="input_possui_sistema_monitoramento_reservatorio_false">
-            <button onclick="mostrarTipoMonitoramento()"></button>
+            <button onclick="mostrarTipoMonitoramento()">Continuar</button>
         </section>
 
         
         <section id="section_tipo_monitoramento" class="section_perguntas">
+            <header><i onclick="mostrarMonitoramentoReservatorio()" class="fa-solid fa-arrow-left"></i></header>
             <div class="conteudoHome">
+                
                 <h2>
                     ESTE SISTEMA É MANUAL OU AUTOMÁTICO ?
                 </h2>
@@ -142,16 +164,19 @@
             <button onclick="mostrarTudoPronto()">CONTINUAR</button>
         </section>
 
-        <section id="section_tudo_pronto" class="section_mensagem_validacao">
+        <section id="section_tudo_pronto" class="section_mensagem_validacao gradiente">
+            <header><i onclick="mostrarTipoMonitoramento()" class="fa-solid fa-arrow-left"></i></header>
             <div class="conteudoHome">
+                
                 <h1>TUDO PRONTO!</h1>
                 <h3>VAMOS DESCOBRIR COMO O <b>HF SYSTEM</b> PODE TE AJUDAR ?</h3>
             </div>
-            <button class="btns" onclick="mensagemFinal()">DESCOBRIR </button>
+            <button class="btns" onclick="mostrarMensagemFinal(), exibirComoHFSystemPodeAjudar()">DESCOBRIR </button>
         </section>
 
-        <section id="section_mensagem_final" class="section_resultado">
+        <section id="section_mensagem_final" class="section_resultado gradiente">
             <header>
+                <i onclick="mostrarTudoPronto()" class="fa-solid fa-arrow-left"></i>
                 <h1><b>HF SYSTEM</b></h1>
             </header>
             <div class="conteudoHome">

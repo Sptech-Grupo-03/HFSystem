@@ -1,20 +1,5 @@
-/* - Plantações sem irrigação e sem reservatório: Muitas plantações,
- * especialmente em regiões com chuvas regulares,
-não possuem nenhum tipo de
- * sistema de irrigação ou reservatório. A água da chuva é suficiente para
- * suprir as necessidades das plantas.
-- Plantações com irrigação, mas sem
- * reservatório: Algumas plantações utilizam água de rios ou poços para
- * irrigação, sem a necessidade de um reservatório.
-- Plantações com irrigação e
- * reservatório: A combinação de um sistema de irrigação e um reservatório é
- * comum em regiões com períodos de seca, permitindo um melhor controle da
- * disponibilidade de água para as plantas.
- */
-
-function passarPerguntas(){ 
-    
-    document.getElementById('section_index').style.display = 'block';
+function setarDisplayNoneSections(){ 
+    document.getElementById('section_index').style.display = 'none';
     document.getElementById('section_informacoes').style.display = 'none';
     document.getElementById('section_perguntas_plantacao').style.display = 'none';
     document.getElementById('section_perguntas_ciclo').style.display = 'none';
@@ -29,80 +14,95 @@ function passarPerguntas(){
     document.getElementById('section_mensagem_final').style.display = 'none';    
 }
 
+//FUNÇÕES PARA EXIBIR CADA SEÇÃO DE PERGUNTA PERGUNTAS
+
+function mostrarIndex(){
+    setarDisplayNoneSections(); 
+    document.getElementById('section_index').style.display = 'flex';
+}
+
 function mostrarInformacoes() {
-    passarPerguntas();
-    document.getElementById('section_index').style.display = 'none';
-    document.getElementById('section_informacoes').style.display = 'block';  // Exibe a próxima pergunta
-}//
+    setarDisplayNoneSections();
+    document.getElementById('section_informacoes').style.display = 'flex';
+}
 
 function mostrarPerguntasPlantacao() {
-    passarPerguntas(); 
-    document.getElementById('section_index').style.display = 'none'; 
-    document.getElementById('section_perguntas_plantacao').style.display = 'block';
+    setarDisplayNoneSections(); 
+    document.getElementById('section_perguntas_plantacao').style.display = 'flex';
 }
 
 function mostrarPerguntasCiclo(){
-    passarPerguntas(); 
-    document.getElementById('section_index').style.display = 'none'; 
-    document.getElementById('section_perguntas_ciclo').style.display = 'block';
+    setarDisplayNoneSections(); 
+    document.getElementById('section_perguntas_ciclo').style.display = 'flex';
 }
 
 function mostrarPerguntasValorBruto(){
-    passarPerguntas(); 
-    document.getElementById('section_index').style.display = 'none'; 
-    document.getElementById('section_valor_bruto').style.display = 'block';
+    setarDisplayNoneSections(); 
+    document.getElementById('section_valor_bruto').style.display = 'flex';
 }
 
 function mostrarConsumoMensal(){
-    passarPerguntas(); 
-    document.getElementById('section_index').style.display = 'none'; 
-    document.getElementById('section_consumo_mensal').style.display = 'block';
+    setarDisplayNoneSections(); 
+    document.getElementById('section_consumo_mensal').style.display = 'flex';
 }
 
 function trabalhaSistemaIrrigacao(){
-    passarPerguntas(); 
-    document.getElementById('section_index').style.display = 'none'; 
-    document.getElementById('section_trabalha_sistema_irrigacao').style.display = 'block';
+    setarDisplayNoneSections(); 
+    document.getElementById('section_trabalha_sistema_irrigacao').style.display = 'flex';
 
 }
 
 function mostrarPossuiReservatorio(){
-    passarPerguntas(); 
-    document.getElementById('section_index').style.display = 'none'; 
-    document.getElementById('section_possui_reservatorio').style.display = 'block';
+    setarDisplayNoneSections(); 
+    document.getElementById('section_possui_reservatorio').style.display = 'flex';
 }
 
 function mostrarCapacidadeReservatorio(){
-    passarPerguntas(); 
-    document.getElementById('section_index').style.display = 'none'; 
-    document.getElementById('section_capacidade_reservatorio').style.display = 'block';
+    setarDisplayNoneSections(); 
+    document.getElementById('section_capacidade_reservatorio').style.display = 'flex';
 }
 
 function mostrarMonitoramentoReservatorio(){
-    passarPerguntas(); 
-    document.getElementById('section_index').style.display = 'none'; 
-    document.getElementById('section_monitoramento_reservatorio').style.display = 'block';
+    setarDisplayNoneSections(); 
+    document.getElementById('section_monitoramento_reservatorio').style.display = 'flex';
 
 }
 
 function mostrarTipoMonitoramento(){
-    passarPerguntas(); 
-        document.getElementById('section_index').style.display = 'none'; 
-    document.getElementById('section_tipo_monitoramento').style.display = 'block';
+    setarDisplayNoneSections(); 
+    document.getElementById('section_tipo_monitoramento').style.display = 'flex';
     }
 
 function mostrarTudoPronto(){
-    passarPerguntas(); 
-    document.getElementById('section_index').style.display = 'none'; 
-    document.getElementById('section_tudo_pronto').style.display = 'block';
+    setarDisplayNoneSections(); 
+    document.getElementById('section_tudo_pronto').style.display = 'flex';
 }
 
-function mensagemFinal(){
-    passarPerguntas(); 
-    document.getElementById('section_index').style.display = 'none'; 
-    document.getElementById('section_mensagem_final').style.display = 'block';
+function mostrarMensagemFinal(){
+    setarDisplayNoneSections(); 
+    document.getElementById('section_mensagem_final').style.display = 'flex';
+    exibirComoHFSystemPodeAjudar();
 }
 
+
+
+
+
+
+
+/* - Plantações sem irrigação e sem reservatório: Muitas plantações,
+ * especialmente em regiões com chuvas regulares,
+não possuem nenhum tipo de
+ * sistema de irrigação ou reservatório. A água da chuva é suficiente para
+ * suprir as necessidades das plantas.
+- Plantações com irrigação, mas sem
+ * reservatório: Algumas plantações utilizam água de rios ou poços para
+ * irrigação, sem a necessidade de um reservatório.
+- Plantações com irrigação e
+ * reservatório: A combinação de um sistema de irrigação e um reservatório é
+ * comum em regiões com períodos de seca, permitindo um melhor controle da
+ * disponibilidade de água para as plantas.
+ */
 
 function exibirComoHFSystemPodeAjudar() {
   // CRIAÇÃO DE VARIÁVEIS E ATRIBUIÇÃO DE VALORES
@@ -220,18 +220,3 @@ function exibirComoHFSystemPodeAjudar() {
   }
 
 }
-
-
-
-    // var sectionindex = document.getElementById('section_index').style.display = 'block'
-    // var sectionInformacoes = document.getElementById('section_informacoes').style.display = 'none'
-    // var sectionPerguntasPlantacao = document.getElementById('section_perguntas_plantacao').style.display = 'none'
-    // var sectionPerguntasCiclo = document.getElementById('section_perguntas_ciclo').style.display = 'none'
-    // var sectionValorBruto = document.getElementById('section_valor_bruto').style.display = 'none'
-    // var sectionConsumoMensal = document.getElementById('section_consumo_mensal').style.display = 'none'
-    // var sectionTrabalhaIrrigacao = document.getElementById('section_trabalha_sistema_irrigacao').style.display = 'none'
-    // var sectionPossuiReservatorio = document.getElementById('section_possui_reservatorio').style.display = 'none'
-    // var sectionCapacidadeReservatorio = document.getElementById('section_capacidade_reservatorio').style.display = 'none'
-    // var sectionMonitoramentoReservatorio = document.getElementById('section_monitoramento_reservatorio').style.display = 'none'
-    // var sectionTipoMonitoramentoReservatorio = document.getElementById('section_tipo_monitoramento').style.display = 'none'
-    // var sectionMensagemFinal = document.getElementById('section_mensagem_final').style.display = 'none'
