@@ -22,8 +22,7 @@ function mostrarIndex(){
 }
 
 function mostrarInformacoes() {
-    setarDisplayNoneSections();
-    document.getElementById('section_informacoes').style.display = 'flex';
+    document.getElementById('section_informacoes').style.left = 0;
 }
 
 function mostrarPerguntasPlantacao() {
