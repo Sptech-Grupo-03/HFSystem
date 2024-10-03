@@ -8,186 +8,215 @@
     <link rel="stylesheet" href="style.css">
 
     <script src="https://kit.fontawesome.com/041dbc8823.js" crossorigin="anonymous"></script>
-    
+
 </head>
 
 <body>
     <main>
-        <section id="section_index" class="gradiente">
+        <section id="section_index" class="section_perguntas gradiente">
             <header>
                 <i class="fa-solid fa-arrow-left"></i>
                 <h1>ESTRESSE HÍDRICO</h1>
             </header>
-            <div class="div_index">
+            <div class="conteudoPerguntas">
                 <p>
                     A presença de reservatórios de água mal monitorados podem desencandear estresse
                     hídrico nas suas plantações e afetar toda sua cadeia de produção.
                 </p>
             </div>
-            <button onclick="mostrarInformacoes()" class="btn_descobrir_ajuda bgblue ">DESCOBRIR COMO O <span>HF SYSTEM</span> PODE TE AJUDAR!</button>
+            <button class="btns" id="btn_index" onclick="exibirOcultarPergunta('section_informacoes')"
+                class="btn_descobrir_ajuda bgblue ">DESCOBRIR COMO O <span>HF SYSTEM</span> PODE TE AJUDAR!</button>
         </section>
 
         <section id="section_informacoes" class="section_perguntas">
-            <header><i onclick="mostrarIndex()" class="fa-solid fa-arrow-left"></i></header>
-            <div class="div_informacoes">
+            <header><i onclick="exibirOcultarPergunta('section_informacoes')" class="fa-solid fa-arrow-left"></i>
+            </header>
+            <div class="conteudoPerguntas">
                 <h2>ANTES, PRECISAREMOS QUE VOCÊ RESPONDA ALGUMAS PERGUNTAS, TUDO BEM ?
                 </h2>
             </div>
-            <button  onclick="mostrarPerguntasPlantacao()" class="btns">TUDO BEM</button>
+            <button onclick="exibirOcultarPergunta('section_perguntas_plantacao')" class="btns">TUDO BEM</button>
         </section>
 
         <section id="section_perguntas_plantacao" class="section_perguntas">
-            <header><i onclick="mostrarInformacoes()" class="fa-solid fa-arrow-left"></i></header>
-            <div class="conteudoHome">
-                
+            <header><i onclick="exibirOcultarPergunta('section_perguntas_plantacao')"
+                    class="fa-solid fa-arrow-left"></i></header>
+            <div class="conteudoPerguntas">
+
                 <h2>
                     QUAL O SEU TIPO DE PLANTAÇÃO ?
                 </h2>
             </div>
             <input type="text" id="input_tipo_plantacao" placeholder="| DIGITE AQUI O SEU TIPO DE PLANTAÇÃO |">
             <br>
-            <button class="btns" onclick="mostrarPerguntasCiclo()">CONTINUAR</button>
+            <button class="btns" onclick="exibirOcultarPergunta('section_perguntas_ciclo')">CONTINUAR</button>
         </section>
 
         <section id="section_perguntas_ciclo" class="section_perguntas">
-            <header><i onclick="mostrarPerguntasPlantacao()" class="fa-solid fa-arrow-left"></i></header>
-            <div class="conteudoHome">
-                
+            <header><i onclick="exibirOcultarPergunta('section_perguntas_ciclo')" class="fa-solid fa-arrow-left"></i>
+            </header>
+            <div class="conteudoPerguntas">
+
                 <h2>
                     QUANTOS CICLOS DE PRODUÇÃO ANUAL VOCÊ TEM ?
                 </h2>
             </div>
-            <input type="text" id="input_qtd_ciclos_anual_producao" placeholder="| DIGITE AQUI A SUA QUANTIDADE DE CICLOS">
+            <input type="number" id="input_qtd_ciclos_anual_producao"
+                placeholder="| DIGITE AQUI A SUA QUANTIDADE DE CICLOS">
             <br>
-            <button class="btns" onclick="mostrarPerguntasValorBruto()">CONTINUAR</button>
+            <button class="btns" onclick="exibirOcultarPergunta('section_valor_bruto')">CONTINUAR</button>
         </section>
 
         <section id="section_valor_bruto" class="section_perguntas">
-            <header><i onclick="mostrarPerguntasCiclo()" class="fa-solid fa-arrow-left"></i></header>
-            <div class="conteudoHome">
-                
+            <header><i onclick="exibirOcultarPergunta('section_valor_bruto')" class="fa-solid fa-arrow-left"></i>
+            </header>
+            <div class="conteudoPerguntas">
+
                 <h2>
                     QUAL O SEU FATURAMENTO BRUTO ANUAL ?
                 </h2>
             </div>
-            <input type="text" id="input_faturamento_anual" placeholder="| INFORME O VALOR BRUTO QUE VOCÊ FATURA ANUALMENTE">
+            <input type="number" id="input_faturamento_anual"
+                placeholder="| INFORME O VALOR BRUTO QUE VOCÊ FATURA ANUALMENTE">
             <br>
-            <button class="btns" onclick="mostrarConsumoMensal()">INFORMAR</button>
+            <button class="btns" onclick="exibirOcultarPergunta('section_consumo_mensal')">CONTINUAR</button>
         </section>
 
         <section id="section_consumo_mensal" class="section_perguntas">
-            <header><i onclick="mostrarPerguntasValorBruto()" class="fa-solid fa-arrow-left"></i></header>
-            <div class="conteudoHome">
-                
+            <header><i onclick="exibirOcultarPergunta('section_consumo_mensal')" class="fa-solid fa-arrow-left"></i>
+            </header>
+            <div class="conteudoPerguntas">
+
                 <h2>
                     QUAL O CONSUMO DE ÁGUA MENSAL NO LOCAL DA SUA PLANTAÇÃO ?
                 </h2>
             </div>
-            <input type="text" id="input_consumo_agua_mensal" placeholder="| DIGITE AQUI O SEU CONSUMO EM LITROS">
-            <label for="nao_sei_consumo_agua_mensal">NÃO SEI</label>
-            <input type="radio" name="nao_sei_consumo_agua_mensal" value="não sei" id="nao_sei_consumo_agua_mensal">
-            <br>
-            <button class="btns" onclick="trabalhaSistemaIrrigacao()">CONTINUAR</button>
+            <input type="number" id="input_consumo_agua_mensal" placeholder="| DIGITE AQUI O SEU CONSUMO EM LITROS">
+
+            <div class="div_btns" id="div_btns_section_consumo_mensal">
+                <label for="nao_sei_consumo_agua_mensal" class="btns" onclick="exibirOcultarPergunta('section_trabalha_sistema_irrigacao')" id="btn_section_consumo_mensal">NÃO SEI</label>
+                <input type="radio" name="nao_sei_consumo_agua_mensal" value="não sei" id="nao_sei_consumo_agua_mensal">
+                <br>
+                <button class="btns"
+                    onclick="exibirOcultarPergunta('section_trabalha_sistema_irrigacao')">CONTINUAR</button>
+            </div>
         </section>
 
         <section id="section_trabalha_sistema_irrigacao" class="section_perguntas">
-            <header><i onclick="mostrarConsumoMensal()" class="fa-solid fa-arrow-left"></i></header>
-            <div class="div_perguntas">
-                
+            <header><i onclick="exibirOcultarPergunta('section_trabalha_sistema_irrigacao')"
+                    class="fa-solid fa-arrow-left"></i></header>
+            <div class="conteudoPerguntas">
+
                 <h2>VOCÊ JÁ TRABALHA COM SISTEMA DE IRRIGAÇÃO ?</h2>
             </div>
 
-            <label for="input_trabalha_com_sistemas">SIM</label>
-            <input type="radio" value = "true" name="input_trabalha_com_sistema_irrigacao" id="input_trabalha_com_sistema_irrigacao_true">
-            <label for="input_trabalha_com_sistemas">NÃO</label>
-            <input type="radio" value = "false" name="input_trabalha_com_sistema_irrigacao" id="input_trabalha_com_sistema_irrigacao_false">
-            <button onclick="mostrarPossuiReservatorio()">continuar</button>
+            <div class="div_btns">
+                <label for="input_trabalha_com_sistema_irrigacao_true" class="btns" onclick="exibirOcultarPergunta('section_possui_reservatorio')">SIM</label>
+                <input type="radio" value="true" name="input_trabalha_com_sistema_irrigacao"
+                    id="input_trabalha_com_sistema_irrigacao_true">
+                <label for="input_trabalha_com_sistema_irrigacao_false" class="btns" onclick="exibirOcultarPergunta('section_possui_reservatorio')">NÃO</label>
+                <input type="radio" value="false" name="input_trabalha_com_sistema_irrigacao"
+                    id="input_trabalha_com_sistema_irrigacao_false">
+            </div>
+
         </section>
 
         <section id="section_possui_reservatorio" class="section_perguntas">
-            <header><i onclick="trabalhaSistemaIrrigacao()" class="fa-solid fa-arrow-left"></i></header>
-            <div class="conteudoHome">
-                
+            <header><i onclick="exibirOcultarPergunta('section_possui_reservatorio')"
+                    class="fa-solid fa-arrow-left"></i></header>
+            <div class="conteudoPerguntas">
+
                 <h2>
                     VOCÊ POSSUI UM RESERVATÓRIO NO LOCAL DA SUA PLANTAÇÃO ?
                 </h2>
             </div>
 
-            <label for="input_possui_reservatorio">SIM</label>
-            <input type="radio" value = "true" name="input_possui_reservatorio" id="input_possui_reservatorio_true">
-            <label for="input_possui_reservatorio">NÃO</label>
-            <input type="radio" value = "false" name="input_possui_reservatorio" id="input_possui_reservatorio_false">
-            <button onclick="mostrarCapacidadeReservatorio()">continuar</button>
+            <div class="div_btns">
+
+                <label for="input_possui_reservatorio_true" class="btns" onclick="exibirOcultarPergunta('section_capacidade_reservatorio')">SIM</label>
+                <input type="radio" value="true" name="input_possui_reservatorio" id="input_possui_reservatorio_true">
+                <label for="input_possui_reservatorio_false" class="btns" onclick="exibirOcultarPergunta('section_capacidade_reservatorio')">NÃO</label>
+                <input type="radio" value="false" name="input_possui_reservatorio" id="input_possui_reservatorio_false">
+
+            </div>
+
+
         </section>
 
         <section id="section_capacidade_reservatorio" class="section_perguntas">
-            <header><i onclick="mostrarPossuiReservatorio()" class="fa-solid fa-arrow-left"></i></header>
-            <div class="conteudoHome">
-                
+            <header><i onclick="exibirOcultarPergunta('section_capacidade_reservatorio')"
+                    class="fa-solid fa-arrow-left"></i></header>
+            <div class="conteudoPerguntas">
+
                 <h2>QUAL A CAPACIDADE DO SEU RESERVATÓRIO ?</h2>
             </div>
-            <input type="text" id="input_capacidade_reservatorio" placeholder="| DIGITE AQUI A CAPACIDADE EM LITROS">
-            <button onclick="mostrarMonitoramentoReservatorio()" class="btns">CONTINUAR</button>
+            <input type="number" id="input_capacidade_reservatorio" placeholder="| DIGITE AQUI A CAPACIDADE EM LITROS">
+            <button class="btns" onclick="exibirOcultarPergunta('section_monitoramento_reservatorio')"
+                class="btns">CONTINUAR</button>
         </section>
 
 
         <section id="section_monitoramento_reservatorio" class="section_perguntas">
-            <header><i onclick="mostrarCapacidadeReservatorio()" class="fa-solid fa-arrow-left"></i></header>
-            <div class="conteudoHome">
-                
+            <header><i onclick="exibirOcultarPergunta('section_monitoramento_reservatorio')"
+                    class="fa-solid fa-arrow-left"></i></header>
+            <div class="conteudoPerguntas">
+
                 <h2>
                     VOCÊ POSSUI UM SISTEMA DE MONITORAMENTO NO SEU RESERVATÓRIO ?
                 </h2>
             </div>
 
-            <label for="input_possui_sistema_monitoramento_reservatorio">SIM</label>
-            <input type="radio" value = "true" name="input_possui_sistema_monitoramento_reservatorio" id="input_possui_sistema_monitoramento_reservatorio_true">
-            <label for="input_possui_sistema_monitoramento_reservatorio">NÃO</label>
-            <input type="radio" value = "false" name="input_possui_sistema_monitoramento_reservatorio" id="input_possui_sistema_monitoramento_reservatorio_false">
-            <button onclick="mostrarTipoMonitoramento()">Continuar</button>
+            <div class="div_btns">
+                <label for="input_possui_sistema_monitoramento_reservatorio_true" class="btns" onclick="exibirOcultarPergunta('section_tipo_monitoramento')">SIM</label>
+                <input type="radio" value="true" name="input_possui_sistema_monitoramento_reservatorio"
+                    id="input_possui_sistema_monitoramento_reservatorio_true">
+                <label for="input_possui_sistema_monitoramento_reservatorio_false" class="btns" onclick="exibirOcultarPergunta('section_tipo_monitoramento')">NÃO</label>
+                <input type="radio" value="false" name="input_possui_sistema_monitoramento_reservatorio"
+                    id="input_possui_sistema_monitoramento_reservatorio_false">
+            </div>
+
         </section>
 
-        
+
         <section id="section_tipo_monitoramento" class="section_perguntas">
-            <header><i onclick="mostrarMonitoramentoReservatorio()" class="fa-solid fa-arrow-left"></i></header>
-            <div class="conteudoHome">
-                
+            <header><i onclick="exibirOcultarPergunta('section_tipo_monitoramento')" class="fa-solid fa-arrow-left"></i>
+            </header>
+            <div class="conteudoPerguntas">
+
                 <h2>
                     ESTE SISTEMA É MANUAL OU AUTOMÁTICO ?
                 </h2>
             </div>
 
-            <label for="input_tipo_sistema">MANUAL</label>
-            <input type="radio" value = "manual" name="input_tipo_sistema" id="input_tipo_sistema_manual">
-            <label for="input_tipo_sistema">AUTOMÁTICO</label>
-            <input type="radio" value = "automatico" name="input_tipo_sistema" id="input_tipo_sistema_automatico">
-            <button onclick="mostrarTudoPronto()">CONTINUAR</button>
+            <div class="div_btns">
+                <label for="input_tipo_sistema_manual" class="btns" onclick="exibirOcultarPergunta('section_tudo_pronto')">MANUAL</label>
+                <input type="radio" value="manual" name="input_tipo_sistema" id="input_tipo_sistema_manual">
+                <label for="input_tipo_sistema_automatico" class="btns" onclick="exibirOcultarPergunta('section_tudo_pronto')">AUTOMÁTICO</label>
+                <input type="radio" value="automatico" name="input_tipo_sistema" id="input_tipo_sistema_automatico">
+            </div>
+
         </section>
 
         <section id="section_tudo_pronto" class="section_perguntas gradiente">
-            <header><i onclick="mostrarTipoMonitoramento()" class="fa-solid fa-arrow-left"></i></header>
-            <div class="conteudoHome">
-                
-                <h1>TUDO PRONTO!</h1>
-                <h3>VAMOS DESCOBRIR COMO O <b>HF SYSTEM</b> PODE TE AJUDAR ?</h3>
+            <header><i onclick="exibirOcultarPergunta('section_tudo_pronto')" class="fa-solid fa-arrow-left"></i>
+            </header>
+            <div class="conteudoPerguntas">
+
+                <h2>TUDO PRONTO!</h1>
+                    <h2>VAMOS DESCOBRIR COMO O <b>HF SYSTEM</b> PODE TE AJUDAR ?</h3>
             </div>
-            <button class="btns" onclick="mostrarMensagemFinal(), exibirComoHFSystemPodeAjudar()">DESCOBRIR </button>
+            <button class="btns"
+                onclick="exibirComoHFSystemPodeAjudar(), exibirOcultarPergunta('section_mensagem_final')">DESCOBRIR
+            </button>
         </section>
 
-        <section id="section_mensagem_final" class=" gradiente">
+        <section id="section_mensagem_final" class="section_perguntas gradiente">
             <header>
-                <i onclick="mostrarTudoPronto()" class="fa-solid fa-arrow-left"></i>
-                <h1><b>HF SYSTEM</b></h1>
+                <i onclick="exibirOcultarPergunta('section_mensagem_final')" class="fa-solid fa-arrow-left"></i>
+                <h2><b>HF SYSTEM</b></h2>
             </header>
-            <div class="conteudoHome">
-                <p id="p_resultado">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                    leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
-                    with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                    publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
+            <div class="conteudoPerguntas">
+                <p id="p_resultado"></p>
             </div>
             <button class="btns">CADASTRE-SE</button>
         </section>
