@@ -17,14 +17,9 @@ void setup() {
 void loop() {
   // Exibe a distância no monitor serial
   
-  Serial.print("LimiteMinimo:");
-  Serial.print(1);
-  Serial.print(" ");
-  Serial.print("Distancia:");
+
   Serial.print(sensor.distance());
-  Serial.print(" ");
-  Serial.print("LimiteMaximo:");
-  Serial.println(7);
+
 
   // Aguarda 1 segundo antes da próxima leitura
   delay(1000);
