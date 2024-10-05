@@ -152,6 +152,10 @@ main {
   left: 0;
 }
 
+#section_mensagem_final{
+  font-size: 2rem;
+}
+
 .gradiente {
   background: var(--gradiente);
   color: var(--cor-primaria);
