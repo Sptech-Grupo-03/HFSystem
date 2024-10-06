@@ -19,8 +19,9 @@
                 <h1>ESTRESSE HÍDRICO</h1>
             </header>
             <div class="conteudoPerguntas">
+                <img id="logomarca_branca" src="../img/HYDRO FLOW (branco).svg" alt="Logomarca Hydro Flow System">
                 <p>
-                    A presença de reservatórios de água mal monitorados podem desencandear estresse
+                    Reservatórios de água mal monitorados podem desencandear estresse
                     hídrico nas suas plantações e afetar toda sua cadeia de produção.
                 </p>
             </div>
@@ -30,6 +31,7 @@
 
         <section id="section_informacoes" class="section_perguntas">
             <header><i onclick="exibirOcultarPergunta('section_informacoes')" class="fa-solid fa-arrow-left"></i>
+                <img class="logomarca" src="../img/HYDRO FLOW (PRETO).svg" alt="Logomarca Hydro Flow System">
             </header>
             <div class="conteudoPerguntas">
                 <h2>ANTES, PRECISAREMOS QUE VOCÊ RESPONDA ALGUMAS PERGUNTAS, TUDO BEM ?
@@ -40,7 +42,9 @@
 
         <section id="section_perguntas_plantacao" class="section_perguntas">
             <header><i onclick="exibirOcultarPergunta('section_perguntas_plantacao')"
-                    class="fa-solid fa-arrow-left"></i></header>
+                    class="fa-solid fa-arrow-left"></i>
+                <img class="logomarca" src="../img/HYDRO FLOW (PRETO).svg" alt="Logomarca Hydro Flow System">
+            </header>
             <div class="conteudoPerguntas">
 
                 <h2>
@@ -49,11 +53,12 @@
             </div>
             <input type="text" id="input_tipo_plantacao" placeholder="| DIGITE AQUI O SEU TIPO DE PLANTAÇÃO |">
             <br>
-            <button class="btns" onclick="exibirOcultarPergunta('section_perguntas_ciclo')">CONTINUAR</button>
+            <button class="btns" onclick="exibirOcultarPergunta('section_perguntas_ciclo', 'input_tipo_plantacao')">CONTINUAR</button>
         </section>
 
         <section id="section_perguntas_ciclo" class="section_perguntas">
             <header><i onclick="exibirOcultarPergunta('section_perguntas_ciclo')" class="fa-solid fa-arrow-left"></i>
+                <img class="logomarca" src="../img/HYDRO FLOW (PRETO).svg" alt="Logomarca Hydro Flow System">
             </header>
             <div class="conteudoPerguntas">
 
@@ -64,11 +69,12 @@
             <input type="number" id="input_qtd_ciclos_anual_producao"
                 placeholder="| DIGITE AQUI A SUA QUANTIDADE DE CICLOS">
             <br>
-            <button class="btns" onclick="exibirOcultarPergunta('section_valor_bruto')">CONTINUAR</button>
+            <button class="btns" onclick="exibirOcultarPergunta('section_valor_bruto', 'input_qtd_ciclos_anual_producao')">CONTINUAR</button>
         </section>
 
         <section id="section_valor_bruto" class="section_perguntas">
             <header><i onclick="exibirOcultarPergunta('section_valor_bruto')" class="fa-solid fa-arrow-left"></i>
+                <img class="logomarca" src="../img/HYDRO FLOW (PRETO).svg" alt="Logomarca Hydro Flow System">
             </header>
             <div class="conteudoPerguntas">
 
@@ -79,11 +85,12 @@
             <input type="number" id="input_faturamento_anual"
                 placeholder="| INFORME O VALOR BRUTO QUE VOCÊ FATURA ANUALMENTE">
             <br>
-            <button class="btns" onclick="exibirOcultarPergunta('section_consumo_mensal')">CONTINUAR</button>
+            <button class="btns" onclick="exibirOcultarPergunta('section_consumo_mensal', 'input_faturamento_anual')">CONTINUAR</button>
         </section>
 
         <section id="section_consumo_mensal" class="section_perguntas">
             <header><i onclick="exibirOcultarPergunta('section_consumo_mensal')" class="fa-solid fa-arrow-left"></i>
+                <img class="logomarca" src="../img/HYDRO FLOW (PRETO).svg" alt="Logomarca Hydro Flow System">
             </header>
             <div class="conteudoPerguntas">
 
@@ -94,27 +101,33 @@
             <input type="number" id="input_consumo_agua_mensal" placeholder="| DIGITE AQUI O SEU CONSUMO EM LITROS">
 
             <div class="div_btns" id="div_btns_section_consumo_mensal">
-                <label for="nao_sei_consumo_agua_mensal" class="btns" onclick="exibirOcultarPergunta('section_trabalha_sistema_irrigacao')" id="btn_section_consumo_mensal">NÃO SEI</label>
+                <label for="nao_sei_consumo_agua_mensal" class="btns"
+                    onclick="exibirOcultarPergunta('section_trabalha_sistema_irrigacao')"
+                    id="btn_section_consumo_mensal">NÃO SEI</label>
                 <input type="radio" name="nao_sei_consumo_agua_mensal" value="não sei" id="nao_sei_consumo_agua_mensal">
                 <br>
                 <button class="btns"
-                    onclick="exibirOcultarPergunta('section_trabalha_sistema_irrigacao')">CONTINUAR</button>
+                    onclick="exibirOcultarPergunta('section_trabalha_sistema_irrigacao', 'input_consumo_agua_mensal')">CONTINUAR</button>
             </div>
         </section>
 
         <section id="section_trabalha_sistema_irrigacao" class="section_perguntas">
             <header><i onclick="exibirOcultarPergunta('section_trabalha_sistema_irrigacao')"
-                    class="fa-solid fa-arrow-left"></i></header>
+                    class="fa-solid fa-arrow-left"></i>
+                <img class="logomarca" src="../img/HYDRO FLOW (PRETO).svg" alt="Logomarca Hydro Flow System">
+            </header>
             <div class="conteudoPerguntas">
 
                 <h2>VOCÊ JÁ TRABALHA COM SISTEMA DE IRRIGAÇÃO ?</h2>
             </div>
 
             <div class="div_btns">
-                <label for="input_trabalha_com_sistema_irrigacao_true" class="btns" onclick="exibirOcultarPergunta('section_possui_reservatorio')">SIM</label>
+                <label for="input_trabalha_com_sistema_irrigacao_true" class="btns"
+                    onclick="exibirOcultarPergunta('section_possui_reservatorio')">SIM</label>
                 <input type="radio" value="true" name="input_trabalha_com_sistema_irrigacao"
                     id="input_trabalha_com_sistema_irrigacao_true">
-                <label for="input_trabalha_com_sistema_irrigacao_false" class="btns" onclick="exibirOcultarPergunta('section_possui_reservatorio')">NÃO</label>
+                <label for="input_trabalha_com_sistema_irrigacao_false" class="btns"
+                    onclick="exibirOcultarPergunta('section_possui_reservatorio')">NÃO</label>
                 <input type="radio" value="false" name="input_trabalha_com_sistema_irrigacao"
                     id="input_trabalha_com_sistema_irrigacao_false">
             </div>
@@ -123,7 +136,9 @@
 
         <section id="section_possui_reservatorio" class="section_perguntas">
             <header><i onclick="exibirOcultarPergunta('section_possui_reservatorio')"
-                    class="fa-solid fa-arrow-left"></i></header>
+                    class="fa-solid fa-arrow-left"></i>
+                <img class="logomarca" src="../img/HYDRO FLOW (PRETO).svg" alt="Logomarca Hydro Flow System">
+            </header>
             <div class="conteudoPerguntas">
 
                 <h2>
@@ -133,9 +148,11 @@
 
             <div class="div_btns">
 
-                <label for="input_possui_reservatorio_true" class="btns" onclick="exibirOcultarPergunta('section_capacidade_reservatorio')">SIM</label>
+                <label for="input_possui_reservatorio_true" class="btns"
+                    onclick="exibirOcultarPergunta('section_capacidade_reservatorio')">SIM</label>
                 <input type="radio" value="true" name="input_possui_reservatorio" id="input_possui_reservatorio_true">
-                <label for="input_possui_reservatorio_false" class="btns" onclick="exibirOcultarPergunta('section_capacidade_reservatorio')">NÃO</label>
+                <label for="input_possui_reservatorio_false" class="btns"
+                    onclick="exibirOcultarPergunta('section_capacidade_reservatorio')">NÃO</label>
                 <input type="radio" value="false" name="input_possui_reservatorio" id="input_possui_reservatorio_false">
 
             </div>
@@ -145,20 +162,24 @@
 
         <section id="section_capacidade_reservatorio" class="section_perguntas">
             <header><i onclick="exibirOcultarPergunta('section_capacidade_reservatorio')"
-                    class="fa-solid fa-arrow-left"></i></header>
+                    class="fa-solid fa-arrow-left"></i>
+                <img class="logomarca" src="../img/HYDRO FLOW (PRETO).svg" alt="Logomarca Hydro Flow System">
+            </header>
             <div class="conteudoPerguntas">
 
                 <h2>QUAL A CAPACIDADE DO SEU RESERVATÓRIO ?</h2>
             </div>
             <input type="number" id="input_capacidade_reservatorio" placeholder="| DIGITE AQUI A CAPACIDADE EM LITROS">
-            <button class="btns" onclick="exibirOcultarPergunta('section_monitoramento_reservatorio')"
+            <button class="btns" onclick="exibirOcultarPergunta('section_monitoramento_reservatorio', 'input_capacidade_reservatorio')"
                 class="btns">CONTINUAR</button>
         </section>
 
 
         <section id="section_monitoramento_reservatorio" class="section_perguntas">
             <header><i onclick="exibirOcultarPergunta('section_monitoramento_reservatorio')"
-                    class="fa-solid fa-arrow-left"></i></header>
+                    class="fa-solid fa-arrow-left"></i>
+                <img class="logomarca" src="../img/HYDRO FLOW (PRETO).svg" alt="Logomarca Hydro Flow System">
+            </header>
             <div class="conteudoPerguntas">
 
                 <h2>
@@ -167,10 +188,12 @@
             </div>
 
             <div class="div_btns">
-                <label for="input_possui_sistema_monitoramento_reservatorio_true" class="btns" onclick="exibirOcultarPergunta('section_tipo_monitoramento')">SIM</label>
+                <label for="input_possui_sistema_monitoramento_reservatorio_true" class="btns"
+                    onclick="exibirOcultarPergunta('section_tipo_monitoramento')">SIM</label>
                 <input type="radio" value="true" name="input_possui_sistema_monitoramento_reservatorio"
                     id="input_possui_sistema_monitoramento_reservatorio_true">
-                <label for="input_possui_sistema_monitoramento_reservatorio_false" class="btns" onclick="exibirOcultarPergunta('section_tudo_pronto')">NÃO</label>
+                <label for="input_possui_sistema_monitoramento_reservatorio_false" class="btns"
+                    onclick="exibirOcultarPergunta('section_tudo_pronto')">NÃO</label>
                 <input type="radio" value="false" name="input_possui_sistema_monitoramento_reservatorio"
                     id="input_possui_sistema_monitoramento_reservatorio_false">
             </div>
@@ -180,6 +203,7 @@
 
         <section id="section_tipo_monitoramento" class="section_perguntas">
             <header><i onclick="exibirOcultarPergunta('section_tipo_monitoramento')" class="fa-solid fa-arrow-left"></i>
+                <img class="logomarca" src="../img/HYDRO FLOW (PRETO).svg" alt="Logomarca Hydro Flow System">
             </header>
             <div class="conteudoPerguntas">
 
@@ -189,9 +213,11 @@
             </div>
 
             <div class="div_btns">
-                <label for="input_tipo_sistema_manual" class="btns" onclick="exibirOcultarPergunta('section_tudo_pronto')">MANUAL</label>
+                <label for="input_tipo_sistema_manual" class="btns"
+                    onclick="exibirOcultarPergunta('section_tudo_pronto')">MANUAL</label>
                 <input type="radio" value="manual" name="input_tipo_sistema" id="input_tipo_sistema_manual">
-                <label for="input_tipo_sistema_automatico" class="btns" onclick="exibirOcultarPergunta('section_tudo_pronto')">AUTOMÁTICO</label>
+                <label for="input_tipo_sistema_automatico" class="btns"
+                    onclick="exibirOcultarPergunta('section_tudo_pronto')">AUTOMÁTICO</label>
                 <input type="radio" value="automatico" name="input_tipo_sistema" id="input_tipo_sistema_automatico">
             </div>
 
@@ -199,6 +225,7 @@
 
         <section id="section_tudo_pronto" class="section_perguntas gradiente">
             <header><i onclick="exibirOcultarPergunta('section_tudo_pronto')" class="fa-solid fa-arrow-left"></i>
+                <img class="logomarca" src="../img/HYDRO FLOW (branco).svg" alt="Logomarca Hydro Flow System">
             </header>
             <div class="conteudoPerguntas">
 
@@ -213,7 +240,7 @@
         <section id="section_mensagem_final" class="section_perguntas gradiente">
             <header>
                 <i onclick="exibirOcultarPergunta('section_mensagem_final')" class="fa-solid fa-arrow-left"></i>
-                <h2><b>HF SYSTEM</b></h2>
+                <img class="logomarca" src="../img/HYDRO FLOW (branco).svg" alt="Logomarca Hydro Flow System">
             </header>
             <div class="conteudoPerguntas">
                 <p id="p_resultado"></p>
