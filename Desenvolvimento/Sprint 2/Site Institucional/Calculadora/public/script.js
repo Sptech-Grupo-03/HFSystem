@@ -64,7 +64,7 @@ function exibirComoHFSystemPodeAjudar() {
     !possuiMonitoramentoReservatorio
   ) {
     exibicao.innerHTML = `
-        Seu sistema de irrigação e reservatório funcionam sem monitoramento, o que pode causar desperdícios em sua plantação de ${tipoPlantacao}. Ao implementar nosso sistema de monitoramento, você pode prevenir perdas de até ${perdaCicloFormatado} por ciclo e aumentar a eficiência de sua produção! Fique ciente que a combinação de um sistema de irrigação e o monitoramento automatizado de seu reservatório pode agregar em cada ciclo de produção ${faturamentoCicloFormatado * 2.5}`;
+        Seu sistema de irrigação e reservatório funcionam sem monitoramento, o que pode causar desperdícios em sua plantação de ${tipoPlantacao}. Ao implementar nosso sistema de monitoramento, você pode prevenir perdas de até ${perdaCicloFormatado} por ciclo e aumentar a eficiência de sua produção! Fique ciente que a combinação de um sistema de irrigação e o monitoramento automatizado de seu reservatório pode agregar em cada ciclo de produção ${(faturamentoCiclo * 2.5).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
   } else if (
     !trabalhaSistemasIrrigacao &&
     possuiReservatorio &&
@@ -79,14 +79,14 @@ function exibirComoHFSystemPodeAjudar() {
     possuiMonitoramentoReservatorio === "automático"
   ) {
     exibicao.innerHTML = `
-      Embora tenha um reservatório, sem um sistema de irrigação você não aproveita ao máximo seus recursos. Com nosso monitoramento do reservatório e um sistema de irrigação, você pode otimizar o uso da água, possibilitando um aumento de produção de 200%, chegando a ${(faturamentoCicloFormatado * 2)} por ciclo.`;
+      Embora tenha um reservatório, sem um sistema de irrigação você não aproveita ao máximo seus recursos. Com nosso monitoramento do reservatório e um sistema de irrigação, você pode otimizar o uso da água, possibilitando um aumento de produção de 200%, chegando a ${(faturamentoCiclo * 2).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} por ciclo.`;
   } else if (
     !trabalhaSistemasIrrigacao &&
     possuiReservatorio &&
     !possuiMonitoramentoReservatorio
   ) {
     exibicao.innerHTML = `
-        Embora tenha um reservatório, sem um sistema de irrigação você não aproveita ao máximo seus recursos. Além disso, sua produção de ${tipoPlantacao} poderia ser ainda mais otimizada com nosso monitoramento de reservatório, tendo uma melhor gestão de seus recursos hídricos, possibilitando um aumento de produção de 250%, ou ${(faturamentoCicloFormatado * 2.5)}. A falta de automação pode resultar em perdas de até 50% por cada ciclo, sendo um prejuízo de ${perdaCicloFormatado} .
+        Embora tenha um reservatório, sem um sistema de irrigação você não aproveita ao máximo seus recursos. Além disso, sua produção de ${tipoPlantacao} poderia ser ainda mais otimizada com nosso monitoramento de reservatório, tendo uma melhor gestão de seus recursos hídricos, possibilitando um aumento de produção de 250%, ou ${(faturamentoCiclo * 2.5).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}. A falta de automação pode resultar em perdas de até 50% por cada ciclo, sendo um prejuízo de ${perdaCicloFormatado} .
         `;
   } else {
     exibicao.innerHTML = `
