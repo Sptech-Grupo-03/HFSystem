@@ -17,8 +17,7 @@ void setup() {
 void loop() {
   // Exibe a distância no monitor serial
   
-
-  Serial.print(sensor.distance());
+  Serial.println(sensor.distance());
 
 
   // Aguarda 1 segundo antes da próxima leitura
