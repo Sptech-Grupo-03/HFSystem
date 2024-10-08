@@ -133,3 +133,43 @@ footer{
 background-image: linear-gradient(to right, #041B22, #07313E, #0A4457, #0A4457, #0E617C, #0E617C, #0E617C);
 
 }
+
+
+/*QUEM SOMOS*/
+
+.title-card{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 90px;
+    margin-bottom: 50px;
+    line-height: 60px;
+    font-size: 25px;
+    font-weight: 100;
+    margin: 0;
+}
+
+.titleQuem{
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: lighter;
+    color: #083B4B;
+    font-size: 60px;
+}
+
+.containerQuem{
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.containerQuem p{
+    padding: 100px;
+    font-family: "Saira", sans-serif;
+    font-size: 24px;
+}
+
+.containerQuem img{
+    padding: 100px;
+}
