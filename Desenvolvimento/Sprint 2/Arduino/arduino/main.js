@@ -1,5 +1,5 @@
 // importa os bibliotecas necessários
-const serialport = require('serialport'); 
+const serialport = require('serialport');
 const express = require('express');
 const mysql = require('mysql2');
 
@@ -8,20 +8,21 @@ const SERIAL_BAUD_RATE = 9600;
 const SERVIDOR_PORTA = 3300;
 
 // habilita ou desabilita a inserção de dados no banco de dados
-const HABILITAR_OPERACAO_INSERIR = true;
+const HABILITAR_OPERACAO_INSERIR = false;
 
 // função para comunicação serial
 const serial = async (
-    valoresSensorDigital
+    valoresSensorAnalogico,
+    valoresSensorDigital,
 ) => {
 
     // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(
         {
-            host: 'localhost',
-            user: 'hf_system_insert',
-            password: 'Hfsystem#2024',
-            database: 'HFSystem',
+            host: 'HOST_DO_BANCO',
+            user: 'USUARIO_DO_BANCO',
+            password: 'SENHA_DO_BANCO',
+            database: 'DATABASE_DO_BANCO',
             port: 3306
         }
     ).promise();
@@ -54,6 +55,7 @@ const serial = async (
         const sensorAnalogico = parseFloat(valores[1]);
 
         // armazena os valores dos sensores nos arrays correspondentes
+        valoresSensorAnalogico.push(sensorAnalogico);
         valoresSensorDigital.push(sensorDigital);
 
         // insere os dados no banco de dados (se habilitado)
@@ -61,10 +63,10 @@ const serial = async (
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO HCSR04 (distanciaAgua) VALUES (?)',
-                [sensorDigital]
+                'INSERT INTO medida (sensor_analogico, sensor_digital) VALUES (?, ?)',
+                [sensorAnalogico, sensorDigital]
             );
-            console.log("valores inseridos no banco: ", + sensorDigital);
+            console.log("valores inseridos no banco: ", sensorAnalogico + ", " + sensorDigital);
 
         }
 
@@ -107,15 +109,18 @@ const servidor = (
 // função principal assíncrona para iniciar a comunicação serial e o servidor web
 (async () => {
     // arrays para armazenar os valores dos sensores
+    const valoresSensorAnalogico = [];
     const valoresSensorDigital = [];
 
     // inicia a comunicação serial
     await serial(
+        valoresSensorAnalogico,
         valoresSensorDigital
     );
 
     // inicia o servidor web
     servidor(
+        valoresSensorAnalogico,
         valoresSensorDigital
     );
 })();
