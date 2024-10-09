@@ -19,11 +19,11 @@ const serial = async (
     // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(
         {
-            host: 'HOST_DO_BANCO',
-            user: 'USUARIO_DO_BANCO',
-            password: 'SENHA_DO_BANCO',
-            database: 'DATABASE_DO_BANCO',
-            port: 3306
+            host: 'localhost',
+            user: 'user_insert',
+            password: 'Hfsystemy#2024',
+            database: 'HF_System',
+            port: 3307
         }
     ).promise();
 
@@ -63,10 +63,10 @@ const serial = async (
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO medida (sensor_analogico, sensor_digital) VALUES (?, ?)',
-                [sensorAnalogico, sensorDigital]
+                'INSERT INTO medida (sensor_analogico) VALUES (?)',
+                [sensorDigital]
             );
-            console.log("valores inseridos no banco: ", sensorAnalogico + ", " + sensorDigital);
+            console.log("valores inseridos no banco: " + sensorDigital);
 
         }
 
@@ -98,9 +98,7 @@ const servidor = (
     });
 
     // define os endpoints da API para cada tipo de sensor
-    app.get('/sensores/analogico', (_, response) => {
-        return response.json(valoresSensorAnalogico);
-    });
+
     app.get('/sensores/digital', (_, response) => {
         return response.json(valoresSensorDigital);
     });
@@ -109,18 +107,15 @@ const servidor = (
 // função principal assíncrona para iniciar a comunicação serial e o servidor web
 (async () => {
     // arrays para armazenar os valores dos sensores
-    const valoresSensorAnalogico = [];
     const valoresSensorDigital = [];
 
     // inicia a comunicação serial
     await serial(
-        valoresSensorAnalogico,
         valoresSensorDigital
     );
 
     // inicia o servidor web
     servidor(
-        valoresSensorAnalogico,
         valoresSensorDigital
     );
 })();
