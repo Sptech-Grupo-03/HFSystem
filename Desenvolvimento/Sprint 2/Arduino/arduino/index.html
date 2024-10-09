@@ -1,17 +1,19 @@
 <!doctype html>
 <html>
+
     <head>
         <title>Graphics</title>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
+
     <body>
         <center>
-            <h1>HF System</h1>
-            <div style="display: flex; width: 100%; height: 100%; align-items: center; justify-content: center;">
-                <div style="width: 80%;">
+            <h1>Graphics</h1>
+            <div style="display: flex; align-items: center; justify-content: center;">
+                
+                <div style="width: 50%;">
                     <canvas id="sensorDigital"></canvas>
                 </div>
-                
             </div>
         </center>
 
@@ -39,7 +41,7 @@
                             },
                             beginAtZero: true,
                             min: 0,
-                            max: 450 // Ajuste conforme os valores esperados do sensor
+                            max: 1000 // Ajuste conforme os valores esperados do sensor
                         }
 
                     }
@@ -95,9 +97,8 @@
             }
 
             setInterval(() => {
-                
                 obterDados(sensorDigital, 'digital');
-            }, 5000);
+            }, 1000);
         </script>
     </body>
 

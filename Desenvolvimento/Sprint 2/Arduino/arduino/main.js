@@ -1,5 +1,5 @@
 // importa os bibliotecas necessários
-const serialport = require('serialport'); 
+const serialport = require('serialport');
 const express = require('express');
 const mysql = require('mysql2');
 
@@ -8,21 +8,22 @@ const SERIAL_BAUD_RATE = 9600;
 const SERVIDOR_PORTA = 3300;
 
 // habilita ou desabilita a inserção de dados no banco de dados
-const HABILITAR_OPERACAO_INSERIR = true;
+const HABILITAR_OPERACAO_INSERIR = false;
 
 // função para comunicação serial
 const serial = async (
-    valoresSensorDigital
+    valoresSensorAnalogico,
+    valoresSensorDigital,
 ) => {
 
     // conexão com o banco de dados MySQL
     let poolBancoDados = mysql.createPool(
         {
             host: 'localhost',
-            user: 'hf_system_insert',
-            password: 'Hfsystem#2024',
-            database: 'HFSystem',
-            port: 3306
+            user: 'user_insert',
+            password: 'Hfsystemy#2024',
+            database: 'HF_System',
+            port: 3307
         }
     ).promise();
 
@@ -54,6 +55,7 @@ const serial = async (
         const sensorAnalogico = parseFloat(valores[1]);
 
         // armazena os valores dos sensores nos arrays correspondentes
+        valoresSensorAnalogico.push(sensorAnalogico);
         valoresSensorDigital.push(sensorDigital);
 
         // insere os dados no banco de dados (se habilitado)
@@ -61,10 +63,10 @@ const serial = async (
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO HCSR04 (distanciaAgua) VALUES (?)',
+                'INSERT INTO medida (sensor_analogico) VALUES (?)',
                 [sensorDigital]
             );
-            console.log("valores inseridos no banco: ", + sensorDigital);
+            console.log("valores inseridos no banco: " + sensorDigital);
 
         }
 
@@ -96,9 +98,7 @@ const servidor = (
     });
 
     // define os endpoints da API para cada tipo de sensor
-    app.get('/sensores/analogico', (_, response) => {
-        return response.json(valoresSensorAnalogico);
-    });
+
     app.get('/sensores/digital', (_, response) => {
         return response.json(valoresSensorDigital);
     });
