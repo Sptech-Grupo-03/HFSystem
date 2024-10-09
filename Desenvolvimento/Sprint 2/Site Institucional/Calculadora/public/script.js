@@ -1,5 +1,18 @@
 //FUNÇÕES PARA EXIBIR CADA SEÇÃO DE PERGUNTA PERGUNTAS
 
+const inputs = document.querySelectorAll('input', 'button', 'select', 'textarea')
+
+inputs.forEach((inputs) => {
+  inputs.setAttribute('tabindex', '-1');
+});
+
+document.addEventListener('keydown', function(event) {
+  // Detecta se a tecla pressionada é o TAB (keyCode 9)
+  if (event.key === 'Tab') {
+    event.preventDefault(); // Impede o comportamento padrão
+  }
+});
+
 function exibirOcultarPergunta(secao, campoObrigatorio = "") {
   if (campoObrigatorio != "" && document.getElementById(`${campoObrigatorio}`).value == "") {
     document.getElementById(`${campoObrigatorio}`).placeholder =
