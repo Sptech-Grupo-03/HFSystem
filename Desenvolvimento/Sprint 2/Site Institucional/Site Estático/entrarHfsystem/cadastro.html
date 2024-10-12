@@ -44,44 +44,47 @@
                             <div id="randomuser" ></div>
                         </div>
 
-                        <!-- EMAIL -->
+
                         <div class="input-container">
                             <i class="fas fa-envelope"></i>
                             <input type="text" id="email" placeholder="| EMAIL">
                         </div>
 
-                        <!-- RAZÃO SOCIAL -->
+
                         <div class="input-container">
                             <i class="fas fa-building"></i>
                             <input type="text" id="razaoSocial" placeholder="| RAZÃO SOCIAL">
                         </div>
 
-                        <!-- NOME FANTASIA -->
+                        
                         <div class="input-container">
                             <i class="fas fa-store"></i>
                             <input type="text" id="nomeFantasia" placeholder="| NOME FANTASIA">
                         </div>
 
-                        <!-- CNPJ -->
+
                         <div class="input-container">
                             <i class="fas fa-id-card"></i>
                             <input type="text" id="cnpj" placeholder="| CNPJ">
                         </div>
 
-                        <!-- REPRESENTANTE LEGAL -->
+
                         <div class="input-container">
                             <i class="fas fa-user-tie"></i>
                             <input type="text" id="representanteLegal" placeholder="| REPRESENTANTE LEGAL">
                         </div>
-                        <div class="input-container">
+                        <div class="input-container" style="position: relative;">
                             <i class="fas fa-lock"></i>
                             <input type="password" id="senha" placeholder="| SENHA">
+                            <i class="fas fa-eye" id="toggleSenha" onclick="toggleSenhaVisivel()" 
+                               style="position: absolute; left: 483px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
                         </div>
-        
-                        <!-- CONFIRMAÇÃO DE SENHA -->
-                        <div class="input-container">
+                        
+                        <div class="input-container" style="position: relative;">
                             <i class="fas fa-lock"></i>
                             <input type="password" id="confirmacaoSenha" placeholder="| CONFIRME SUA SENHA">
+                            <i class="fas fa-eye" id="toggleConfirmacaoSenha" onclick="toggleConfirmacaoSenhaVisivel()" 
+                               style="position: absolute; left: 483px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
                         </div>
                         <br>
                         <button class="btn-cadastrar">CADASTRAR</button>
