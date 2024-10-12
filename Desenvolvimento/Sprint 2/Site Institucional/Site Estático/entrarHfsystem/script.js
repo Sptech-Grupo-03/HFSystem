@@ -1,4 +1,4 @@
-function sugestaoUsuario() {
+function validacaoTamanhoUsuario() {
     var usuario = document.getElementById('usuario').value
     var tamanhoMininoUsuario = 6;
     var randomuser = document.getElementById('randomuser');
