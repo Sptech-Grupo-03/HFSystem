@@ -59,18 +59,6 @@ fkEmpresa int,
 	references fazenda (idEmpresa)    
 );
 
-create table temperatura(
-idTemperatura int primary key auto_increment, 
-temperatura float,
-dataColeta date
-);
-
-create table gasto(
-idGasto int primary key auto_increment,
-gasto decimal, 
-dataGasto date
-);
-
 insert into enderecoEmpresa (cep, bairro, rua, cidade, uf, numero) values
 ('12345678', 'Centro', 'Rua A', 'São Paulo', 'SP', 123),
 ('87654321', 'Jardins', 'Rua B', 'Rio de Janeiro', 'RJ', 456),
