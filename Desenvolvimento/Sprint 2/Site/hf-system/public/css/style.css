@@ -19,8 +19,8 @@
     #27d4d4 100%
   );
 
-  --gradiente-invertido: linear-gradient(
-    270deg,
+  --gradiente-cima-baixo: linear-gradient(
+    180deg,
     #041b22 12.72%,
     #041b22 16.22%,
     #041b22 21.72%,
@@ -758,7 +758,7 @@ footer {
     gap: 10px;
     font-size: 1rem;
 
-    & a{     
+    & a {
       border-bottom: 2px solid transparent;
       transition: 0.5s;
       width: fit-content;
@@ -784,3 +784,366 @@ footer {
     grid-area: p3;
   }
 }
+
+/* SIMULADOR */
+
+#simulador_body {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 100%);
+  grid-template-rows: 100vh;
+}
+
+section {
+  height: 100%;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 100px;
+  grid-template-rows: auto auto auto auto;
+  row-gap: 10%;
+  padding: var(--padding);
+  justify-content: space-between;
+  grid-template-areas:
+    "seta logo"
+    "h2 h2"
+    "input input"
+    "btn btn";
+
+  & i {
+    grid-area: seta;
+    font-size: 2rem;
+    justify-self: baseline;
+    cursor: pointer;
+    transition: 0.5s ease;
+  }
+
+  & i:hover {
+    scale: 1.2;
+  }
+
+  & h1 {
+    grid-area: h1;
+    font-size: 3.5rem;
+    text-align: right;
+  }
+
+  & h2 {
+    grid-area: h2;
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  & input {
+    grid-area: input;
+    justify-self: center;
+    width: 100%;
+    text-align: center;
+    font-size: 2.5rem;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  & input[type="radio"] {
+    display: none;
+  }
+
+  & .logotipo {
+    grid-area: logo;
+    justify-self: end;
+    width: 20%;
+  }
+
+  & p {
+    grid-area: p;
+  }
+
+  & button {
+    grid-area: btn;
+  }
+
+  & .btns {
+    cursor: pointer;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px 40px;
+    font-size: 2rem;
+    text-transform: uppercase;
+    border-radius: 50px;
+    background-color: var(--cor-secundaria);
+    font-weight: bold;
+    text-align: center;
+    transition: 0.5s ease;
+    border: solid 5px var(--cor-secundaria);
+    color: var(--cor-primaria);
+    justify-self: end;
+  }
+
+  & .btns:hover {
+    scale: 1.1;
+    background-color: var(--cor-primaria);
+    color: var(--cor-secundaria);
+  }
+}
+
+#section_index {
+  background: var(--gradiente-cima-baixo);
+  grid-template-areas:
+    "seta logo"
+    "img h1"
+    "img p"
+    "img btn";
+  grid-template-columns: 35% auto;
+  text-align: right;
+
+  * {
+    color: var(--cor-primaria);
+  }
+
+  & div {
+    grid-area: img;
+    position: relative;
+  }
+
+  & #img_1_estresse_hidrico {
+    grid-area: img1;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 4px 4px 20px #000000c9;
+    filter: brightness(0.8);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  & #img_2_estresse_hidrico {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 20px;
+  }
+
+  & p {
+    font-size: 2rem;
+  }
+
+  & button {
+    background: var(--cor-primaria);
+    padding: 10px 40px;
+    height: fit-content;
+    width: fit-content;
+    font-size: 2rem;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    text-align: center;
+    color: var(--cor-secundaria);
+    cursor: pointer;
+  }
+
+  & button:hover {
+    background: var(--cor-secundaria);
+    color: var(--cor-primaria);
+  }
+}
+
+#section_informacoes {
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+    "seta logo"
+    "h2 h2"
+    "btn btn";
+}
+
+#section_consumo_mensal {
+  grid-template-areas:
+    "seta logo"
+    "h2 h2"
+    "input input"
+    "label btn";
+
+  & label {
+    grid-area: label;
+  }
+}
+
+#section_trabalha_sistema_irrigacao,
+#section_possui_reservatorio,
+#section_monitoramento_reservatorio,
+#section_tipo_monitoramento {
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+    "seta logo"
+    "h2 h2"
+    "label label";
+  align-content: center;
+
+  & input {
+    display: none;
+  }
+
+  & #input_trabalha_com_sistema_irrigacao_true {
+    grid-area: label1;
+    
+  }
+
+  & #input_trabalha_com_sistema_irrigacao_false {
+    grid-area: label2;
+  }
+}
+
+/* 
+.section_perguntas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--cor-primaria);
+  position: absolute;
+  left: 100%;
+  top: 0;
+  transition: 1s;
+  padding: var(--padding);
+
+  & header {
+    width: 100%;
+    max-height: 15%;
+    display: flex;
+    justify-content: space-between;
+
+    & i {
+      cursor: pointer;
+      font-size: 2rem;
+      transition: 0.5s ease;
+    }
+
+    & i:hover {
+      scale: 1.1;
+    }
+
+    & h1 {
+      font-size: 3.5rem;
+    }
+
+    & .logomarca{
+      height: 100%;
+    }
+  }
+
+  input {
+    width: 100%;
+    text-align: center;
+    font-size: 2.5rem;
+    
+  }
+
+  input:focus {
+    outline: none; 
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .conteudoPerguntas {
+    padding: 20px 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bolder;
+
+  }
+
+  .div_btns {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 40px;
+
+    & input {
+      display: none;
+    }
+
+    & #btn_section_consumo_mensal {
+      margin-right: -40px;
+    }
+  }
+
+  .btns {
+    width: 20%;
+    align-self: flex-end;
+    padding: 10px 40px;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    border-radius: 50px;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-primaria);
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    transition: 0.5s ease;
+    border: solid 5px var(--cor-secundaria);
+  }
+
+  .btns:hover {
+    scale: 1.1;
+    background-color: var(--cor-primaria);
+    color: var(--cor-secundaria);
+  }
+
+  #btn_index {
+    width: auto;
+  }
+}
+
+
+
+.gradiente {
+  background: var(--gradiente);
+  color: var(--cor-primaria);
+
+  & .btns {
+    background-color: var(--cor-primaria);
+    color: var(--cor-secundaria);
+  }
+
+  & .btns:hover {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-primaria);
+  }
+}
+
+#section_tudo_pronto{
+  background: var(--gradiente-invertido);
+}
+
+#section_mensagem_final{
+  background: var(--gradiente-invertido);
+
+  & #p_resultado{
+    font-size: 2rem;
+  }
+  
+}
+
+.campo_obrigatorio::placeholder{
+  color: #0E617C;
+}
+*/
+
+/* /SIMULADOR */
