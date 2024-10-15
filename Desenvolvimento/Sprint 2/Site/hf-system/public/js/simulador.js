@@ -35,7 +35,7 @@ function exibirOcultarPergunta(secao, campoObrigatorio = "") {
 }
 
 function exibirComoHFSystemPodeAjudar() {
-  var exibicao = document.getElementById("p_resultado");
+  var exibicao = document.getElementById("div_resultado");
   var tipoPlantacao = document.getElementById("input_tipo_plantacao").value;
   var valorBruto = parseFloat(
     document.getElementById("input_faturamento_anual").value
@@ -235,6 +235,8 @@ function exibirComoHFSystemPodeAjudar() {
   <p>Para saber mais sobre os riscos do estresse hídrico: <a
           href="https://www.agrolink.com.br/noticias/tecnologia-ajuda-a-mitigar-estresse-hidrico_495547.html"
           target="_blank">leia o artigo completo</a> ou entre em contato conosco e dê o próximo passo rumo ao sucesso!</p>`;
+
+  exibicao.innerHTML = mensagem;
 }
 
 const button = document.querySelector("#btn_index");

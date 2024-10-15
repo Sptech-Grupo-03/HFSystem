@@ -20,7 +20,7 @@
   );
 
   --gradiente-cima-baixo: linear-gradient(
-    180deg,
+    0deg,
     #041b22 12.72%,
     #041b22 16.22%,
     #041b22 21.72%,
@@ -1027,7 +1027,7 @@ footer {
     grid-template-rows: auto auto auto;
     grid-template-areas:
       "header header"
-      "p p"
+      "div div"
       "btn btn";
       row-gap: 15%;
 
@@ -1042,8 +1042,8 @@ footer {
       }
     }
 
-    & #p_resultado {
-      grid-area: p;
+    & #div_resultado {
+      grid-area: div;
       font-size: 2rem;
       color: var(--cor-primaria);
     }
