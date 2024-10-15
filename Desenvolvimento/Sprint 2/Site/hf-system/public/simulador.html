@@ -8,6 +8,8 @@
     <link rel="shortcut icon" type="imagex/png" href="./assets/logotipo-texto-preto.svg">
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://kit.fontawesome.com/041dbc8823.js" crossorigin="anonymous"></script>
+
+
 </head>
 
 <body id="simulador_body">
@@ -17,8 +19,9 @@
         <img class="logotipo" src="./assets/logotipo-texto-branco.svg" alt="logotipo Hydro Flow System">
         <h1>ESTRESSE HÍDRICO</h1>
 
-        <div>
-            <img id="img_1_estresse_hidrico" src="./assets/simulador/view-dry-grass-valley-cloudy-sky.jpg" alt="">
+        <div id="div_container_img_estresse_hidrico">
+            <img class="hiddenNot" id="img_1_estresse_hidrico"
+                src="./assets/simulador/view-dry-grass-valley-cloudy-sky.jpg" alt="">
             <img id="img_2_estresse_hidrico" src="./assets/simulador/front-view-farm-field-landscape.jpg" alt="">
         </div>
         <p>
@@ -88,7 +91,7 @@
         <input type="number" id="input_consumo_agua_mensal" placeholder="| DIGITE AQUI O SEU CONSUMO EM LITROS">
 
 
-        <label for="nao_sei_consumo_agua_mensal" class="btns"
+        <label id="label_nao_sei" for="nao_sei_consumo_agua_mensal" class="btns"
             onclick="exibirOcultarPergunta('section_trabalha_sistema_irrigacao')" id="btn_section_consumo_mensal">NÃO
             SEI</label>
         <input type="radio" name="nao_sei_consumo_agua_mensal" value="não sei" id="nao_sei_consumo_agua_mensal">
@@ -185,26 +188,27 @@
 
     <section id="section_tudo_pronto" class="section_perguntas gradiente">
         <i onclick="exibirOcultarPergunta('section_tudo_pronto')" class="fa-solid fa-arrow-left"></i>
-        <img class="logotipo" src="../img/HYDRO FLOW (branco).svg" alt="logotipo Hydro Flow System">
+        <img class="logotipo" src="./assets/logotipo-texto-preto.svg" alt="logotipo Hydro Flow System">
 
+        <h2>TUDO PRONTO!<br>VAMOS DESCOBRIR COMO O HF SYSTEM PODE TE AJUDAR ?</h2>
 
-        <h2>TUDO PRONTO!</h1>
-            <h2>VAMOS DESCOBRIR COMO O <b>HF SYSTEM</b> PODE TE AJUDAR ?</h3>
-
-                <button class="btns"
-                    onclick="exibirComoHFSystemPodeAjudar(), exibirOcultarPergunta('section_mensagem_final')">DESCOBRIR
-                </button>
+        <button class="btns"
+            onclick="exibirComoHFSystemPodeAjudar(), exibirOcultarPergunta('section_mensagem_final')">DESCOBRIR
+        </button>
     </section>
 
     <section id="section_mensagem_final" class="section_perguntas gradiente">
-        <i onclick="exibirOcultarPergunta('section_mensagem_final')" class="fa-solid fa-arrow-left"></i>
-        <img class="logotipo" src="./assets/logotipo-texto-branco.svg" alt="logotipo Hydro Flow System">
-
+        <div id="header_section_mensagem_final"><i onclick="exibirOcultarPergunta('section_mensagem_final')"
+                class="fa-solid fa-arrow-left"></i>
+            <img class="logotipo" src="./assets/logotipo-texto-branco.svg" alt="logotipo Hydro Flow System">
+        </div>
         <p id="p_resultado"></p>
 
         <button class="btns">CADASTRE-SE</button>
     </section>
 </body>
+
+
 
 <script src="./js/simulador.js"></script>
 
