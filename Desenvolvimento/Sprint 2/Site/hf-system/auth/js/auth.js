@@ -62,7 +62,7 @@ function entrar(){
 
     if(email == 'hfsystem@sptech.school' && senha == 'admin123'){
         alert('Login realizado com sucesso')
-        window.location.href = "cadastro.html";
+        window.location.href = "../dashboard/dashboard.html";
     }else{
         alert('Email ou senha incorretos')
     }
