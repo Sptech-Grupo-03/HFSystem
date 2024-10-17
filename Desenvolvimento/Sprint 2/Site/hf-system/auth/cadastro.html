@@ -39,8 +39,8 @@
                     <h2>CRIAR UMA CONTA</h2>
                     <div class="campos">
                         <div class="input-container">
-                            <i class="fas fa-user"></i>
-                            <input type="text" id="usuario" placeholder="| Usuário" onkeyup="validacaoTamanhoUsuario()">
+                            <i id="iconeLogin" class="fas fa-user" ></i>
+                            <input type="text" id="input_usuario" placeholder="| Usuário" onkeyup="validacaoTamanhoUsuario()">
                             <div id="randomuser" ></div>
                         </div>
 
@@ -87,7 +87,7 @@
                                style="position: absolute; left: 483px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
                         </div>
                         <br>
-                        <button class="btn-cadastrar">CADASTRAR</button>
+                        <button onclick="cadastrar()" class="btn-cadastrar">CADASTRAR</button>
                     </div>
                 </div>
 
