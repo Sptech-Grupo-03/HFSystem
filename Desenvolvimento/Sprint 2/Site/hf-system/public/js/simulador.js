@@ -14,7 +14,7 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
-function exibirOcultarPergunta(secao, campoObrigatorio = "") {
+function validarCampoObrigatorio(campoObrigatorio = "") {
   if (
     campoObrigatorio != "" &&
     document.getElementById(`${campoObrigatorio}`).value == ""
@@ -24,14 +24,104 @@ function exibirOcultarPergunta(secao, campoObrigatorio = "") {
     document
       .getElementById(`${campoObrigatorio}`)
       .classList.add("campo_obrigatorio");
+
+    return false;
   } else {
-    const sectionInformacoes = document.getElementById(`${secao}`);
-    if (sectionInformacoes.getBoundingClientRect().left > 0) {
-      sectionInformacoes.style.left = 0;
-    } else {
-      sectionInformacoes.style.left = "100%";
-    }
+    return true;
   }
+}
+
+function trocarPergunta(idMain, campoObrigatorio) {
+  campoObrigatorioPrenchido = validarCampoObrigatorio(campoObrigatorio);
+
+  if (campoObrigatorioPrenchido) {
+    const main = document.getElementById(`${idMain}`);
+
+    if (main.getBoundingClientRect().left > 0) {
+      main.style.left = 0;
+    } else {
+      main.style.left = "100%";
+    }
+
+  }
+}
+
+function exibirProgresso() {
+
+  var indexPergunta = 0;
+
+    if (
+      document.getElementById("main_tudo_pronto").getBoundingClientRect()
+        .left == 0
+    ) {
+      indexPergunta = 11;
+    } else if (
+      document
+        .getElementById("main_tipo_monitoramento")
+        .getBoundingClientRect().left == 0
+    ) {
+      indexPergunta = 10;
+    } else if (
+      document
+        .getElementById("main_monitoramento_reservatorio")
+        .getBoundingClientRect().left == 0
+    ) {
+      indexPergunta = 9;
+    } else if (
+      document
+        .getElementById("main_capacidade_reservatorio")
+        .getBoundingClientRect().left == 0
+    ) {
+      indexPergunta = 8;
+    } else if (
+      document
+        .getElementById("main_possui_reservatorio")
+        .getBoundingClientRect().left == 0
+    ) {
+      indexPergunta = 7;
+    } else if (
+      document
+        .getElementById("main_trabalha_sistema_irrigacao")
+        .getBoundingClientRect().left == 0
+    ) {
+      indexPergunta = 6;
+    } else if (
+      document.getElementById("main_consumo_mensal").getBoundingClientRect()
+        .left == 0
+    ) {
+      indexPergunta = 5;
+    } else if (
+      document.getElementById("main_valor_bruto").getBoundingClientRect()
+        .left == 0
+    ) {
+      indexPergunta = 4;
+    } else if (
+      document.getElementById("main_perguntas_ciclo").getBoundingClientRect()
+        .left == 0
+    ) {
+      indexPergunta = 3;
+    } else if (
+      document
+        .getElementById("main_perguntas_plantacao")
+        .getBoundingClientRect().left == 0
+    ) {
+      indexPergunta = 2;
+    } else if (
+      document.getElementById("main_informacoes").getBoundingClientRect()
+        .left == 0
+    ) {
+      indexPergunta = 1;
+    }
+
+    
+
+  console.log(`${parseInt(
+    (Number(indexPergunta) / 10) * 100
+  )}%`)
+  document.getElementById("div_progresso").innerHTML = `${parseInt(
+    (Number(indexPergunta) / 10) * 100
+  )}%`;
+
 }
 
 function exibirComoHFSystemPodeAjudar() {
@@ -176,14 +266,17 @@ function exibirComoHFSystemPodeAjudar() {
   }
 
   exibicao.innerHTML = `
-  <h4>Com a <span>HF System</span> monitorando o seu reservatório, você terá:</h4>
+  <div id = "div_header">
+      <i onclick="trocarPergunta('main_mensagem_final')" class="fa-solid fa-arrow-left"></i>
+      <h4>Com a <span>HF System</span> monitorando o seu reservatório, você terá:</h4>
+    </div>
   <div id = "div_card_container_beneficios">
     <div class = "div_cards"> 
       <h4>Aumento na sua produção em até 250%</h4>
       <p>Isso significa poder passar de
         <span>${qtdCiclosAnualProducao}</span> ciclos de produção de <span>${tipoPlantacao}</span> para até <span>${(
-        qtdCiclosAnualProducao * 2.5
-        ).toFixed(0)}</span> ciclos anuais.
+    qtdCiclosAnualProducao * 2.5
+  ).toFixed(0)}</span> ciclos anuais.
       </p>
     </div>
     <div class = "div_cards"> 
@@ -261,66 +354,6 @@ function exibirComoHFSystemPodeAjudar() {
 `;
 }
 
-// SE TRABALHA COM SISTEMA DE IRRIGAÇÃO
-// if (trabalhaSistemasIrrigacao) {
-//   // SE NÃO TRABALHA COM SISTEMA DE IRRIGAÇÃO
-// } else {
-//   if (possuiReservatorio && tipoMonitoramentoReservatorio === "automático") {
-//     mensagemPersonalizada = `
-//     <p>Parabéns! Você já deu um grande passo realizando o monitoramento automático do seu reservatório.</p>
-//     <p><span>Mas o seu monitoramento atual é confiável?! E se o seu sistema falhar em um dia crítico</span> e causar estresse hídrico em suas plantação de ${tipoPlantacao}?<span>As
-//             perdas causadas pelo estresse hídrico podem chegar a 65% da sua produção</span>, segundo dados do Agrolink e da Embrapa, o que pode arriscar sua colheita e seus lucros.</p>
-//     <p>Você, que teve um faturamento por ciclo de aproximadamente ${faturamentoCicloFormatado}, teria uma <span>perda de aproximável de ${perdaCicloFormatado}</span>.</p>
-//     `;
-//   } else if (
-//     possuiReservatorio &&
-//     tipoMonitoramentoReservatorio === "manual"
-//   ) {
-//     mensagemPersonalizada = `
-//     <p>Parabéns! Você já deu um grande passo realizando o monitoramento manual do seu reservatório, mas <span>e se um dia faltar água em um dia crítico e você perceber tarde de mais?</p>
-//     <p>Com base nos seus dados, seu reservatório garante água para a sua produção de <span>${tipoPlantacao}</span> por em média
-//     <span>${capacidadeDiasAguaReservatorio.toFixed(
-//       1
-//     )} dia(s)</span>, e um erro manual onde você não perce à tempo a falta de àgua, pode custar <span>65% da sua colheita</span> segundo dados do Agrolink e da Embrapa, ou <span> ${perdaCicloFormatado}</span> em perdas financeiras.
-//     </p>
-//   `;
-//   } else if (possuiReservatorio && !possuiMonitoramentoReservatorio) {
-//     mensagemPersonalizada = `<p>
-//     Você possui um reservatório, mas sem um sistema de irrigação e monitoramento automatizado, sua produção de ${tipoPlantacao} está exposta a riscos.
-//     Imagine a situação em que, em um momento crítico, o seu reservatório, que hoje tem apenas ${capacidadeDiasAguaReservatorio.toFixed(
-//       1
-//     )} dias de autonomia de água, não será suficiente para suprir a demanda da semana. Isso pode levar a perdas significativas e comprometer sua colheita.
-
-//     Na HF System, oferecemos uma solução integrada que transforma a gestão hídrica em um processo eficiente. Aqui estão alguns benefícios que você pode ter:</p>
-
-//     <ul>
-//         <li><span>Análise preditiva:</span> Conheça em tempo real quantos dias de água você tem e planeje a irrigação adequadamente.</li>
-//         <li><span>Monitoramento automatizado:</span> Evite surpresas desagradáveis e garanta que sua produção esteja sempre protegida.</li>
-//         <li><span>Aumento de produção:</span> A combinação de monitoramento e irrigação pode aumentar sua produção em até 250%, conforme destacado pelo Sebrae.</li>
-//         <li><span>Gestão inteligente da água:</span> Evite desperdícios e utilize seus recursos de forma mais eficiente.</li>
-//         <li><span>Cultivo sustentável:</span> Melhore sua rentabilidade e garanta um uso responsável da água.</li>
-//         <li><span>Dashboard intuitivo:</span> Tenha todas as informações em um só lugar para uma gestão eficiente dos seus recursos hídricos.</li>
-//     </ul>
-//       `;
-//   } else {
-//     mensagemPersonalizada = `
-//     Sem um sistema de irrigação e reservatório, sua produção de ${tipoPlantacao} está exposta a perdas significativas por estresse hídrico.
-//     Ao adotar nossa solução de irrigação e monitoramento de reservatório, você não apenas terá um controle preciso da água disponível, mas também poderá:
-
-//     <ul>
-//         <li><span>Aumentar sua produção em até 250%:</span> Isso significa passar de ${qtdCiclosAnualProducao} ciclos de produção para ${(
-//       qtdCiclosAnualProducao * 2.5
-//     ).toFixed(0)} ciclos anuais.</li>
-//         <li><span>Maximizar seu faturamento:</span> Seu faturamento bruto anual pode atingir até R$${(
-//           valorBruto * 2.5
-//         ).toFixed(2)}.</li>
-//         <li><span>Evitar estresse hídrico:</span> Mantenha sua colheita saudável e garanta produção estável.</li>
-//         <li><span>Gerir recursos de forma eficiente:</span> Use a água com inteligência, evitando desperdícios.</li>
-//         <li><span>Dashboard intuitivo:</span> Tenha acesso a todas as informações necessárias em um só lugar.</li>
-//     </ul>`;
-//   }
-// }
-
 const button = document.querySelector("#btn_index");
 const imageX = document.querySelector("#img_1_estresse_hidrico");
 
@@ -328,11 +361,6 @@ button.addEventListener("mouseover", () => {
   imageX.style.animation = "slideOut 1s linear forwards"; // Executa a animação ao passar o mouse
 });
 
-button.addEventListener("mouseover", () => {
-  imageY.style.transform = "translateX(0)"; // Move a imagem Y para dentro da tela
-});
-
 button.addEventListener("mouseout", () => {
   imageX.style.animation = "";
-  imageY.style.transform = "translateX(-100%)"; // Move a imagem Y para fora da tela à esquerda
 });

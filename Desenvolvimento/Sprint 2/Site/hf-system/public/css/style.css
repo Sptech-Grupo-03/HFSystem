@@ -72,6 +72,11 @@ body {
 
 /* /BODY */
 
+span {
+  color: #0e617c;
+  font-weight: bold;
+}
+
 /* HEADER */
 
 header {
@@ -83,7 +88,7 @@ header {
   align-items: center;
   padding: 10px 60px;
   background: var(--gradiente);
-  box-shadow: 3px 0px 30px rgba(0, 0, 0, 0.726);
+  box-shadow: 3px 0px 3px rgba(0, 0, 0, 0.726);
   position: fixed;
   top: 0;
   z-index: 2;
@@ -96,7 +101,7 @@ header {
   & a,
   span {
     color: var(--fonte-cor-secundaria);
-    font-size: 1.4rem;
+    font-size: 2rem;
     border-bottom: 2px solid transparent;
     transition: 0.5s;
   }
@@ -293,7 +298,7 @@ main {
   padding: 0;
   grid-area: sobre-nos;
   display: grid;
-  grid-template-rows: auto 90vh auto;
+  grid-template-rows: auto 50vh auto;
   grid-template-columns: 1fr;
   grid-template-areas:
     "o-que-fazemos"
@@ -377,6 +382,7 @@ main {
 
 #section_quem_somos {
   grid-area: quem-somos;
+  height: 100%;
   padding-inline: 150px;
   display: grid;
   grid-template-rows: 1fr 1fr;
@@ -407,7 +413,7 @@ main {
   }
 }
 
-#section_por_que_nos_escolher {
+#section_missao_visao_valores {
   grid-area: por-que-nos-escolher;
   display: grid;
   grid-template-rows: auto auto;
@@ -466,7 +472,7 @@ main {
     & p {
       grid-area: p;
       text-align: center;
-      font-size: 1.2rem;
+      font-size: 2rem;
     }
   }
 }
@@ -611,65 +617,175 @@ main {
 
 /* SERVICOS SECTION */
 #section_servicos {
+  width: 100%;
   grid-area: servicos;
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: repeat(7, auto);
   row-gap: 50px;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 50px;
+  grid-template-columns: 1fr;
   grid-template-areas:
-    "h2 h2 h2"
-    "card-2 card-1 card-3";
+    "h2_por_que_nos_escolher"
+    "h3_por_que_nos_escolher"
+    "beneficios"
+    "h2_nossos_servicos"
+    "servicos"
+    "h3_nossos_servicos"
+    "outros_servicos";
 
-  & h2 {
-    grid-area: h2;
+  & #h2_por_que_nos_escolher {
+    grid-area: h2_por_que_nos_escolher;
   }
 
-  & div {
-    display: grid;
-    grid-template-rows: auto auto 1fr;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "img"
-      "h4"
-      "p";
+  & #h3_por_que_nos_escolher {
+    grid-area: h3_por_que_nos_escolher;
+    font-size: 3rem;
     text-align: center;
-    justify-items: center;
-    align-items: baseline;
-    position: relative;
-    border-radius: 50px;
-    padding: 30px;
-    box-shadow: 3px 2px 3px rgba(189, 198, 210, 1),
-      -3px 2px 3px rgba(189, 198, 210, 1), 0 2px 3px rgba(189, 198, 210, 1);
+  }
 
-    & img {
-      grid-area: img;
-      height: 100%;
-      padding-bottom: 20px;
-    }
+  & #div_beneficios {
+    grid-area: beneficios;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 50px;
+    grid-template-areas: "beneficio1 beneficio2 beneficio3 beneficio4";
 
-    & h4 {
-      grid-area: h4;
-      padding-bottom: 20px;
-      font-size: 2rem;
-    }
+    & .div_cards {
+      background-color: var(--cor-primaria);
+      color: var(--fonte-cor-primaria);
+      display: flex;
+      align-items: center;
+      border-radius: 50px;
+      box-shadow: 3px 2px 3px rgba(189, 198, 210, 1),
+        -3px 2px 3px rgba(189, 198, 210, 1), 0 2px 3px rgba(189, 198, 210, 1);
+      padding: 30px;
 
-    & p {
-      grid-area: p;
-      font-size: 2rem;
+      & h4 {
+        grid-area: h4;
+        text-align: center;
+        font-size: 2rem;
+      }
     }
   }
 
-  & #card_atendimento_personalizado {
-    grid-area: card-1;
+  & #h2_nossos_servicos {
+    grid-area: h2_nossos_servicos;
   }
 
-  & #card_solucoes_sob_medida {
-    grid-area: card-2;
+  & #h3_nossos_servicos {
+    grid-area: h3_nossos_servicos;
+    font-size: 3rem;
+    text-align: center;
   }
 
-  & #card_suporte_tecnico {
-    grid-area: card-3;
+  & #div_servicos {
+    grid-area: servicos;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 50px;
+    grid-template-areas: "analise_preditiva analise_monitoramento analise_dashboard";
+
+    & #div_cards_analise_preditiva {
+      grid-area: analise_preditiva;
+    }
+
+    & #div_cards_monitoramento {
+      grid-area: analise_monitoramento;
+    }
+
+    & #div_cards_dashboard {
+      grid-area: analise_dashboard;
+    }
+
+    & .div_cards {
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "img"
+        "h4"
+        "p";
+      text-align: center;
+      justify-items: center;
+      align-items: baseline;
+      position: relative;
+      border-radius: 50px;
+      padding: 30px;
+      box-shadow: 3px 2px 3px rgba(189, 198, 210, 1),
+        -3px 2px 3px rgba(189, 198, 210, 1), 0 2px 3px rgba(189, 198, 210, 1);
+
+      background: #0e617c;
+
+      & h4 {
+        grid-area: h4;
+        padding-bottom: 20px;
+        font-size: 2rem;
+        color: var(--cor-primaria);
+      }
+
+      & p {
+        grid-area: p;
+        font-size: 2rem;
+        color: var(--cor-primaria);
+      }
+    }
+  }
+
+  & #div_outros_servicos {
+    grid-area: outros_servicos;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 50px;
+    grid-template-areas: "card_2 card_1 card_3";
+
+    & #card_atendimento_personalizado {
+      grid-area: card_1;
+    }
+
+    & #card_solucoes_sob_medida {
+      grid-area: card_2;
+    }
+
+    & #card_suporte_tecnico {
+      grid-area: card_3;
+    }
+
+    & .div_cards {
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "img"
+        "h4"
+        "p";
+      text-align: center;
+      justify-items: center;
+      align-items: baseline;
+      position: relative;
+      border-radius: 50px;
+      padding: 30px;
+      box-shadow: 3px 2px 3px rgba(189, 198, 210, 1),
+        -3px 2px 3px rgba(189, 198, 210, 1), 0 2px 3px rgba(189, 198, 210, 1);
+
+      & img {
+        grid-area: img;
+        height: 100%;
+        padding-bottom: 20px;
+      }
+
+      & h4 {
+        grid-area: h4;
+        padding-bottom: 20px;
+        font-size: 2rem;
+      }
+
+      & p {
+        grid-area: p;
+        font-size: 2rem;
+      }
+    }
   }
 }
 
@@ -785,5 +901,3 @@ footer {
     grid-area: p3;
   }
 }
-
-

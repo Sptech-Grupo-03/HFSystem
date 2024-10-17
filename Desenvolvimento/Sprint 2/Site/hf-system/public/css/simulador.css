@@ -72,6 +72,47 @@ body {
   background-color: var(--cor-primaria);
   overflow: hidden;
 }
+
+#onda2{
+  position: absolute;
+  width: 100vw;
+  height: 40%;
+  left: -200px;
+  bottom: -150px;
+  z-index: 3;
+  transform: scaleX(-1);
+  rotate: 10deg;
+}
+
+#div_progresso{
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100px;
+  background-color: #4f8084;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.div_progresso{
+  width: 130px;
+  height: 130px;
+  background-color:var(--cor-primaria);
+  border-radius: 100%;
+  border: solid 10px var(--cor-secundaria);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+
 main {
   height: 100%;
   width: 100%;
@@ -85,7 +126,7 @@ main {
   position: absolute;
   top: 0;
   left: 100%;
-  z-index: 2;
+  z-index: 1;
 }
 
 #main_index {
@@ -94,45 +135,81 @@ main {
   left: 0;
 }
 
+/* HEADER */
+
 header {
+  height: 15vh;
   grid-area: header;
-  background: var(--gradiente);
-
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: 100%;
-  grid-template-areas: "img btn";
+  width: 100%;
+  display: flex;
   justify-content: space-between;
-  align-content: center;
-  position: sticky;
+  align-items: center;
+  padding: 10px 60px;
+  background: var(--gradiente);
+  box-shadow: 3px 0px 3px rgba(0, 0, 0, 0.726);
+  position: fixed;
   top: 0;
-  padding: 20px 100px;
+  z-index: 2;
 
-  & button {
-    grid-area: btn;
-    padding: 5px 40px;
-    text-transform: uppercase;
-    border-radius: 15px;
-    background-color: var(--cor-primaria);
-    color: var(--cor-secundaria);
-    cursor: pointer;
-    width: fit-content;
-    height: 100%;
+  & img {
+    height: 80%;
+    padding-right: 50px;
+  }
+
+  & a,
+  span {
+    color: var(--fonte-cor-secundaria);
     font-size: 2rem;
-    font-weight: bold;
-    text-align: center;
-    transition: 0.5s ease;
+    border-bottom: 2px solid transparent;
+    transition: 0.5s;
+    text-decoration: none;
   }
 
-  & button:hover {
-    background-color: var(--cor-secundaria);
-    color: var(--cor-primaria);
-    scale: 1.1;
+  & a:hover {
+    border-bottom: 2px solid var(--fonte-cor-secundaria);
   }
 
-  & .logotipo {
-    grid-area: img;
-    height: 100%;
+  & .menu_selecionado {
+    border-bottom: 2px solid var(--fonte-cor-secundaria);
+  }
+
+  & nav {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & #navbar_conatainer_link_sections {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      gap: 30px;
+    }
+
+    & #navbar_conatainer_link_cadastro_login {
+      width: auto;
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      gap: 30px;
+
+      & #btn_entrar {
+        background-color: var(--cor-primaria);
+        padding: 5px 20px;
+        color: #012f32;
+        border-radius: 10px;
+        font-weight: bold;
+        transition: 0.5s;
+        border: none;
+      }
+
+      & #btn_entrar:hover {
+        background-color: var(--cor-secundaria);
+        color: var(--cor-primaria);
+        scale: 1.1;
+      }
+    }
   }
 }
 
@@ -143,16 +220,16 @@ section {
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr auto;
-  column-gap: 20px;
+  grid-template-columns: 1fr auto auto;
+ column-gap: 20px;
   grid-template-rows: repeat(4, auto);
   row-gap: 5%;
   padding: var(--padding);
   grid-template-areas:
-    "i a"
-    "h2 h2"
-    "input input"
-    "btn btn";
+    "i progresso progresso"
+    "h2 h2 h2"
+    "input input input"
+    "btn btn btn";
 
   & a {
     grid-area: a;
@@ -169,6 +246,10 @@ section {
     cursor: pointer;
     transition: 0.5s ease;
     color: var(--cor-secundaria);
+  }
+
+  &.div_progresso{
+    grid-area: progresso;
   }
 
   & h1 {
@@ -211,6 +292,11 @@ section {
     width: 150px;
   }
 
+  & span {
+    color: #0e617c;
+    font-weight: bold;
+  }
+
   & p {
     grid-area: p;
   }
@@ -231,6 +317,7 @@ section {
     border: solid 5px var(--cor-secundaria);
     color: var(--cor-primaria);
     justify-self: end;
+    z-index: 5;
   }
 
   & .btns:hover {
@@ -241,12 +328,11 @@ section {
 }
 
 #section_index {
-  grid-template-rows: repeat(3, auto);
   grid-template-areas:
-    "a h1"
-    "img p"
-    "img btn";
-  grid-template-columns: 32% auto;
+    "a img h1"
+    "a img p"
+    "a img btn";
+  grid-template-columns: auto 40% auto;
   grid-template-rows: auto repeat(2, 1fr);
   text-align: right;
   column-gap: 50px;
@@ -254,13 +340,16 @@ section {
   & a {
     justify-self: baseline;
   }
-  
+
   & #div_container_img_estresse_hidrico {
     grid-area: img;
     position: relative;
     overflow: hidden;
     border-radius: 20px;
     width: 80%;
+    height: 100%;
+    box-shadow: 4px 4px 20px #000000c9;
+    z-index: 1;
   }
 
   #img_1_estresse_hidrico {
@@ -268,7 +357,8 @@ section {
     height: 100%;
     width: 100%;
     border-radius: 20px;
-    filter: brightness(0.8);
+    
+    filter: brightness(0.85);
     position: absolute;
     top: 0;
     left: 0;
@@ -284,7 +374,7 @@ section {
     left: 0;
     height: 100%;
     width: 100%;
-    text-shadow: 4px 4px 20px #000000c9;
+    filter: brightness(0.9);
   }
 
   & h1 {
@@ -317,14 +407,16 @@ section {
     color: var(--cor-secundaria);
     border: solid 5px var(--cor-secundaria);
   }
+
+  
 }
 
 #section_informacoes {
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
-    "i a"
-    "h2 h2"
-    "btn btn";
+    "i progresso progresso"
+    "h2 h2 h2"
+    "btn btn btn";
   align-content: end;
 
   & h2 {
@@ -334,10 +426,10 @@ section {
 
 #section_consumo_mensal {
   grid-template-areas:
-    "i a"
-    "h2 h2"
-    "input input"
-    "label btn";
+    "i progresso progresso"
+    "h2 h2 h2"
+    "input input input"
+    "label btn btn";
 
   & #label_nao_sei {
     grid-area: label;
@@ -351,9 +443,9 @@ section {
   grid-template-columns: 1fr auto;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
-    "i a"
-    "h2 h2"
-    "label1 label2";
+    "i progresso progresso"
+    "h2 h2 h2"
+    "label1 label2 label2";
 
   & h2 {
     align-self: center;
@@ -376,7 +468,6 @@ section {
   overflow-y: scroll;
   grid-template-rows: auto auto auto;
   grid-template-areas:
-    "i a"
     "div div"
     "btn btn";
   row-gap: 15%;
@@ -388,14 +479,27 @@ section {
     flex-direction: column;
     gap: 70px;
 
+    & #div_header{
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto;
+      width: 100%;
+      grid-template-areas: "i h4";
+
+      & h4{
+        grid-area: h4;
+      }
+
+      & i {
+        grid-area: i;
+      }
+      
+    }
+    
+
     & h4 {
       font-size: 3rem;
       text-align: center;
-    }
-
-    & span {
-      color: #0e617c;
-      font-weight: bold;
     }
 
     & p {
