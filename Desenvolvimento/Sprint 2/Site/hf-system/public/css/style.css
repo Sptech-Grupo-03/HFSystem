@@ -20,7 +20,7 @@
   );
 
   --gradiente-cima-baixo: linear-gradient(
-    180deg,
+    0deg,
     #041b22 12.72%,
     #041b22 16.22%,
     #041b22 21.72%,
@@ -61,6 +61,7 @@
 
 html {
   font-size: 12px;
+  height: 100%;
 }
 
 /* BODY */
@@ -70,6 +71,11 @@ body {
 }
 
 /* /BODY */
+
+span {
+  color: #0e617c;
+  font-weight: bold;
+}
 
 /* HEADER */
 
@@ -82,7 +88,7 @@ header {
   align-items: center;
   padding: 10px 60px;
   background: var(--gradiente);
-  box-shadow: 3px 0px 30px rgba(0, 0, 0, 0.726);
+  box-shadow: 3px 0px 3px rgba(0, 0, 0, 0.726);
   position: fixed;
   top: 0;
   z-index: 2;
@@ -95,7 +101,7 @@ header {
   & a,
   span {
     color: var(--fonte-cor-secundaria);
-    font-size: 1.4rem;
+    font-size: 2rem;
     border-bottom: 2px solid transparent;
     transition: 0.5s;
   }
@@ -292,7 +298,7 @@ main {
   padding: 0;
   grid-area: sobre-nos;
   display: grid;
-  grid-template-rows: auto 90vh auto;
+  grid-template-rows: auto 50vh auto;
   grid-template-columns: 1fr;
   grid-template-areas:
     "o-que-fazemos"
@@ -376,6 +382,7 @@ main {
 
 #section_quem_somos {
   grid-area: quem-somos;
+  height: 100%;
   padding-inline: 150px;
   display: grid;
   grid-template-rows: 1fr 1fr;
@@ -406,7 +413,7 @@ main {
   }
 }
 
-#section_por_que_nos_escolher {
+#section_missao_visao_valores {
   grid-area: por-que-nos-escolher;
   display: grid;
   grid-template-rows: auto auto;
@@ -465,7 +472,7 @@ main {
     & p {
       grid-area: p;
       text-align: center;
-      font-size: 1.2rem;
+      font-size: 2rem;
     }
   }
 }
@@ -610,65 +617,175 @@ main {
 
 /* SERVICOS SECTION */
 #section_servicos {
+  width: 100%;
   grid-area: servicos;
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: repeat(7, auto);
   row-gap: 50px;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 50px;
+  grid-template-columns: 1fr;
   grid-template-areas:
-    "h2 h2 h2"
-    "card-2 card-1 card-3";
+    "h2_por_que_nos_escolher"
+    "h3_por_que_nos_escolher"
+    "beneficios"
+    "h2_nossos_servicos"
+    "servicos"
+    "h3_nossos_servicos"
+    "outros_servicos";
 
-  & h2 {
-    grid-area: h2;
+  & #h2_por_que_nos_escolher {
+    grid-area: h2_por_que_nos_escolher;
   }
 
-  & div {
-    display: grid;
-    grid-template-rows: auto auto 1fr;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "img"
-      "h4"
-      "p";
+  & #h3_por_que_nos_escolher {
+    grid-area: h3_por_que_nos_escolher;
+    font-size: 3rem;
     text-align: center;
-    justify-items: center;
-    align-items: baseline;
-    position: relative;
-    border-radius: 50px;
-    padding: 30px;
-    box-shadow: 3px 2px 3px rgba(189, 198, 210, 1),
-      -3px 2px 3px rgba(189, 198, 210, 1), 0 2px 3px rgba(189, 198, 210, 1);
+  }
 
-    & img {
-      grid-area: img;
-      height: 100%;
-      padding-bottom: 20px;
-    }
+  & #div_beneficios {
+    grid-area: beneficios;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 50px;
+    grid-template-areas: "beneficio1 beneficio2 beneficio3 beneficio4";
 
-    & h4 {
-      grid-area: h4;
-      padding-bottom: 20px;
-      font-size: 2rem;
-    }
+    & .div_cards {
+      background-color: var(--cor-primaria);
+      color: var(--fonte-cor-primaria);
+      display: flex;
+      align-items: center;
+      border-radius: 50px;
+      box-shadow: 3px 2px 3px rgba(189, 198, 210, 1),
+        -3px 2px 3px rgba(189, 198, 210, 1), 0 2px 3px rgba(189, 198, 210, 1);
+      padding: 30px;
 
-    & p {
-      grid-area: p;
-      font-size: 2rem;
+      & h4 {
+        grid-area: h4;
+        text-align: center;
+        font-size: 2rem;
+      }
     }
   }
 
-  & #card_atendimento_personalizado {
-    grid-area: card-1;
+  & #h2_nossos_servicos {
+    grid-area: h2_nossos_servicos;
   }
 
-  & #card_solucoes_sob_medida {
-    grid-area: card-2;
+  & #h3_nossos_servicos {
+    grid-area: h3_nossos_servicos;
+    font-size: 3rem;
+    text-align: center;
   }
 
-  & #card_suporte_tecnico {
-    grid-area: card-3;
+  & #div_servicos {
+    grid-area: servicos;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 50px;
+    grid-template-areas: "analise_preditiva analise_monitoramento analise_dashboard";
+
+    & #div_cards_analise_preditiva {
+      grid-area: analise_preditiva;
+    }
+
+    & #div_cards_monitoramento {
+      grid-area: analise_monitoramento;
+    }
+
+    & #div_cards_dashboard {
+      grid-area: analise_dashboard;
+    }
+
+    & .div_cards {
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "img"
+        "h4"
+        "p";
+      text-align: center;
+      justify-items: center;
+      align-items: baseline;
+      position: relative;
+      border-radius: 50px;
+      padding: 30px;
+      box-shadow: 3px 2px 3px rgba(189, 198, 210, 1),
+        -3px 2px 3px rgba(189, 198, 210, 1), 0 2px 3px rgba(189, 198, 210, 1);
+
+      background: #0e617c;
+
+      & h4 {
+        grid-area: h4;
+        padding-bottom: 20px;
+        font-size: 2rem;
+        color: var(--cor-primaria);
+      }
+
+      & p {
+        grid-area: p;
+        font-size: 2rem;
+        color: var(--cor-primaria);
+      }
+    }
+  }
+
+  & #div_outros_servicos {
+    grid-area: outros_servicos;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 50px;
+    grid-template-areas: "card_2 card_1 card_3";
+
+    & #card_atendimento_personalizado {
+      grid-area: card_1;
+    }
+
+    & #card_solucoes_sob_medida {
+      grid-area: card_2;
+    }
+
+    & #card_suporte_tecnico {
+      grid-area: card_3;
+    }
+
+    & .div_cards {
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "img"
+        "h4"
+        "p";
+      text-align: center;
+      justify-items: center;
+      align-items: baseline;
+      position: relative;
+      border-radius: 50px;
+      padding: 30px;
+      box-shadow: 3px 2px 3px rgba(189, 198, 210, 1),
+        -3px 2px 3px rgba(189, 198, 210, 1), 0 2px 3px rgba(189, 198, 210, 1);
+
+      & img {
+        grid-area: img;
+        height: 100%;
+        padding-bottom: 20px;
+      }
+
+      & h4 {
+        grid-area: h4;
+        padding-bottom: 20px;
+        font-size: 2rem;
+      }
+
+      & p {
+        grid-area: p;
+        font-size: 2rem;
+      }
+    }
   }
 }
 
@@ -784,366 +901,3 @@ footer {
     grid-area: p3;
   }
 }
-
-/* SIMULADOR */
-
-#simulador_body {
-  height: 100%;
-  display: grid;
-  grid-template-columns: repeat(12, 100%);
-  grid-template-rows: 100vh;
-}
-
-section {
-  height: 100%;
-  display: grid;
-  grid-template-columns: auto auto;
-  column-gap: 100px;
-  grid-template-rows: auto auto auto auto;
-  row-gap: 10%;
-  padding: var(--padding);
-  justify-content: space-between;
-  grid-template-areas:
-    "seta logo"
-    "h2 h2"
-    "input input"
-    "btn btn";
-
-  & i {
-    grid-area: seta;
-    font-size: 2rem;
-    justify-self: baseline;
-    cursor: pointer;
-    transition: 0.5s ease;
-  }
-
-  & i:hover {
-    scale: 1.2;
-  }
-
-  & h1 {
-    grid-area: h1;
-    font-size: 3.5rem;
-    text-align: right;
-  }
-
-  & h2 {
-    grid-area: h2;
-    font-size: 3rem;
-    text-align: center;
-  }
-
-  & input {
-    grid-area: input;
-    justify-self: center;
-    width: 100%;
-    text-align: center;
-    font-size: 2.5rem;
-  }
-
-  input:focus {
-    outline: none;
-  }
-
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  & input[type="radio"] {
-    display: none;
-  }
-
-  & .logotipo {
-    grid-area: logo;
-    justify-self: end;
-    width: 20%;
-  }
-
-  & p {
-    grid-area: p;
-  }
-
-  & button {
-    grid-area: btn;
-  }
-
-  & .btns {
-    cursor: pointer;
-    width: fit-content;
-    height: fit-content;
-    padding: 10px 40px;
-    font-size: 2rem;
-    text-transform: uppercase;
-    border-radius: 50px;
-    background-color: var(--cor-secundaria);
-    font-weight: bold;
-    text-align: center;
-    transition: 0.5s ease;
-    border: solid 5px var(--cor-secundaria);
-    color: var(--cor-primaria);
-    justify-self: end;
-  }
-
-  & .btns:hover {
-    scale: 1.1;
-    background-color: var(--cor-primaria);
-    color: var(--cor-secundaria);
-  }
-}
-
-#section_index {
-  background: var(--gradiente-cima-baixo);
-  grid-template-areas:
-    "seta logo"
-    "img h1"
-    "img p"
-    "img btn";
-  grid-template-columns: 35% auto;
-  text-align: right;
-
-  * {
-    color: var(--cor-primaria);
-  }
-
-  & div {
-    grid-area: img;
-    position: relative;
-  }
-
-  & #img_1_estresse_hidrico {
-    grid-area: img1;
-    width: 100%;
-    border-radius: 20px;
-    box-shadow: 4px 4px 20px #000000c9;
-    filter: brightness(0.8);
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-  }
-
-  & #img_2_estresse_hidrico {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    border-radius: 20px;
-  }
-
-  & p {
-    font-size: 2rem;
-  }
-
-  & button {
-    background: var(--cor-primaria);
-    padding: 10px 40px;
-    height: fit-content;
-    width: fit-content;
-    font-size: 2rem;
-    border: none;
-    border-radius: 10px;
-    font-weight: bold;
-    text-align: center;
-    color: var(--cor-secundaria);
-    cursor: pointer;
-  }
-
-  & button:hover {
-    background: var(--cor-secundaria);
-    color: var(--cor-primaria);
-  }
-}
-
-#section_informacoes {
-  grid-template-rows: auto auto auto;
-  grid-template-areas:
-    "seta logo"
-    "h2 h2"
-    "btn btn";
-}
-
-#section_consumo_mensal {
-  grid-template-areas:
-    "seta logo"
-    "h2 h2"
-    "input input"
-    "label btn";
-
-  & label {
-    grid-area: label;
-  }
-}
-
-#section_trabalha_sistema_irrigacao,
-#section_possui_reservatorio,
-#section_monitoramento_reservatorio,
-#section_tipo_monitoramento {
-  grid-template-rows: auto auto auto;
-  grid-template-areas:
-    "seta logo"
-    "h2 h2"
-    "label label";
-  align-content: center;
-
-  & input {
-    display: none;
-  }
-
-  & #input_trabalha_com_sistema_irrigacao_true {
-    grid-area: label1;
-    
-  }
-
-  & #input_trabalha_com_sistema_irrigacao_false {
-    grid-area: label2;
-  }
-}
-
-/* 
-.section_perguntas {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  background-color: var(--cor-primaria);
-  position: absolute;
-  left: 100%;
-  top: 0;
-  transition: 1s;
-  padding: var(--padding);
-
-  & header {
-    width: 100%;
-    max-height: 15%;
-    display: flex;
-    justify-content: space-between;
-
-    & i {
-      cursor: pointer;
-      font-size: 2rem;
-      transition: 0.5s ease;
-    }
-
-    & i:hover {
-      scale: 1.1;
-    }
-
-    & h1 {
-      font-size: 3.5rem;
-    }
-
-    & .logomarca{
-      height: 100%;
-    }
-  }
-
-  input {
-    width: 100%;
-    text-align: center;
-    font-size: 2.5rem;
-    
-  }
-
-  input:focus {
-    outline: none; 
-  }
-
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  .conteudoPerguntas {
-    padding: 20px 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: bolder;
-
-  }
-
-  .div_btns {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    gap: 40px;
-
-    & input {
-      display: none;
-    }
-
-    & #btn_section_consumo_mensal {
-      margin-right: -40px;
-    }
-  }
-
-  .btns {
-    width: 20%;
-    align-self: flex-end;
-    padding: 10px 40px;
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    border-radius: 50px;
-    background-color: var(--cor-secundaria);
-    color: var(--cor-primaria);
-    cursor: pointer;
-    font-weight: bold;
-    text-align: center;
-    transition: 0.5s ease;
-    border: solid 5px var(--cor-secundaria);
-  }
-
-  .btns:hover {
-    scale: 1.1;
-    background-color: var(--cor-primaria);
-    color: var(--cor-secundaria);
-  }
-
-  #btn_index {
-    width: auto;
-  }
-}
-
-
-
-.gradiente {
-  background: var(--gradiente);
-  color: var(--cor-primaria);
-
-  & .btns {
-    background-color: var(--cor-primaria);
-    color: var(--cor-secundaria);
-  }
-
-  & .btns:hover {
-    background-color: var(--cor-secundaria);
-    color: var(--cor-primaria);
-  }
-}
-
-#section_tudo_pronto{
-  background: var(--gradiente-invertido);
-}
-
-#section_mensagem_final{
-  background: var(--gradiente-invertido);
-
-  & #p_resultado{
-    font-size: 2rem;
-  }
-  
-}
-
-.campo_obrigatorio::placeholder{
-  color: #0E617C;
-}
-*/
-
-/* /SIMULADOR */
