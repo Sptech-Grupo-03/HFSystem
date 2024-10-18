@@ -1,20 +1,3 @@
-function validacaoTamanhoUsuario() {
-    var usuario = document.getElementById('input_usuario').value
-    var tamanhoMininoUsuario = 6;
-    var randomuser = document.getElementById('randomuser');
-    var iconeLogin = document.getElementById('iconeLogin');
-    var mensagem = '';
-    
-
-    iconeLogin.style.top = '50%';
-    for (var i = usuario.length; i < tamanhoMininoUsuario; i++) {
-        mensagem = `Seu nome de usuário deve conter pelo menos 6 caracteres`;
-        iconeLogin.style.top = '33%';
-    
-    }
-    randomuser.innerHTML = mensagem;
-    
-}
 
 function toggleSenhaVisivel() {
     const senha = document.getElementById('senha');
@@ -46,15 +29,36 @@ function toggleConfirmacaoSenhaVisivel() {
     }
 }
 
-function cadastrar(){
+document.getElementById('formulario_cadastro').addEventListener('submit', function(event) {
+    // Evita o envio imediato do formulário
+    event.preventDefault();
+   
     var usuario = document.getElementById('input_usuario').value
+    var campoMensagemErro = document.getElementById("campo_mensagem_erro")
+    var formulario = document.getElementById("formulario_cadastro")
+    var tamanhoMininoUsuario = 6;
 
-    if(usuario.length < 6){
-        alert('Revise seu nome de usuário')
+    if(usuario.length < tamanhoMininoUsuario){
+        campoMensagemErro.style.display = "block";
+        campoMensagemErro.innerHTML = `* seu nome de usuário deve conter pelo menos 6 caracteres`;
+        formulario.style.gridTemplateRows = "repeat(6, auto)"
+        formulario.style.gridTemplateAreas = `
+        "div_input_usuario div_input_email"
+        "campo_mensagem_erro campo_mensagem_erro"
+        "div_input_razao_social div_input_nome_fantasia"
+        "div_input_cnpj div_input_representante_legal"
+        "div_input_senha div_input_confirmacao_senha"
+        "btn_cadastrar btn_cadastrar"`;
+
+        
     }else{
         alert('Cadastrado com sucesso!')
+        this.submit(); // Envia o formulário
     }
-}
+
+});
+
+
 
 function entrar(){
     const email = input_email.value
