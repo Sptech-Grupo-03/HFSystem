@@ -1,0 +1,237 @@
+@import url("../../config/css/style_padrao.css");
+
+body {
+  display: grid;
+  grid-template-rows: 15% 85%;
+  grid-template-columns: auto auto;
+  grid-template-areas:
+    "header header"
+    "nav main";
+  overflow: hidden;
+}
+
+header {
+  grid-area: header;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 100%;
+  grid-template-columns: auto 1fr repeat(4, auto);
+  gap: 50px;
+  padding: 30px 60px;
+  background: var(--gradiente);
+  box-shadow: 3px 0px 3px rgba(0, 0, 0, 0.726);
+  align-items: center;
+
+  & * {
+    color: var(--cor-primaria);
+    font-size: 3rem;
+  }
+
+  & #logotipo {
+    max-height: 70px;
+  }
+
+  & h1 {
+    text-transform: uppercase;
+
+    & span {
+      padding-right: 50px;
+    }
+  }
+
+  #header_div_user {
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "img user_name"
+      "img user_permision";
+    column-gap: 20px;
+    align-content: center;
+    padding-inline: 50px;
+    border-left: solid 4px var(--cor-primaria);
+    border-right: solid 4px var(--cor-primaria);
+
+    & img {
+      max-height: 60px;
+      grid-area: img;
+      border-radius: 100%;
+    }
+
+    & #user_name {
+      font-size: 2rem;
+      grid-area: user_name;
+    }
+
+    & #user_permision {
+      font-size: 1.5rem;
+      grid-area: user_permision;
+      align-self: baseline;
+    }
+  }
+
+  & i,
+  #header_div_user {
+    cursor: pointer;
+  }
+}
+
+nav {
+  grid-area: nav;
+  height: 100%;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  
+
+  border-right: 2px solid #ccc;
+  height: auto;
+  
+  padding-bottom: 30px;
+
+  & .menu_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid 3px rgba(0, 0, 0, 0.523);
+    position: sticky;
+    background-color: #e7e7e7;
+    width: 100%;
+    top: 0;
+    padding: 20px 30px;
+
+    & h3,
+    i {
+      text-transform: uppercase;
+      font-size: 2.2rem;
+      line-height: 2.2rem;
+      color: var(--cor-secundaria);
+    }
+
+    & i {
+      cursor: pointer;
+    }
+  }
+
+  & #menu_main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    gap: 30px;
+    overflow-y: auto;
+
+    & .empresa,
+    .dashboard,
+    .funcionarios {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      & h4 {
+        font-size: 2rem;
+        color: var(--cor-setenaria);
+
+        & i {
+          padding-right: 10px;
+        }
+      }
+
+      & .submenu_container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        margin-left: 10px;
+        border-left: 3px solid var(--cor-setenaria);
+        gap: 10px;
+
+        & p {
+          font-size: 1.5rem;
+          cursor: pointer;
+
+          & i {
+            padding-right: 10px;
+            width: 15%;
+          }
+        }
+
+        & p:hover {
+          text-decoration: underline;
+        }
+
+        & .cargos {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+}
+
+main {
+  grid-area: main;
+  display: flex;
+  height: 100%;
+  padding: var(--padding);
+}
+
+.labels {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  gap: 10px;
+}
+
+.labels input,
+.labels select {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  transition: border-color 0.3s;
+}
+
+.labels input:focus,
+.labels select:focus {
+  border-color: deepskyblue;
+  outline: none;
+}
+
+.btns {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: deepskyblue;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button.cancelar {
+  background-color: #ccc;
+  color: #333;
+}
+
+button:hover {
+  background-color: #5ce1e6;
+}
+
+button.cancelar:hover {
+  background-color: #bbb;
+}
+
+hr {
+  width: 100%;
+  margin: 4px 0;
+  color: #5ce1e6;
+  border: none;
+  height: 1px;
+  background-color: #ccc;
+}
