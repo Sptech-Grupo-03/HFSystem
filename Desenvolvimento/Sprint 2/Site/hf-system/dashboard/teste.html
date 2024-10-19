@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro</title>
+</head>
+<body>
+
+    <h1>Simulador Financeiro</h1>
+
+    <div id="initial-screen">
+        <label for="account">Conta:</label>
+        <input type="text" id="account" maxlength="6"><br>
+
+        <label for="digit">Dígito:</label>
+        <input type="text" id="digit" maxlength="1"><br>
+
+        <label for="password">Senha:</label>
+        <input type="text" id="password"><br>
+
+        <button id="simulate">Simular</button>
+
+        <div id="validationMessages" class="message"></div>
+        <div id="result" class="result"></div>
+    </div>
+
+    <div id="simulation-screen" class="hidden">
+        <label for="value">Valor:</label>
+        <input type="number" id="value"><br>
+
+        <label for="operation">Operação:</label>
+        <select id="operation">
+            <option value="empréstimo">Empréstimo</option>
+            <option value="investimento">Investimento</option>
+        </select><br>
+
+        <label for="term">Prazo:</label>
+        <select id="term">
+            <option value="3">3 meses</option>
+            <option value="6">6 meses</option>
+            <option value="12">12 meses</option>
+        </select><br>
+
+        <button id="calculate">Calcular</button>
+        <button id="back">Voltar à Simulação</button>
+
+        <div id="calculationResults" class="result"></div>
+    </div>
+
+    <script>
+        var simulateButton = document.getElementById('simulate');
+        var calculateButton = document.getElementById('calculate');
+        var backButton = document.getElementById('back');
+        var validationMessages = document.getElementById('validationMessages');
+        var resultDiv = document.getElementById('result');
+        var simulationScreen = document.getElementById('simulation-screen');
+        var initialScreen = document.getElementById('initial-screen');
+        var calculationResults = document.getElementById('calculationResults');
+        var randomWord = '';
+        var specialChars = '';
+
+        function generatePasswordRequirements() {
+            var words = ['alfa', 'beta', 'gama'];
+            randomWord = words[Math.floor(Math.random() * words.length)];
+            var specials = ['#', '@', '&', '!'];
+            specialChars = specials[Math.floor(Math.random() * specials.length)] +
+                           specials[Math.floor(Math.random() * specials.length)];
+            return randomWord + ' e ' + specialChars;
+        }
+
+        simulateButton.onclick = function() {
+            var account = document.getElementById('account').value;
+            var digit = document.getElementById('digit').value;
+            var password = document.getElementById('password').value;
+
+            validationMessages.innerHTML = '';
+            resultDiv.innerHTML = '';
+            calculationResults.innerHTML = '';
+
+        
+            if (account.length !== 6 || !/^\d+$/.test(account) || (parseInt(account[0]) + parseInt(account[1])) % 2 !== 0) {
+                validationMessages.innerHTML += 'Conta deve ter 6 dígitos e a soma dos dois primeiros dígitos deve ser par.<br>';
+            } else {
+                var multiplier = Math.floor(Math.random() * (5 - 2 + 1)) + 2; 
+                var newAccount = parseInt(account) * multiplier;
+                resultDiv.innerHTML = 'Conta ' + account + ' multiplicada por ' + multiplier + ' = ' + newAccount + '.<br>';
+                if (digit !== newAccount.toString().slice(-1)) {
+                    validationMessages.innerHTML += 'O dígito informado não corresponde à conta.<br>';
+                }
+            }
+
+        
+            if (!password.includes(randomWord) || !/\d.*\d/.test(password) || password.length < 12 || !/[#@&!]/.test(password)) {
+                var requiredChars = generatePasswordRequirements();
+                validationMessages.innerHTML += 'Senha deve conter a palavra aleatória (' + requiredChars + ').<br>';
+            }
+
+            if (validationMessages.innerHTML) {
+                validationMessages.style.display = 'block';
+            } else {
+                validationMessages.style.display = 'none';
+                resultDiv.style.display = 'block';
+                initialScreen.style.display = 'none';
+                simulationScreen.style.display = 'block';
+                var riskCoefficient = Math.floor(Math.random() * 100) + 1;
+                if (riskCoefficient < 40) {
+                    calculationResults.innerHTML = 'Risco alto – operação não permitida.';
+                } else if (riskCoefficient < 70) {
+                    calculationResults.innerHTML = 'Operação com certo grau de risco, continue...';
+                } else {
+                    calculationResults.innerHTML = 'Operação segura.';
+                }
+                calculationResults.style.display = 'block';
+            }
+        };
+
+        backButton.onclick = function() {
+            initialScreen.style.display = 'block';
+            simulationScreen.style.display = 'none';
+            validationMessages.style.display = 'none';
+            resultDiv.style.display = 'none';
+            calculationResults.style.display = 'none';
+            document.getElementById('account').value = '';
+            document.getElementById('digit').value = '';
+            document.getElementById('password').value = '';
+        };
+
+        calculateButton.onclick = function() {
+            var value = parseFloat(document.getElementById('value').value);
+            var operation = document.getElementById('operation').value;
+            var term = parseInt(document.getElementById('term').value);
+            calculationResults.innerHTML = '';
+
+            if (operation === 'empréstimo') {
+                var rate = term === 12 ? 0.24 : term === 6 ? 0.16 : 0.10;
+                for (var month = 1; month <= term; month++) {
+                    var updatedValue = value * Math.pow((1 + rate / 12), month);
+                    calculationResults.innerHTML += 'Mês ' + String(month).padStart(2, '0') + ' – Para o empréstimo de R$' + value.toFixed(2) + ' no prazo de ' + term + ' meses, o valor atualizado com juros será de R$' + updatedValue.toFixed(2) + '.<br>';
+                }
+            } else if (operation === 'investimento') {
+                var rate = term === 12 ? 0.13 : term === 6 ? 0.09 : 0.04;
+                for (var month = 1; month <= term; month++) {
+                    var updatedValue = value * Math.pow((1 + rate / 12), month);
+                    calculationResults.innerHTML += 'Mês ' + String(month).padStart(2, '0') + ' – Para o investimento de R$' + value.toFixed(2) + ' no prazo de ' + term + ' meses, o valor atualizado será de R$' + updatedValue.toFixed(2) + '.<br>';
+                }
+            }
+            calculationResults.style.display = 'block';
+        };
+
+    </script>
+</body>
+</html>
+
