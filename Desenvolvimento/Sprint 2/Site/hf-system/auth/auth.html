@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastre-se - HFSystem</title>
+    <link rel="stylesheet" href="./css/auth.css">
+    <script src="https://kit.fontawesome.com/041dbc8823.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <script src="https://kit.fontawesome.com/041dbc8823.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" type="imagex/png" href="./assets/HYDRO FLOW.svg">
+
+</head>
+
+<body >
+    <main>
+        <a id="btn_voltar" target="_blank" href="../public/index.html"><i class="fa-solid fa-arrow-left"></i></a>
+        <img class="logo" src="./assets/HYDRO FLOW.svg" alt="">
+        <!-- CADASTRO -->
+        <section class="main_contant main_container_cadastro">
+            <section  id="container_cadastro_section_login">
+                <div class="textos">
+                    <h2>SEJA BEM-VINDO!</h2>
+                    <h3>Já tem uma conta ?</h3>
+                    <p>Faça login para manter um fluxo constante com a gente.</p>
+                    <button class="toggle_btn" id="btn_login_toggle">LOGIN</button>
+                </div>
+
+                <div class="circulo1 circulos"></div>
+                <div class="circulo2 circulos"></div>
+                <div class="circulo3 circulos"></div>
+                <div class="circulo4 circulos"></div>
+                <div class="circulo5 circulos"></div>
+            </section>
+            <section class="section_formulario" id="section_formulario_cadastro">
+                <div class="container_formulario" id="container_formulario_cadastro">
+                    <h2>CRIAR UMA CONTA</h2>
+                    <form class="formulario" id="formulario_cadastro">
+                        <div class="input-container" id="div_input_usuario">
+                            <i id="iconeLogin" class="fas fa-user"></i>
+                            <input type="text" id="input_usuario" placeholder="| USUÁRIO">
+                        </div>
+
+                        <p id="campo_mensagem_erro"></p>
+
+                        <div class="input-container div_input_email">
+                            <i class="fas fa-envelope"></i>
+                            <input type="text" id="email" placeholder="| EMAIL">
+                        </div>
+
+
+                        <div class="input-container" id="div_input_razao_social">
+                            <i class="fas fa-building"></i>
+                            <input type="text" id="razaoSocial" placeholder="| RAZÃO SOCIAL">
+                        </div>
+
+
+                        <div class="input-container" id="div_input_nome_fantasia">
+                            <i class="fas fa-store"></i>
+                            <input type="text" id="nomeFantasia" placeholder="| NOME FANTASIA">
+                        </div>
+
+
+                        <div class="input-container" id="div_input_cnpj">
+                            <i class="fas fa-id-card"></i>
+                            <input type="text" id="cnpj" placeholder="| CNPJ">
+                        </div>
+
+
+                        <div class="input-container" id="div_input_representante_legal">
+                            <i class="fas fa-user-tie"></i>
+                            <input type="text" id="representanteLegal" placeholder="| REPRESENTANTE LEGAL">
+                        </div>
+                        <div class="input-container div_input_senha">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="senha_cadastro" placeholder="| SENHA">
+                            <i class="fas fa-eye" id="toggle_senha_cadastro"
+                                onclick="ocultarExibirSenha('toggle_senha_cadastro', 'senha_cadastro')"></i>
+                        </div>
+
+                        <div class="input-container" id="div_input_confirmacao_senha">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="confirmacao_senha" placeholder="| CONFIRME SUA SENHA">
+                            <i class="fas fa-eye" id="toggle_confirmacao_senha"
+                                onclick="ocultarExibirSenha('toggle_confirmacao_senha', 'confirmacao_senha')"></i>
+                        </div>
+                        <button type="submit" id="btn_cadastrar">CADASTRAR</button>
+                    </form>
+                </div>
+            </section>
+
+        </section>
+
+
+        <!-- /CADASTRO -->
+
+        <!-- LOGIN -->
+
+        <section class="main_contant main_container_login">
+
+            <section class="section_formulario" id="section_formulario_login">
+
+                <div class="container_formulario" id="container_formulario_login">
+                    <h2>ACESSAR SUA CONTA</h2>
+                    <form class="formulario" id="formulario_login">
+                        <div class="input-container div_input_email">
+                            <i class="fas fa-envelope"></i>
+                            <input type="text" id="input_email" placeholder="| E-MAIL">
+                        </div>
+                        <div class="input-container div_input_senha">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="input_senha_login" placeholder="| SENHA">
+                            <i class="fas fa-eye" id="toggle_senha_login"
+                                onclick="ocultarExibirSenha('toggle_senha_login', 'input_senha_login')"></i>
+                        </div>
+                        <button type="submit" onclick="entrar()" id="btn_entrar">ENTRAR</button>
+
+                    </form>
+                </div>
+
+            </section>
+
+            <section id="container_login_section_cadastro">
+                <div class="textos">
+                    <h2>É NOVO POR AQUI ?</h2>
+                    <p>Transforme o fluxo do seu negócio e intensifique sua gestão.</p>
+                    <button class="toggle_btn" id="btn_cadastro_toggle">CADASTRE-SE</button>
+                </div>
+
+                <div class="circulo1 circulos"></div>
+                <div class="circulo2 circulos"></div>
+                <div class="circulo3 circulos"></div>
+                <div class="circulo4 circulos"></div>
+                <div class="circulo5 circulos"></div>
+            </section>
+
+        </section>
+
+        <!-- /LOGIN -->
+
+
+    </main>
+</body>
+<script src="./js/auth.js"></script>
+
+</html>
