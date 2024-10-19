@@ -82,3 +82,18 @@ insert into reservatorio (capacidade, tipo, altura, largura, fkSensor, fkEmpresa
 (800, 'Cilíndrico', 2.5, 2.5, 2, 2);
 
 select * from reservatorio join hcsr04 on id = fkSensor;
+
+select funcionario.nome as Funcionario,
+fazenda.razaoSocial as "Fazenda contratado"
+from funcionario
+join fazenda
+on funcionario.fkEmpresaRegistro = fazenda.idEmpresa;
+
+select fazenda.razaoSocial as Fazenda,
+reservatorio.capacidade as CapacidadeReservatorio,
+reservatorio.tipo as TipoReservatorio,
+reservatorio.altura as AlturaReservatorio,
+reservatorio.largura as LarguraReservatorio
+from fazenda
+join reservatorio
+on fazenda.idEmpresa = reservatorio.fkEmpresa;
