@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap");
 
+@import url(../../config/css/style_padrao.css);
+
 :root {
   --gradiente: linear-gradient(
     90deg,
@@ -99,14 +101,14 @@ header {
   }
 
   & a,
-  span {
+  span, #link_resgistrar  {
     color: var(--fonte-cor-secundaria);
     font-size: 2rem;
     border-bottom: 2px solid transparent;
     transition: 0.5s;
   }
 
-  & a:hover {
+  & a:hover, #link_resgistrar:hover {
     border-bottom: 2px solid var(--fonte-cor-secundaria);
   }
 
@@ -143,6 +145,7 @@ header {
         font-weight: bold;
         transition: 0.5s;
         border: none;
+        font-size: 2rem;
       }
 
       & #btn_entrar:hover {

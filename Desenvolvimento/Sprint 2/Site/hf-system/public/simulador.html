@@ -18,9 +18,11 @@
         <nav class="navbar">
             <div id="navbar_conatainer_link_sections">
                 <a id="link_home" target="_blank" href="index.html" onclick="menuSelecionado('link_home')">Home</a>
-                <a id="link_sobre_nos" target="_blank" href="index.html#section_sobre_nos" onclick="menuSelecionado('link_sobre_nos')">Sobre
+                <a id="link_sobre_nos" target="_blank" href="index.html#section_sobre_nos"
+                    onclick="menuSelecionado('link_sobre_nos')">Sobre
                     nós</a>
-                <a id="link_solucoes" target="_blank"href="index.html#section_servicos" onclick="menuSelecionado('link_solucoes')">Serviços</a>
+                <a id="link_solucoes" target="_blank" href="index.html#section_servicos"
+                    onclick="menuSelecionado('link_solucoes')">Serviços</a>
                 <a id="link_section_contact" target="_blank" href="index.html#section_contate_nos"
                     onclick="menuSelecionado('link_section_contact')">Contato</a>
                 <a id="link_section_simulador" href="./simulador.html"
@@ -28,16 +30,15 @@
             </div>
             <div id="navbar_conatainer_link_cadastro_login">
                 <span>|</span>
-                <a id="link_resgistrar" href="./cadastro_login/cadastro.html"
-                    onclick="menuSelecionado('link_resgistrar')">Registrar</a>
-                <a href="./cadastro_login/login.html" id="btn_entrar">Entrar</a>
+                <button id="link_resgistrar" onclick="setBodyClass('cadastro_js')">Registrar</button>
+                <button onclick="setBodyClass('login_js')" id="btn_entrar">Entrar</button>
             </div>
         </nav>
     </header>
     <main id="main_index">
-        
+
         <section id="section_index" class="section_perguntas gradiente">
-           
+
             <h1>ESTRESSE HÍDRICO</h1>
 
             <div id="div_container_img_estresse_hidrico">
@@ -56,43 +57,44 @@
         </section>
     </main>
 
-    <main id="main_informacoes" >
+    <main id="main_informacoes">
         <header id="header">
-        <img src="./assets/logotipo-texto-branco.svg">
-        <nav class="navbar">
-            <div id="navbar_conatainer_link_sections">
-                <a id="link_home" href="#section_home" onclick="menuSelecionado('link_home')">Home</a>
-                <a id="link_sobre_nos" href="#section_sobre_nos" onclick="menuSelecionado('link_sobre_nos')">Sobre
-                    nós</a>
-                <a id="link_solucoes" href="#section_servicos" onclick="menuSelecionado('link_solucoes')">Serviços</a>
-                <a id="link_section_contact" href="#section_contate_nos"
-                    onclick="menuSelecionado('link_section_contact')">Contato</a>
-                <a id="link_section_simulador" href="./simulador.html"
-                    onclick="menuSelecionado('link_section_contact')">Simulador</a>
-            </div>
-            <div id="navbar_conatainer_link_cadastro_login">
-                <span>|</span>
-                <a id="link_resgistrar" href="./cadastro_login/cadastro.html"
-                    onclick="menuSelecionado('link_resgistrar')">Registrar</a>
-                <a href="./cadastro_login/login.html" id="btn_entrar">Entrar</a>
-            </div>
-        </nav>
-    </header>
+            <img src="./assets/logotipo-texto-branco.svg">
+            <nav class="navbar">
+                <div id="navbar_conatainer_link_sections">
+                    <a id="link_home" href="#section_home" onclick="menuSelecionado('link_home')">Home</a>
+                    <a id="link_sobre_nos" href="#section_sobre_nos" onclick="menuSelecionado('link_sobre_nos')">Sobre
+                        nós</a>
+                    <a id="link_solucoes" href="#section_servicos"
+                        onclick="menuSelecionado('link_solucoes')">Serviços</a>
+                    <a id="link_section_contact" href="#section_contate_nos"
+                        onclick="menuSelecionado('link_section_contact')">Contato</a>
+                    <a id="link_section_simulador" href="./simulador.html"
+                        onclick="menuSelecionado('link_section_contact')">Simulador</a>
+                </div>
+                <div id="navbar_conatainer_link_cadastro_login">
+                    <span>|</span>
+                    <a id="link_resgistrar" href="./cadastro_login/cadastro.html"
+                        onclick="menuSelecionado('link_resgistrar')">Registrar</a>
+                    <a href="./cadastro_login/login.html" id="btn_entrar">Entrar</a>
+                </div>
+            </nav>
+        </header>
         <section id="section_informacoes" class="section_perguntas">
             <i onclick="trocarPergunta('main_informacoes')" class="fa-solid fa-arrow-left"></i>
-            <div class="div_progresso" >0%</div>
-           
+            <div class="div_progresso">0%</div>
+
             <h2>ANTES, PRECISAREMOS QUE VOCÊ RESPONDA ALGUMAS PERGUNTAS, TUDO BEM ?
             </h2>
             <button onclick="trocarPergunta('main_perguntas_plantacao')" class="btns">TUDO BEM</button>
         </section>
     </main>
     <main id="main_perguntas_plantacao">
-        
+
         <section id="section_perguntas_plantacao" class="section_perguntas">
             <i onclick="trocarPergunta('main_perguntas_plantacao')" class="fa-solid fa-arrow-left"></i>
-            <div class="div_progresso" >10%</div>
-           
+            <div class="div_progresso">10%</div>
+
             <h2>
                 QUAL O SEU TIPO DE PLANTAÇÃO ?
             </h2>
@@ -103,11 +105,11 @@
         </section>
     </main>
     <main id="main_perguntas_ciclo">
-        
+
         <section id="section_perguntas_ciclo" class="section_perguntas">
             <i onclick="trocarPergunta('main_perguntas_ciclo')" class="fa-solid fa-arrow-left"></i>
-            <div class="div_progresso" >20%</div>
-           
+            <div class="div_progresso">20%</div>
+
             <h2>
                 QUANTOS CICLOS DE PRODUÇÃO ANUAL VOCÊ TEM ?
             </h2>
@@ -120,11 +122,11 @@
         </section>
     </main>
     <main id="main_valor_bruto">
-        
+
         <section id="section_valor_bruto" class="section_perguntas">
             <i onclick="trocarPergunta('main_valor_bruto')" class="fa-solid fa-arrow-left"></i>
-            <div class="div_progresso" >30%</div>
-           
+            <div class="div_progresso">30%</div>
+
             <h2>
                 QUAL O SEU FATURAMENTO BRUTO ANUAL ?
             </h2>
@@ -136,11 +138,11 @@
         </section>
     </main>
     <main id="main_consumo_mensal">
-        
+
         <section id="section_consumo_mensal" class="section_perguntas">
             <i onclick="trocarPergunta('main_consumo_mensal')" class="fa-solid fa-arrow-left"></i>
-            <div class="div_progresso" >40%</div>
-           
+            <div class="div_progresso">40%</div>
+
             <h2>
                 QUAL O CONSUMO DE ÁGUA MENSAL NO LOCAL DA SUA PLANTAÇÃO ?
             </h2>
@@ -158,11 +160,11 @@
         </section>
     </main>
     <main id="main_trabalha_sistema_irrigacao">
-        
+
         <section id="section_trabalha_sistema_irrigacao" class="section_perguntas">
             <i onclick="trocarPergunta('main_trabalha_sistema_irrigacao')" class="fa-solid fa-arrow-left"></i>
-            <div class="div_progresso" >50%</div>
-           
+            <div class="div_progresso">50%</div>
+
             <h2>VOCÊ JÁ TRABALHA COM SISTEMA DE IRRIGAÇÃO ?</h2>
 
             <label for="input_trabalha_com_sistema_irrigacao_true" class="btns label1"
@@ -177,11 +179,11 @@
         </section>
     </main>
     <main id="main_possui_reservatorio">
-        
+
         <section id="section_possui_reservatorio" class="section_perguntas">
             <i onclick="trocarPergunta('main_possui_reservatorio')" class="fa-solid fa-arrow-left"></i>
-            <div class="div_progresso" >60%</div>
-           
+            <div class="div_progresso">60%</div>
+
             <h2>
                 VOCÊ POSSUI UM RESERVATÓRIO NO LOCAL DA SUA PLANTAÇÃO ?
             </h2>
@@ -197,11 +199,11 @@
         </section>
     </main>
     <main id="main_capacidade_reservatorio">
-        
+
         <section id="section_capacidade_reservatorio" class="section_perguntas">
             <i onclick="trocarPergunta('main_capacidade_reservatorio')" class="fa-solid fa-arrow-left"></i>
-            <div class="div_progresso" >70%</div>
-           
+            <div class="div_progresso">70%</div>
+
             <h2>QUAL A CAPACIDADE DO SEU RESERVATÓRIO ?</h2>
 
             <input type="number" id="input_capacidade_reservatorio" placeholder="| DIGITE AQUI A CAPACIDADE EM LITROS">
@@ -212,11 +214,11 @@
 
     </main>
     <main id="main_monitoramento_reservatorio">
-        
+
         <section id="section_monitoramento_reservatorio" class="section_perguntas">
             <i onclick="trocarPergunta('main_monitoramento_reservatorio')" class="fa-solid fa-arrow-left"></i>
-            <div class="div_progresso" >80%</div>
-           
+            <div class="div_progresso">80%</div>
+
             <h2>
                 VOCÊ POSSUI UM SISTEMA DE MONITORAMENTO NO SEU RESERVATÓRIO ?
             </h2>
@@ -233,11 +235,11 @@
     </main>
 
     <main id="main_tipo_monitoramento">
-        
+
         <section id="section_tipo_monitoramento" class="section_perguntas">
             <i onclick="trocarPergunta('main_tipo_monitoramento')" class="fa-solid fa-arrow-left"></i>
-            <div class="div_progresso" >90%</div>
-           
+            <div class="div_progresso">90%</div>
+
             <h2>
                 ESTE SISTEMA É MANUAL OU AUTOMÁTICO ?
             </h2>
@@ -252,12 +254,12 @@
         </section>
     </main>
     <main id="main_tudo_pronto">
-        
+
 
         <section id="section_tudo_pronto" class="section_perguntas gradiente">
             <i onclick="trocarPergunta('main_tudo_pronto')" class="fa-solid fa-arrow-left"></i>
-            <div class="div_progresso" >100%</div>
-           
+            <div class="div_progresso">100%</div>
+
             <h2>TUDO PRONTO!<br>VAMOS DESCOBRIR COMO O HF SYSTEM PODE TE AJUDAR ?</h2>
 
             <button class="btns"
@@ -266,10 +268,10 @@
         </section>
     </main>
     <main id="main_mensagem_final">
-        
+
         <section id="section_mensagem_final" class="section_perguntas gradiente">
-           
-            
+
+
             <div id="div_resultado">
 
 
@@ -281,7 +283,7 @@
 </body>
 
 
-
+<script src="../config/js/confiracao_auth.js"></script>
 <script src="./js/simulador.js"></script>
 
 </html>

@@ -31,9 +31,9 @@
             </div>
             <div id="navbar_conatainer_link_cadastro_login">
                 <span>|</span>
-                <a id="link_resgistrar" href="./cadastro_login/cadastro.html"
-                    onclick="menuSelecionado('link_resgistrar')">Registrar</a>
-                <a href="./cadastro_login/login.html" id="btn_entrar">Entrar</a>
+                <button id="link_resgistrar"
+                    onclick="setBodyClass('cadastro_js')">Registrar</button>
+                <button onclick="setBodyClass('login_js')" id="btn_entrar">Entrar</button>
             </div>
         </nav>
     </header>
@@ -280,7 +280,7 @@
     <!-- /FOOTER SECTION -->
 
 </body>
-
+<script src="../config/js/confiracao_auth.js"></script>
 <script src="./js/script.js"></script>
 
 </html>
