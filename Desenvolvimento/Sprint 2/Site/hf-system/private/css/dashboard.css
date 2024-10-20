@@ -3,15 +3,15 @@
 body {
   display: grid;
   grid-template-rows: 15% 85%;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto 1fr;
   grid-template-areas:
     "header header"
     "nav main";
-  overflow: hidden;
 }
 
 header {
   grid-area: header;
+  width: 100%;
   height: 100%;
   display: grid;
   grid-template-rows: 100%;
@@ -83,12 +83,8 @@ nav {
   width: fit-content;
   display: flex;
   flex-direction: column;
-  
-
   border-right: 2px solid #ccc;
   height: auto;
-  
-  padding-bottom: 30px;
 
   & .menu_header {
     display: flex;
@@ -120,6 +116,7 @@ nav {
     flex-direction: column;
     padding: 30px;
     gap: 30px;
+    overflow-x: hidden;
     overflow-y: auto;
 
     & .empresa,
@@ -129,12 +126,23 @@ nav {
       flex-direction: column;
       width: 100%;
 
-      & h4 {
+      & .input_container_filtro {
+        font-size: 1.5rem;
+      }
+
+      & h4,
+      h3 {
         font-size: 2rem;
         color: var(--cor-setenaria);
+        cursor: pointer;
 
         & i {
-          padding-right: 10px;
+          padding-right: 15px;
+        }
+
+        & .seta {
+          padding-left: 10px;
+          display: none;
         }
       }
 
@@ -142,7 +150,7 @@ nav {
         width: 100%;
         display: flex;
         flex-direction: column;
-        padding: 10px;
+        padding:  0 0 10px 20px;
         margin-left: 10px;
         border-left: 3px solid var(--cor-setenaria);
         gap: 10px;
@@ -150,20 +158,23 @@ nav {
         & p {
           font-size: 1.5rem;
           cursor: pointer;
+          width: fit-content;
 
           & i {
-            padding-right: 10px;
-            width: 15%;
+            width: 30px;
           }
-        }
-
-        & p:hover {
-          text-decoration: underline;
         }
 
         & .cargos {
           margin-top: 20px;
         }
+
+      
+      }
+
+      & p:hover,
+      h4:hover {
+        text-decoration: underline;
       }
     }
   }
@@ -173,7 +184,181 @@ main {
   grid-area: main;
   display: flex;
   height: 100%;
-  padding: var(--padding);
+  width: 100%;
+  padding: 50px;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  & .dashboard_section_geral {
+    width: fit-content;
+    height: fit-content;
+    display: grid;
+    grid-template-areas:
+      "dashboard_title dashboard_title dashboard_title dashboard_title dashboard_title  "
+      "kpi_situacao kpi_situacao kpi_agua_disponivel kpi_previsao_consumo_amanha kpi_dias_agua_restante"
+      "charts charts charts charts charts"
+      "kpi_agua_consumida kpi_capacidade_disponivel_porcentagem kpi_capacidade_consumida_porcentagem kpi_capacidade_consumida_L kpi_consumo_medio_semana";
+
+    column-gap: 30px;
+    row-gap: 50px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, auto);
+
+    & #dashboard_title {
+      grid-area: dashboard_title;
+      font-size: 3rem;
+      width: fit-content;
+      height: fit-content;
+    }
+
+    & .kpi {
+      display: grid;
+      grid-template-areas:
+        "h4"
+        "p"
+        "i";
+      background: #dbdbdb;
+      padding: 20px;
+      border-bottom: solid 6px var(--cor-setenaria);
+      gap: 10px;
+      justify-items: center;
+      align-content: space-between;
+      
+
+      & h4 {
+        grid-area: h4;
+        font-size: 2rem;
+        text-align: center;
+        color: var(--cor-quinaria);
+      }
+
+      & p {
+        grid-area: p;
+        font-size: 2.5rem;
+        line-height: 3.5rem;
+        text-align: center;
+        
+        
+      }
+
+      & i {
+        grid-area: i;
+        font-size: 3.5rem;
+       
+      }
+    }
+
+    & .container_charts {
+      width: 100%;
+      grid-area: charts;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas: "chart_fluxo_agua_por_reservatorio chart_consumo_por_reservatorio";
+      gap: 50px;
+
+      & .chart {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
+        border: solid 4px var(--cor-quinaria);
+
+        & h2 {
+          font-size: 3rem;
+        }
+
+        & canvas {
+          width: 100%;
+          height: fit-content;
+        }
+      }
+
+      & #chart_fluxo_agua_por_reservatorio {
+        grid-area: chart_fluxo_agua_por_reservatorio;
+      }
+
+      & #chart_consumo_por_reservatorio {
+        grid-area: chart_consumo_por_reservatorio;
+      }
+    }
+
+    & #kpi_situacao {
+      grid-area: kpi_situacao;
+      border-color:  #d3400b;
+
+      & *{
+        color: #d3400b;
+        font-weight: bolder;
+      }
+      & p {
+        line-height: 3.5rem;
+        font-size: 2.5rem;
+      }
+
+      
+      
+    }
+
+    & #kpi_agua_disponivel {
+      grid-area: kpi_agua_disponivel;
+      border-color:  #d3400b;
+
+      & *{
+        color: #d3400b;
+        font-weight: bolder;
+      }
+
+      
+    }
+
+    & #kpi_previsao_consumo_amanha {
+      grid-area: kpi_previsao_consumo_amanha;
+    }
+
+    & #kpi_dias_agua_restante {
+      grid-area: kpi_dias_agua_restante;
+      border-color:  #d3400b;
+
+      & *{
+        color: #d3400b;
+        font-weight: bolder;
+      }
+    }
+
+    & #kpi_capacidade_disponivel_porcentagem {
+      grid-area: kpi_capacidade_disponivel_porcentagem;
+      border-color:  #d3400b;
+
+      & *{
+        color: #d3400b;
+        font-weight: bolder;
+      }
+    }
+
+    & #kpi_capacidade_consumida_L {
+      grid-area: kpi_capacidade_consumida_L;
+    }
+
+    & #kpi_capacidade_consumida_porcentagem {
+      grid-area: kpi_capacidade_consumida_porcentagem;
+      border-color:  #d3400b;
+
+      & *{
+        color: #d3400b;
+        font-weight: bolder;
+      }
+    }
+
+    & #kpi_consumo_medio_semana {
+      grid-area: kpi_consumo_medio_semana;
+    }
+
+    & #kpi_agua_consumida{
+      grid-area: kpi_agua_consumida;
+    }
+  }
 }
 
 .labels {
@@ -235,3 +420,5 @@ hr {
   height: 1px;
   background-color: #ccc;
 }
+
+

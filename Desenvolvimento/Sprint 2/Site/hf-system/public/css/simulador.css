@@ -292,7 +292,7 @@ section {
     -webkit-box-shadow: 0 0 0px 1000px var(--cor-primaria) inset !important;
     -webkit-text-fill-color: var(--cor-senaria) !important;
   }
-}
+
 
   & .logotipo {
     grid-area: logo;

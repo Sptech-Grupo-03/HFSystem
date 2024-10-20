@@ -45,23 +45,42 @@ document.getElementById('formulario_cadastro').addEventListener('submit', functi
    
     var usuario = document.getElementById('input_usuario').value
     var campoMensagemErro = document.getElementById("campo_mensagem_erro")
+    campoMensagemErro.innerHTML = ""
     var formulario = document.getElementById("formulario_cadastro")
     var tamanhoMininoUsuario = 6;
 
+    const emailValue = document.getElementById('email').value;
+    let containsAt = false;
+    let usuarioValido = false;
+
+    for (let i = 0; i < emailValue.length; i++) {
+        if (emailValue[i] === '@') {
+            containsAt = true;
+            break; // Sai do loop assim que encontrar o '@'
+        }
+    }
+
+    if (!containsAt) {
+        campoMensagemErro.innerHTML += "<p>*e-mail inválido</p>"
+    }
+
     if(usuario.length < tamanhoMininoUsuario){
-        
         campoMensagemErro.style.display = "block";
-        campoMensagemErro.innerHTML = `* seu nome de usuário deve conter pelo menos 6 caracteres`;
+        campoMensagemErro.innerHTML += `<p>* seu nome de usuário deve conter pelo menos 6 caracteres</p>`;
         formulario.style.gridTemplateRows = "repeat(6, auto)"
         formulario.style.gridTemplateAreas = `
         "div_input_usuario div_input_email"
-        "campo_mensagem_erro campo_mensagem_erro"
         "div_input_razao_social div_input_nome_fantasia"
         "div_input_cnpj div_input_representante_legal"
         "div_input_senha div_input_confirmacao_senha"
+        "campo_mensagem_erro campo_mensagem_erro"
         "btn btn"`;
         
     }else{
+        usuarioValido = true;
+    }
+    
+    if(containsAt && usuarioValido){
         alert('Cadastrado com sucesso!')
         this.submit(); // Envia o formulário
     }
@@ -69,14 +88,24 @@ document.getElementById('formulario_cadastro').addEventListener('submit', functi
 });
 
 
+
+
 function entrar(){
     const email = input_email.value
-    const senha = input_senha.value
+    const senha = input_senha_login.value
+    document.getElementById('formulario_login').addEventListener('submit', function(event) {
+        // Evita o envio imediato do formulário
+        event.preventDefault();
 
-    if(email == 'hfsystem@sptech.school' && senha == 'admin123'){
-        alert('Login realizado com sucesso')
-        window.location.href = "../dashboard/dashboard.html";
-    }else{
-        alert('Email ou senha incorretos')
-    }
+        if(email == 'hfsystem@sptech.school' && senha == 'admin123'){
+            alert('Login realizado com sucesso')
+            window.location.href = "../../private/dashboard.html";
+             // Envia o formulário
+        }else{
+            alert('Email ou senha incorretos')
+        }
+    
+    })
+
 }
+

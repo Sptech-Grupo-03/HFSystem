@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HF System - Dashboards</title>
     <link rel="shortcut icon" type="imagex/png" href="../config/assets/logotipo-texto-branco.svg">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://kit.fontawesome.com/041dbc8823.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/dashboard.css">
 </head>
 
@@ -32,25 +32,127 @@
         </div>
         <div id="menu_main">
             <div class="dashboard">
-                <h4><i class="fa-solid fa-chart-bar"></i> Dashboard</h4>
+                <h4><i class="fa-solid fa-chart-bar"></i>Dashboard<i class="fa-solid fa-chevron-down seta"></i></h4>
                 <div class="submenu_container">
-                    <p onclick="showForm('verTudo')"><i class="fa-solid fa-chart-bar"></i>Tudo</p>
-                    <p onclick="showForm('verSensores')"><i class="fa-solid fa-microchip"></i>Sensores</p>
-                    <p onclick="showForm('verFuncionários')"><i class="fa-solid fa-users"></i>Funcionários</p>
-                    <p onclick="showForm('verReservatorios')"><i class="fa-solid fa-water"></i>Reservatório</p>
-                </div>
+                    <!-- FILTRO DASHBOARD -->
+                    <h4 onclick="showForm('dashboard_section_geral')"><i class="fa-solid fa-window-maximize"></i>Geral<i class="fa-solid fa-chevron-down seta"></i>
+                    </h4>
+                    <div class="submenu_container">
+                        <h3><i class="fa-solid fa-sliders"></i>Filtro</h3>
+                        <div class="submenu_container">
+                            <p><i class="fa-solid fa-calendar"></i>Período</p>
+                            <p><i class="fa-solid fa-chart-line"></i>Gráficos</p>
+                            <div class="input_container_filtro_graficos submenu_container">
+                                <div class="input_container_filtro ">
+                                    <input type="checkbox" checked name="" id="input_fluxo_agua_reservatorios">
+                                    <label for="input_fluxo_agua_reservatorios">Fluxo de Água por Reservatório</label>
+                                </div>
+                                <div class="input_container_filtro">
+                                    <input type="checkbox" checked name="" id="input_dias_agua_restante">
+                                    <label for="input_dias_agua_restante">Consumo por Reservatório</label>
+                                </div>
+
+                            </div>
+                            <p><i class="fa-solid fa-bars-progress"></i></i>KPI`S</p>
+                            <div class="input_container_filtro_kpis submenu_container">
+                                <div class="input_container_filtro ">
+                                    <input type="checkbox" checked name="" id="input_agua_disponivel_L">
+                                    <label for="input_agua_disponivel_L">Água Disponível</label>
+                                </div>
+                                <div class="input_container_filtro">
+                                    <input type="checkbox" checked name="" id="input_dias_agua_restante">
+                                    <label for="input_dias_agua_restante">Dias de Água Restantes</label>
+                                </div>
+                                <div class="input_container_filtro">
+                                    <input type="checkbox" checked name="" id="input_capacidade_consumida_L">
+                                    <label for="input_capacidade_consumida_L">Capacidade Consumida (L)</label>
+                                </div>
+                                <div class="input_container_filtro">
+                                    <input type="checkbox" checked name="" id="input_consumo_medio_diario">
+                                    <label for="input_consumo_medio_diario">Consumo Médio Semanal</label>
+                                </div>
+                                <div class="input_container_filtro">
+                                    <input type="checkbox" checked name="" id="input_capacidade_consumida_%">
+                                    <label for="input_capacidade_consumida_%">Capacidade Consumida (%)</label>
+                                </div>
+                                <div class="input_container_filtro">
+                                    <input type="checkbox" checked name="" id="input_previsao_consumo">
+                                    <label for="input_previsao_consumo">Previsão de Consumo</label>
+                                </div>
+                                <div class="input_container_filtro">
+                                    <input type="checkbox" checked name="" id="input_situacao">
+                                    <label for="input_situacao">situação</label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <h4><i class="fa-solid fa-water"></i>Reservatório<i class="fa-solid fa-chevron-down seta"></i></h4>
+                    <!-- <div class="submenu_container">
+                        <h3><i class="fa-solid fa-sliders"></i>Filtro</h3>
+                        <div class="submenu_container">
+                            <p><i class="fa-brands fa-bitbucket"></i>Reservatório</p>
+                            <p><i class="fa-solid fa-calendar"></i>Período</p>
+                            <p><i class="fa-solid fa-chart-line"></i>Gráficos</p>
+                            <div class="input_container_filtro_graficos submenu_container">
+                                <div class="input_container_filtro ">
+                                    <input type="checkbox" checked name="" id="input_fluxo_agua_reservatorios">
+                                    <label for="input_fluxo_agua_reservatorios">Fluxo de Água</label>
+                                </div>
+                                <div class="input_container_filtro">
+                                    <input type="checkbox" checked name="" id="input_dias_agua_restante">
+                                    <label for="input_dias_agua_restante">Consumo</label>
+                                </div>
+
+                            </div>
+                            <p><i class="fa-solid fa-bars-progress"></i></i>KPI`S</p>
+                            <div class="input_container_filtro_kpis submenu_container">
+                                <div class="input_container_filtro ">
+                                    <input type="checkbox" checked name="" id="input_agua_disponivel_L">
+                                    <label for="input_agua_disponivel_L">Água Disponível</label>
+                                </div>
+                                <div class="input_container_filtro">
+                                    <input type="checkbox" checked name="" id="input_dias_agua_restante">
+                                    <label for="input_dias_agua_restante">Dias de Água Restantes</label>
+                                </div>
+                                <div class="input_container_filtro">
+                                    <input type="checkbox" checked name="" id="input_capacidade_consumida_L">
+                                    <label for="input_capacidade_consumida_L">Capacidade Consumida (L)</label>
+                                </div>
+                                <div class="input_container_filtro">
+                                    <input type="checkbox" checked name="" id="input_consumo_medio_diario">
+                                    <label for="input_consumo_medio_diario">Consumo Médio Semanal</label>
+                                </div>
+                                <div class="input_container_filtro">
+                                    <input type="checkbox" checked name="" id="input_capacidade_consumida_%">
+                                    <label for="input_capacidade_consumida_%">Capacidade Consumida (%)</label>
+                                </div>
+                                <div class="input_container_filtro">
+                                    <input type="checkbox" checked name="" id="input_previsao_consumo">
+                                    <label for="input_previsao_consumo">Previsão de Consumo</label>
+                                </div>
+                                <div class="input_container_filtro">
+                                    <input type="checkbox" checked name="" id="input_situacao">
+                                    <label for="input_situacao">situação</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- /FILTRO DASHBOARD -->
             </div>
             <div class="empresa">
-                <h4><i class="fa-solid fa-building"></i> Sua empresa</h4>
+                <h4><i class="fa-solid fa-building"></i>Sua empresa<i class="fa-solid fa-chevron-down seta"></i></h4>
                 <div class="submenu_container">
                     <p onclick="showForm('verEmpresa')"><i class="fa-solid fa-eye"></i>Ver empresa</p>
                     <p onclick="showForm('atualizarEmpresa')"><i class="fa-solid fa-edit"></i>Atualizar
                         empresa</p>
                 </div>
             </div>
-    
+
             <div class="funcionarios">
-                <h4><i class="fa-solid fa-users"></i> Funcionários</h4>
+                <h4><i class="fa-solid fa-users"></i>Funcionários<i class="fa-solid fa-chevron-down seta"></i></h4>
                 <div class="submenu_container">
                     <p onclick="showForm('verFuncionários')"><i class="fa-solid fa-eye"></i>Ver Funcionários</p>
                     <p onclick="showForm('adicionarFuncionario')"><i class="fa-solid fa-user-plus"></i>Adicionar
@@ -58,28 +160,96 @@
                     <p onclick="showForm('removerFuncionario')"><i class="fa-solid fa-user-minus"></i>Remover
                         Funcionários</p>
                     <div class="cargos">
-                        <h4><i class="fa-solid fa-briefcase"></i> Cargos</h4>
-    
+                        <h4><i class="fa-solid fa-briefcase"></i>Cargos<i class="fa-solid fa-chevron-down seta"></i>
+                        </h4>
+
                         <div class="submenu_container">
-    
+
                             <p onclick="showForm('verCargos')"><i class="fa-solid fa-eye"></i>Ver cargos</p>
                             <p onclick="showForm('adicionarCargos')"><i class="fa-solid fa-plus"></i>Adicionar cargos
                             </p>
                             <p onclick="showForm('removerCargos')"><i class="fa-solid fa-minus"></i>Remover cargos</p>
-    
+
                         </div>
                     </div>
-    
+
                 </div>
-    
-    
+
+
+            </div>
+
+            <div class="dashboard">
+                <h4><i class="fa-solid fa-gear"></i>Configuração</h4>
             </div>
         </div>
-
 
     </nav>
 
     <main class="chamadaAside" id="formContainer">
+
+        <section class="dashboard_section_geral labels" id="dashboard_section_geral">
+            <h2 id="dashboard_title">Visão Geral</h2>
+            <div class="kpi" id="kpi_situacao">
+                <h4>Situação</h4>
+                <p>Código vermelho, reabasteça o seu revervatório para a sua plantação não ficar sem água </p>
+                <i class="fa-solid fa-truck-droplet"></i>
+            </div>
+            <div class="kpi" id="kpi_agua_disponivel">
+                <h4>Água Disponível</h4>
+                <p>513.000L</p>
+                <i class="fa-solid fa-glass-water-droplet"></i>
+            </div>
+            <div class="kpi" id="kpi_previsao_consumo_amanha">
+                <h4>Previsão de Consumo para Amanhã</h4>
+                <p>420.000L</p>
+                <i class="fa-solid fa-faucet-drip"></i>
+            </div>
+            <div class="kpi" id="kpi_capacidade_disponivel_porcentagem">
+                <h4>Capacidade Disponível em %</h4>
+                <p>5%</p>
+                <i class="fa-solid fa-faucet-drip"></i>
+            </div>
+            <div class="kpi" id="kpi_dias_agua_restante">
+                <h4>Dias de Água Restante</h4>
+                <p>1 dia</p>
+                <i class="fa-solid fa-droplet"></i>
+            </div>
+            <div class="kpi" id="kpi_capacidade_consumida_L">
+                <h4>Capacidade Consumida em L</h4>
+                <p>9.747.000L</p>
+                <i class="fa-solid fa-glass-water"></i>
+            </div>
+            <div class="kpi" id="kpi_capacidade_consumida_porcentagem">
+                <h4>Capacidade Consumida em %</h4>
+                <p>95%</p>
+                <i class="fa-solid fa-glass-water"></i>
+
+            </div>
+            <div class="kpi" id="kpi_agua_consumida">
+                <h4>Água Consumida Hoje</h4>
+                <p>510.000L</p>
+                <i class="fa-solid fa-faucet-drip"></i>
+            </div>
+            <div class="kpi" id="kpi_consumo_medio_semana">
+                <h4>Consumo Médio da Semana</h4>
+                <p>470.000L</p>
+                <i class="fa-solid fa-faucet-drip"></i>
+            </div>
+
+
+            <div class="container_charts">
+                <div class="chart" id="chart_fluxo_agua_por_reservatorio">
+                    <h2>Fluxo de Água nos Reservatórios</h2>
+                    <canvas id="myChart"></canvas>
+                </div>
+                <div class="chart" id="chart_consumo_por_reservatorio">
+                    <h2>Consumo de Água por Reservatório</h2>
+                    <canvas id="myChart2"></canvas>
+                </div>
+            </div>
+
+        </section>
+        
         <div class="labels" id="adicionarFuncionario">
             <h1>Adicionar Funcionário</h1>
             <label for="nomeFuncionario">Nome do funcionário</label>
@@ -186,7 +356,9 @@
             <p>Aqui você verá as informações da empresa.</p>
         </div>
     </main>
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script src="./js/dashboard.js"></script>
 </body>
 
