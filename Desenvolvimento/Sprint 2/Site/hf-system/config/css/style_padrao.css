@@ -60,7 +60,7 @@
   text-decoration: none;
 }
 
-button{
+button, input{
   cursor: pointer;
 }
 
