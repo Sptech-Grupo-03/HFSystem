@@ -76,7 +76,15 @@ main {
 
 /* MOSTRAR LOGIN */
 
+.cadastro_js #container_cadastro_section_login {
+  z-index: 13;
+}
+
 .login_js #section_formulario_cadastro {
+  z-index: -1;
+}
+
+.login_js #container_cadastro_section_login {
   z-index: -1;
 }
 
@@ -176,6 +184,7 @@ main {
 
   to {
     left: -110px;
+    
     opacity: 0;
     z-index: -1;
   }
@@ -202,6 +211,7 @@ main {
     left: 110px;
     opacity: 0;
     z-index: -1;
+    
   }
 }
 
