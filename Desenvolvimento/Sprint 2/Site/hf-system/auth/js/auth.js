@@ -1,13 +1,66 @@
-// AO CARREGAR A PÁGINA, RESGATA A CLASSE ARMAZENADA NO LOCALSTORAGE PARA SETAR A CLASSE DO BODY E ATIVA A ANIMACAO
+// AO CARREGAR A PÁGINA, RESGATA A CLASSE ARMAZENADA NO LOCALSTORAGE PARA SETAR A CLASSE DO BODY E ATIVA A ANIMAÇÃO E DESABILITA E HABILITA A NAVEÇÃO DO TAB DE SERTOS CAMPOS
 // ESSA CLASSE É ENVIADA QUANDO O USUÁRIO CLICA OU EM SE CADASTRAR OU EM LOGIN FORA DO AUTH.HTML
 
 const bodyClass = localStorage.getItem("bodyClass");
 
 if (bodyClass) {
   document.body.classList.add(bodyClass);
+
+  if (bodyClass == "cadastro_js") {
+    habilitarDesabilitarNavegacaoTab("input", ".main_container_login", "-1");
+    habilitarDesabilitarNavegacaoTab("button", ".main_container_login", "-1");
+    habilitarDesabilitarNavegacaoTab("input", ".main_container_cadastro", "0");
+    habilitarDesabilitarNavegacaoTab("button", ".main_container_cadastro", "0");
+  }
+
+  if (bodyClass == "login_js") {
+    habilitarDesabilitarNavegacaoTab("input", ".main_container_login", "0");
+    habilitarDesabilitarNavegacaoTab("button", ".main_container_login", "0");
+    habilitarDesabilitarNavegacaoTab("input", ".main_container_cadastro", "-1");
+    habilitarDesabilitarNavegacaoTab(
+      "button",
+      ".main_container_cadastro",
+      "-1"
+    );
+  }
 }
 
-// TROCA CLASSE DO BODY PARA ATIVAR A ANIMAÇÃO
+//
+
+// ADICIONA UM EVENTO EM CERTOS CAMPOS PARA ATIVAR OS BOTÕES QUANDO A TECLA "ENTER" FOR PRECIONADA
+
+// SEÇÃO DE LOGIN
+document
+  .getElementById("input_senha_login")
+  .addEventListener("keydown", function (event) {
+    // Verifica se a tecla pressionada é o "Enter"
+    if (event.key === "Enter") {
+      // Impede o comportamento padrão do "Enter"
+      event.preventDefault();
+      // Aciona o clique no botão
+      document.getElementById("btn_entrar").click();
+    }
+  });
+
+
+// SEÇAO DE CADASTRO
+
+document
+  .getElementById("confirmacao_senha")
+  .addEventListener("keydown", function (event) {
+    // Verifica se a tecla pressionada é o "Enter"
+    if (event.key === "Enter") {
+      // Impede o comportamento padrão do "Enter"
+      event.preventDefault();
+      // Aciona o clique no botão
+      document.getElementById("btn_cadastrar").click();
+    }
+  });
+
+
+//
+
+// FUNÇÕES PARA TROCAR CLASSE DO BODY PARA ATIVAR A ANIMAÇÃO E CONFIGURA A NAVEGAÇÃO POR TAB SEMPRE QUE O BOTÃO CORRESPONDENTE É ACIONADO
 
 const body = document.querySelector("body");
 const btnCadastro = document.getElementById("btn_cadastro_toggle");
@@ -15,13 +68,19 @@ const btnLogin = document.getElementById("btn_login_toggle");
 
 btnCadastro.addEventListener("click", () => {
   body.className = "cadastro_js";
+  habilitarDesabilitarNavegacaoTab("input", ".main_container_login", "-1");
+  habilitarDesabilitarNavegacaoTab("button", ".main_container_login", "-1");
+  habilitarDesabilitarNavegacaoTab("input", ".main_container_cadastro", "0");
+  habilitarDesabilitarNavegacaoTab("button", ".main_container_cadastro", "0");
 });
 
 btnLogin.addEventListener("click", () => {
   body.className = "login_js";
+  habilitarDesabilitarNavegacaoTab("input", ".main_container_login", "0");
+  habilitarDesabilitarNavegacaoTab("button", ".main_container_login", "0");
+  habilitarDesabilitarNavegacaoTab("input", ".main_container_cadastro", "-1");
+  habilitarDesabilitarNavegacaoTab("button", ".main_container_cadastro", "-1");
 });
-
-// / TROCA CLASSE DO BODY PARA ATIVAR A ANIMAÇÃO
 
 //
 
@@ -42,8 +101,7 @@ function ocultarExibirSenha(button, campo) {
   }
 }
 
-// /FUNÇÃO PARA OCULTAR E EXIBIR A SENHA
-
+//
 
 //   FUNÇÃO PARA VALIDAR NOME DO USUÁRIO
 
@@ -59,7 +117,7 @@ function validarUserName(inputUserName) {
   return usuarioValido;
 }
 
-//  / FUNÇÃO PARA VALIDAR NOME DO USUÁRIO
+//
 
 //   FUNÇÃO PARA VALIDAR E-MAIL
 
@@ -104,7 +162,7 @@ function validarEmail(idImputEmail) {
   }
 }
 
-//  / FUNÇÃO PARA VALIDAR E-MAIL
+//
 
 // FUNÇÃO PARA SÓ PERMITIR QUE O FORMULÁRIO DE CADASTRO SEJA ENVIADO SOMENTE SE AS CONDIÇÕES FOREM ATENDIDAS
 
@@ -131,7 +189,7 @@ document
     if (validarEmail("input_email_cadastro")) {
       emailValido = true;
     } else {
-      mensagemErro += "<p>*e-mail inválido</p>";
+      mensagemErro += "<p>* e-mail inválido</p>";
       emailValido = false;
     }
 
@@ -152,7 +210,7 @@ document
     }
   });
 
-// / FUNÇÃO PARA SÓ PERMITIR QUE O FORMULÁRIO DE CADASTRO SEJA ENVIADO SOMENTE SE AS CONDIÇÕES FOREM ATENDIDAS
+//
 
 // FUNÇÃO PARA SÓ PERMITIR ACESSO AO DASHBOARD SE SENHA E E-MAIL FOREM VÁLIDOS
 
@@ -160,17 +218,18 @@ function entrar() {
   document
     .getElementById("formulario_login")
     .addEventListener("submit", function (event) {
-     
       event.preventDefault();
 
-      if (email == "hfsystem@sptech.school" && senha == "admin123") {
+      emailValue = document.getElementById("input_email_login").value;
+      senhaValue = document.getElementById("input_senha_login").value;
+
+      if (emailValue == "hfsystem@sptech.school" && senhaValue == "admin123") {
         alert("Login realizado com sucesso");
         window.location.href = "../../private/dashboard.html";
-       
       } else {
         alert("Email ou senha incorretos");
       }
     });
 }
 
-// / FUNÇÃO PARA SÓ PERMITIR ACESSO AO DASHBOARD SE SENHA E E-MAIL FOREM VÁLIDOS
+//
