@@ -3,9 +3,7 @@
 
 @import url(../../config/css/style_padrao.css);
 
-html {
-  font-size: 14px;
-}
+
 
 * {
   transition: 0.5s;
@@ -20,34 +18,10 @@ body {
   overflow: hidden;
 }
 
-#onda2 {
-  position: absolute;
-  width: 100vw;
-  height: 40%;
-  left: -200px;
-  bottom: -150px;
-  z-index: 3;
-  transform: scaleX(-1);
-  rotate: 10deg;
-}
-
-#div_progresso {
-  position: absolute;
-  top: 0;
-  width: 100px;
-  height: 100px;
-  background-color: #4f8084;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  font-weight: bold;
-}
 
 .div_progresso {
-  width: 130px;
-  height: 130px;
+  width: 100px;
+  height: 100px;
   background-color: var(--cor-primaria);
   border-radius: 100%;
   border: solid 10px var(--cor-secundaria);
@@ -55,7 +29,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: bold;
 }
 
@@ -214,6 +188,7 @@ section {
     font-size: 3rem;
     text-align: center;
     padding-inline: 10%;
+
   }
 
   & input {
@@ -221,7 +196,7 @@ section {
     justify-self: center;
     width: 100%;
     text-align: center;
-    font-size: 4rem;
+    font-size: 3rem;
   }
 
   input:focus {
@@ -345,7 +320,7 @@ section {
   }
 
   & p {
-    font-size: 2.5rem;
+    font-size: 2rem;
     align-self: end;
   }
 
@@ -354,7 +329,7 @@ section {
     padding: 10px 40px;
     height: fit-content;
     width: fit-content;
-    font-size: 2rem;
+    font-size: 1.8rem;
     border: solid 5px var(--cor-secundaria);
     border-radius: 10px;
     font-weight: bold;
@@ -375,7 +350,7 @@ section {
 #section_informacoes {
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
-    "i progresso progresso"
+    "i i progresso"
     "h2 h2 h2"
     "btn btn btn";
   align-content: end;
@@ -387,7 +362,7 @@ section {
 
 #section_consumo_mensal {
   grid-template-areas:
-    "i progresso progresso"
+    "i i progresso"
     "h2 h2 h2"
     "input input input"
     "label btn btn";
@@ -404,7 +379,7 @@ section {
   grid-template-columns: 1fr auto;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
-    "i progresso progresso"
+    "i i progresso"
     "h2 h2 h2"
     "label1 label2 label2";
 
@@ -459,11 +434,12 @@ section {
 
       & i {
         grid-area: i;
+        
       }
     }
 
     & h4 {
-      font-size: 3rem;
+      font-size: 2.5rem;
       text-align: center;
     }
 

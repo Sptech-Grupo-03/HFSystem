@@ -225,7 +225,7 @@ function entrar() {
 
       if (emailValue == "hfsystem@sptech.school" && senhaValue == "admin123") {
         alert("Login realizado com sucesso");
-        window.location.href = "../../private/dashboard.html";
+        window.location.href = "../private/dashboard.html";
       } else {
         alert("Email ou senha incorretos");
       }

@@ -5,6 +5,9 @@
 :root {
   --padding: 70px;
 }
+body{
+  overflow: hidden;
+}
 
 main {
   width: 100%;
@@ -23,11 +26,11 @@ main {
 }
 
 .main_container_login {
-  grid-template-columns: 60% 40%;
+  grid-template-columns: 65% 35%;
 }
 
 .main_container_cadastro {
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 35% 65%;
   position: absolute;
 }
 
@@ -35,7 +38,7 @@ main {
   content: "";
   position: absolute;
   background-color: var(--cor-quinaria);
-  width: 40%;
+  width: 35%;
   height: 100%;
   left: 0;
   border-radius: 0 30px 30px 0;
@@ -97,7 +100,7 @@ main {
 }
 
 .login_js .main_contant::before {
-  left: 60%;
+  left: 65%;
   border-radius: 30px 0 0 30px;
   animation: slidein 1.5s ease;
   z-index: 12;
@@ -110,23 +113,23 @@ main {
 @keyframes slidein {
   from {
     left: 0;
-    width: 40%;
+    width: 35%;
   }
 
   to {
-    left: 60%;
-    width: 40%;
+    left: 65%;
+    width: 35%;
   }
 }
 
 @keyframes slideout {
   from {
-    left: 60%;
+    left: 65%;
   }
 
   to {
     left: 0;
-    width: 40%;
+    width: 35%;
   }
 }
 
@@ -234,7 +237,7 @@ main {
 /* / DESLOCAMENTO CONTEÚDO ATRÁS DO CONTENT:BEFORE */
 
 h2 {
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 #btn_voltar{
@@ -243,7 +246,7 @@ h2 {
   z-index: 15;
   left: 70px;
   top: 70px;
-  font-size: 3rem;
+  font-size: 2.5rem;
   transition: 2.5s ease;
 }
 
@@ -285,18 +288,18 @@ h2 {
     gap: 40px;
 
     & h3 {
-      font-size: 3rem;
+      font-size: 2.5rem;
     }
 
     & p {
-      font-size: 2.5rem;
+      font-size: 2rem;
     }
   }
 
   & .toggle_btn {
     border: 4px var(--cor-primaria) solid;
     background-color: var(--cor---cor-quinaria);
-    font-size: 2.5rem;
+    font-size: 2rem;
     border-radius: 25px;
     width: fit-content;
     padding: 10px 80px;
@@ -398,7 +401,7 @@ h2 {
     & #campo_mensagem_erro {
       grid-area: campo_mensagem_erro;
       display: none;
-      font-size: 2rem;
+      font-size: 1.5rem;
       width: 100%;
       padding-left: 30px;
     }
@@ -444,14 +447,14 @@ h2 {
     padding: 10px 30px;
 
     & i {
-      font-size: 2rem;
+      font-size: 1.5rem;
       color: var(--cor-senaria);
       height: fit-content;
     }
 
     & input {
       width: 100%;
-      font-size: 2rem;
+      font-size: 1.5rem;
       color: var(--cor-senaria);
     }
 
@@ -508,7 +511,7 @@ h2 {
     border-radius: 25px;
     width: fit-content;
     height: fit-content;
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: bold;
     transition: 0.5s ease;
     padding: 10px 80px;

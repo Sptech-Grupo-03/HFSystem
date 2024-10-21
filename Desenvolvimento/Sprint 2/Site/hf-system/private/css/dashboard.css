@@ -3,10 +3,11 @@
 body {
   display: grid;
   grid-template-rows: 15% 85%;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 25% auto;
   grid-template-areas:
     "header header"
     "nav main";
+    overflow: hidden;
 }
 
 header {
@@ -24,11 +25,11 @@ header {
 
   & * {
     color: var(--cor-primaria);
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   & #logotipo {
-    max-height: 70px;
+    max-height: 50px;
   }
 
   & h1 {
@@ -60,12 +61,12 @@ header {
     }
 
     & #user_name {
-      font-size: 2rem;
+      font-size: 1.5rem;
       grid-area: user_name;
     }
 
     & #user_permision {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       grid-area: user_permision;
       align-self: baseline;
     }
@@ -84,7 +85,7 @@ nav {
   display: flex;
   flex-direction: column;
   border-right: 2px solid #ccc;
-  height: auto;
+
 
   & .menu_header {
     display: flex;
@@ -100,8 +101,8 @@ nav {
     & h3,
     i {
       text-transform: uppercase;
-      font-size: 2.2rem;
-      line-height: 2.2rem;
+      font-size: 2rem;
+      line-height: 2rem;
       color: var(--cor-secundaria);
     }
 
@@ -115,7 +116,7 @@ nav {
     display: flex;
     flex-direction: column;
     padding: 30px;
-    gap: 30px;
+
     overflow-x: hidden;
     overflow-y: auto;
 
@@ -125,6 +126,7 @@ nav {
       display: flex;
       flex-direction: column;
       width: 100%;
+      gap: 20px;
 
       & .input_container_filtro {
         font-size: 1.5rem;
@@ -132,7 +134,7 @@ nav {
 
       & h4,
       h3 {
-        font-size: 2rem;
+        font-size: 1.8rem;
         color: var(--cor-setenaria);
         cursor: pointer;
 
@@ -184,7 +186,7 @@ main {
   grid-area: main;
   display: flex;
   height: 100%;
-  width: 100%;
+  width: fit-content;
   padding: 50px;
   overflow-x: hidden;
   overflow-y: auto;
@@ -234,8 +236,8 @@ main {
 
       & p {
         grid-area: p;
-        font-size: 2.5rem;
-        line-height: 3.5rem;
+        font-size: 2rem;
+        line-height: 3rem;
         text-align: center;
         
         
@@ -243,7 +245,7 @@ main {
 
       & i {
         grid-area: i;
-        font-size: 3.5rem;
+        font-size: 3rem;
        
       }
     }
@@ -266,7 +268,7 @@ main {
         border: solid 4px var(--cor-quinaria);
 
         & h2 {
-          font-size: 3rem;
+          font-size: 2rem;
         }
 
         & canvas {
@@ -293,8 +295,8 @@ main {
         font-weight: bolder;
       }
       & p {
-        line-height: 3.5rem;
-        font-size: 2.5rem;
+        line-height: 2.5rem;
+        font-size: 2rem;
       }
 
       

@@ -6,5 +6,5 @@ function setBodyClass(className) {
     localStorage.setItem('bodyClass', className);
 
     // Redireciona para a página de cadastro
-    window.open('../auth/auth.html', '_blank');
+    window.open('./auth/auth.html', '_blank');
 }
