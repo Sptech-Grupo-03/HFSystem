@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://kit.fontawesome.com/041dbc8823.js" crossorigin="anonymous"></script>
+
+    <title>HF System</title>
+    <link rel="shortcut icon" type="imagex/png" href="./assets/logotipo-texto-preto.svg">
+</head>
+
+<body>
+
+    <!-- HEADER SECTION-->
+
+    <header id="header">
+        <img src="./assets/logotipo-texto-branco.svg">
+        <nav class="navbar">
+            <div id="navbar_conatainer_link_sections">
+                <a class = "scroll_link" id="link_home" href="#section_home" onclick="menuSelecionado('link_home')">Home</a>
+                <a class = "scroll_link" id="link_sobre_nos" href="#section_sobre_nos" onclick="menuSelecionado('link_sobre_nos')">Sobre
+                    nós</a>
+                <a class = "scroll_link" id="link_solucoes" href="#section_servicos" onclick="menuSelecionado('link_solucoes')">Serviços</a>
+                <a class = "scroll_link" id="link_section_contact" href="#section_contate_nos"
+                    onclick="menuSelecionado('link_section_contact')">Contato</a>
+                <a id="link_section_simulador" target="_blank" href="./simulador.html"
+                    onclick="menuSelecionado('link_section_contact')">Simulador</a>
+            </div>
+            <div id="navbar_conatainer_link_cadastro_login">
+                <span>|</span>
+                <button id="link_resgistrar" onclick="setBodyClass('cadastro_js')">Registrar</button>
+                <button onclick="setBodyClass('login_js')" id="btn_entrar">Entrar</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- /HEADER SECTION -->
+
+    <!-- MAIN SECTION -->
+
+    <main>
+
+        <!-- HOME SECTION -->
+        <section id="section_home">
+            <img src="./assets/home-section/home.jpg" alt="">
+            <h1>Mais que um software, um parceiro para o sucesso da sua agricultura</h1>
+            <a href="./simulador.html" target="_blank">Faça uma simulação</a>
+            <span class="circulos circulo1"></span>
+            <span class="circulos circulo2"></span>
+            <span class="circulos circulo3"></span>
+            <span class="circulos circulo4"></span>
+            <span class="circulos circulo5"></span>
+            <span class="circulos circulo6"></span>
+            <span class="circulos circulo7"></span>
+        </section>
+        <!-- /HOME SECTION -->
+
+        <!-- SOBRE NÓS SECTION -->
+
+        <section id="section_sobre_nos">
+
+            <section id="section_o_que_fazemos">
+                <h2>FLUXO CONTÍNUO</h2>
+
+                <div>
+                    <img id="reservatorio_img_1" src="./assets/solucao-section/reservatorio-cilindro.jpg" alt="">
+                    <img id="reservatorio_img_2" src="./assets/solucao-section/reservatorio-cilindor-2.jpg" alt="">
+                    <img id="reservatorio_img_3" src="./assets/solucao-section/reservatorio-lona.jpg" alt="">
+                    <img id="reservatorio_img_4" src="./assets/solucao-section/agricultura.jpg" alt="">
+                </div>
+
+                <p>Nós da HF System oferecemos uma solução simples e eficaz, para restringir os problemas com a
+                    falta do uso projetado da água no seu reservatório. Com o nosso software integrado à sua fazenda,
+                    monitoramos seus recursos hídricos em tempo real, proporcionando uma logística de abastecimento
+                    precisa.
+                </p>
+
+                <h4>Desta forma a HF System assegura que:</h4>
+
+                <ul>
+                    <li>Seus processos serão mais rápidos</li>
+                    <li>Haverá menos desperdício de tempo e água</li>
+                    <li>A qualidade no serviço será maior conforme os dados fornecidos</li>
+                </ul>
+
+            </section>
+
+            <!-- QUEM SOMOS SECTION -->
+            <section id="section_quem_somos">
+                <h2>QUEM SOMOS?</h2>
+                <p>
+                    <img src="./assets/logotipo-texto-preto.svg" alt="">
+                    Desde 2024, a Hydro Flow System trabalha lado a lado com agricultores para oferecer soluções
+                    personalizadas e eficientes para a gestão da água. Com nossa expertise em tecnologia e profundo
+                    conhecimento do setor agrícola, ajudamos você a otimizar seus recursos e aumentar a
+                    rentabilidade do seu negócio.
+                </p>
+            </section>
+            <!-- /QUEM SOMOS SECTION -->
+
+            <!-- POR QUE NOS ESCOLHER SECTION -->
+
+            <section id="section_missao_visao_valores">
+
+                <h2>MISSÃO, VISÃO E VALORES</h2>
+                <div class="div_container_missao_visao_valores" id="container_missao">
+                    <img src="./assets/sobre-nos-section/missao.svg" alt="">
+                    <h4>MISSÃO</h4>
+                    <p>
+                        Transformar a agricultura através da tecnologia, oferecendo soluções inteligentese
+                        precisas para gestão de recursos hídricos.
+                    </p>
+
+                </div>
+                <div class="div_container_missao_visao_valores" id="container_visao">
+                    <img src="./assets/sobre-nos-section/visao.svg" alt="">
+                    <h4>VISÃO</h4>
+                    <p>
+                        Ser líder em inovação tecnológica para a agricultura, construindo um futuro mais
+                        sustentável e produtivo
+                    </p>
+
+                </div>
+                <div class="div_container_missao_visao_valores" id="container_valores">
+                    <img src="./assets/sobre-nos-section/valores.svg" alt="">
+                    <h4>VALORES</h4>
+                    <p>
+                        Inovação, Tecnologia, Precisão, Futuro
+                    </p>
+
+                </div>
+            </section>
+            <!-- /POR QUE NOS ESCOLHER SECTION -->
+
+        </section>
+        <!-- SOBRE NÓS SECTION -->
+
+        <!-- CALCULADORA SECTION -->
+        <section id="section_calculadora">
+            <p>Se você busca uma solução completa e eficiente para a gestão da água em sua propriedade, a Hydro Flow
+                System
+                é a escolha certa.</p>
+            <div id="calculadora_card">
+                <h4>CONTROLE SEU RESERVATÓRIO E AUMENTE SEUS LUCROS!</h4>
+                <a href="./simulador.html" target="_blank">Faça uma simulação</a>
+            </div>
+
+            <span class="circulos circulo1"></span>
+            <span class="circulos circulo2"></span>
+            <span class="circulos circulo3"></span>
+            <span class="circulos circulo4"></span>
+            <span class="circulos circulo5"></span>
+            <span class="circulos circulo6"></span>
+            <span class="circulos circulo7"></span>
+            <span class="circulos circulo8"></span>
+
+        </section>
+        <!-- /CALCULADORA SECTION -->
+
+        <!-- SERVICOS SECTION -->
+        <section id="section_servicos">
+            <h2 id="h2_por_que_nos_escolher">Com a <span>HF System</span> monitorando o seu reservatório, você terá:
+            </h2>
+
+            <h3 id="h3_por_que_nos_escolher">
+            </h3>
+            <div id="div_beneficios">
+                <div class="div_cards" id="div_cards_beneficio_1">
+                    <h4>Aumento na sua produção em até 250%</h4>
+                </div>
+                <div class="div_cards" id="div_cards_beneficio_2">
+                    <h4>Maximização do seu faturamento em até 250%</h4>
+                </div>
+                <div class="div_cards" id="div_cards_beneficio_3">
+                    <h4>Redução de perdas em até 65%</h4>
+
+                </div>
+                <div class="div_cards" id="div_cards_beneficio_4">
+                    <h4>Economia dos seus recursos hídricos</h4>
+                </div>
+            </div>
+
+            <h2 id="h2_nossos_servicos">NOSSOS SERVIÇOS</h2>
+
+            <div id="div_servicos">
+                <div class="div_cards" id="div_cards_analise_preditiva">
+                    <h4>Análise preditiva</h4>
+                    <p>Saiba exatamente quantos dias de água restam e planeje sua
+                        irrigação com precisão.
+                    </p>
+                </div>
+                <div class="div_cards" id="div_cards_monitoramento">
+                    <h4>Monitoramento em tempo real</h4>
+                    <p>Receba alertas sobre o nível do reservatório conforme
+                        necessário.
+                    </p>
+                </div>
+                <div class="div_cards" id="div_cards_dashboard">
+                    <h4>Dashboard intuitivo</h4>
+                    <p>Todas as informações em um só lugar para uma gestão eficiente
+                        dos seus recursos.
+                    </p>
+                </div>
+            </div>
+
+            <div id="div_outros_servicos">
+                <div class="div_cards" id="card_atendimento_personalizado">
+                    <img src="./assets/servicos-section/atendendimento.svg" alt="">
+                    <h4>ATENDIMENTO<br> PERSONALIZADO</h4>
+                    <p>Uma equipe dedicada para te atender e tirar todas as suas dúvidas.</p>
+
+                </div>
+                <div class="div_cards" id="card_solucoes_sob_medida">
+                    <img src="./assets/servicos-section/solucao.svg" alt="">
+                    <h4>SOLUÇÕES<br> SOB MEDIDA</h4>
+                    <p>Adaptamos nossos serviços às suas necessidades.</p>
+
+                </div>
+                <div class="div_cards" id="card_suporte_tecnico">
+                    <img src="./assets/servicos-section/suporte.svg" alt="">
+                    <h4>SUPORTE<br> TÉCNICO</h4>
+                    <p>Temos uma equipe especializada para garantir o funcionamento do seu sistema.
+                    </p>
+
+                </div>
+            </div>
+
+        </section>
+        <!-- /SERVICOS SECTION -->
+
+        <!-- ENTRE ME CONTATO SECTION -->
+        <section id="section_contate_nos">
+            <h4>Junte-se a nós e faça parte da <br>revolução tecnológica na agricultura!</h4>
+            <button onclick="contato()">Contate-nos</button>
+        </section>
+        <!-- /ENTRE ME CONTATO SECTION -->
+    </main>
+
+    <!-- /MAIN SECTION -->
+
+    <!-- FOOTER SECTION -->
+
+    <footer>
+        <img id="logo_footer" src="./assets/logotipo-texto-branco.svg" alt="">
+        <p id="p_1">Nossa visão é proporcionar comodidade e ajudar a aumentar o seu <br> agronegócio.</p>
+        <div id="redes_sociais_icons">
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-whatsapp"></i>
+            <i class="fa-brands fa-linkedin"></i>
+            <i class="fa-brands fa-square-instagram"></i>
+        </div>
+
+        <p id="p_2">Email: <a href="">HydroflowSystem@company.com</a> Telefone: <a href="">(11) 3232-8979</a> |
+            Endereço: <a href="">Rua Haddock Lobo , 595, Cerqueira César - São Paulo, SP</a></p>
+
+        <div id="nav_bar_footer" class="div_links">
+            <h4>Menu</h4>
+            <a class = "scroll_link" href="#section_home">Home</a>
+            <a class = "scroll_link" href="#section_sobre_nos">Sobre
+                nós</a>
+            <a class = "scroll_link" href="#section_servicos">Serviços</a>
+            <a class = "scroll_link" href="#section_contate_nos">Contato</a>
+            <a id="link_section_simulador" target="_blank" href="./simulador.html">Simulador</a>
+        </div>
+
+        <div id="redes_sociais_footer" class="div_links">
+            <h4>Redes Sociais</h4>
+            <a href="#">Facebook</a>
+            <a href="#">Whatsapp</a>
+            <a href="#">Linkedin</a>
+            <a href="#">Instagram</a>
+        </div>
+
+        <p id="p_direitos_reservados">©2024 Hydro Flow System. Todos os direitos reservados.</p>
+
+    </footer>
+
+    <!-- /FOOTER SECTION -->
+
+</body>
+<script src="../config/js/confiracao_auth.js"></script>
+<script src="./js/script.js"></script>
+
+</html>

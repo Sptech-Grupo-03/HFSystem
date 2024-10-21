@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simuladora HF System</title>
+    <link rel="shortcut icon" type="imagex/png" href="./assets/logotipo-texto-branco.svg">
+    <link rel="stylesheet" href="./css/simulador.css">
+    <script src="https://kit.fontawesome.com/041dbc8823.js" crossorigin="anonymous"></script>
+</head>
+
+<body id="simulador_body">
+    <header id="header">
+        <img src="./assets/logotipo-texto-branco.svg">
+        <nav class="navbar">
+            <div id="navbar_conatainer_link_sections">
+                <a id="link_home" target="_blank" href="index.html">Home</a>
+                <a id="link_sobre_nos" target="_blank" href="index.html#section_sobre_nos">Sobre
+                    nós</a>
+                <a id="link_solucoes" target="_blank" href="index.html#section_servicos">Serviços</a>
+                <a id="link_section_contact" target="_blank" href="index.html#section_contate_nos">Contato</a>
+                <a id="link_section_simulador" href="./simulador.html">Simulador</a>
+            </div>
+            <div id="navbar_conatainer_link_cadastro_login">
+                <span>|</span>
+                <button id="link_resgistrar" onclick="setBodyClass('cadastro_js')">Registrar</button>
+                <button onclick="setBodyClass('login_js')" id="btn_entrar">Entrar</button>
+            </div>
+        </nav>
+    </header>
+    <main  id="main_index">
+
+        <section id="section_index" class="section_perguntas gradiente">
+
+            <h1>ESTRESSE HÍDRICO</h1>
+
+            <div id="div_container_img_estresse_hidrico">
+                <img class="hiddenNot" id="img_1_estresse_hidrico"
+                    src="./assets/simulador/view-dry-grass-valley-cloudy-sky.jpg" alt="">
+                <img id="img_2_estresse_hidrico" src="./assets/simulador/front-view-farm-field-landscape.jpg" alt="">
+            </div>
+            <p>
+                <span>Reservatórios de água mal monitorados ou sem nenhum tipo de monitoramento</span> podem
+                desencandear<span> estresse
+                    hídrico</span> nas suas plantações e afetar toda sua cadeia de produção.
+            </p>
+
+            <button class="btns" id="btn_index" onclick="trocarPergunta('main_informacoes')"
+                class="btn_descobrir_ajuda bgblue ">DESCOBRIR COMO O HF SYSTEM PODE TE AJUDAR!</button>
+        </section>
+    </main>
+
+    <main  id="main_informacoes">
+
+        <section id="section_informacoes" class="section_perguntas">
+            <i onclick="trocarPergunta('main_informacoes')" class="fa-solid fa-arrow-left"></i>
+            <div class="div_progresso">0%</div>
+
+            <h2>ANTES, PRECISAREMOS QUE VOCÊ RESPONDA ALGUMAS PERGUNTAS, TUDO BEM ?
+            </h2>
+            <button onclick="trocarPergunta('main_perguntas_plantacao')" class="btns">TUDO BEM</button>
+        </section>
+    </main>
+    <main  id="main_perguntas_plantacao">
+
+        <section id="section_perguntas_plantacao" class="section_perguntas">
+            <i onclick="trocarPergunta('main_perguntas_plantacao')" class="fa-solid fa-arrow-left"></i>
+            <div class="div_progresso">10%</div>
+
+            <h2>
+                QUAL O SEU TIPO DE PLANTAÇÃO ?
+            </h2>
+            <input type="text" id="input_tipo_plantacao" placeholder="| DIGITE AQUI O SEU TIPO DE PLANTAÇÃO |">
+
+            <button class="btns"
+                onclick="trocarPergunta('main_perguntas_ciclo', 'input_tipo_plantacao')">CONTINUAR</button>
+        </section>
+    </main>
+    <main  id="main_perguntas_ciclo">
+
+        <section id="section_perguntas_ciclo" class="section_perguntas">
+            <i onclick="trocarPergunta('main_perguntas_ciclo')" class="fa-solid fa-arrow-left"></i>
+            <div class="div_progresso">20%</div>
+
+            <h2>
+                QUANTOS CICLOS DE PRODUÇÃO ANUAL VOCÊ TEM ?
+            </h2>
+            <input type="number" id="input_qtd_ciclos_anual_producao"
+                placeholder="| DIGITE AQUI A SUA QUANTIDADE DE CICLOS">
+
+            <button class="btns"
+                onclick="trocarPergunta('main_valor_bruto', 'input_qtd_ciclos_anual_producao')">CONTINUAR</button>
+
+        </section>
+    </main>
+    <main  id="main_valor_bruto">
+
+        <section id="section_valor_bruto" class="section_perguntas">
+            <i onclick="trocarPergunta('main_valor_bruto')" class="fa-solid fa-arrow-left"></i>
+            <div class="div_progresso">30%</div>
+
+            <h2>
+                QUAL O SEU FATURAMENTO BRUTO ANUAL ?
+            </h2>
+            <input type="number" id="input_faturamento_anual"
+                placeholder="| INFORME O VALOR BRUTO QUE VOCÊ FATURA ANUALMENTE">
+
+            <button class="btns"
+                onclick="trocarPergunta('main_consumo_mensal', 'input_faturamento_anual')">CONTINUAR</button>
+        </section>
+    </main>
+    <main  id="main_consumo_mensal">
+
+        <section id="section_consumo_mensal" class="section_perguntas">
+            <i onclick="trocarPergunta('main_consumo_mensal')" class="fa-solid fa-arrow-left"></i>
+            <div class="div_progresso">40%</div>
+
+            <h2>
+                QUAL O CONSUMO DE ÁGUA MENSAL NO LOCAL DA SUA PLANTAÇÃO ?
+            </h2>
+            <input type="number" id="input_consumo_agua_mensal" placeholder="| DIGITE AQUI O SEU CONSUMO EM LITROS">
+
+
+            <label id="label_nao_sei" for="nao_sei_consumo_agua_mensal" class="btns"
+                onclick="trocarPergunta('main_trabalha_sistema_irrigacao')" id="btn_section_consumo_mensal">NÃO
+                SEI</label>
+            <input type="radio" name="nao_sei_consumo_agua_mensal" value="não sei" id="nao_sei_consumo_agua_mensal">
+
+            <button class="btns"
+                onclick="trocarPergunta('main_trabalha_sistema_irrigacao', 'input_consumo_agua_mensal')">CONTINUAR</button>
+
+        </section>
+    </main>
+    <main  id="main_trabalha_sistema_irrigacao">
+
+        <section id="section_trabalha_sistema_irrigacao" class="section_perguntas">
+            <i onclick="trocarPergunta('main_trabalha_sistema_irrigacao')" class="fa-solid fa-arrow-left"></i>
+            <div class="div_progresso">50%</div>
+
+            <h2>VOCÊ JÁ TRABALHA COM SISTEMA DE IRRIGAÇÃO ?</h2>
+
+            <label for="input_trabalha_com_sistema_irrigacao_true" class="btns label1" id="label_input_trabalha_com_sistema_irrigacao_true"
+                onclick="trocarPergunta('main_possui_reservatorio')">SIM</label>
+            <input type="radio" value="true" name="input_trabalha_com_sistema_irrigacao"
+                id="input_trabalha_com_sistema_irrigacao_true">
+            <label for="input_trabalha_com_sistema_irrigacao_false" class="btns label2" id="label_input_trabalha_com_sistema_irrigacao_false"
+                onclick="trocarPergunta('main_possui_reservatorio')">NÃO</label>
+            <input type="radio" value="false" name="input_trabalha_com_sistema_irrigacao"
+                id="input_trabalha_com_sistema_irrigacao_false">
+
+        </section>
+    </main>
+    <main  id="main_possui_reservatorio">
+
+        <section id="section_possui_reservatorio" class="section_perguntas">
+            <i onclick="trocarPergunta('main_possui_reservatorio')" class="fa-solid fa-arrow-left"></i>
+            <div class="div_progresso">60%</div>
+
+            <h2>
+                VOCÊ POSSUI UM RESERVATÓRIO NO LOCAL DA SUA PLANTAÇÃO ?
+            </h2>
+
+            <label for="input_possui_reservatorio_true" class="btns label1" id="label_input_possui_reservatorio_true"
+                onclick="trocarPergunta('main_capacidade_reservatorio')">SIM</label>
+            <input type="radio" value="true" name="input_possui_reservatorio" id="input_possui_reservatorio_true">
+            <label for="input_possui_reservatorio_false" class="btns label2" id="label_input_possui_reservatorio_false"
+                onclick="trocarPergunta('main_tudo_pronto')">NÃO</label>
+            <input type="radio" value="false" name="input_possui_reservatorio" id="input_possui_reservatorio_false">
+
+
+        </section>
+    </main>
+    <main  id="main_capacidade_reservatorio">
+
+        <section id="section_capacidade_reservatorio" class="section_perguntas">
+            <i onclick="trocarPergunta('main_capacidade_reservatorio')" class="fa-solid fa-arrow-left"></i>
+            <div class="div_progresso">70%</div>
+
+            <h2>QUAL A CAPACIDADE DO SEU RESERVATÓRIO ?</h2>
+
+            <input type="number" id="input_capacidade_reservatorio" placeholder="| DIGITE AQUI A CAPACIDADE EM LITROS">
+            <button class="btns"
+                onclick="trocarPergunta('main_monitoramento_reservatorio', 'input_capacidade_reservatorio')"
+                class="btns">CONTINUAR</button>
+        </section>
+
+    </main>
+    <main  id="main_monitoramento_reservatorio">
+
+        <section id="section_monitoramento_reservatorio" class="section_perguntas">
+            <i onclick="trocarPergunta('main_monitoramento_reservatorio')" class="fa-solid fa-arrow-left"></i>
+            <div class="div_progresso">80%</div>
+
+            <h2>
+                VOCÊ POSSUI UM SISTEMA DE MONITORAMENTO NO SEU RESERVATÓRIO ?
+            </h2>
+
+            <label for="input_possui_sistema_monitoramento_reservatorio_true" class="btns label1" id="label_input_possui_sistema_monitoramento_reservatorio_true"
+                onclick="trocarPergunta('main_tipo_monitoramento')">SIM</label>
+            <input type="radio" value="true" name="input_possui_sistema_monitoramento_reservatorio"
+                id="input_possui_sistema_monitoramento_reservatorio_true">
+            <label for="input_possui_sistema_monitoramento_reservatorio_false" class="btns label2" id="label_input_possui_sistema_monitoramento_reservatorio_false"
+                onclick="trocarPergunta('main_tudo_pronto')">NÃO</label>
+            <input type="radio" value="false" name="input_possui_sistema_monitoramento_reservatorio"
+                id="input_possui_sistema_monitoramento_reservatorio_false">
+        </section>
+    </main>
+
+    <main  id="main_tipo_monitoramento">
+
+        <section id="section_tipo_monitoramento" class="section_perguntas">
+            <i onclick="trocarPergunta('main_tipo_monitoramento')" class="fa-solid fa-arrow-left"></i>
+            <div class="div_progresso">90%</div>
+
+            <h2>
+                ESTE SISTEMA É MANUAL OU AUTOMÁTICO ?
+            </h2>
+            <label for="input_tipo_sistema_manual" class="btns label1" id="label_input_tipo_sistema_manual"
+                onclick="trocarPergunta('main_tudo_pronto')">MANUAL</label>
+            <input type="radio" value="manual" name="input_tipo_sistema" id="input_tipo_sistema_manual">
+            <label for="input_tipo_sistema_automatico" class="btns label2" id="label_input_tipo_sistema_automatico"
+                onclick="trocarPergunta('main_tudo_pronto')">AUTOMÁTICO</label>
+            <input type="radio" value="automatico" name="input_tipo_sistema" id="input_tipo_sistema_automatico">
+
+
+        </section>
+    </main>
+    <main  id="main_tudo_pronto">
+
+
+        <section id="section_tudo_pronto" class="section_perguntas gradiente">
+            <i onclick="trocarPergunta('main_tudo_pronto')" class="fa-solid fa-arrow-left"></i>
+            <div class="div_progresso">100%</div>
+
+            <h2>TUDO PRONTO!<br>VAMOS DESCOBRIR COMO O HF SYSTEM PODE TE AJUDAR ?</h2>
+
+            <button class="btns"
+                onclick="exibirMensagemFinal()">DESCOBRIR
+            </button>
+        </section>
+    </main>
+    <main  id="main_mensagem_final">
+
+        <section id="section_mensagem_final" class="section_perguntas gradiente">
+
+
+            <div id="div_resultado">
+            </div>
+
+
+        </section>
+    </main>
+</body>
+
+<script src="../config/js/habilitar_desabilitar_navegação_tab.js"></script>
+<script src="../config/js/confiracao_auth.js"></script>
+<script src="./js/simulador.js"></script>
+
+</html>
