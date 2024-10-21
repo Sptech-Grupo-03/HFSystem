@@ -20,19 +20,18 @@
         <img src="./assets/logotipo-texto-branco.svg">
         <nav class="navbar">
             <div id="navbar_conatainer_link_sections">
-                <a id="link_home" href="./index.html" onclick="menuSelecionado('link_home')">Home</a>
-                <a id="link_sobre_nos" href="#section_sobre_nos" onclick="menuSelecionado('link_sobre_nos')">Sobre
+                <a class = "scroll_link" id="link_home" href="#section_home" onclick="menuSelecionado('link_home')">Home</a>
+                <a class = "scroll_link" id="link_sobre_nos" href="#section_sobre_nos" onclick="menuSelecionado('link_sobre_nos')">Sobre
                     nós</a>
-                <a id="link_solucoes" href="#section_servicos" onclick="menuSelecionado('link_solucoes')">Serviços</a>
-                <a id="link_section_contact" href="#section_contate_nos"
+                <a class = "scroll_link" id="link_solucoes" href="#section_servicos" onclick="menuSelecionado('link_solucoes')">Serviços</a>
+                <a class = "scroll_link" id="link_section_contact" href="#section_contate_nos"
                     onclick="menuSelecionado('link_section_contact')">Contato</a>
                 <a id="link_section_simulador" target="_blank" href="./simulador.html"
                     onclick="menuSelecionado('link_section_contact')">Simulador</a>
             </div>
             <div id="navbar_conatainer_link_cadastro_login">
                 <span>|</span>
-                <button id="link_resgistrar"
-                    onclick="setBodyClass('cadastro_js')">Registrar</button>
+                <button id="link_resgistrar" onclick="setBodyClass('cadastro_js')">Registrar</button>
                 <button onclick="setBodyClass('login_js')" id="btn_entrar">Entrar</button>
             </div>
         </nav>
@@ -163,7 +162,8 @@
 
         <!-- SERVICOS SECTION -->
         <section id="section_servicos">
-            <h2 id="h2_por_que_nos_escolher">Com a <span>HF System</span> monitorando o seu reservatório, você terá:</h2>
+            <h2 id="h2_por_que_nos_escolher">Com a <span>HF System</span> monitorando o seu reservatório, você terá:
+            </h2>
 
             <h3 id="h3_por_que_nos_escolher">
             </h3>
@@ -258,11 +258,12 @@
 
         <div id="nav_bar_footer" class="div_links">
             <h4>Menu</h4>
-            <a href="#section_home">Home</a>
-            <a href="#section_sobre_nos">Sobre
+            <a class = "scroll_link" href="#section_home">Home</a>
+            <a class = "scroll_link" href="#section_sobre_nos">Sobre
                 nós</a>
-            <a href="#section_servicos">Serviços</a>
-            <a href="#section_contate_nos">Contato</a>
+            <a class = "scroll_link" href="#section_servicos">Serviços</a>
+            <a class = "scroll_link" href="#section_contate_nos">Contato</a>
+            <a id="link_section_simulador" target="_blank" href="./simulador.html">Simulador</a>
         </div>
 
         <div id="redes_sociais_footer" class="div_links">

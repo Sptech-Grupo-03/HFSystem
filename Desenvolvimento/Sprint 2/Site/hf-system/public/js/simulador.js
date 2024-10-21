@@ -1,18 +1,10 @@
-//FUNÇÕES PARA EXIBIR CADA SEÇÃO DE PERGUNTA PERGUNTAS
+//DESABILITA A NEVEGAÇÃO POR TAB DE CERTOS CAMPOS
+habilitarDesabilitarNavegacaoTab("*", "main", "-1");
 
-const inputs = document.querySelectorAll(
-  "input",
-  "button",
-  "select",
-  "textarea"
-);
+//HABILITA A NEVEGAÇÃO POR TAB DE CERTOS CAMPOS
+habilitarDesabilitarNavegacaoTab("*", "#section_index", "0");
 
-document.addEventListener("keydown", function (event) {
-  // Detecta se a tecla pressionada é o TAB (keyCode 9)
-  if (event.key === "Tab") {
-    event.preventDefault(); // Impede o comportamento padrão
-  }
-});
+// FUNÇÃO PARA VALIDAR SE UM CAMPO OBRIGATÓRIO FOI PREENCHIDO
 
 function validarCampoObrigatorio(campoObrigatorio = "") {
   if (
@@ -31,100 +23,184 @@ function validarCampoObrigatorio(campoObrigatorio = "") {
   }
 }
 
-function trocarPergunta(idMain, campoObrigatorio) {
-  campoObrigatorioPrenchido = validarCampoObrigatorio(campoObrigatorio);
+//
 
-  if (campoObrigatorioPrenchido) {
-    const main = document.getElementById(`${idMain}`);
+//FUNÇÕES PARA CONFIGURAR A PAGINA DA PERGUNTA
 
-    if (main.getBoundingClientRect().left > 0) {
-      main.style.left = 0;
-    } else {
-      main.style.left = "100%";
-    }
+function configurarPagina(idMain, main) {
+  main.style.left = 0;
 
+  // Adiciona a classe "destaque" ao parágrafo
+  main.classList.add("ativado");
+
+  //DESABILITA A NEVEGAÇÃO POR TAB DA SEÇÃO ANTERIOR
+  habilitarDesabilitarNavegacaoTab("*", ".ativado", "-1");
+
+  //FUNÇÃO PARA HABILITAR A NEVEGAÇÃO POR TAB SEÇÃO DA PERGUNTA SELECIONADA
+  habilitarDesabilitarNavegacaoTab("*", `#${idMain}`, "0");
+
+  //HABILITAR A TECLA ENTER PARA ATIVAR O CLICK DOS BOTÕES
+  const inputs = document.querySelectorAll(
+    `#${idMain} input[type="text"], #${idMain}  input[type="number"]`
+  );
+
+  inputs.forEach(function (input) {
+    input.addEventListener("keydown", function (event) {
+      // Verifica se a tecla pressionada é o "Enter"
+      if (event.key === "Enter") {
+        // Impede o comportamento padrão do "Enter"
+        event.preventDefault();
+        // Aciona o clique no botão
+        document.querySelector(`#${idMain} button`).click();
+      }
+    });
+  });
+
+  //
+
+  //HABILITAR A TECLA ENTER PARA ATIVAR O CLICK DAS LABELS QUE "SÃO" BOTTÕES
+
+  const labels = document.querySelectorAll(`#${idMain} label`);
+
+  labels.forEach(function (label) {
+    label.addEventListener("keydown", function (event) {
+      // Verifica se a tecla pressionada é o "Enter"
+      if (event.key === "Enter") {
+        // Impede o comportamento padrão do "Enter"
+        event.preventDefault();
+        // Aciona o clique no botão
+        // Pega o ID do label
+        const labelId = label.id;
+        document.querySelector(`#${idMain} #${labelId}`).click();
+      }
+    });
+  });
+
+  //HABILITAR A TECLA "ENTER" PARA ATIVAR O CLICK DA SETA PARA VOLTAR
+
+  const seta = document.querySelector(`#${idMain} i`);
+
+  if (seta != null) {
+    seta.addEventListener("keydown", function (event) {
+      // Verifica se a tecla pressionada é o "Enter"
+      if (event.key === "Enter") {
+        // Impede o comportamento padrão do "Enter"
+        event.preventDefault();
+        // Aciona o clique no botão
+        // Pega o ID do label
+        const setaId = seta.id;
+        document.querySelector(`#${idMain} i`).click();
+      }
+    });
   }
 }
 
-function exibirProgresso() {
+let indiceAtual = 0; // Indica a pergunta atual
+const historico = ["main_index"]; // Para armazenar o histórico de perguntas
 
+//FUNÇÃO PARA TROCAR PERGUNTA
+
+function trocarPergunta(idMain = "", campoObrigatorio) {
+  campoObrigatorioPrenchido = validarCampoObrigatorio(campoObrigatorio);
+  
+  const main = document.getElementById(`${idMain}`);
+
+  if (campoObrigatorioPrenchido) {
+    if (main.getBoundingClientRect().left > 0) {
+      configurarPagina(idMain, main);
+
+      historico.push(idMain);
+      console.log(historico);
+
+    } else {
+      main.style.left = "100%";
+      historico.pop()
+
+      console.log(historico[historico.length - 1]);
+
+      // const mainAnterior = main.previousElementSibling;
+
+      configurarPagina(historico[historico.length - 1], document.getElementById(historico[historico.length - 1]));
+    }
+  }
+}
+//
+
+// FUNÇÃO PARA EXIBIR O PROGRESSO DAS PERGUNTAS
+
+function exibirProgresso() {
   var indexPergunta = 0;
 
-    if (
-      document.getElementById("main_tudo_pronto").getBoundingClientRect()
-        .left == 0
-    ) {
-      indexPergunta = 11;
-    } else if (
-      document
-        .getElementById("main_tipo_monitoramento")
-        .getBoundingClientRect().left == 0
-    ) {
-      indexPergunta = 10;
-    } else if (
-      document
-        .getElementById("main_monitoramento_reservatorio")
-        .getBoundingClientRect().left == 0
-    ) {
-      indexPergunta = 9;
-    } else if (
-      document
-        .getElementById("main_capacidade_reservatorio")
-        .getBoundingClientRect().left == 0
-    ) {
-      indexPergunta = 8;
-    } else if (
-      document
-        .getElementById("main_possui_reservatorio")
-        .getBoundingClientRect().left == 0
-    ) {
-      indexPergunta = 7;
-    } else if (
-      document
-        .getElementById("main_trabalha_sistema_irrigacao")
-        .getBoundingClientRect().left == 0
-    ) {
-      indexPergunta = 6;
-    } else if (
-      document.getElementById("main_consumo_mensal").getBoundingClientRect()
-        .left == 0
-    ) {
-      indexPergunta = 5;
-    } else if (
-      document.getElementById("main_valor_bruto").getBoundingClientRect()
-        .left == 0
-    ) {
-      indexPergunta = 4;
-    } else if (
-      document.getElementById("main_perguntas_ciclo").getBoundingClientRect()
-        .left == 0
-    ) {
-      indexPergunta = 3;
-    } else if (
-      document
-        .getElementById("main_perguntas_plantacao")
-        .getBoundingClientRect().left == 0
-    ) {
-      indexPergunta = 2;
-    } else if (
-      document.getElementById("main_informacoes").getBoundingClientRect()
-        .left == 0
-    ) {
-      indexPergunta = 1;
-    }
+  if (
+    document.getElementById("main_tudo_pronto").getBoundingClientRect().left ==
+    0
+  ) {
+    indexPergunta = 11;
+  } else if (
+    document.getElementById("main_tipo_monitoramento").getBoundingClientRect()
+      .left == 0
+  ) {
+    indexPergunta = 10;
+  } else if (
+    document
+      .getElementById("main_monitoramento_reservatorio")
+      .getBoundingClientRect().left == 0
+  ) {
+    indexPergunta = 9;
+  } else if (
+    document
+      .getElementById("main_capacidade_reservatorio")
+      .getBoundingClientRect().left == 0
+  ) {
+    indexPergunta = 8;
+  } else if (
+    document.getElementById("main_possui_reservatorio").getBoundingClientRect()
+      .left == 0
+  ) {
+    indexPergunta = 7;
+  } else if (
+    document
+      .getElementById("main_trabalha_sistema_irrigacao")
+      .getBoundingClientRect().left == 0
+  ) {
+    indexPergunta = 6;
+  } else if (
+    document.getElementById("main_consumo_mensal").getBoundingClientRect()
+      .left == 0
+  ) {
+    indexPergunta = 5;
+  } else if (
+    document.getElementById("main_valor_bruto").getBoundingClientRect().left ==
+    0
+  ) {
+    indexPergunta = 4;
+  } else if (
+    document.getElementById("main_perguntas_ciclo").getBoundingClientRect()
+      .left == 0
+  ) {
+    indexPergunta = 3;
+  } else if (
+    document.getElementById("main_perguntas_plantacao").getBoundingClientRect()
+      .left == 0
+  ) {
+    indexPergunta = 2;
+  } else if (
+    document.getElementById("main_informacoes").getBoundingClientRect().left ==
+    0
+  ) {
+    indexPergunta = 1;
+  }
 
-    
-
-  console.log(`${parseInt(
-    (Number(indexPergunta) / 10) * 100
-  )}%`)
+  console.log(`${parseInt((Number(indexPergunta) / 10) * 100)}%`);
   document.getElementById("div_progresso").innerHTML = `${parseInt(
     (Number(indexPergunta) / 10) * 100
   )}%`;
-
 }
+//
 
-function exibirComoHFSystemPodeAjudar() {
+// FUNAÇÃO PARA EXIBIR A MENSAGEM FINAL
+
+function exibirMensagemFinal() {
   var exibicao = document.getElementById("div_resultado");
   var tipoPlantacao = document.getElementById("input_tipo_plantacao").value;
   var valorBruto = parseFloat(
@@ -267,7 +343,7 @@ function exibirComoHFSystemPodeAjudar() {
 
   exibicao.innerHTML = `
   <div id = "div_header">
-      <i onclick="trocarPergunta('main_mensagem_final')" class="fa-solid fa-arrow-left"></i>
+      <i onclick="trocarPergunta('main_mensagem_final')" class="fa-solid fa-arrow-left" id="seta_voltar_mensagem_final"></i>
       <h4>Com a <span>HF System</span> monitorando o seu reservatório, você terá:</h4>
     </div>
   <div id = "div_card_container_beneficios">
@@ -352,7 +428,15 @@ function exibirComoHFSystemPodeAjudar() {
   </div>
             
 `;
+
+
+trocarPergunta('main_mensagem_final')
+habilitarDesabilitarNavegacaoTab("*", "#main_mensagem_final", "0");
 }
+
+//
+
+// ADICIONA UMA FUNÇÃO NO BOTÃO DA SEÇÃO INDEX QUE ATIVA A ANIMAÇÃO DA IMAGEM
 
 const button = document.querySelector("#btn_index");
 const imageX = document.querySelector("#img_1_estresse_hidrico");
@@ -364,3 +448,41 @@ button.addEventListener("mouseover", () => {
 button.addEventListener("mouseout", () => {
   imageX.style.animation = "";
 });
+
+//
+
+
+// Função para remover o aria-hidden do ícone específico
+function removeAriaHidden() {
+  const elemento = document.getElementById('seta_voltar_mensagem_final');
+  if (elemento && elemento.hasAttribute('aria-hidden')) {
+    elemento.removeAttribute('aria-hidden');
+    console.log(`Removed aria-hidden from: ${elemento}`);
+  }
+}
+
+// Função de callback do MutationObserver
+function callback(mutationsList) {
+  mutationsList.forEach(mutation => {
+    if (mutation.type === 'childList' || mutation.type === 'attributes') {
+      // Chama a função para remover o aria-hidden do ícone específico
+      removeAriaHidden();
+    }
+  });
+}
+
+// Configura o observer
+const observer = new MutationObserver(callback);
+
+// Alvo que você quer observar (pode ser o body ou um elemento específico)
+const alvo = document.body; // ou outro elemento que você deseja monitorar
+
+// Configura as opções do observer
+const config = {
+  childList: true, // Observa adições/removões de filhos
+  attributes: true, // Observa alterações de atributos
+  subtree: true // Observa também os filhos dos filhos
+};
+
+// Inicia o observer
+observer.observe(alvo, config);

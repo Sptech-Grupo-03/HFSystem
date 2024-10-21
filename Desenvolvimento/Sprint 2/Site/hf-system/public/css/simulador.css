@@ -3,67 +3,12 @@
 
 @import url(../../config/css/style_padrao.css);
 
-:root {
-  --gradiente: linear-gradient(
-    90deg,
-    #041b22 12.72%,
-    #041b22 16.22%,
-    #041b22 21.72%,
-    #041b22 21.73%,
-    #07313e 37.72%,
-    #0a4457 48.22%,
-    #0e617c 58.22%,
-    #0e617c 70.2%,
-    #0e617c 70.21%,
-    #0e617c 72.22%,
-    #1e7b92 82.22%,
-    #36a3b3 99.98%,
-    #5ce1e6 99.99%,
-    #27d4d4 100%
-  );
-
-  --gradiente-cima-baixo: linear-gradient(
-    0deg,
-    #041b22 12.72%,
-    #041b22 16.22%,
-    #041b22 21.72%,
-    #041b22 21.73%,
-    #07313e 37.72%,
-    #0a4457 48.22%,
-    #0e617c 58.22%,
-    #0e617c 70.2%,
-    #0e617c 70.21%,
-    #0e617c 79.22%,
-    #1e7b92 92.22%,
-    #36a3b3 99.98%,
-    #5ce1e6 99.99%,
-    #27d4d4 100%
-  );
-
-  --padding: 50px 100px 75px 100px;
-  --cor-primaria: #eee;
-  --cor-secundaria: #083b4b;
-  --fonte-cor-primaria: #012f32;
-  --fonte-cor-secundaria: #c5d1e2;
-  --row-gap: 50px;
+html {
+  font-size: 14px;
 }
-
-/*"RESETANDO"/RECONFIGURANDO ALGUMAS ESTILIZAÇÕES PADRÕES DOS NAVEGADORES EM TODOS OS COMPONENTES*/
 
 * {
-  margin: 0;
-  padding: 0;
-  font-family: "Saira", sans-serif;
-  box-sizing: border-box;
-  background: none;
-  border: none;
-  color: var(--fonte-cor-primaria);
   transition: 0.5s;
-}
-
-html {
-  font-size: 12px;
-  height: 100%;
 }
 
 /* BODY */
@@ -75,7 +20,7 @@ body {
   overflow: hidden;
 }
 
-#onda2{
+#onda2 {
   position: absolute;
   width: 100vw;
   height: 40%;
@@ -86,7 +31,7 @@ body {
   rotate: 10deg;
 }
 
-#div_progresso{
+#div_progresso {
   position: absolute;
   top: 0;
   width: 100px;
@@ -100,20 +45,19 @@ body {
   font-weight: bold;
 }
 
-.div_progresso{
+.div_progresso {
   width: 130px;
   height: 130px;
-  background-color:var(--cor-primaria);
+  background-color: var(--cor-primaria);
   border-radius: 100%;
   border: solid 10px var(--cor-secundaria);
   padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: bold;
 }
-
 
 main {
   height: 100%;
@@ -132,7 +76,6 @@ main {
 }
 
 #main_index {
-  position: relative;
   top: 0;
   left: 0;
 }
@@ -149,7 +92,7 @@ header {
   padding: 10px 60px;
   background: var(--gradiente);
   box-shadow: 3px 0px 3px rgba(0, 0, 0, 0.726);
-  position: fixed;
+  position: sticky;
   top: 0;
   z-index: 2;
 
@@ -159,19 +102,25 @@ header {
   }
 
   & a,
-  span, #link_resgistrar  {
-    color: var(--fonte-cor-secundaria);
+  span,
+  #link_resgistrar {
+    color: var(--cor-primaria);
     font-size: 2rem;
     border-bottom: 2px solid transparent;
     transition: 0.5s;
   }
 
-  & a:hover, #link_resgistrar:hover {
-    border-bottom: 2px solid var(--fonte-cor-secundaria);
+  & a:hover,
+  #link_resgistrar:hover {
+    border-bottom: 2px solid var(--cor-quartenaria);
   }
 
   & .menu_selecionado {
-    border-bottom: 2px solid var(--fonte-cor-secundaria);
+    border-bottom: 2px solid var(--cor-quartenaria);
+  }
+
+  a:focus {
+    text-decoration: none;
   }
 
   & nav {
@@ -223,7 +172,7 @@ section {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr auto auto;
- column-gap: 20px;
+  column-gap: 20px;
   grid-template-rows: repeat(4, auto);
   row-gap: 5%;
   padding: var(--padding);
@@ -250,13 +199,13 @@ section {
     color: var(--cor-secundaria);
   }
 
-  &.div_progresso{
+  &.div_progresso {
     grid-area: progresso;
   }
 
   & h1 {
     grid-area: h1;
-    font-size: 3.5rem;
+    font-size: 4rem;
     text-align: right;
   }
 
@@ -264,6 +213,7 @@ section {
     grid-area: h2;
     font-size: 3rem;
     text-align: center;
+    padding-inline: 10%;
   }
 
   & input {
@@ -271,7 +221,7 @@ section {
     justify-self: center;
     width: 100%;
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 4rem;
   }
 
   input:focus {
@@ -292,7 +242,6 @@ section {
     -webkit-box-shadow: 0 0 0px 1000px var(--cor-primaria) inset !important;
     -webkit-text-fill-color: var(--cor-senaria) !important;
   }
-
 
   & .logotipo {
     grid-area: logo;
@@ -333,6 +282,12 @@ section {
     background-color: var(--cor-primaria);
     color: var(--cor-secundaria);
   }
+
+  & .btns:focus {
+    scale: 1.1;
+    background-color: var(--cor-primaria);
+    color: var(--cor-secundaria);
+  }
 }
 
 #section_index {
@@ -365,7 +320,7 @@ section {
     height: 100%;
     width: 100%;
     border-radius: 20px;
-    
+
     filter: brightness(0.85);
     position: absolute;
     top: 0;
@@ -390,7 +345,7 @@ section {
   }
 
   & p {
-    font-size: 3rem;
+    font-size: 2.5rem;
     align-self: end;
   }
 
@@ -415,8 +370,6 @@ section {
     color: var(--cor-secundaria);
     border: solid 5px var(--cor-secundaria);
   }
-
-  
 }
 
 #section_informacoes {
@@ -472,6 +425,12 @@ section {
   }
 }
 
+#section_tudo_pronto{
+  & h2 {
+    padding-inline: 20%;
+  }
+}
+
 #section_mensagem_final {
   overflow-y: scroll;
   grid-template-rows: auto auto auto;
@@ -487,23 +446,21 @@ section {
     flex-direction: column;
     gap: 70px;
 
-    & #div_header{
+    & #div_header {
       display: grid;
       grid-template-columns: auto 1fr;
       grid-template-rows: auto;
       width: 100%;
       grid-template-areas: "i h4";
 
-      & h4{
+      & h4 {
         grid-area: h4;
       }
 
       & i {
         grid-area: i;
       }
-      
     }
-    
 
     & h4 {
       font-size: 3rem;
@@ -524,7 +481,7 @@ section {
 
     & .div_cards {
       background-color: var(--cor-primaria);
-      color: var(--fonte-cor-primaria);
+      color: var(--cor-tercearia);
       height: fit-content;
       min-height: 100%;
       display: grid;
@@ -613,6 +570,11 @@ section {
 
       & * {
         font-size: 1.5rem;
+        color: var(--cor-secundaria);
+      }
+
+      & a:hover{
+        text-decoration: underline;
       }
 
       & li {

@@ -2,67 +2,16 @@
 
 @import url(../../config/css/style_padrao.css);
 
-:root {
-  --gradiente: linear-gradient(
-    90deg,
-    #041b22 12.72%,
-    #041b22 16.22%,
-    #041b22 21.72%,
-    #041b22 21.73%,
-    #07313e 37.72%,
-    #0a4457 48.22%,
-    #0e617c 58.22%,
-    #0e617c 70.2%,
-    #0e617c 70.21%,
-    #0e617c 79.22%,
-    #1e7b92 92.22%,
-    #36a3b3 99.98%,
-    #5ce1e6 99.99%,
-    #27d4d4 100%
-  );
-
-  --gradiente-cima-baixo: linear-gradient(
-    0deg,
-    #041b22 12.72%,
-    #041b22 16.22%,
-    #041b22 21.72%,
-    #041b22 21.73%,
-    #07313e 37.72%,
-    #0a4457 48.22%,
-    #0e617c 58.22%,
-    #0e617c 70.2%,
-    #0e617c 70.21%,
-    #0e617c 79.22%,
-    #1e7b92 92.22%,
-    #36a3b3 99.98%,
-    #5ce1e6 99.99%,
-    #27d4d4 100%
-  );
-
-  --padding: 70px 120px;
-  --cor-primaria: #eee;
-  --cor-secundaria: #083b4b;
-  --fonte-cor-primaria: #012f32;
-  --fonte-cor-secundaria: #c5d1e2;
-  --row-gap: 50px;
-}
 
 /*"RESETANDO"/RECONFIGURANDO ALGUMAS ESTILIZAÇÕES PADRÕES DOS NAVEGADORES EM TODOS OS COMPONENTES*/
 
 * {
-  margin: 0;
-  padding: 0;
-  font-family: "Saira", sans-serif;
-  box-sizing: border-box;
-  background: none;
-  border: none;
-  text-decoration: none;
-  color: var(--fonte-cor-primaria);
+  color: var(--cor-tercearia);
   transition: 0.5s;
 }
 
 html {
-  font-size: 12px;
+  font-size: 16px;
   height: 100%;
 }
 
@@ -70,6 +19,7 @@ html {
 
 body {
   background-color: var(--cor-primaria);
+  height: auto;
 }
 
 /* /BODY */
@@ -83,7 +33,7 @@ span {
 
 header {
   height: 15vh;
-  grid-area: header;
+ 
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -91,9 +41,10 @@ header {
   padding: 10px 60px;
   background: var(--gradiente);
   box-shadow: 3px 0px 3px rgba(0, 0, 0, 0.726);
-  position: fixed;
+  position: sticky;
   top: 0;
-  z-index: 2;
+  left: 0;
+  z-index: 20;
 
   & img {
     height: 80%;
@@ -102,18 +53,18 @@ header {
 
   & a,
   span, #link_resgistrar  {
-    color: var(--fonte-cor-secundaria);
+    color: var( --cor-primaria);
     font-size: 2rem;
     border-bottom: 2px solid transparent;
     transition: 0.5s;
   }
 
   & a:hover, #link_resgistrar:hover {
-    border-bottom: 2px solid var(--fonte-cor-secundaria);
+    border-bottom: 2px solid var( --cor-primaria);
   }
 
   & .menu_selecionado {
-    border-bottom: 2px solid var(--fonte-cor-secundaria);
+    border-bottom: 2px solid var( --cor-primaria);
   }
 
   & nav {
@@ -121,6 +72,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: sticky;
 
     & #navbar_conatainer_link_sections {
       width: 100%;
@@ -163,9 +115,9 @@ header {
 
 main {
   width: 100%;
-  grid-area: main;
+  
   display: grid;
-  grid-template-rows: 110vh auto auto auto 70vh;
+  grid-template-rows: 110vh auto auto auto auto;
   grid-template-columns: 100%;
   grid-template-areas:
     "home"
@@ -189,11 +141,11 @@ main {
 #section_home {
   grid-area: home;
   background: var(--gradiente);
-  padding: 50px 100px;
-  padding-top: calc(15vh + 50px);
+  padding: 100px;
+  
   display: grid;
   grid-template-rows: 60% 1fr;
-  row-gap: 15%;
+  row-gap: 1%;
   grid-template-columns: 50% 1fr;
   grid-template-areas:
     "img h1"
@@ -212,7 +164,7 @@ main {
 
   & h1 {
     grid-area: h1;
-    font-size: 5rem;
+    font-size: 3.5rem;
     text-transform: uppercase;
     color: var(--cor-primaria);
     line-height: 5.5rem;
@@ -655,7 +607,7 @@ main {
 
     & .div_cards {
       background-color: var(--cor-primaria);
-      color: var(--fonte-cor-primaria);
+      color: var(--cor-tercearia);
       display: flex;
       align-items: center;
       border-radius: 50px;
@@ -876,7 +828,7 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    font-size: 1rem;
+    font-size: 1.5rem;
 
     & a {
       border-bottom: 2px solid transparent;
@@ -885,7 +837,7 @@ footer {
     }
 
     & a:hover {
-      border-bottom: 2px solid var(--fonte-cor-secundaria);
+      border-bottom: 2px solid var( --cor-primaria);
     }
   }
 
