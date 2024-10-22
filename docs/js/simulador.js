@@ -402,7 +402,7 @@ function exibirMensagemFinal() {
   ${mensagemPersonalizada}
   <h4>Não deixe seu sucesso ao acaso, transforme sua colheita e<span> se cadastre agora mesmo</span> para ver seus lucros crescerem!</h4>
 
-  <button class="btns">CADASTRE-SE</button>
+  <button class="btns" onclick="setBodyClass('cadastro_js')">CADASTRE-SE</button>
 
   <div id = "div_referencias">
     <p>Para saber mais sobre os riscos do estresse hídrico e os benefícios de um sistema de irrigação bem
