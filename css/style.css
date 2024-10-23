@@ -667,13 +667,14 @@ main {
       & h4 {
         grid-area: h4;
         padding-bottom: 20px;
-        font-size: 2rem;
+        font-size: 3rem;
         color: var(--cor-primaria);
       }
 
       & p {
         grid-area: p;
         font-size: 2rem;
+        font-weight: bold;
         color: var(--cor-primaria);
       }
     }

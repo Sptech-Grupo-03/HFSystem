@@ -483,7 +483,7 @@ section {
       & p {
         grid-area: p;
         text-align: center;
-        font-size: 1.5rem;
+        font-size: 2rem;
         align-self: center;
       }
     }
@@ -502,6 +502,15 @@ section {
         & * {
           color: var(--cor-primaria);
         }
+
+        
+      }
+
+      & p {
+
+        font-weight: bold;
+   
+      }
       }
     }
 
