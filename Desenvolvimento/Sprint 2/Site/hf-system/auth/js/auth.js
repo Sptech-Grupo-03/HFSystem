@@ -42,7 +42,6 @@ document
     }
   });
 
-
 // SEÇAO DE CADASTRO
 
 document
@@ -56,7 +55,6 @@ document
       document.getElementById("btn_cadastrar").click();
     }
   });
-
 
 //
 
@@ -177,36 +175,68 @@ document
 
     const formulario = document.getElementById("formulario_cadastro");
 
-    let userNameValido, emailValido;
-
-    if (validarUserName("input_usuario")) {
-      userNameValido = true;
+    if (
+      input_usuario.value == "" ||
+      input_email_cadastro.value == "" ||
+      razaoSocial.value == "" ||
+      nomeFantasia.value == "" ||
+      cnpj.value == "" ||
+      representanteLegal.value == "" ||
+      senha_cadastro.value == "" ||
+      confirmacao_senha.value == ""
+    ) {
+      alert("Por favor, preencha todos os campos.");
     } else {
-      mensagemErro += `<p>* seu nome de usuário deve conter pelo menos 6 caracteres</p>`;
-      userNameValido = false;
-    }
+      let userNameValido, emailValido;
 
-    if (validarEmail("input_email_cadastro")) {
-      emailValido = true;
-    } else {
-      mensagemErro += "<p>* e-mail inválido</p>";
-      emailValido = false;
-    }
+      if (validarUserName("input_usuario")) {
+        userNameValido = true;
+      } else {
+        mensagemErro += `<p>* seu nome de usuário deve conter pelo menos 6 caracteres</p>`;
+        userNameValido = false;
+      }
 
-    if (userNameValido && emailValido) {
-      alert("Cadastrado com sucesso!");
-      this.submit(); // Envia o formulário
-    } else {
-      campoMensagemErro.innerHTML = mensagemErro;
-      campoMensagemErro.style.display = "block";
-      formulario.style.gridTemplateRows = "repeat(6, auto)";
-      formulario.style.gridTemplateAreas = `
-          "div_input_usuario div_input_email"
-          "div_input_razao_social div_input_nome_fantasia"
-          "div_input_cnpj div_input_representante_legal"
-          "div_input_senha div_input_confirmacao_senha"
-          "campo_mensagem_erro campo_mensagem_erro"
-          "btn btn"`;
+      if (validarEmail("input_email_cadastro")) {
+        emailValido = true;
+      } else {
+        mensagemErro += "<p>* e-mail inválido</p>";
+        emailValido = false;
+      }
+
+      if (userNameValido && emailValido) {
+        alert("Cadastrado com sucesso!");
+        // this.submit(); // Envia o formulário
+
+        // simulação depois do cadastro
+        body.className = "login_js";
+        habilitarDesabilitarNavegacaoTab("input", ".main_container_login", "0");
+        habilitarDesabilitarNavegacaoTab(
+          "button",
+          ".main_container_login",
+          "0"
+        );
+        habilitarDesabilitarNavegacaoTab(
+          "input",
+          ".main_container_cadastro",
+          "-1"
+        );
+        habilitarDesabilitarNavegacaoTab(
+          "button",
+          ".main_container_cadastro",
+          "-1"
+        );
+      } else {
+        campoMensagemErro.innerHTML = mensagemErro;
+        campoMensagemErro.style.display = "block";
+        formulario.style.gridTemplateRows = "repeat(6, auto)";
+        formulario.style.gridTemplateAreas = `
+            "div_input_usuario div_input_email"
+            "div_input_razao_social div_input_nome_fantasia"
+            "div_input_cnpj div_input_representante_legal"
+            "div_input_senha div_input_confirmacao_senha"
+            "campo_mensagem_erro campo_mensagem_erro"
+            "btn btn"`;
+      }
     }
   });
 
@@ -225,7 +255,7 @@ function entrar() {
 
       if (emailValue == "hfsystem@sptech.school" && senhaValue == "admin123") {
         alert("Login realizado com sucesso");
-        window.location.href = "../private/dashboard.html";
+        window.location.href = "./../private/dashboard.html";
       } else {
         alert("Email ou senha incorretos");
       }
