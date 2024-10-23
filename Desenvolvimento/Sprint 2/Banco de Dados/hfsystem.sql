@@ -1,4 +1,5 @@
 create database HFSystem;
+
 use HFSystem;
 
 create table enderecoEmpresa(
@@ -39,49 +40,63 @@ constraint fkEmpresaFuncionario foreign key (fkEmpresaRegistro)
 	references fazenda (idEmpresa)
 );
 
-create table hcsr04(
-id int primary key auto_increment,
-nivelAgua float, 
-dataColeta date
-);
-
 create table reservatorio(
 idReservatorio int primary key auto_increment, 
 capacidade float not null, 
 tipo varchar(45) not null,
 altura float not null,
-largura float not null, 
-fkSensor int,
-constraint fkSensorReservatorio foreign key (fkSensor)
-	references hcSr04 (id),
+largura float not null,
+diasAteReabastecimento int,
 fkEmpresa int,
  constraint fkEmpresaReservatorio foreign key (fkEmpresa)
-	references fazenda (idEmpresa)    
+	references fazenda (idEmpresa) 
+);
+
+create table hcsr04(
+idSensor int primary key auto_increment,
+nivelAgua float, 
+dataColeta date,
+fkReservatorio int,
+constraint fkSensorReservatorio foreign key (fkReservatorio)
+	references reservatorio (idReservatorio)
 );
 
 insert into enderecoEmpresa (cep, bairro, rua, cidade, uf, numero) values
-('12345678', 'Centro', 'Rua A', 'São Paulo', 'SP', 123),
-('87654321', 'Jardins', 'Rua B', 'Rio de Janeiro', 'RJ', 456),
-('56789012', 'Vila Nova', 'Rua C', 'Belo Horizonte', 'MG', 789);
+('01414001', 'Cerqueira César', 'Rua Haddock Lobo', 'São Paulo', 'SP', 595),
+('24130000', 'Centro', 'Praça do Conhecimento', 'São Gonçalo', 'RJ', 200),
+('01010000', 'Centro', 'Avenida São João', 'São Paulo', 'SP', 100),
+('01310000', 'Cerqueira César', 'Avenida Paulista', 'São Paulo', 'SP', 500),
+('76500000', 'Centro', 'Rua José de Alencar', 'Aparecida de Goiânia', 'GO', 250);
 
 insert into fazenda (razaoSocial, nomeFantasia, cnpj, representanteLegal, telefone, email, dataCadastro, fkEndereco) values
-('Fazenda Agrobom Ltda', 'Agro Bom', '12345678000199', 'Carlos Oliveira', '11987654321', 'fazenda@agrobom.com', '2024-10-10', 1),
-('Brasil Farm Ltda', 'Brasil Farm', '98765432000199', 'Maria Souza', '21976543210', 'farm@brasil.com', '2024-10-11', 2);
+('JBS S/A', 'JBS', '02916265000160', 'Guilherme Perboyre Cavalcanti', '11987654321', 'imprensa@jbs.com.br', '2024-10-10', 1),
+('BRF S.A.', 'BRF', '02939930000110', 'Lorival Luz', '11987654322', 'contato@brf-br.com', '2024-10-12', 2),
+('Cargill Agrícola S/A', 'Cargill', '60584425000100', 'Fernando Pimenta', '31987654321', 'info@cargill.com.br', '2024-10-14', 3),
+('Bunge Brasil', 'Bunge', '60822150000140', 'Ricardo Josué', '21987654321', 'atendimento@bunge.com.br', '2024-10-13', 4),
+('SLC Agrícola S/A', 'SLC', '02810719000102', 'Aldo G. Meira', '31987654324', 'contato@slcagricola.com.br', '2024-10-15', 5);
 
 insert into funcionario (nome, telefone, email, senha, cargo, nivelAcesso, fkEmpresaRegistro) values
-('Vinicius Gonçalves', '47632499830', 'vinicius@agrobom.com', 'senha1234', 'Gerente', 'Administrador', 1),
-('Nicolly Souza', '98765432100', 'nicolly@farm.com', 'senha5678', 'Operador', 'Funcionario Comum', 2);
+('Vinicius Gonçalves', '47632499830', 'vinicius@jbs.com.br', 'senha1234', 'Gerente', 'Administrador', 1),
+('Nicoly Souza', '47987654321', 'nicoly@brf.com.br', 'senhaNick1', 'Gerente', 'Administrador', 2),
+('Ana Barrocal', '48987654322', 'ana@cargill.com.br', 'senhaAna2', 'Supervisor', 'Funcionario Comum', 3),
+('Leonardo Sardinha', '49987654323', 'leo@bunge.com.br', 'senhaLeo3', 'Técnico', 'Funcionario Comum', 4),
+('Matheus Martinez', '47987654324', 'Math@slcagricola.com.br', 'senhaMath1', 'Analista', 'Funcionario Comum', 5);
 
-insert into hcsr04 (nivelAgua, dataColeta) values
-(1000, '2024-09-10'),
-(500, '2024-09-25'),
-(100, '2024-10-10');
+insert into reservatorio (capacidade, tipo, altura, largura, diasAteReabastecimento, fkEmpresa) values
+(50000.0, 'Cilíndrico', 5.0, 3.0, 30, 1),
+(80000.0, 'Tanque', 6.0, 4.0, 45, 2),
+(70000.0, 'Cilíndrico', 5.0, 3.0, 40, 3),
+(100000.0, 'Tanque', 7.0, 5.0, 60, 4),
+(60000.0, 'Cilíndrico', 5.0, 3.5, 35, 5);
 
-insert into reservatorio (capacidade, tipo, altura, largura, fkSensor, fkEmpresa) values
-(1000, 'Cilíndrico', 3.0, 3.0, 1, 1),
-(800, 'Cilíndrico', 2.5, 2.5, 2, 2);
+insert into hcsr04 (nivelAgua, dataColeta, fkReservatorio) values
+(1.5, '2024-10-18', 1),
+(2.0, '2024-10-19', 2),
+(1.0, '2024-10-20', 3),
+(2.0, '2024-10-21', 4),
+(1.0, '2024-10-22', 5);
 
-select * from reservatorio join hcsr04 on id = fkSensor;
+select * from hcsr04 join reservatorio on idReservatorio = fkReservatorio;
 
 select funcionario.nome as Funcionario,
 fazenda.razaoSocial as "Fazenda contratado"
