@@ -54,20 +54,20 @@ new Chart(ctx, {
       //   borderColor: "#07313e ",
       //   backgroundColor: "#07313e ",
       // },
-      // {
-      //   label: "Ideal",
-      //   data: [85, 85, 85, 85, 85, 85],
-      //   borderWidth: 1,
-      //   borderColor: "#0bd365 ",
-      //   backgroundColor: "#0bd365 ",
-      // },
-      // {
-      //   label: "Abaixo do Ideal",
-      //   data: [40, 40, 40, 40, 40, 40],
-      //   borderWidth: 1,
-      //   borderColor: "#d3400b ",
-      //   backgroundColor: "#d3400b ",
-      // },
+      {
+        label: "Ideal",
+        data: [85, 85, 85, 85, 85, 85],
+        borderWidth: 1,
+        borderColor: "#0bd365 ",
+        backgroundColor: "#0bd365 ",
+      },
+      {
+        label: "Abaixo do Ideal",
+        data: [40, 40, 40, 40, 40, 40],
+        borderWidth: 1,
+        borderColor: "#d3400b ",
+        backgroundColor: "#d3400b ",
+      },
       // {
       //   label: "Muito Abaixo do Ideal",
       //   data: [20, 20, 20, 20, 20, 20],
@@ -75,13 +75,13 @@ new Chart(ctx, {
       //   borderColor: "#d3c90b ",
       //   backgroundColor: "#d3c90b ",
       // },
-      // {
-      //   label: "Limite",
-      //   data: [5, 5, 5, 5, 5, 5],
-      //   borderWidth: 1,
-      //   borderColor: "#d92727 ",
-      //   backgroundColor: "#d92727 ",
-      // },
+      {
+        label: "Limite",
+        data: [5, 5, 5, 5, 5, 5],
+        borderWidth: 1,
+        borderColor: "#d92727 ",
+        backgroundColor: "#d92727 ",
+      },
 
       // {
       //   label: "Sem Água",
