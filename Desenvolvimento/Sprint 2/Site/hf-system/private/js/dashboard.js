@@ -47,52 +47,63 @@ new Chart(ctx, {
         borderColor: "#27d4d4",
         backgroundColor: "#27d4d4",
       },
-      // {
-      //   label: "Capacidade Total",
-      //   data: [100, 100, 100, 100, 100, 100],
-      //   borderWidth: 1,
-      //   borderColor: "#07313e ",
-      //   backgroundColor: "#07313e ",
-      // },
-      // {
-      //   label: "Ideal",
-      //   data: [85, 85, 85, 85, 85, 85],
-      //   borderWidth: 1,
-      //   borderColor: "#0bd365 ",
-      //   backgroundColor: "#0bd365 ",
-      // },
-      // {
-      //   label: "Abaixo do Ideal",
-      //   data: [40, 40, 40, 40, 40, 40],
-      //   borderWidth: 1,
-      //   borderColor: "#d3400b ",
-      //   backgroundColor: "#d3400b ",
-      // },
-      // {
-      //   label: "Muito Abaixo do Ideal",
-      //   data: [20, 20, 20, 20, 20, 20],
-      //   borderWidth: 1,
-      //   borderColor: "#d3c90b ",
-      //   backgroundColor: "#d3c90b ",
-      // },
-      // {
-      //   label: "Limite",
-      //   data: [5, 5, 5, 5, 5, 5],
-      //   borderWidth: 1,
-      //   borderColor: "#d92727 ",
-      //   backgroundColor: "#d92727 ",
-      // },
-
-      // {
-      //   label: "Sem Água",
-      //   data: [0, 0, 0, 0, 0, 0],
-      //   borderWidth: 1,
-      //   borderColor: "#bf0202 ",
-      //   backgroundColor: "#bf0202 ",
-      // }
+      {
+        label: "Capacidade Total",
+        data: [100, 100, 100, 100, 100, 100],
+        borderWidth: 1,
+        borderColor: "#07313e",
+        backgroundColor: "#07313e",
+      },
+      {
+        label: "Ideal",
+        data: [85, 85, 85, 85, 85, 85],
+        borderWidth: 1,
+        borderColor: "#0bd365",
+        backgroundColor: "#0bd365",
+      },
+      {
+        label: "Abaixo do Ideal",
+        data: [40, 40, 40, 40, 40, 40],
+        borderWidth: 1,
+        borderColor: "#d3400b",
+        backgroundColor: "#d3400b",
+      },
+      {
+        label: "Muito Abaixo do Ideal",
+        data: [20, 20, 20, 20, 20, 20],
+        borderWidth: 1,
+        borderColor: "#d3c90b",
+        backgroundColor: "#d3c90b",
+      },
+      {
+        label: "Limite",
+        data: [5, 5, 5, 5, 5, 5],
+        borderWidth: 1,
+        borderColor: "#d92727",
+        backgroundColor: "#d92727",
+      },
+      {
+        label: "Sem Água",
+        data: [0, 0, 0, 0, 0, 0],
+        borderWidth: 1,
+        borderColor: "#bf0202",
+        backgroundColor: "#bf0202",
+      },
     ],
   },
   options: {
+    plugins: {
+      legend: {
+        labels: {
+          // Filtro para exibir somente os labels dos reservatórios
+          filter: function (legendItem) {
+            return legendItem.text === "Reservatorio 1" || 
+                   legendItem.text === "Reservatorio 2" || 
+                   legendItem.text === "Reservatorio 3";
+          },
+        },
+      },
+    },
     scales: {
       y: {
         beginAtZero: true,
@@ -100,6 +111,7 @@ new Chart(ctx, {
     },
   },
 });
+
 
 const ctx2 = document.getElementById("myChart2");
 
