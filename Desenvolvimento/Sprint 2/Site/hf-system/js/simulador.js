@@ -246,12 +246,12 @@ function exibirMensagemFinal() {
     style: "currency",
     currency: "BRL",
   });
-  var aumentoProducao = faturamentoCiclo * 2.5;
+  var aumentoProducao = faturamentoCiclo * 2;
   var aumentoProducaoFormatado = aumentoProducao.toLocaleString("pt-BR", {
     style: "currency",
     currency: "BRL",
   });
-  var aumentoProducaoAnualFormatado = (valorBruto * 2.5).toLocaleString(
+  var aumentoProducaoAnualFormatado = (valorBruto * 2).toLocaleString(
     "pt-BR",
     {
       style: "currency",
@@ -348,15 +348,15 @@ function exibirMensagemFinal() {
     </div>
   <div id = "div_card_container_beneficios">
     <div class = "div_cards"> 
-      <h4>Aumento na sua produção em até 250%</h4>
+      <h4>Aumento na sua produção em até 200%</h4>
       <p>Isso significa poder passar de
         <span>${qtdCiclosAnualProducao}</span> ciclos de produção de <span>${tipoPlantacao}</span> para até <span>${(
-    qtdCiclosAnualProducao * 2.5
+    qtdCiclosAnualProducao * 2
   ).toFixed(0)}</span> ciclos anuais.
       </p>
     </div>
     <div class = "div_cards"> 
-        <h4>Maximização do seu faturamento em até 250%</h4>
+        <h4>Maximização do seu faturamento em até 200%</h4>
         <p>Seu faturamento bruto anual pode
         atingir até <span>${aumentoProducaoAnualFormatado}</span>.
         </p>
