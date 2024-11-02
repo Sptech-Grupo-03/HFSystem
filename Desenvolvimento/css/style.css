@@ -1,0 +1,95 @@
+/*rem, %, vh(altura), vw(largura) ajuda na responsividade.
+rem(aumenta o tamanho da fonte)*/
+html{
+    width: 100%;
+    height: 100%;
+}
+body{
+    height: 100%;
+    width: 100%;
+    
+    & img {
+        height: 30%;
+    }
+}
+
+img{
+    height: 10%;
+
+}
+
+.cards{
+
+    height: 500px;
+    width: 200px;
+}
+
+#card1{
+    border: solid 5px  black; 
+    border-left: dashed 50px black;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "h2 h2"  "p img";
+    justify-items: center;
+    align-items: center;
+     
+
+    & img {
+        grid-area: img;
+    }
+
+    & p {
+        grid-area: p;
+        width: 50%;
+    }
+    & h2 {
+        grid-area: h2;
+    }
+}
+
+#div_flex{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: end; 
+    flex-direction: column;
+    gap: 30px;
+    /* se eu usar o flex-direction em column inverte os eixos justify-content(x) e align-items(y)*/
+    
+
+    & p{
+        width: 20%;
+        align-self: baseline;
+        order:1;
+        /* align- self  */
+    }
+
+    & img{
+        height: 70%;
+        width: 50%;
+        order: 2;
+    }
+    &
+    h2 {
+        order: 3;
+    }
+}
+.inp{
+    height: 10px;
+    width: 200px;
+    background: aqua;
+    display: block;
+}
+
+
+
+
+/* @media screen and (max-width: 590px){
+    body{
+        display: flex;
+    }
+} */
+
