@@ -360,6 +360,52 @@ main {
   }
 }
 
+#section_nossa_equipe {
+  height: fit-content;
+  padding-inline: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+}
+
+#team-image {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 4px 4px 20px #000000c9;
+  transition: transform 0.5s ease;
+}
+
+#integrantes p {
+  width: 100%;
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+#section_nossa_equipe p {
+  width: 100%;
+  font-size: 2rem;
+}
+
+#integrantes .integrante {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Espaço entre a foto e o texto */
+  padding-bottom: 30px;
+}
+
+.foto-integrante {
+  width: 150px; /* Tamanho da foto */
+  height: 150px;
+  border-radius: 50%; /* Foto em formato circular */
+  object-fit: cover; /* Ajusta a imagem para preencher o espaço */
+}
+
+
 #section_missao_visao_valores {
   height: fit-content;
   display: grid;

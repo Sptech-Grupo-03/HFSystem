@@ -30,9 +30,7 @@ if (bodyClass) {
 // ADICIONA UM EVENTO EM CERTOS CAMPOS PARA ATIVAR OS BOTÕES QUANDO A TECLA "ENTER" FOR PRECIONADA
 
 // SEÇÃO DE LOGIN
-document
-  .getElementById("input_senha_login")
-  .addEventListener("keydown", function (event) {
+document.getElementById("input_senha_login").addEventListener("keydown", function (event) {
     // Verifica se a tecla pressionada é o "Enter"
     if (event.key === "Enter") {
       // Impede o comportamento padrão do "Enter"
@@ -44,9 +42,7 @@ document
 
 // SEÇAO DE CADASTRO
 
-document
-  .getElementById("confirmacao_senha")
-  .addEventListener("keydown", function (event) {
+document.getElementById("confirmacao_senha").addEventListener("keydown", function (event) {
     // Verifica se a tecla pressionada é o "Enter"
     if (event.key === "Enter") {
       // Impede o comportamento padrão do "Enter"
@@ -160,13 +156,25 @@ function validarEmail(idImputEmail) {
   }
 }
 
+
+function validarSenha(senha) {
+  const possuiNumero = /[0-9]/.test(senha); // Verifica se contém pelo menos um número
+  const possuiMaiuscula = /[A-Z]/.test(senha); // Verifica se contém pelo menos uma letra maiúscula
+  const possuiCaractereEspecial = /[!@#$%^&*(),.?":{}|<>]/.test(senha); // Verifica se contém pelo menos um caractere especial
+
+  if (possuiNumero && possuiMaiuscula && possuiCaractereEspecial) {
+    return true; // A senha atende aos requisitos
+  } else {
+    return false; // A senha não atende aos requisitos
+  }
+}
+
+
 //
 
 // FUNÇÃO PARA SÓ PERMITIR QUE O FORMULÁRIO DE CADASTRO SEJA ENVIADO SOMENTE SE AS CONDIÇÕES FOREM ATENDIDAS
 
-document
-  .getElementById("formulario_cadastro")
-  .addEventListener("submit", function (event) {
+document.getElementById("formulario_cadastro").addEventListener("submit", function (event) {
     event.preventDefault(); // EVITA O ENVIO IMEDIATO DO FORMULÁRIO QUANDO APERTADO O BOTÃO DE SUBMIT
 
     let campoMensagemErro = document.getElementById("campo_mensagem_erro");
@@ -202,8 +210,11 @@ document
         mensagemErro += "<p>* e-mail inválido</p>";
         emailValido = false;
       }
+      if (!validarSenha(senha_cadastro.value)) {
+        mensagemErro += "<p>* A senha deve conter pelo menos uma letra maiúscula, um número e um caractere especial</p>";
+      }
 
-      if (userNameValido && emailValido) {
+      if (userNameValido && emailValido && validarSenha(senha_cadastro.value)) {
         alert("Cadastrado com sucesso!");
         // this.submit(); // Envia o formulário
 
@@ -245,9 +256,7 @@ document
 // FUNÇÃO PARA SÓ PERMITIR ACESSO AO DASHBOARD SE SENHA E E-MAIL FOREM VÁLIDOS
 
 function entrar() {
-  document
-    .getElementById("formulario_login")
-    .addEventListener("submit", function (event) {
+  document.getElementById("formulario_login").addEventListener("submit", function (event) {
       event.preventDefault();
 
       emailValue = document.getElementById("input_email_login").value;
@@ -263,3 +272,21 @@ function entrar() {
 }
 
 //
+
+// FUNÇÃO DE FORMATAÇÃO DO CAMPO CNPJ
+function formatarCNPJ(campo) {
+
+  // Remove todos os caracteres que não são dígitos (números) do valor do campo.
+  let cnpj = campo.value.replace(/\D/g, "");
+  // Adiciona um ponto após os primeiros dois dígitos do CNPJ.
+  cnpj = cnpj.replace(/^(\d{2})(\d)/, "$1.$2");
+  // Adiciona um segundo ponto após os próximos três dígitos.
+  cnpj = cnpj.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+  // Adiciona uma barra após os próximos três dígitos.
+  cnpj = cnpj.replace(/\.(\d{3})(\d)/, ".$1/$2");
+  // Adiciona um hífen após os próximos quatro dígitos.
+  cnpj = cnpj.replace(/(\d{4})(\d)/, "$1-$2");
+
+  // Atualiza o valor do campo com o CNPJ formatado.
+  campo.value = cnpj;
+}
