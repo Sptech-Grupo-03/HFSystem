@@ -41,4 +41,12 @@ document.querySelectorAll(".scroll_link").forEach((link) => {
   });
 });
 
+function toggleMenu() {
+  const navbar = document.querySelector(".navbar");
+  navbar.classList.toggle("active");
+
+  
+}
+
+
 
