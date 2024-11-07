@@ -45,7 +45,15 @@ function toggleMenu() {
   const navbar = document.querySelector(".navbar");
   navbar.classList.toggle("active");
 
-  
+  const navLinks = document.querySelectorAll(".navbar a");
+  navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      const navbar = document.querySelector(".navbar");
+      if (navbar.classList.contains("active")) {
+        navbar.classList.remove("active");
+      }
+    });
+  });  
 }
 
 

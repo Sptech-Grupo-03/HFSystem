@@ -913,27 +913,62 @@ footer {
     cursor: pointer;
     position: absolute;
     top: 15px;
-    right: 40px;
+    right: 20px;
+    z-index: 2;
+    color: white; /* Para visibilidade */
   }
 
   #header .navbar {
     display: none;
-    position: absolute;
-    top: 90px;
+    position: fixed;
+    top: 83px;
     right: 0;
-    background-color: #333;
     width: 100%;
+    background: var(--gradiente);
+    flex-direction: column;
+    padding: 0px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    transition: transform 0.3s ease-in-out;
+    transform: translateY(-100%);
+  }
+
+  #navbar_conatainer_link_sections{
+    display: flex;
     flex-direction: column;
   }
 
   #header .navbar.active {
     display: flex;
+    transform: translateY(0);
+    padding: 10px;
   }
 
-  #navbar_conatainer_link_sections {
+  #navbar_conatainer_link_sections a,
+  #navbar_conatainer_link_cadastro_login button {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    text-align: center;
+    border: none;
+    background: none;
+  }
+
+  #navbar_conatainer_link_cadastro_login {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+  }
 
+  #navbar_conatainer_link_cadastro_login span {
+    display: none; /* Oculta a barra divisória */
+  }
+
+  /* Animação para o botão de menu */
+  #menu-toggle.active {
+    transform: rotate(90deg);
+    transition: transform 0.3s;
   }
 
   main #section_home {
@@ -1013,6 +1048,17 @@ footer {
     flex-direction: column;
     align-items: center;
     padding: 40px;
+
+    & .div_container_missao_visao_valores{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+
+      & img{
+        width: 50%;
+      }
+    }
   }
 
   #section_calculadora{
@@ -1020,6 +1066,23 @@ footer {
     flex-direction: column;
     align-items: center;
     padding: 40px;
+
+    & #calculadora_card{
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      background:url("../assets/calculadora-section/calculadora-section-background.svg");
+      background-size: contain;
+
+    & a{
+      align-self: center;
+      padding: 5px 10px;
+      margin: 10px;
+    }
+    }
+    
   }
 
   #section_servicos{
@@ -1027,5 +1090,75 @@ footer {
     flex-direction: column;
     align-items: center;
     padding: 40px;
+
+
+    & #div_beneficios{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    & #div_servicos{
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    & #div_outros_servicos{
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+  }
+
+  #section_contate_nos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+
+  }
+
+  footer {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: unset;
+    row-gap: 15px;
+  }
+
+  #logo_footer {
+    width: 100px; /* Ajuste conforme necessário */
+    margin-bottom: 15px;
+  }
+
+  #p_1, #p_2, #p_direitos_reservados {
+    text-align: center;
+    padding: 0 10px;
+  }
+
+  #redes_sociais_icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+
+  #nav_bar_footer, #redes_sociais_footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  #nav_bar_footer h4, #redes_sociais_footer h4 {
+    margin-bottom: 10px;
+  }
+
+  #nav_bar_footer a, #redes_sociais_footer a {
+    margin-bottom: 5px;
   }
 }
