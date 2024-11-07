@@ -915,7 +915,7 @@ footer {
     top: 15px;
     right: 20px;
     z-index: 2;
-    color: white; /* Para visibilidade */
+    color: white; 
   }
 
   #header .navbar {
@@ -962,10 +962,10 @@ footer {
   }
 
   #navbar_conatainer_link_cadastro_login span {
-    display: none; /* Oculta a barra divisória */
+    display: none; 
   }
 
-  /* Animação para o botão de menu */
+  
   #menu-toggle.active {
     transform: rotate(90deg);
     transition: transform 0.3s;
