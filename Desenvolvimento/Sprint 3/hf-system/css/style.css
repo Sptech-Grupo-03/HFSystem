@@ -403,13 +403,10 @@ main {
 }
 
 .foto-integrante {
-  width: 150px;
-  /* Tamanho da foto */
-  height: 150px;
-  border-radius: 50%;
-  /* Foto em formato circular */
+  width: 300px;
+  height: 200px;
+  border-radius: 10%;
   object-fit: cover;
-  /* Ajusta a imagem para preencher o espaço */
 }
 
 
