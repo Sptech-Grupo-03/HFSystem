@@ -28,12 +28,8 @@ references endereco(idEndereco)
 );
 
 create table fazenda(
-codigoFazenda char(10) primary key, 
-razaoSocial varchar(100), 
-nomeFantasia varchar(100),
-cnpj char(14),
-telefone char(11), 
-email varchar(100),
+idFazenda int primary key auto_increment, 
+nomeFazenda varchar(100), 
 dataCadastro date,
 fkEmpresa int, 
 fkEndereco int,
@@ -71,6 +67,10 @@ create table reservatorio(
 idReservatorio int primary key auto_increment, 
 raio float not null,
 altura float not null,
+nivelAtual float,
+nivelIdeal float,
+nivelAlerta float,
+nivelRisco float,
 fkFazenda int,
  constraint fkFazendaReservatorio foreign key (fkFazenda)
 	references fazenda(idFazenda) 
@@ -90,6 +90,9 @@ dtHrMedicao datetime,
 distanciaAgua float,
 capacidadeCalculada float,
 fkReservatorio int,
+fkSensor int,
+constraint fkSensorHistorico foreign key (fkSensor)
+references sensor(idSensor),
 constraint fkReservatorioHistorico foreign key (fkReservatorio) 
 references reservatorio(idReservatorio)
 );
@@ -112,13 +115,12 @@ insert into endereco (tipo, cep, complemento, numero, uf) values
 ('Fazenda', '01310000', 'Sede', 500, 'SP'),
 ('Empresa', '76500000', 'Bloco B', 250, 'GO');
 
-insert into fazenda (codigoFazenda, razaoSocial, nomeFantasia, cnpj,
- telefone, email, dataCadastro, fkEmpresa, fkEndereco) values
-( 'ADFEFSGR23','JBS S/A', 'JBS', '02916265000160',  '11987654321', 'imprensa@jbs.com.br', '2024-10-10', 1, 1),
-( '2ECC71FF11','BRF S.A.', 'BRF', '02939930000110',  '11987654322', 'contato@brf-br.com', '2024-10-12', 2, 2),
-('F1C40FAA23' ,'Cargill Agrícola S/A', 'Cargill', '60584425000100', '31987654321', 'info@cargill.com.br', '2024-10-14', 3, 3),
-('D35400BB44' ,'Bunge Brasil', 'Bunge', '60822150000140', '21987654321', 'atendimento@bunge.com.br', '2024-10-13', 4, 4),
-('8E44ADDD55' ,'SLC Agrícola S/A', 'SLC', '02810719000102', '31987654324', 'contato@slcagricola.com.br', '2024-10-15', 5, 5);
+insert into fazenda (nomeFazenda, dataCadastro, fkEmpresa, fkEndereco) values
+('JBS S/A', '2024-10-10', 1, 1),
+('BRF S.A.', '2024-10-12', 2, 2),
+('Cargill Agrícola S/A', '2024-10-14', 3, 3),
+('Bunge Brasil', '2024-10-13', 4, 4),
+('SLC Agrícola S/A', '2024-10-15', 5, 5);
 
 insert into usuario (username, nome, telefone, email, senha, fkFazenda) values
 ('ViniGo', 'Vinicius Gonçalves', '47632499830', 'vinicius@jbs.com.br', 'senha1234', 1),
@@ -127,20 +129,21 @@ insert into usuario (username, nome, telefone, email, senha, fkFazenda) values
 ('LeonardSa', 'Leonardo Sardinha', '49987654323', 'leo@bunge.com.br', 'senhaLeo3', 4),
 ('MathMart', 'Matheus Martinez', '47987654324', 'Math@slcagricola.com.br', 'senhaMath1',  5);
 
-insert into reservatorio (raio, altura, fkFazenda) values
-(2.5, 1, '2ECC71FF11'),
-(3.0, 2,'ADFEFSGR23' ),
-(2.5, 3, 'F1C40FAA23'),
-(3.0, 4, 'D35400BB44'),
-(2.5, 5, '8E44ADDD55');
+insert into reservatorio (raio, altura,  nivelAtual, nivelIdeal,
+nivelAlerta, nivelRisco, fkFazenda) values
+(2.5, 90, 80, 50, 25, 1, 1),
+(3.0, 40, 51, 50, 25, 2, 2),
+(2.5, 10, 51, 50, 25, 3, 3),
+(3.0, 30, 51, 50, 25,4, 4),
+(2.5, 90, 51, 50, 25, 5, 5);
 
 insert into clima (probabilidadeDeChuva, umidadeDoAr, 
 temperaturaMinina, temperaturaMaxima, dtHrColeta, fkFazenda) values
-('2 Dias', '80', '18', '2024-10-18 07:00:00', '8E44ADDD55'),
-('4 Dias', '60', '28', '2024-10-18 07:00:00', 'D35400BB44'),
-('Sem chuvas', '70', '', '20', '2024-10-18 07:00:00', 'F1C40FAA23'),
-('7 Dias', '50', '30', '2024-10-18 07:00:00', 'ADFEFSGR23'),
-('1 dia', '52', '32', '2024-10-18 07:00:00', '2ECC71FF11');
+('2 Dias', '80', '18', '2024-10-18 07:00:00', 1),
+('4 Dias', '60', '28', '2024-10-18 07:00:00', 2),
+('Sem chuvas', '70', '', '20', '2024-10-18 07:00:00', 3),
+('7 Dias', '50', '30', '2024-10-18 07:00:00', 4),
+('1 dia', '52', '32', '2024-10-18 07:00:00', 5);
 
 insert into sensor (dtHrColeta, fkReservatorio) values
 ('2024-10-18', 1),
@@ -150,12 +153,12 @@ insert into sensor (dtHrColeta, fkReservatorio) values
 ('2024-10-22', 5);
 
 INSERT INTO historicoMedicao (idHistoricoMedicao, dtHrMedicao, 
-distancialAgua, capacidadeCalculada, fkReservatorio) VALUES
-(1, '2024-10-01 14:00:00', 7.5, 300.0, 1),
-(2, '2024-10-01 15:00:00', 8.0, 320.0, 2),
-(3, '2024-10-01 16:00:00', 7.0, 420.0, 3),
-(4, '2024-10-01 17:00:00', 7.5, 420.0, 4),
-(5, '2024-10-01 18:00:00', 8.0, 520.0, 5);
+distancialAgua, capacidadeCalculada, fkReservatorio, fkSensor) VALUES
+(1, '2024-10-01 14:00:00', 7.5, 300.0, 1, 1),
+(2, '2024-10-01 15:00:00', 8.0, 320.0, 2, 2),
+(3, '2024-10-01 16:00:00', 7.0, 420.0, 3, 3),
+(4, '2024-10-01 17:00:00', 7.5, 420.0, 4, 4),
+(5, '2024-10-01 18:00:00', 8.0, 520.0, 5, 5);
 
 INSERT INTO aviso (idAviso, aviso, descricao, dtHrEmissao, fkReservatorio)
 VALUES
