@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>HF System- Cadastro e Login</title>
+
+    <script src="./js/sessao.js"></script>
+
+    <script src="https://kit.fontawesome.com/041dbc8823.js" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="./css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="shortcut icon" type="image/png" href="../config/assets/logotipo-texto-preto.svg">
+
+</head>
+
+<body ">
+    <main>
+        <a id="btn_voltar" target="_blank" href="../index.html"><i class="fa-solid fa-arrow-left"></i></a>
+        <img class="logo" src="../config/assets/logotipo-texto-preto.svg" alt="">
+        <!-- CADASTRO -->
+        <section class="main_contant main_container_cadastro">
+            <section id="container_cadastro_section_login">
+                <div class="textos">
+                    <h2>SEJA BEM-VINDO!</h2>
+                    <h3>Já tem uma conta ?</h3>
+                    <p>Faça login para manter um fluxo constante com a gente.</p>
+                    <button class="toggle_btn" id="btn_login_toggle">LOGIN</button>
+                </div>
+
+                <div class="circulo1 circulos"></div>
+                <div class="circulo2 circulos"></div>
+                <div class="circulo3 circulos"></div>
+                <div class="circulo4 circulos"></div>
+                <div class="circulo5 circulos"></div>
+            </section>
+            <section class="section_formulario" id="section_formulario_cadastro">
+                <div class="container_formulario" id="container_formulario_cadastro">
+                    <h2>CRIAR UMA CONTA</h2>
+                    <form class="formulario" id="formulario_cadastro">
+
+                        <div class="input-container" id="div_input_nome_usuario">
+                            <i id="iconeLogin" class="fas fa-user"></i>
+                            <input type="text" id="input_nome_usuario" placeholder="|NOME USUÁRIO">
+                        </div>
+
+                        <div id="campo_mensagem_erro"></div>
+
+                        <div class="input-container div_input_email">
+                            <i class="fas fa-envelope"></i>
+                            <input type="text" id="input_email_cadastro" placeholder="| EMAIL">
+                        </div>
+
+
+                        <div class="input-container" id="div_input_razao_social">
+                            <i class="fas fa-building"></i>
+                            <input type="text" id="input_razao_social" placeholder="| RAZÃO SOCIAL">
+                        </div>
+
+
+                        <div class="input-container" id="div_input_nome_fantasia">
+                            <i class="fas fa-store"></i>
+                            <input type="text" id="input_nome_fantasia" placeholder="| NOME FANTASIA">
+                        </div>
+
+
+                        <div class="input-container" id="div_input_cnpj">
+                            <i class="fas fa-id-card"></i>
+
+                            <input type="text" id="input_cnpj" placeholder="| CNPJ" maxlength="18">
+                            <!--oninput="formatarCNPJ(this)-->
+                        </div>
+
+
+                        <div class="input-container" id="div_input_representante_legal">
+                            <i class="fas fa-user-tie"></i>
+                            <input type="text" id="input_representante_legal" placeholder="| REPRESENTANTE LEGAL">
+                        </div>
+                        <div class="input-container div_input_senha">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="input_senha_cadastro" placeholder="| SENHA">
+                            <i class="fas fa-eye" id="toggle_senha_cadastro"
+                                onclick="ocultarExibirSenha('toggle_senha_cadastro', 'input_senha_cadastro')"></i>
+                        </div>
+
+                        <div class="input-container" id="div_input_confirmacao_senha">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="input_confirmacao_senha" placeholder="| CONFIRME SUA SENHA">
+                            <i class="fas fa-eye" id="toggle_confirmacao_senha"
+                                onclick="ocultarExibirSenha('toggle_confirmacao_senha', 'input_confirmacao_senha')"></i>
+                        </div>
+                        <button type="submit" onclick="cadastrar()" id="btn_cadastrar">CADASTRAR</button>
+                    </form>
+                </div>
+            </section>
+
+        </section>
+
+
+        <!-- /CADASTRO -->
+
+        <!-- LOGIN -->
+
+        <section class="main_contant main_container_login">
+
+            <section class="section_formulario" id="section_formulario_login">
+
+                <div class="container_formulario" id="container_formulario_login">
+                    <h2>ACESSAR SUA CONTA</h2>
+                    <form class="formulario" id="formulario_login">
+                        <div class="input-container div_input_email">
+                            <i class="fas fa-envelope"></i>
+                            <input type="text" id="input_email_login" placeholder="| E-MAIL">
+                        </div>
+                        <div class="input-container div_input_senha">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="input_senha_login" placeholder="| SENHA">
+                            <i class="fas fa-eye" id="toggle_senha_login"
+                                onclick="ocultarExibirSenha('toggle_senha_login', 'input_senha_login')"></i>
+                        </div>
+                        <button type="submit" onclick="entrar()" id="btn_entrar">ENTRAR</button>
+
+                    </form>
+                </div>
+
+            </section>
+
+
+            <section id="container_login_section_cadastro">
+                <div class="textos">
+                    <h2>É NOVO POR AQUI ?</h2>
+                    <p>Transforme o fluxo do seu negócio e intensifique sua gestão.</p>
+                    <button class="toggle_btn" id="btn_cadastro_toggle">CADASTRE-SE</button>
+                </div>
+
+                <div class="circulo1 circulos"></div>
+                <div class="circulo2 circulos"></div>
+                <div class="circulo3 circulos"></div>
+                <div class="circulo4 circulos"></div>
+                <div class="circulo5 circulos"></div>
+            </section>
+
+        </section>
+
+        <!-- /LOGIN -->
+
+
+    </main>
+</body>
+<script src="../config/js/habilitar_desabilitar_navegação_tab.js"></script>
+<!-- <script src="../config/js/confiracao_auth.js"></script>
+<script src="./js/auth.js"></script> -->
+
+</html>
+
+
+<script>
+
+    function cadastrar() {
+        // aguardar();
+
+        // Recupera o valor do input com o ID 'input_nome_usuario'
+        const nomeUsuario = document.getElementById("input_nome_usuario").value;
+        // Recupera o valor do input com o ID 'input_email_cadastro'
+        const email = document.getElementById("input_email_cadastro").value;
+        // Recupera o valor do input com o ID 'input_razao_social'
+        const razaoSocial = document.getElementById("input_razao_social").value;
+        // Recupera o valor do input com o ID 'input_nome_fantasia'
+        const nomeFantasia = document.getElementById("input_nome_fantasia").value;
+        // Recupera o valor do input com o ID 'input_cnpj'
+        const cnpj = document.getElementById("input_cnpj").value;
+        // Recupera o valor do input com o ID 'input_representante_legal'
+        const representanteLegal = document.getElementById("input_representante_legal").value;
+        // Recupera o valor do input com o ID 'input_senha_cadastro'
+        const senha = document.getElementById("input_senha_cadastro").value;
+
+ 
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+             
+                nomeUsuarioServer: nomeUsuario,      // Nome do usuário
+                emailServer: email,                  // E-mail do usuário
+                razaoSocialServer: razaoSocial,      // Razão social
+                nomeFantasiaServer: nomeFantasia,    // Nome fantasia
+                cnpjServer: cnpj,                   // CNPJ
+                representanteLegalServer: representanteLegal, // Representante legal
+                senhaServer: senha                  // Senha do usuário
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+
+                    console.log("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+                   
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+             
+            });
+
+        return false;
+    }
+
+
+</script>
+
+<!-- function cadastrar() {
+    // Recupera o valor do input com o ID 'input_nome_usuario'
+    const nomeUsuario = document.getElementById("input_nome_usuario").value;
+    // Recupera o valor do input com o ID 'input_email_cadastro'
+    const email = document.getElementById("input_email_cadastro").value;
+    // Recupera o valor do input com o ID 'input_razao_social'
+    const razaoSocial = document.getElementById("input_razao_social").value;
+    // Recupera o valor do input com o ID 'input_nome_fantasia'
+    const nomeFantasia = document.getElementById("input_nome_fantasia").value;
+    // Recupera o valor do input com o ID 'input_cnpj'
+    const cnpj = document.getElementById("input_cnpj").value;
+    // Recupera o valor do input com o ID 'input_representante_legal'
+    const representanteLegal = document.getElementById("input_representante_legal").value;
+    // Recupera o valor do input com o ID 'input_senha_cadastro'
+    const senha = document.getElementById("input_senha_cadastro").value;
+  
+    // Envia os dados para o servidor utilizando a função fetch
+    fetch("/usuarios/cadastrar", {
+      // Define o método HTTP que será usado para enviar os dados (POST, neste caso)
+      method: "POST",
+      // Define o tipo de conteúdo da requisição. O servidor entenderá que está recebendo dados no formato JSON
+      headers: {
+        "Content-Type": "application/json",
+      },
+      // Envia os dados como uma string JSON para o servidor. 'body' é o corpo da requisição.
+      body: JSON.stringify({
+        nomeUsuarioServer: nomeUsuario,      // Nome do usuário
+        emailServer: email,                  // E-mail do usuário
+        razaoSocialServer: razaoSocial,      // Razão social
+        nomeFantasiaServer: nomeFantasia,    // Nome fantasia
+        cnpjServer: cnpj,                   // CNPJ
+        representanteLegalServer: representanteLegal, // Representante legal
+        senhaServer: senha                  // Senha do usuário
+      }),
+    })
+      // Aqui começamos a tratar a resposta da requisição
+      .then(function (resposta) {
+        console.log(resposta); 
+        // Se a resposta for bem-sucedida (status 200-299), entra nesta parte
+        if (resposta.ok) {
+          console.log("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+          // Após o cadastro, redireciona o usuário para a página de login
+          window.location.href = "/login";  // Substitua "/login" pela URL correta de sua página de login
+        } else {
+          // Caso o status da resposta seja algo fora do intervalo 200-299 (ex: 400, 500), lança um erro
+          throw new Error("Houve um erro ao tentar realizar o cadastro!");
+        }
+      })
+      // Esta função é chamada em caso de erro (como problemas de rede ou resposta inválida do servidor)
+      .catch(function (erro) {
+        // Aqui, qualquer erro que aconteça durante a requisição ou no bloco 'then' será capturado
+        console.error(`Erro: ${erro.message}`);  // Mostra o erro no console
+        // Exibe uma mensagem de erro para o usuário
+        alert("Erro ao realizar o cadastro. Tente novamente.");
+      });
+  
+    // Retorna false para evitar que o formulário seja enviado da maneira tradicional (página recarregando)
+    return false;
+  }
+  
+  document.getElementById("formulario_cadastro").addEventListener("submit", function(event) {
+    event.preventDefault(); // Previne o comportamento padrão do formulário
+    cadastrar(); // Chama a função de cadastro
+  }); -->
