@@ -28,7 +28,7 @@ references endereco(idEndereco)
 );
 
 create table fazenda(
-codigoFazenda char(10) primary key, 
+idFazenda int primary key auto_increment, 
 razaoSocial varchar(100), 
 nomeFantasia varchar(100),
 cnpj char(14),
@@ -50,7 +50,7 @@ UmidadeDoAr float,
 temperaturaMinima float,
 temperaturaMaxima float,
 dtHrColeta datetime,
-fkFazenda char(10),
+fkFazenda int,
 constraint fkFazendaClima foreign key (fkFazenda)
  references fazenda(idFazenda)
  );
