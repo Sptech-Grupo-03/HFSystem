@@ -46,7 +46,7 @@ UmidadeDoAr float,
 temperaturaMinima float,
 temperaturaMaxima float,
 dtHrColeta datetime,
-fkFazenda char(10),
+fkFazenda int,
 constraint fkFazendaClima foreign key (fkFazenda)
  references fazenda(idFazenda)
  );
@@ -78,6 +78,9 @@ fkFazenda int,
 
 create table sensor(
 idColeta int primary key auto_increment,
+nome varchar(45),
+status varchar(45),
+distanciaAgua float,
 dtHrColeta datetime,
 fkReservatorio int,
 constraint fkSensorReservatorio foreign key (fkReservatorio)
@@ -86,13 +89,10 @@ constraint fkSensorReservatorio foreign key (fkReservatorio)
 
 CREATE TABLE historicoMedicao (
 idHistoricoMedicao int primary key, 
-dtHrMedicao datetime,
-distanciaAgua float,
-capacidadeCalculada float,
+dtHrNivelCalculado datetime,
+nivelCalculado float,
 fkReservatorio int,
 fkSensor int,
-constraint fkSensorHistorico foreign key (fkSensor)
-references sensor(idSensor),
 constraint fkReservatorioHistorico foreign key (fkReservatorio) 
 references reservatorio(idReservatorio)
 );
@@ -102,8 +102,11 @@ idAviso int,
 aviso varchar(45),
 descricao varchar(120),
 dtHrEmissao date,
+fkHistoricoMedicao int,
 fkReservatorio int,
 constraint checkAviso check (aviso in ('Risco', 'Alerta')),
+constraint fkHistoricoMedicaoAviso foreign key (fkAHistoricoMedicao)
+references historicoMedicao(idHistoricoMedicao),
 constraint fkReservatorioAviso foreign key (fkReservatorio) 
 references reservatorio(idReservatorio));       
 
@@ -152,21 +155,21 @@ insert into sensor (dtHrColeta, fkReservatorio) values
 ('2024-10-21', 4),
 ('2024-10-22', 5);
 
-INSERT INTO historicoMedicao (idHistoricoMedicao, dtHrMedicao, 
-distancialAgua, capacidadeCalculada, fkReservatorio, fkSensor) VALUES
-(1, '2024-10-01 14:00:00', 7.5, 300.0, 1, 1),
-(2, '2024-10-01 15:00:00', 8.0, 320.0, 2, 2),
-(3, '2024-10-01 16:00:00', 7.0, 420.0, 3, 3),
-(4, '2024-10-01 17:00:00', 7.5, 420.0, 4, 4),
-(5, '2024-10-01 18:00:00', 8.0, 520.0, 5, 5);
+INSERT INTO historicoMedicao (idHistoricoMedicao, dtHrNivelCalculado, 
+nivelCalculado, fkReservatorio) VALUES
+(1, '2024-10-01 14:00:00', 300.0, 1),
+(2, '2024-10-01 15:00:00', 320.0, 2),
+(3, '2024-10-01 16:00:00', 420.0, 3),
+(4, '2024-10-01 17:00:00', 420.0, 4),
+(5, '2024-10-01 18:00:00', 520.0, 5);
 
-INSERT INTO aviso (idAviso, aviso, descricao, dtHrEmissao, fkReservatorio)
+INSERT INTO aviso (idAviso, aviso, descricao, dtHrEmissao, fkHistoricoMedicao,fkReservatorio)
 VALUES
-  (1, 'Risco', 'Nível baixo risco de cavitação', '2023-11-20 10:00:00', 1),
-  (2, 'Alerta', 'Nível baixo ', '2023-11-21 15:30:00', 2),
-  (3, 'Risco', 'Cuidado com as bombas', '2023-11-22 08:15:00', 3),
-  (4, 'Alerta', 'Nível baixo', '2023-11-23 12:45:00', 1),
-  (5, 'Risco', 'Entrada de ar nas bombas', '2023-11-24 18:00:00', 2);
+  (1, 'Risco', 'Nível baixo risco de cavitação', '2023-11-20 10:00:00', 1, 1),
+  (2, 'Alerta', 'Nível baixo ', '2023-11-21 15:30:00', 2, 2),
+  (3, 'Risco', 'Cuidado com as bombas', '2023-11-22 08:15:00', 3, 3),
+  (4, 'Alerta', 'Nível baixo', '2023-11-23 12:45:00', 1, 1),
+  (5, 'Risco', 'Entrada de ar nas bombas', '2023-11-24 18:00:00', 2, 2);
 
 select * from sensor join reservatorio on idReservatorio = fkReservatorio;
 
