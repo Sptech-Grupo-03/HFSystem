@@ -56,5 +56,8 @@ function toggleMenu() {
   });  
 }
 
-
+function contato() {
+  // Configura o link mailto para abrir o cliente de e-mail com assunto e corpo opcionais
+  window.location.href = "mailto:hfsystem@gmail.com";
+}
 
