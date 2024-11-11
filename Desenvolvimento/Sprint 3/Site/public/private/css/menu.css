@@ -1,0 +1,349 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Rubik+Wet+Paint&family=Russo+One&family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Saira", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+/* 
+// <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 100 to 900
+
+.saira-<uniquifier> {
+  font-family: "Saira", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+} */
+
+body {
+    background-color: #EDEEF1;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+header {
+    background: linear-gradient(90deg, #08232C, #123942, #215B63, #2E7A81, #499899);
+    display: flex;
+    width: 100%;
+    height: 100px;
+}
+
+header .logo {
+    width: 25%;
+    display: flex;
+    align-items: center;
+    padding: 3%;
+
+    & img {
+        width: 60%;
+    }
+}
+
+header .menu {
+    width: 55%;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 20px;
+    padding-right: 40px;
+
+    & i {
+        font-size: 35px;
+        padding: 20px;
+    }
+}
+
+header .user {
+    width: 25%;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    justify-content: center;
+
+    & span {
+        padding: 10px;
+    }
+}
+
+header .hamburger {
+    width: 5%;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    padding: 3%;
+}
+
+body.sidebar-active main{
+    filter: blur(5px);
+}
+
+.sidebar {
+    position: fixed;
+    top: 100px;
+    right: -250px; /* Inicialmente fora da tela */
+    height: 100%;
+    width: 250px;
+    background-color: #EDEEF1;
+    transition: right 0.3s ease-in-out;
+    z-index: 999;
+    padding-top: 20px;
+    box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.1);
+    /* Adiciona padding para não colar no topo da tela */
+
+    & ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        height: 100%;
+        font-size: 20px;
+        color: #0B5268;
+        margin: 0;
+    }
+
+    & li {
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        transition: background-color 0.3s ease;
+    }
+
+    & li i {
+        padding-right: 15px;
+        font-size: 20px;
+    }
+
+    .option {
+        font-size: 25px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    ul li:hover {
+        cursor: pointer;
+        background-color: #D8D8D8; /* Cor de fundo no hover */
+        width: 100%;
+        transition: 1s;
+    }
+}
+
+ul li.opcoes:hover {
+    background-color: transparent; /* Ou a cor original do fundo */
+    cursor: default; /* Remove o cursor de ponteiro */
+}
+
+.sidebar.active {
+    right: 0;
+    top: 100px;
+    box-shadow: -20px 0 10px rgba(0, 0, 0, 0.12);
+    filter: blur(0px);
+
+    & .hamburger {
+        font-size: 30px;
+        cursor: pointer;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+    }
+
+    & .hamburger i {
+        color: #0B5268;
+    }
+}
+
+#hamburger-icon {
+    transition: transform 0.3s ease;
+}
+
+#hamburger-icon.open {
+    transform: rotate(180deg); /* Rotaciona o ícone quando aberto */
+}
+
+main {
+    width: 80%;
+    background-color: #EDEEF1;
+}
+
+main .pgAtual {
+    padding-top: 2%;
+    font-size: 25px;
+
+    & i {
+        padding-right: 2%;
+    }
+}
+
+main .alerta {
+    background-color: rgb(255, 6, 6, 0.3);
+    margin-top: 3%;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 20px;
+
+    & span {
+        padding: 10px;
+    }
+}
+
+main .reservatorios {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    margin-top: 7%;
+    margin-bottom: 10%;
+}
+
+main .reservatorios .reservatorio {
+    background-color: #F8F8F8;
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    box-shadow: 2px 2px 2px 3px #0000001e;
+    width: calc(45% - 10px);
+    border-radius: 10px;
+}
+
+
+.reservatorio1 .top {
+    color: #971E22;
+}
+
+.reservatorio2 .top {
+    color: #ffd900;
+}
+
+.reservatorio3 .top {
+    color: #000000;
+}
+
+.reservatorio4 .top {
+    color: #000000;
+}
+
+main .reservatorios .reservatorio .top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: bold;
+    margin-bottom: 10%;
+    margin-top: 5px;
+    font-size: 30px;
+
+
+    & i{
+        padding-left: 15%;
+    }
+}
+
+main .reservatorios .reservatorio .mid {
+    display: flex;
+    
+}
+
+main .reservatorios .reservatorio .mid .metricas {
+    display: flex;
+    flex-direction: column;
+    gap: 15%;
+    width: 30%;
+    align-items: flex-start;
+}
+
+.reservatorio1 .mid .porcentagemAtual {
+    position: absolute;
+    color: #971E22;
+    font-size: 40px;
+    font-weight: bold;
+    top: 90%;
+}
+
+.reservatorio2 .mid .porcentagemAtual {
+    position: absolute;
+    color: #ffd900;
+    font-size: 40px;
+    font-weight: bold;
+    top: 90%;
+}
+
+.reservatorio3 .mid .porcentagemAtual {
+    position: absolute;
+    color: #0B5268;
+    font-size: 40px;
+    font-weight: bold;
+    top: 170%;
+}
+
+.reservatorio4 .mid .porcentagemAtual {
+    position: absolute;
+    color: #0B5268;
+    font-size: 40px;
+    font-weight: bold;
+    top: 170%;
+}
+
+.reservatorio2 .bottom {
+    background-color: #ffd900;
+}
+
+.reservatorio3 .bottom {
+    background-color: #45A3E4;
+}
+
+.reservatorio4 .bottom {
+    background-color: #45A3E4;
+}
+
+
+main .reservatorios .reservatorio .mid .imgReservatorio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main .reservatorios .reservatorio .bottom {
+    margin-top: 5px;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 77px;
+    font-size: 25px;
+    border-radius: 15px;
+}
+
+
+.reservatorio1 .bottom {
+    background-color: #971E22;
+}
+
+.reservatorio2 .bottom {
+    background-color: #ffd900;
+}
+
+.reservatorio3 .bottom {
+    background-color: #45A3E4;
+}
+
+.reservatorio4 .bottom {
+    background-color: #45A3E4;
+}

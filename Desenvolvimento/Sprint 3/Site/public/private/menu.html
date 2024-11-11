@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <title>Dashboard - Overview</title>
+</head>
+
+<body>
+    <section class="container">
+        <header>
+            <div class="logo">
+                <img src="assets/logotipo-texto-branco (1) 1.png" alt="">
+            </div>
+
+            <div class="menu">
+                <i class="fa-solid fa-house"></i>
+                <span>Menu</span>
+                <i class="fa-solid fa-bell"></i>
+                Notificações
+            </div>
+            <div class="user">
+                <img src="assets/user.png" alt="">
+                <span>Claudio Frizzarini</span>
+            </div>
+            <div class="hamburger">
+                <i class="fa-solid fa-bars" id="hamburger-icon"></i>
+            </div>
+        
+            <div class="sidebar" id="sidebar">
+                <ul>
+                    <li class="opcoes" class="option"><i class="fa-solid fa-sliders"></i>OPÇÕES</li>
+                    <li><i class="fa-solid fa-gear"></i>Configurações</li>
+                    <li><i class="fa-solid fa-door-open"></i>Sair</li>
+                </ul>
+            </div>
+        </header>
+
+        <main>
+            <div class="pgAtual">
+                <i class="fa-solid fa-house-chimney"></i>
+                <span>MENU</span>
+            </div>
+
+            <div class="alerta">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>O reservatório X está em risco e Y,Y em alerta</span>
+            </div>
+
+            <div class="reservatorios">
+                <div class="reservatorio reservatorio1">
+                    <div class="top">
+                        <span>RESERVATÓRIO SUL 3</span>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </div>
+
+                    <div class="mid">
+                        <div class="metricas">
+                            <span><b>Nível Atual: 10%</b></span>
+                            <span>Nível Ideal: 51%</span>
+                            <span>Nível Alerta: 50%</span>
+                            <span>Nível Risco: 25%</span>
+                        </div>
+
+                        <div class="imgReservatorio">
+                            <img src="assets/reservatorio.png" alt="">
+                            <span class="porcentagemAtual">10%</span>
+                        </div>
+                    </div>
+
+                    <div class="bottom">
+                        <i class="fa-solid fa-laptop"></i>
+                        <span>CONSULTAR</span>
+                    </div>
+                </div>
+
+                <div class="reservatorio reservatorio2">
+                    <div class="top">
+                        <span>RESERVATÓRIO NORTE 1</span>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </div>
+
+                    <div class="mid">
+                        <div class="metricas">
+                            <span><b>Nível Atual: 30%</b></span>
+                            <span>Nível Ideal: 51%</span>
+                            <span>Nível Alerta: 50%</span>
+                            <span>Nível Risco: 25%</span>
+                        </div>
+
+                        <div class="imgReservatorio">
+                            <img src="assets/reservatorio-30.png" alt="">
+                            <span class="porcentagemAtual">30%</span>
+                        </div>
+                    </div>
+
+                    <div class="bottom">
+                        <i class="fa-solid fa-laptop"></i>
+                        <span ><a style="color: white;text-decoration: none;" href="dashboard.html">CONSULTAR</a></span>
+                    </div>
+                </div>
+                <div class="reservatorio reservatorio3">
+                    <div class="top">
+                        <span>RESERVATÓRIO SUL 1</span>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </div>
+
+                    <div class="mid">
+                        <div class="metricas">
+                            <span><b>Nível Atual: 40%</b></span>
+                            <span>Nível Ideal: 51%</span>
+                            <span>Nível Alerta: 50%</span>
+                            <span>Nível Risco: 25%</span>
+                        </div>
+
+                        <div class="imgReservatorio">
+                            <img src="assets/reservatorio-40.png" alt="">
+                            <span class="porcentagemAtual">40%</span>
+                            
+                        </div>
+                    </div>
+
+                    <div class="bottom">
+                        <i class="fa-solid fa-laptop"></i>
+                        <span>CONSULTAR</span>
+                    </div>
+                </div>
+
+                <div class="reservatorio reservatorio4">
+                    <div class="top">
+                        <span>RESERVATÓRIO NORTE 2</span>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </div>
+
+                    <div class="mid">
+                        <div class="metricas">
+                            <span><b>Nível Atual: 90%</b></span>
+                            <span>Nível Ideal: 51%</span>
+                            <span>Nível Alerta: 50%</span>
+                            <span>Nível Risco: 25%</span>
+                        </div>
+
+                        <div class="imgReservatorio">
+                            <img src="assets/reservatorio-90.png" alt="">
+                            <span class="porcentagemAtual">90%</span>
+                            
+                        </div>
+                    </div>
+
+                    <div class="bottom">
+                        <i class="fa-solid fa-laptop"></i>
+                        <span>CONSULTAR</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+</body>
+
+</html>
+
+<script src="js/menu.js"></script>
