@@ -30,8 +30,12 @@ references endereco(idEndereco)
 );
 
 create table fazenda(
-idFazenda int primary key auto_increment, 
-nomeFazenda varchar(100), 
+codigoFazenda char(10) primary key, 
+razaoSocial varchar(100), 
+nomeFantasia varchar(100),
+cnpj char(14),
+telefone char(11), 
+email varchar(100),
 dataCadastro date,
 fkEmpresa int, 
 fkEndereco int,

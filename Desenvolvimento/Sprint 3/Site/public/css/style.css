@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap");
 
-@import url(../../config/css/style_padrao.css);
+@import url(../config/css/style_padrao.css);
 
 
 /*"RESETANDO"/RECONFIGURANDO ALGUMAS ESTILIZAÇÕES PADRÕES DOS NAVEGADORES EM TODOS OS COMPONENTES*/
@@ -792,10 +792,9 @@ main {
 
 #section_contate_nos {
   grid-area: nos-contate;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto auto;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   row-gap: 50px;
 
   & h4 {
@@ -808,6 +807,7 @@ main {
     background-color: var(--cor-secundaria);
     color: var(--cor-primaria);
     padding: 20px 50px;
+    margin: 30px;
     font-size: 2rem;
     font-weight: bold;
     border-radius: 20px;
