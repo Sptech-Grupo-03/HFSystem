@@ -61,3 +61,6 @@ function contato() {
   window.location.href = "mailto:hfsystem@gmail.com";
 }
 
+function suporte() {
+  window.open("https://hydroflowsystem.atlassian.net/servicedesk/customer/portal/1");
+}
