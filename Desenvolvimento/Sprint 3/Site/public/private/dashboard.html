@@ -7,8 +7,13 @@
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://assets.hgbrasil.com/weather/js/hg-weather-1.0.js" type="text/javascript"></script>
 </head>
 <body>
+    
+    <div class="hg-weather" data-key="c381e5f5" data-woeid="455827">
+        <span data-weather="message">Obtendo.<br></span>
+
     <section class="container">
         <header>
             <div class="logo">
@@ -114,40 +119,130 @@
                         CLIMATEMPO HOJE
                     </span>
 
-                    <div class="infoTempo">
-                        <div class="cardPrevisao probChuva">
-                            <div class="infos">
-                                <span>PROB. CHUVA:</span>
-                                <span id="probChuva"><b>2 DIAS</b></span>
+                    <body>
+                        
+                      
+                        <div class="infoTempo">
+                            <!-- Previsão de Chuva -->
+                            <div class="cardPrevisao probChuva">
+                                <div class="infos">
+                                    <span>PROB. CHUVA:</span>
+                                    <span id="probChuva">Obtendo...</span>
+                                </div>
+                                <i class="fa-solid fa-cloud-rain"></i>
                             </div>
-                            <i class="fa-solid fa-cloud-rain"></i>
-                        </div>
+
                         <div class="cardPrevisao tempMaxima">
                             <div class="infos">
-                                <span>TEMP. MÁXIMA:</span>
-                                <span id="tempMaxima"><b>29°C</b></span>
+                                <div class="low-high">
+                                    <span>Temp. Máxima:</span>
+                                    <span id="tempMaxima"></span>
+                                    <i class="fa-solid fa-temperature-arrow-up"></i>
+                                </div>
+                        
                             </div>
-                            <i class="fa-solid fa-temperature-arrow-up"></i>
                         </div>
+                    
                         <div class="cardPrevisao tempMinima">
                             <div class="infos">
                                 <span>TEMP. MINÍMA:</span>
-                                <span id="tempMinima"><b>18°C</b></span>
+                                <span id="tempMinima"></span>
+                                <i class="fa-solid fa-temperature-arrow-down"></i>
                             </div>
-                            <i class="fa-solid fa-temperature-arrow-down"></i>
                         </div>
+
+                       
                         <div class="cardPrevisao umidadeAr">
                             <div class="infos">
+                                <div class="hg-weather" data-key="c381e5f5" data-woeid="455827">
+                                    <span data-weather="message">Obtendo.<br></span>
                                 <span>UMIDADE DO AR:</span>
-                                <span id="umidadeAr"><b>50%</b></span>
+                                <span data-weather="humidity"></span> % <br>
                             </div>
                             <i class="fa-solid fa-wind"></i>
+                            <img style="height: 1px;" data-weather="image"><br>
+                            <img  style="height: 1px;"data-weather="image"><br>
+                        </div>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
     </section>
+    <script>
+const apiKey = "b36426fe6b7644949b540420241211";  // Substitua pela sua chave de API
+const baseURL = "https://api.weatherapi.com/v1/forecast.json";
+
+// Função para buscar a previsão de chuva e as temperaturas
+    function fetchWeatherData(city) {
+    fetch(`${baseURL}?key=${apiKey}&q=${city}&days=1`)
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.forecast && data.forecast.forecastday[0]) {
+                const forecast = data.forecast.forecastday[0].day;
+
+                // Exibindo a probabilidade de chuva
+                const rainProbability = forecast.daily_chance_of_rain;
+                document.getElementById('probChuva').innerText = `${rainProbability}%`;
+
+                // Exibindo temperatura mínima e máxima
+                document.getElementById('tempMinima').innerText = `${Math.round(forecast.mintemp_c)}°C`;
+                document.getElementById('tempMaxima').innerText = `${Math.round(forecast.maxtemp_c)}°C`;
+            } else {
+                console.log("Dados de previsão não encontrados.");
+            }
+        })
+        .catch(error => {
+            console.error("Erro ao buscar dados:", error);
+            alert("Erro ao carregar a previsão do tempo.");
+        });
+}
+
+// Chamar a função de previsão ao carregar a página
+window.addEventListener('load', () => {
+    fetchWeatherData("São Paulo");  // Chama para obter dados de São Paulo, você pode mudar para outras cidades
+});
+        
+        const api = {
+            key: "64ed82577ced7f69cb1687f0ce536131",
+            base: "https://api.openweathermap.org/data/2.5/",
+            lang: "pt_br",
+            units: "metric"
+        }
+  
+        // Preencher temperatura mínima e máxima do Rio de Janeiro
+        function getWeather() {
+            fetch(`${api.base}weather?q=São Paulo&lang=${api.lang}&units=${api.units}&APPID=${api.key}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Erro HTTP: status ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .catch(error => {
+                    alert(error.message);
+                })
+                .then(response => {
+                    displayResults(response);
+                });
+        }
+  
+        function displayResults(weather) {
+            console.log(weather);
+  
+            // Atualiza temperatura mínima
+            document.getElementById('tempMinima').innerText = `${Math.round(weather.main.temp_min)}°C`;
+  
+            // Atualiza temperatura máxima
+            document.getElementById('tempMaxima').innerText = `${Math.round(weather.main.temp_max)}°C`;
+        }
+  
+        // Quando a página carregar, pega os dados de clima do Rio de Janeiro
+        window.addEventListener('load', getWeather);
+        document.addEventListener("DOMContentLoaded", function() {
+          HGWeather.initialize();
+        });
+      </script>
 </body>
 </html>
 
