@@ -129,6 +129,8 @@ function cadastrar() {
   // Recupera o valor do input com o ID 'input_senha_cadastro'
   const senha = document.getElementById("input_senha_cadastro").value;
 
+  // função cadastrar - router - controller - modulo 
+
   fetch("/empresas/cadastrar", {
     method: "POST",
     headers: {
