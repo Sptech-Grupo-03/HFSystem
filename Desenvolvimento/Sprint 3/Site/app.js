@@ -18,6 +18,7 @@ var app = express();
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var empresasRouter = require("./src/routes/empresas");
+var reservatoriosRouter = require("./src/routes/reservatorio");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -28,6 +29,7 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/empresas", empresasRouter);
+app.use("/reservatorios", reservatoriosRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
@@ -46,55 +48,55 @@ app.listen(PORTA_APP, function () {
     \t\tPara alterar o ambiente, comente ou descomente as linhas 1 ou 2 no arquivo 'app.js'\n\n`);
 });
 
-// importando os bibliotecas necessárias GEMINI.IA
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+// // importando os bibliotecas necessárias GEMINI.IA
+// const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 
-// configurando o servidor express
-const PORTA_SERVIDOR = process.env.PORTA;
+// // configurando o servidor express
+// const PORTA_SERVIDOR = process.env.PORTA;
 
-// configurando o gemini (IA)
-const chatIA = new GoogleGenerativeAI(process.env.MINHA_CHAVE);
+// // configurando o gemini (IA)
+// const chatIA = new GoogleGenerativeAI(process.env.MINHA_CHAVE);
 
-// configurando o servidor para receber requisições JSON
-app.use(express.json());
+// // configurando o servidor para receber requisições JSON
+// app.use(express.json());
 
-// configurando o servidor para servir arquivos estáticos
-app.use(express.static(path.join(__dirname, "public")));
+// // configurando o servidor para servir arquivos estáticos
+// app.use(express.static(path.join(__dirname, "public")));
 
-// configurando CORS
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept');
-    next();
-});
+// // configurando CORS
+// app.use((req, res, next) => {
+//     res.header('Access-Control-Allow-Origin', '*');
+//     res.header('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept');
+//     next();
+// });
 
-// inicializando o servidor
-app.listen(PORTA_SERVIDOR, () => {
-    console.info(
-        `
-        ######                ###    #    
-        #     #  ####  #####   #    # #   
-        #     # #    # #    #  #   #   #  
-        ######  #    # #####   #  #     # 
-        #     # #    # #    #  #  ####### 
-        #     # #    # #    #  #  #     # 
-        ######   ####  #####  ### #     # 
-        `
-    );
-    console.info(`A API BobIA iniciada, acesse http://localhost:${PORTA_SERVIDOR}`);
-});
+// // inicializando o servidor
+// app.listen(PORTA_SERVIDOR, () => {
+//     console.info(
+//         `
+//         ######                ###    #    
+//         #     #  ####  #####   #    # #   
+//         #     # #    # #    #  #   #   #  
+//         ######  #    # #####   #  #     # 
+//         #     # #    # #    #  #  ####### 
+//         #     # #    # #    #  #  #     # 
+//         ######   ####  #####  ### #     # 
+//         `
+//     );
+//     console.info(`A API BobIA iniciada, acesse http://localhost:${PORTA_SERVIDOR}`);
+// });
 
-// rota para receber perguntas e gerar respostas
-app.post("/perguntar", async (req, res) => {
-    const pergunta = req.body.pergunta;
+// // rota para receber perguntas e gerar respostas
+// app.post("/perguntar", async (req, res) => {
+//     const pergunta = req.body.pergunta;
 
-    try {
-        const resultado = await gerarResposta(pergunta);
-        res.json( { resultado } );
-    } catch (error) {
-        res.status(500).json({ error: 'Erro interno do servidor' });
-    }
+//     try {
+//         const resultado = await gerarResposta(pergunta);
+//         res.json( { resultado } );
+//     } catch (error) {
+//         res.status(500).json({ error: 'Erro interno do servidor' });
+//     }
 
-});
+// });
 

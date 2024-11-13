@@ -1,6 +1,6 @@
 var empresaModel = require("../models/empresaModel");
 
-// Requisicao - routes - controlers - modols
+
 function autenticar(req, res) {
   var email = req.body.emailServer;
   var senha = req.body.senhaServer;

@@ -9,7 +9,8 @@
     <title>Dashboard - Overview</title>
 </head>
 
-<body>
+<body onload="exibirReservatorios()">
+
     <section class="container">
         <header>
             <div class="logo">
@@ -51,7 +52,7 @@
             </div>
 
             <div class="reservatorios">
-                <div class="reservatorio reservatorio1">
+                <!-- <div class="reservatorio reservatorio1">
                     <div class="top">
                         <span>RESERVATÓRIO SUL 3</span>
                         <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -154,12 +155,38 @@
                         <i class="fa-solid fa-laptop"></i>
                         <span>CONSULTAR</span>
                     </div>
+                </div> -->
+                <div id="reservatorio" class="reservatorio">
+
                 </div>
             </div>
         </main>
     </section>
 </body>
-
 </html>
+<script>
+        function exibirReservatorios() {
+        JSON.parse(sessionStorage.RESERVATORIOS).forEach(item => {
+            document.getElementById("reservatorio").innerHTML += `
+                    <div class="top">
+                        <span>${item.nome}</span>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </div>
 
+                    <div class="mid">
+                        <div class="metricas">
+                            <span><b>Nível Atual: ${item.nivelCalculado}%</b></span>
+                            <span>Nível Ideal: 51%</span>
+                            <span>Nível Alerta: 50%</span>
+                            <span>Nível Risco: 25%</span>
+                        </div>
+
+                        <div class="imgReservatorio">
+                            <img src="assets/reservatorio.png" alt="">
+                            <span class="porcentagemAtual">${item.nivelCalculado}</span>
+                        </div>
+                    `
+        });
+    }
+</script>
 <script src="js/menu.js"></script>

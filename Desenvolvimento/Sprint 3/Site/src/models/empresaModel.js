@@ -18,7 +18,6 @@ function cadastrar(nomeUsuario, email, razaoSocial, nomeFantasia, cnpj, represen
   var instrucaoSql = `
       INSERT INTO empresa (usernameEmpresa, cnpj, email, razaoSocial, nomeFantasia, representanteLegal, senha) VALUES ('${nomeUsuario}', '${cnpj}', '${email}', '${razaoSocial}', '${nomeFantasia}', '${representanteLegal}', '${senha}');
   `;
-  
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }

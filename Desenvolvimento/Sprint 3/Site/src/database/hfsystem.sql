@@ -12,8 +12,6 @@ uf char(2),
 constraint checkTipo check (tipo in ('Fazenda', 'Empresa'))
 );
 
-
-
 create table empresa (
 idEmpresa int primary key auto_increment,
 razaoSocial varchar(100),
