@@ -64,10 +64,6 @@ function login() {
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.SENHA_USUARIO = json.senha;
-
-                    console.log("ENTREI NA DASH");
                     
                     setTimeout(function () {
                         window.location = "../../private/dashboard.html";

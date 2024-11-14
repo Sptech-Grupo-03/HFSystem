@@ -170,6 +170,7 @@
                     </div>
                 </div>
             </main>
+<<<<<<< HEAD
             <!-- HTML para plotar o resultado da chamada da IA
             <div id="container" style="width:30%; background-color: aqua; margin-top: 10%;">
                 <center>
@@ -181,6 +182,8 @@
                     <div id="resposta"></div>
                 </center>
             </div> -->
+=======
+>>>>>>> 04f06488bd228c658fc98f16c890dc6b1450e849
         </section>
         <script>
             const apiKey = "b36426fe6b7644949b540420241211";  // Substitua pela sua chave de API
@@ -256,23 +259,7 @@
                 HGWeather.initialize();
             });
 
-            // fazer a chamada do BobIA
-            async function gerarResposta() {
-                const pergunta = document.getElementById('pergunta').value;
-
-                const response = await fetch('http://localhost:3333/perguntar', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ pergunta })
-                });
-
-                const data = await response.json();
-
-                resposta.style.display = 'block';
-                document.getElementById('resposta').innerText = data.resultado;
-            }
+            
         </script>
 </body>
 
