@@ -36,6 +36,13 @@ function cadastrar(
 
   // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
   //  e na ordem de inserção dos dados.
+<<<<<<< HEAD
+  var instrucaoSql = `
+      INSERT INTO empresa (usernameEmpresa, cnpj, email, razaoSocial, nomeFantasia, representanteLegal, senha) VALUES ('${nomeUsuario}', '${cnpj}', '${email}', '${razaoSocial}', '${nomeFantasia}', '${representanteLegal}', '${senha}');
+  `;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+=======
   var instrucaoSql1 = `
   INSERT INTO usuario (email, senha) VALUES ('${email}', '${senha}');
 `;
@@ -55,6 +62,7 @@ function cadastrar(
     .catch((error) => {
       console.error("Erro ao executar instruções SQL:", error);
     });
+>>>>>>> 04f06488bd228c658fc98f16c890dc6b1450e849
 }
 
 module.exports = {

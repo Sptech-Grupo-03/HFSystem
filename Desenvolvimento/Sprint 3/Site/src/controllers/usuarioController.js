@@ -21,7 +21,7 @@ function autenticar(req, res) {
                       
                         res.json({
                             email: resultadoAutenticar[0].email,
-                            senha: resultadoAutenticar[0].senha,
+                            nome: resultadoAutenticar[0].nome,
                            
                         });                   
                     } else if (resultadoAutenticar.length == 0) {
