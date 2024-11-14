@@ -8,6 +8,7 @@ tipo varchar(45),
 cep char (8),
 complemento varchar(45),
 numero int,
+cidade varchar(80),
 uf char(2),
 constraint checkTipo check (tipo in ('Fazenda', 'Empresa'))
 );
@@ -18,8 +19,6 @@ razaoSocial varchar(100),
 nomeFantasia varchar(100),
 cnpj char(14),
 representanteLegal varchar(45),
-telefone char(11),
-email varchar(100),
 tipoEmpresa varchar(45),
 dtCadastro date,
 fkEndereco int,
@@ -29,11 +28,7 @@ references endereco(idEndereco)
 
 create table fazenda(
 codigoFazenda char(10) primary key, 
-razaoSocial varchar(100), 
-nomeFantasia varchar(100),
-cnpj char(14),
-telefone char(11), 
-email varchar(100),
+nomeFazenda varchar(100),
 dataCadastro date,
 fkEmpresa int, 
 fkEndereco int,
@@ -63,6 +58,9 @@ telefone char(11),
 email varchar(100), 
 senha char(10),
 fkEmpresa int,
+fkFazenda int,
+constraint fkUsuarioFazenda foreign key (fkFazenda)
+	references fazenda(idFazenda),
 constraint fkUsuarioEmpresa foreign key (fkEmpresa)
 	references empresa(idEmpresa)
 );
