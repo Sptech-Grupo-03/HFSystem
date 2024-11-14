@@ -57,8 +57,10 @@ nome varchar(45),
 telefone char(11), 
 email varchar(100), 
 senha char(10),
+nivelAcesso Varchar(45),
 fkEmpresa int,
 fkFazenda int,
+constraint checkNivelAcesso check(nivelAcesso in ('Empresa', 'Administrador', 'Funcionário')),
 constraint fkUsuarioFazenda foreign key (fkFazenda)
 	references fazenda(idFazenda),
 constraint fkUsuarioEmpresa foreign key (fkEmpresa)
