@@ -3,9 +3,11 @@ var router = express.Router();
 
 var ClimaController = require("../controllers/ClimaController");
 
+console.log("entrei no routes");
+
 //Recebendo os dados do html e direcionando para a função cadastrar de empresaController.js
-router.post("/cadastrar", function (req, res) {
-    ClimaController.cadastrar(req, res);
+router.post("/registrarClima", function (req, res) {
+    ClimaController.registrarClima(req, res);
 })
 
 module.exports = router;

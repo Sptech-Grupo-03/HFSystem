@@ -66,7 +66,7 @@ function login() {
                     console.log(JSON.stringify(json));
                     
                     setTimeout(function () {
-                        window.location = "../../private/dashboard.html";
+                        window.location = "../../private/menu.html";
                     }, 1000); // apenas para exibir o loading
 
                 });

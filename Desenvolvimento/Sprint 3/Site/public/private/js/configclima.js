@@ -1,5 +1,9 @@
 const apiKey = "b36426fe6b7644949b540420241211";  // Substitua pela sua chave de API
 const baseURL = "https://api.weatherapi.com/v1/forecast.json";
+var temp_max  
+var temp_min 
+var probabilidadeChuva  
+var umidadeDoAr 
 
 // Função para buscar a previsão de chuva e as temperaturas
     function fetchWeatherData(city) {
@@ -70,3 +74,15 @@ window.addEventListener('load', () => {
         document.addEventListener("DOMContentLoaded", function() {
           HGWeather.initialize();
         });
+
+
+// Função para executar o codigo diariamente e inserir no banco de dados.
+
+// import { schedule } from 'node-cron';
+
+// // Agendar para executar diariamente às 19:00
+// schedule('0 19 * * *', () => {
+//     console.log('Executando a função às 19h:', new Date());
+//     // Coloque aqui a função que deseja executar
+// });
+
