@@ -7,12 +7,13 @@ var umidadeDoAr
 
 // Função para buscar a previsão de chuva e as temperaturas
     function fetchWeatherData(city) {
+        console.log("Iniciando o processo de captura dos dados do clima...")
     fetch(`${baseURL}?key=${apiKey}&q=${city}&days=1`)
         .then(response => response.json())
         .then(data => {
             if (data && data.forecast && data.forecast.forecastday[0]) {
                 const forecast = data.forecast.forecastday[0].day;
-
+                console.log("acessando o fatch")
                 // Exibindo a probabilidade de chuva
                 const rainProbability = forecast.daily_chance_of_rain;
                 document.getElementById('probChuva').innerText = `${rainProbability}%`;
