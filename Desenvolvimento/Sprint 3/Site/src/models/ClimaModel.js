@@ -7,8 +7,7 @@ function registrarClima(probChuva, TemperaturaMax, umidadeAr, TemperaturaMinima)
   // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
   //  e na ordem de inserção dos dados.
   var instrucaoSql = `
-      INSERT INTO clima (probabilidadeDeChuva, temperaturaMaxima, UmidadeDoAr, temperaturaMinima) VALUES ('${probChuva}', '${TemperaturaMax}', '${umidadeAr}', '${TemperaturaMinima}');
-  `;
+      INSERT INTO clima (probabilidadeDeChuva, temperaturaMaxima, UmidadeDoAr, temperaturaMinima) VALUES ('${probChuva}', '${TemperaturaMax}', '${umidadeAr}', '${TemperaturaMinima}'); `;
   console.log("Executando a instrução SQL- TABELA CLIMA: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }

@@ -4,7 +4,7 @@ function registrarClima() {
     const umidadeAr = document.getElementById("umidadeAr").textContent;
     const TemperaturaMinima = document.getElementById("tempMinima").textContent;
   
-    fetch("/clima/cadastrar", {
+    fetch("/clima/registrarClima", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,9 +18,9 @@ function registrarClima() {
     })
       .then(function (resposta) {
         if (resposta.ok) {
-          console.log("Cadastro realizado com sucesso!");
+          console.log("Dados do clima inseridos no banco com sucesso!");
         } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
+          throw "Houve um erro ao tentar realizar a inserção dos dados do clima no banco!";
         }
       })
       .catch(function (erro) {
@@ -28,11 +28,11 @@ function registrarClima() {
       });
   }
   
-  // Adicione este código ao final do arquivo
-  document.addEventListener('DOMContentLoaded', function() {
-    setInterval(function() {
-      console.log('Enviando dados para registro...');
-      cadastrar(); // Chama a função de cadastro
-    }, 10000); // 10000ms = 10 segundos
-  });
+  // // Adicione este código ao final do arquivo
+  // document.addEventListener('DOMContentLoaded', function() {
+  //   setInterval(function() {
+  //     console.log('chamando a função de inserção dos dados do clima...');
+  //     registrarClima(); 
+  //   }, 10000); // 10000ms = 10 segundos
+  // });
   

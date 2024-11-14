@@ -1,7 +1,6 @@
 
-var ClimaModel = require("../models/ClimaModel");
+var climaModel = require("../models/climaModel");
 function registrarClima(req, res) {
-
 
     // probChuvaServer: probChuva, // Probabilidade de Chuva
     // TemperaturaMaxServer: TemperaturaMax, // Temperatura Maxima 
@@ -15,10 +14,11 @@ function registrarClima(req, res) {
     var TemperaturaMinima = req.body.TemperaturaMinimaServer;
   
         // Passe os valores como parâmetro e vá para o arquivo empresaModel.js
-        ClimaModel.registrarClima(probChuva, TemperaturaMax, umidadeAr, TemperaturaMinima)
+        climaModel.registrarClima(probChuva, TemperaturaMax, umidadeAr, TemperaturaMinima)
             .then(
                 function (resultado) {
                     res.json(resultado);
+                    console.log("já passei pelo model")
                 }
             ).catch(
                 function (erro) {

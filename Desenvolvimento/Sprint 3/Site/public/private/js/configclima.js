@@ -5,8 +5,9 @@ var temp_min
 var probabilidadeChuva  
 var umidadeDoAr 
 
+
 // Função para buscar a previsão de chuva e as temperaturas
-    function fetchWeatherData(city) {
+function fetchWeatherData(city) {
         console.log("Iniciando o processo de captura dos dados do clima...")
     fetch(`${baseURL}?key=${apiKey}&q=${city}&days=1`)
         .then(response => response.json())
@@ -45,7 +46,7 @@ window.addEventListener('load', () => {
   
         // Preencher temperatura mínima e máxima do Rio de Janeiro
         function getWeather() {
-            fetch(`${api.base}weather?q=Rio de Janeiro&lang=${api.lang}&units=${api.units}&APPID=${api.key}`)
+            fetch(`${api.base}weather?q=São Paulo&lang=${api.lang}&units=${api.units}&APPID=${api.key}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`Erro HTTP: status ${response.status}`);
