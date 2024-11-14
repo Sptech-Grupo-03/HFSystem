@@ -137,12 +137,12 @@ insert into fazenda (nomeFazenda, dataCadastro, fkEmpresa, fkEndereco) values
 ('Bunge Brasil', '2024-10-13', 4, 4),
 ('SLC Agrícola S/A', '2024-10-15', 5, 5);
 
-insert into usuario (username, nome, telefone, email, senha, fkEmpresa) values
-('ViniGo', 'Vinicius Gonçalves', '47632499830', 'vinicius@jbs.com.br', 'senha1234', 1),
-('NickSo', 'Nicoly Souza', '47987654321', 'nicoly@brf.com.br', 'senhaNick1', 2),
-('AnnaBa', 'Ana Barrocal', '48987654322', 'ana@cargill.com.br', 'senhaAna2', 3),
-('LeonardSa', 'Leonardo Sardinha', '49987654323', 'leo@bunge.com.br', 'senhaLeo3', 4),
-('MathMart', 'Matheus Martinez', '47987654324', 'Math@slcagricola.com.br', 'senhaMath1',  5);
+insert into usuario (username, nome, telefone, email, senha, fkEmpresa, fkFazenda) values
+('ViniGo', 'Vinicius Gonçalves', '47632499830', 'vinicius@jbs.com.br', 'senha1234', 1, 1),
+('NickSo', 'Nicoly Souza', '47987654321', 'nicoly@brf.com.br', 'senhaNick1', 2, 2),
+('AnnaBa', 'Ana Barrocal', '48987654322', 'ana@cargill.com.br', 'senhaAna2', 3, 3),
+('LeonardSa', 'Leonardo Sardinha', '49987654323', 'leo@bunge.com.br', 'senhaLeo3', 4, 4),
+('MathMart', 'Matheus Martinez', '47987654324', 'Math@slcagricola.com.br', 'senhaMath1',  5, 5);
 
 insert into reservatorio (raio, altura,  nivelAtual, nivelIdeal,
 nivelAlerta, nivelRisco, fkFazenda) values
