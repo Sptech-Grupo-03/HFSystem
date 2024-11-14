@@ -48,7 +48,7 @@ app.listen(PORTA_APP, function () {
     \t\tPara alterar o ambiente, comente ou descomente as linhas 1 ou 2 no arquivo 'app.js'\n\n`);
 });
 
-<<<<<<< HEAD
+// <<<<<<< HEAD
 // // importando os bibliotecas necessárias GEMINI.IA
 // const { GoogleGenerativeAI } = require("@google/generative-ai");
 
@@ -101,5 +101,5 @@ app.listen(PORTA_APP, function () {
 
 // });
 
-=======
->>>>>>> 04f06488bd228c658fc98f16c890dc6b1450e849
+// =======
+// >>>>>>> 04f06488bd228c658fc98f16c890dc6b1450e849

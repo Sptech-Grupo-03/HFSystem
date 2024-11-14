@@ -9,7 +9,7 @@
     <title>Dashboard - Overview</title>
 </head>
 
-<body onload="exibirReservatorios()">
+<body onload="exibirReservatorios(), atualizacaoPeriodica()">
 
     <section class="container">
         <header>
@@ -175,7 +175,7 @@
 
                     <div class="mid">
                         <div class="metricas">
-                            <span><b>Nível Atual: ${item.nivelCalculado}%</b></span>
+                            <span id="nivel_atual_"><b>Nível Atual: ${item.nivelCalculado}%</b></span>
                             <span>Nível Ideal: 51%</span>
                             <span>Nível Alerta: 50%</span>
                             <span>Nível Risco: 25%</span>
@@ -183,7 +183,10 @@
 
                         <div class="imgReservatorio">
                             <img src="assets/reservatorio.png" alt="">
-                            <span class="porcentagemAtual">${item.nivelCalculado}</span>
+                            <span class="porcentagemAtual_">${item.nivelCalculado}</span>
+                        </div>
+                        <div id="alerta">
+                        
                         </div>
                     `
         });
