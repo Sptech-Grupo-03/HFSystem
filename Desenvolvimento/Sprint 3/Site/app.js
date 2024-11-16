@@ -19,7 +19,11 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var empresasRouter = require("./src/routes/empresas");
 var reservatoriosRouter = require("./src/routes/reservatorio");
+<<<<<<< HEAD
 var historicoMedicaoRouter =require("./src/routes/historicoMedicao");
+=======
+var climaRouter = require("./src/routes/clima");
+>>>>>>> 3606a46989e5daad448c79535a4a2012bb47e80d
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -31,7 +35,11 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/empresas", empresasRouter);
 app.use("/reservatorios", reservatoriosRouter);
+<<<<<<< HEAD
 app.use("/historicoMedicao", historicoMedicaoRouter);
+=======
+app.use("/clima", climaRouter);
+>>>>>>> 3606a46989e5daad448c79535a4a2012bb47e80d
 
 app.listen(PORTA_APP, function () {
     console.log(`
@@ -50,6 +58,7 @@ app.listen(PORTA_APP, function () {
     \t\tPara alterar o ambiente, comente ou descomente as linhas 1 ou 2 no arquivo 'app.js'\n\n`);
 });
 
+<<<<<<< HEAD
 // <<<<<<< HEAD
 // // importando os bibliotecas necessárias GEMINI.IA
 // const { GoogleGenerativeAI } = require("@google/generative-ai");
@@ -105,3 +114,5 @@ app.listen(PORTA_APP, function () {
 
 // =======
 // >>>>>>> 04f06488bd228c658fc98f16c890dc6b1450e849
+=======
+>>>>>>> 3606a46989e5daad448c79535a4a2012bb47e80d

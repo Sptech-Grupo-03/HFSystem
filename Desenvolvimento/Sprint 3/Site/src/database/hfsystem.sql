@@ -8,6 +8,7 @@ tipo varchar(45),
 cep char (8),
 complemento varchar(45),
 numero int,
+cidade varchar(80),
 uf char(2),
 constraint checkTipo check (tipo in ('Fazenda', 'Empresa'))
 );
@@ -18,8 +19,6 @@ razaoSocial varchar(100),
 nomeFantasia varchar(100),
 cnpj char(14),
 representanteLegal varchar(45),
-telefone char(11),
-email varchar(100),
 tipoEmpresa varchar(45),
 dtCadastro date,
 fkEndereco int,
@@ -29,11 +28,7 @@ references endereco(idEndereco)
 
 create table fazenda(
 codigoFazenda char(10) primary key, 
-razaoSocial varchar(100), 
-nomeFantasia varchar(100),
-cnpj char(14),
-telefone char(11), 
-email varchar(100),
+nomeFazenda varchar(100),
 dataCadastro date,
 fkEmpresa int, 
 fkEndereco int,
@@ -62,7 +57,12 @@ nome varchar(45),
 telefone char(11), 
 email varchar(100), 
 senha char(10),
+nivelAcesso Varchar(45),
 fkEmpresa int,
+fkFazenda int,
+constraint checkNivelAcesso check(nivelAcesso in ('Empresa', 'Administrador', 'Funcionário')),
+constraint fkUsuarioFazenda foreign key (fkFazenda)
+	references fazenda(idFazenda),
 constraint fkUsuarioEmpresa foreign key (fkEmpresa)
 	references empresa(idEmpresa)
 );
@@ -137,12 +137,12 @@ insert into fazenda (nomeFazenda, dataCadastro, fkEmpresa, fkEndereco) values
 ('Bunge Brasil', '2024-10-13', 4, 4),
 ('SLC Agrícola S/A', '2024-10-15', 5, 5);
 
-insert into usuario (username, nome, telefone, email, senha, fkEmpresa) values
-('ViniGo', 'Vinicius Gonçalves', '47632499830', 'vinicius@jbs.com.br', 'senha1234', 1),
-('NickSo', 'Nicoly Souza', '47987654321', 'nicoly@brf.com.br', 'senhaNick1', 2),
-('AnnaBa', 'Ana Barrocal', '48987654322', 'ana@cargill.com.br', 'senhaAna2', 3),
-('LeonardSa', 'Leonardo Sardinha', '49987654323', 'leo@bunge.com.br', 'senhaLeo3', 4),
-('MathMart', 'Matheus Martinez', '47987654324', 'Math@slcagricola.com.br', 'senhaMath1',  5);
+insert into usuario (username, nome, telefone, email, senha, fkEmpresa, fkFazenda) values
+('ViniGo', 'Vinicius Gonçalves', '47632499830', 'vinicius@jbs.com.br', 'senha1234', 1, 1),
+('NickSo', 'Nicoly Souza', '47987654321', 'nicoly@brf.com.br', 'senhaNick1', 2, 2),
+('AnnaBa', 'Ana Barrocal', '48987654322', 'ana@cargill.com.br', 'senhaAna2', 3, 3),
+('LeonardSa', 'Leonardo Sardinha', '49987654323', 'leo@bunge.com.br', 'senhaLeo3', 4, 4),
+('MathMart', 'Matheus Martinez', '47987654324', 'Math@slcagricola.com.br', 'senhaMath1',  5, 5);
 
 insert into reservatorio (raio, altura,  nivelAtual, nivelIdeal,
 nivelAlerta, nivelRisco, fkFazenda) values

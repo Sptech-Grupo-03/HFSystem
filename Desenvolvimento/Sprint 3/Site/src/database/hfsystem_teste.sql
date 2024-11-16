@@ -51,7 +51,7 @@ probabilidadeDeChuva varchar(45),
 UmidadeDoAr float,
 temperaturaMinima float,
 temperaturaMaxima float,
-dtHrColeta datetime,
+dtHrColeta date,
 fkFazenda int,
 constraint fkFazendaClima foreign key (fkFazenda)
  references fazenda(idFazenda)

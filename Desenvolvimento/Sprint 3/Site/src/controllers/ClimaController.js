@@ -1,7 +1,7 @@
 
-var ClimaModel = require("../models/ClimaModel");
-function cadastrar(req, res) {
+var climaModel = require("../models/climaModel");
 
+function registrarClima(req, res) {
 
     // probChuvaServer: probChuva, // Probabilidade de Chuva
     // TemperaturaMaxServer: TemperaturaMax, // Temperatura Maxima 
@@ -10,15 +10,16 @@ function cadastrar(req, res) {
     // // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
 
     var probChuva = req.body.probChuvaServer;
-    var TemperaturaMax = req.body.TemperaturaMaxServer;
+    var temperaturaMax = req.body.temperaturaMaxServer;
     var umidadeAr = req.body.umidadeArServer;
-    var TemperaturaMinima = req.body.TemperaturaMinimaServer;
+    var temperaturaMinima = req.body.temperaturaMinimaServer;
   
         // Passe os valores como parâmetro e vá para o arquivo empresaModel.js
-        ClimaModel.cadastrar(probChuva, TemperaturaMax, umidadeAr, TemperaturaMinima)
+        climaModel.registrarClima(probChuva, temperaturaMax, umidadeAr, temperaturaMinima)
             .then(
                 function (resultado) {
                     res.json(resultado);
+                    console.log("já passei pelo model")
                 }
             ).catch(
                 function (erro) {
@@ -34,5 +35,5 @@ function cadastrar(req, res) {
   
   
   module.exports = {
-    cadastrar
+    registrarClima
   }
