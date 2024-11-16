@@ -1,3 +1,4 @@
+const reservatorioModel  = require("../models/reservatorioModel");
 var usuarioModel = require("../models/usuarioModel");
 
 function autenticar(req, res) {
@@ -17,13 +18,24 @@ function autenticar(req, res) {
                     console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
 
                     if (resultadoAutenticar.length == 1) {
-                        console.log(resultadoAutenticar);   
-                      
-                        res.json({
-                            email: resultadoAutenticar[0].email,
-                            nome: resultadoAutenticar[0].nome,
-                           
-                        });                   
+                        console.log(resultadoAutenticar);
+
+                        reservatorioModel.buscarReservatoriosPorFazenda(resultadoAutenticar[0].fazendaId)
+                            .then((resultadoReservatorio) => {
+                                if (resultadoReservatorio.length > 0) {
+                                    res.json({
+                                        email: resultadoAutenticar[0].email,
+                                        nome: resultadoAutenticar[0].nome,
+                                        reservatorio: resultadoReservatorio,
+                                    });
+
+                                console.log(resultadoAutenticar[0].email)
+                                console.log(resultadoAutenticar[0].nome)
+                                console.log(resultadoReservatorio)
+                                } else {
+                                    res.status(204).json({ reservatorio: [] });
+                                }
+                            })
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {
@@ -42,4 +54,4 @@ function autenticar(req, res) {
 }
 module.exports = {
     autenticar
-  }
+}
