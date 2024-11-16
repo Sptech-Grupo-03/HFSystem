@@ -64,7 +64,8 @@ function login() {
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
-                    
+                    sessionStorage.RESERVATORIOS = JSON.stringify(json.reservatorio)
+
                     setTimeout(function () {
                         window.location = "../../private/menu.html";
                     }, 1000); // apenas para exibir o loading

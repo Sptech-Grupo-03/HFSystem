@@ -43,6 +43,6 @@ function buscarNiveisEmTempoReal(req, res) {
 
 module.exports = {
     buscarUltimosNiveis,
-    buscarNivee
+    buscarNiveisEmTempoReal
 
 }
