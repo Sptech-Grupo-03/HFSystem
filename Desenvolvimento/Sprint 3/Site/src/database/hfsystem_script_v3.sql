@@ -173,15 +173,16 @@ join fazenda
 on usuario.fkFazenda = fazenda.codigoFazenda;
 
 select fazenda.nomeFazenda as Fazenda,
-clima.temperaturaMaxima as TemperaturaMaxima,
-clima.umidadeDoAr as Umidade,
-reservatorio.altura as AlturaReservatorio,
-endereco.tipo as EnderecoTipo	
-from fazenda
-join reservatorio
-on fazenda.codigoFazenda = reservatorio.fkFazenda
-join clima 
-on fazenda.codigoFazenda = clima.fkFazenda
-join endereco
-on fazenda.fkEndereco = endereco.idEndereco;
+max(c.temperaturaMaxima) as TemperaturaMaxima,
+avg(c.umidadeDoAr) as Umidade,
+r.altura as AlturaReservatorio,
+e.tipo as EnderecoTipo	
+from fazenda f
+join reservatorio r 
+on f.codigoFazenda = r.fkFazenda
+join clima c 
+on f.codigoFazenda = c.fkFazenda
+join endereco e
+on f.fkEndereco = e.idEndereco
+group by f.nomeFazenda, e.tipo;
 
