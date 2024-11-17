@@ -85,6 +85,11 @@ constraint fkSensorHistorico foreign key (fkSensor)
 references sensor(idColeta)
 );
 
+alter table historico add column situacaoAtual varchar(45);
+update historico set situacaoAtual = 'Atenção' where idHistorico = 11;
+update historico set situacaoAtual = 'Crítico' where idHistorico = 4;
+update historico set situacaoAtual = 'Crítico' where idHistorico = 13;
+
 create table aviso(
 idAviso int,
 aviso varchar(45),
@@ -183,4 +188,67 @@ join endereco e
 on f.fkEndereco = e.idEndereco
 group by f.nomeFazenda, e.tipo, 
 c.temperaturaMaxima, r.altura;
+
+select * from usuario;
+select * from fazenda;
+select * from reservatorio;
+desc reservatorio;
+select * from historico;
+
+alter table reservatorio add column nome varchar(45);
+update reservatorio set nome = 'Reservatorio 1' where fkFazenda = 'D4C1D9';
+
+SELECT nivelCalculado AS "Nivel Atual"
+FROM historico
+join sensor
+on historico.fkSensor = sensor.idColeta
+join reservatorio
+on sensor.fkReservatorio = reservatorio.idReservatorio
+WHERE idReservatorio = 3
+ORDER BY idReservatorio DESC;
+
+insert into historico (idHistorico, nivelCalculado,fkSensor)
+values (13,220,4);
+
+SELECT nivelCalculado AS "Nivel Atual"
+FROM historico
+JOIN sensor ON historico.fkSensor = sensor.idColeta
+JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
+WHERE idReservatorio = 3
+ORDER BY historico.dtHrNivelCalculado DESC
+LIMIT 1;
+
+select situacaoAtual from historico 
+JOIN sensor ON historico.fkSensor = sensor.idColeta
+JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
+WHERE idReservatorio = 3
+ORDER BY historico.dtHrNivelCalculado DESC
+LIMIT 1;
+
+select * from historico;
+
+
+SELECT COUNT(historico.situacaoAtual) AS AtingiuNivelCritico
+FROM historico
+JOIN sensor ON historico.fkSensor = sensor.idColeta
+JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
+WHERE idReservatorio = 3 AND historico.situacaoAtual = 'Crítico'
+;
+
+select nivelCalculado as Nivel, dtHrNivelCalculado as dtHrNivel from historico 
+JOIN sensor ON historico.fkSensor = sensor.idColeta
+JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
+WHERE idReservatorio = 3
+order by historico.dtHrNivelCalculado;
+;
+
+
+SELECT AVG(nivelCalculado) AS "Media Nivel Calculado"
+FROM historico
+JOIN sensor ON historico.fkSensor = sensor.idColeta
+JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
+WHERE idReservatorio = 3;
+
+
+
 
