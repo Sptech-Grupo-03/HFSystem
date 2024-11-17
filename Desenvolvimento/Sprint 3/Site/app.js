@@ -19,8 +19,9 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var empresasRouter = require("./src/routes/empresas");
 var reservatoriosRouter = require("./src/routes/reservatorio");
-var historicoMedicaoRouter =require("./src/routes/historicoMedicao");
+// var historicoMedicaoRouter =require("./src/routes/historicoMedicao");
 var climaRouter = require("./src/routes/clima");
+var historicoReservatorioRouter = require("./src/routes/historicoReservatorio")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -33,7 +34,8 @@ app.use("/usuarios", usuarioRouter);
 app.use("/empresas", empresasRouter);
 app.use("/reservatorios", reservatoriosRouter);
 
-app.use("/historicoMedicao", historicoMedicaoRouter);
+// app.use("/historicoMedicao", historicoMedicaoRouter);
+app.use("/historicoReservatorio", historicoReservatorioRouter);
 
 app.use("/clima", climaRouter);
 

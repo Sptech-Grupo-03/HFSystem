@@ -104,7 +104,7 @@
                     </div>
                     </div>
                     <div id="btnConsultar" class="bottom"><button class="btn-chart" 
-                    onclick="exibirDetalhesReservatorio(${item.id})" id="btnAquario${item.id}">Consultar</button>
+                    onclick="exibirDetalhesReservatorio(${item.id})" id="btnConsultarReservatorio${item.id}">Consultar</button>
                     </div>
                     <div class="imgReservatorio">
                         <img src="assets/reservatorio.png" alt="">
@@ -113,9 +113,10 @@
                     <div id="alerta">
                     </div>
                     `
+
+                    sessionStorage.idReservatorio = item.idReservatorio
         });
 
-        sessionStorage.nivelAtual = JSON.stringify({nivelAtual: item.nivelAtual})
     }
 
     function exibirDetalhesReservatorio(idReservatorio) {

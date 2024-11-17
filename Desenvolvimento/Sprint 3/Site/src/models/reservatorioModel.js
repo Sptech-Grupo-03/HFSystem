@@ -1,23 +1,23 @@
-var database = require("../database/config")
+var database = require("../database/config");
 
-function buscarReservatoriosPorFazenda(fazendaId) {
+function buscarReservatoriosPorFazenda(idFazenda) {
 
-    var instrucaoSql = `SELECT * FROM reservatorio WHERE fkFazenda = ${fazendaId}`
+  var instrucaoSql = `SELECT * FROM reservatorio WHERE fkFazenda = '${idFazenda}'`;
 
-    console.log("Executando a instrução SQL: \n" + instrucaoSql)
-    return database.executar(instrucaoSql)
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
 }
 
-function cadastrar(fazendaId, nome){
-    
-    var instrucaoSql = `INSERT INTO (nome, fkFazenda) reservatorio VALUES (${nome}, ${fazendaId})`
+function cadastrar(idFazenda, descricao) {
+  
+  var instrucaoSql = `INSERT INTO (descricao, fk_empresa) aquario VALUES (${descricao}, ${empresaId})`;
 
-    console.log("Executando a instrução SQL: \n" + instrucaoSql)
-    return database.executar(instrucaoSql)
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
 }
 
 
 module.exports = {
-    buscarReservatoriosPorFazenda,
-    cadastrar
+  buscarReservatoriosPorFazenda,
+  cadastrar
 }
