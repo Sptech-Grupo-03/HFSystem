@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://assets.hgbrasil.com/weather/js/hg-weather-1.0.js" type="text/javascript"></script>
 </head>
-<body>
+<body onload="receberNivelAtual()">
     
     <div class="hg-weather" data-key="c381e5f5" data-woeid="455827">
         <span data-weather="message">Obtendo.<br></span>
@@ -66,7 +66,7 @@
                         </select>
                     </div>
                     <img src="assets/reservatorio-kpi.png" alt="">
-                    <span id="nivelAtual" class="nivelAtual">30%</span>
+                    <span id="nivelAtual" class="nivelAtual"></span>
                 </div>
 
                 <div class="conjuntokpi">
@@ -172,7 +172,18 @@
 
 </body>
 </html>
+<script>
+    function receberNivelAtual() {
 
+        JSON.parse(sessionStorage.reservatorio).forEach(item => {
+            // document.getElementById("nivelAtual").innerHTML += `
+            //     ${item.nivelAtual}
+
+            console.log(item.nivelAtual)
+        })
+
+    }
+</script>
 <script src="private/js/configclima.js"></script>
 <script src="private/js/dash.js"></script>
 <script src="private/js/RegisterTemp.js"></script>

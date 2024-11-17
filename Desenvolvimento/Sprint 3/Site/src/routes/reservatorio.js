@@ -1,7 +1,7 @@
 var express = require("express")
 var router = express.Router()
 
-router.get("/:idFazenda", function (req, res) {
+router.get("/:fazendaId", function (req, res) {
     reservatorioController.buscarReservatoriosPorFazenda(req, res);
 })
 

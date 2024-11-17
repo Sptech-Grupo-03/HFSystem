@@ -9,7 +9,7 @@
     <title>Dashboard - Overview</title>
 </head>
 
-<body onload="exibirReservatorios()">
+<body onload="exibirReservatorios(), atualizacaoPeriodica()">
 
     <section class="container">
         <header>
@@ -30,7 +30,7 @@
             <div class="hamburger">
                 <i class="fa-solid fa-bars" id="hamburger-icon"></i>
             </div>
-        
+
             <div class="sidebar" id="sidebar">
                 <ul>
                     <li class="opcoes" class="option"><i class="fa-solid fa-sliders"></i>OPÇÕES</li>
@@ -52,110 +52,6 @@
             </div>
 
             <div class="reservatorios">
-                <!-- <div class="reservatorio reservatorio1">
-                    <div class="top">
-                        <span>RESERVATÓRIO SUL 3</span>
-                        <i class="fa-solid fa-ellipsis-vertical"></i>
-                    </div>
-
-                    <div class="mid">
-                        <div class="metricas">
-                            <span><b>Nível Atual: 10%</b></span>
-                            <span>Nível Ideal: 51%</span>
-                            <span>Nível Alerta: 50%</span>
-                            <span>Nível Risco: 25%</span>
-                        </div>
-
-                        <div class="imgReservatorio">
-                            <img src="assets/reservatorio.png" alt="">
-                            <span class="porcentagemAtual">10%</span>
-                        </div>
-                    </div>
-
-                    <div class="bottom">
-                        <i class="fa-solid fa-laptop"></i>
-                        <span>CONSULTAR</span>
-                    </div>
-                </div>
-
-                <div class="reservatorio reservatorio2">
-                    <div class="top">
-                        <span>RESERVATÓRIO NORTE 1</span>
-                        <i class="fa-solid fa-ellipsis-vertical"></i>
-                    </div>
-
-                    <div class="mid">
-                        <div class="metricas">
-                            <span><b>Nível Atual: 30%</b></span>
-                            <span>Nível Ideal: 51%</span>
-                            <span>Nível Alerta: 50%</span>
-                            <span>Nível Risco: 25%</span>
-                        </div>
-
-                        <div class="imgReservatorio">
-                            <img src="assets/reservatorio-30.png" alt="">
-                            <span class="porcentagemAtual">30%</span>
-                        </div>
-                    </div>
-
-                    <div class="bottom">
-                        <i class="fa-solid fa-laptop"></i>
-                        <span ><a style="color: white;text-decoration: none;" href="dashboard.html">CONSULTAR</a></span>
-                    </div>
-                </div>
-                <div class="reservatorio reservatorio3">
-                    <div class="top">
-                        <span>RESERVATÓRIO SUL 1</span>
-                        <i class="fa-solid fa-ellipsis-vertical"></i>
-                    </div>
-
-                    <div class="mid">
-                        <div class="metricas">
-                            <span><b>Nível Atual: 40%</b></span>
-                            <span>Nível Ideal: 51%</span>
-                            <span>Nível Alerta: 50%</span>
-                            <span>Nível Risco: 25%</span>
-                        </div>
-
-                        <div class="imgReservatorio">
-                            <img src="assets/reservatorio-40.png" alt="">
-                            <span class="porcentagemAtual">40%</span>
-                            
-                        </div>
-                    </div>
-
-                    <div class="bottom">
-                        <i class="fa-solid fa-laptop"></i>
-                        <span>CONSULTAR</span>
-                    </div>
-                </div>
-
-                <div class="reservatorio reservatorio4">
-                    <div class="top">
-                        <span>RESERVATÓRIO NORTE 2</span>
-                        <i class="fa-solid fa-ellipsis-vertical"></i>
-                    </div>
-
-                    <div class="mid">
-                        <div class="metricas">
-                            <span><b>Nível Atual: 90%</b></span>
-                            <span>Nível Ideal: 51%</span>
-                            <span>Nível Alerta: 50%</span>
-                            <span>Nível Risco: 25%</span>
-                        </div>
-
-                        <div class="imgReservatorio">
-                            <img src="assets/reservatorio-90.png" alt="">
-                            <span class="porcentagemAtual">90%</span>
-                            
-                        </div>
-                    </div>
-
-                    <div class="bottom">
-                        <i class="fa-solid fa-laptop"></i>
-                        <span>CONSULTAR</span>
-                    </div>
-                </div> -->
                 <div id="reservatorio" class="reservatorio">
 
                 </div>
@@ -163,10 +59,36 @@
         </main>
     </section>
 </body>
+
 </html>
 <script>
-        function exibirReservatorios() {
-        JSON.parse(sessionStorage.RESERVATORIOS).forEach(item => {
+    //  function exibirReservatoriosDoUsuario() {
+    //     var reservatorios = JSON.parse(sessionStorage.reservatorio);
+    //     reservatorios.forEach(item => {
+    //         document.getElementById("graficos").innerHTML += `
+    //             <div id="grafico${item.id}" class="display-none">
+    //                 <h3 class="tituloGraficos">
+    //                     <span id="tituloAquario${item.id}">${item.nome}</span>
+    //                 </h3>
+    //                 <div class="graph">
+    //                     <canvas id="myChartCanvas${item.id}"></canvas>
+    //                 </div>
+    //                 <div class="label-captura">
+    //                     <p id="avisoCaptura${item.id}" style="color: white"></p>
+    //                 </div>
+    //             </div>
+    //         `
+
+    //         obterDadosGrafico(item.id)
+    //     });
+
+    //     if (reservatorios.length > 0) {
+    //         exibirDetalhesReservatorio(reservatorios[0].id)
+    //     }
+    // }
+
+    function exibirReservatorios() {
+        JSON.parse(sessionStorage.reservatorio).forEach(item => {
             document.getElementById("reservatorio").innerHTML += `
                     <div class="top">
                         <span>${item.nome}</span>
@@ -175,18 +97,59 @@
 
                     <div class="mid">
                         <div class="metricas">
-                            <span><b>Nível Atual: ${item.nivelCalculado}%</b></span>
+                            <span id="nivel_atual_"><b>Nível Atual: ${item.nivelAtual}%</b></span>
                             <span>Nível Ideal: 51%</span>
                             <span>Nível Alerta: 50%</span>
                             <span>Nível Risco: 25%</span>
-                        </div>
-
-                        <div class="imgReservatorio">
-                            <img src="assets/reservatorio.png" alt="">
-                            <span class="porcentagemAtual">${item.nivelCalculado}</span>
-                        </div>
+                    </div>
+                    </div>
+                    <div id="btnConsultar" class="bottom"><button class="btn-chart" 
+                    onclick="exibirDetalhesReservatorio(${item.id})" id="btnAquario${item.id}">Consultar</button>
+                    </div>
+                    <div class="imgReservatorio">
+                        <img src="assets/reservatorio.png" alt="">
+                        <span class="porcentagemAtual_">${item.nivelAtual}</span>
+                    </div>
+                    <div id="alerta">
+                    </div>
                     `
         });
+
+        sessionStorage.nivelAtual = JSON.stringify({nivelAtual: item.nivelAtual})
+    }
+
+    function exibirDetalhesReservatorio(idReservatorio) {
+        // let todosOsGraficos = JSON.parse(sessionStorage.reservatorios);
+
+        // for (i = 0; i < todosOsGraficos.length; i++) {
+        //     // exibindo - ou não - o gráfico
+        //     if (todosOsGraficos[i].id != idReservatorio) {
+        //         let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
+        //         if (elementoAtual.classList.contains("display-block")) {
+        //             elementoAtual.classList.remove("display-block")
+        //         }
+        //         elementoAtual.classList.add("display-none")
+
+        //         // alterando estilo do botão
+        //         let btnAtual = document.getElementById(`btnAquario${todosOsGraficos[i].id}`)
+        //         if (btnAtual.classList.contains("btn-pink")) {
+        //             btnAtual.classList.remove("btn-pink")
+        //         }
+        //         btnAtual.classList.add("btn-white")
+        //     }
+        // }
+
+        // // exibindo - ou não - o gráfico
+        // let graficoExibir = document.getElementById(`grafico${idReservatorio}`)
+        // graficoExibir.classList.remove("display-none")
+        // graficoExibir.classList.add("display-block")
+
+        // // alterando estilo do botão
+        // let btnExibir = document.getElementById(`btnAquario${idReservatorio}`)
+        // btnExibir.classList.remove("btn-white")
+        // btnExibir.classList.add("btn-pink")
+
+        window.location = "../../private/dashboard.html";
     }
 </script>
 <script src="js/menu.js"></script>

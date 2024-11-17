@@ -11,8 +11,7 @@
 </head>
 <body>
     
-    <div class="hg-weather" data-key="c381e5f5" data-woeid="455827">
-        <span data-weather="message">Obtendo<br></span>
+   
 
     <section class="container">
         <header>
@@ -216,14 +215,12 @@
 
                                 <div class="cardPrevisao umidadeAr">
                                     <div class="infos">
-                                        <div class="hg-weather" data-key="c381e5f5" data-woeid="455827">
-                                            <span data-weather="message">Obtendo.<br></span>
+                                        
                                             <span>UMIDADE DO AR:</span>
-                                            <span data-weather="humidity"></span> % <br>
-                                        </div>
+                                            <span id="umidadeAr"></span> % <br>
+                                      
                                         <i class="fa-solid fa-wind"></i>
-                                        <img style="height: 1px;" data-weather="image"><br>
-                                        <img style="height: 1px;" data-weather="image"><br>
+                                      
                                     </div>
                                 </div>
                             </div>
@@ -239,21 +236,19 @@
 
 <script src="js/configclima.js"></script>
 <script src="js/dash.js"></script>
-<script src="js/RegisterClima.js"></script>
+<script src="js/registerClima.js"></script>
 
 <script src="js/dash.js"></script>
 
-
 <script>
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
+    
     let proximaAtualizacao;
 
-    window.onload = exibirAquariosDoUsuario();
+    window.onload = exibirReservatorioDoUsario();
 
-    function exibirAquariosDoUsuario() {
-        var aquarios = JSON.parse(sessionStorage.AQUARIOS);
-        aquarios.forEach(item => {
+    function exibirReservatorioDoUsario() {
+        var reservatorio = JSON.parse(sessionStorage.RESERVATORIOS);
+        reservatorio.forEach(item => {
             document.getElementById("btnAquario").innerHTML += `
             <button class="btn-chart" onclick="exibirAquario(${item.id})" id="btnAquario${item.id}">${item.descricao}</button>
             `

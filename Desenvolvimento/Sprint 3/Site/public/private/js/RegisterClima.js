@@ -1,8 +1,4 @@
-function registrarClima() {
-    const probChuva = document.getElementById("probChuva").textContent;
-    const TemperaturaMax = document.getElementById("tempMaxima").textContent;
-    const umidadeAr = document.getElementById("umidadeAr").textContent;
-    const TemperaturaMinima = document.getElementById("tempMinima").textContent;
+function registerWeather() {
   
     fetch("/clima/registrarClima", {
       method: "POST",
@@ -10,10 +6,10 @@ function registrarClima() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        probChuvaServer: probChuva,
-        TemperaturaMaxServer: TemperaturaMax,
-        umidadeArServer: umidadeAr,
-        TemperaturaMinimaServer: TemperaturaMinima,
+        probChuvaServer: weatherProbability[0],
+        umidadeArServer: weatherProbability[1],
+        temperaturaMaxServer: weatherProbability[2],
+        temperaturaMinimaServer: weatherProbability[3],
       }),
     })
       .then(function (resposta) {
@@ -27,12 +23,4 @@ function registrarClima() {
         console.log(`#ERRO: ${erro}`);
       });
   }
-  
-  // // Adicione este código ao final do arquivo
-  // document.addEventListener('DOMContentLoaded', function() {
-  //   setInterval(function() {
-  //     console.log('chamando a função de inserção dos dados do clima...');
-  //     registrarClima(); 
-  //   }, 10000); // 10000ms = 10 segundos
-  // });
   
