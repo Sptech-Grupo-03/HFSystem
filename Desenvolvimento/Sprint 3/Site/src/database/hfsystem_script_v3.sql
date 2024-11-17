@@ -4,6 +4,7 @@ use HFSystem;
 
 create table endereco(
 idEndereco int primary key auto_increment, 
+tipo varchar(45),
 cep char (8),
 complemento varchar(45),
 numero int,
@@ -14,7 +15,7 @@ uf char(2)
 create table fazenda (
 codigoFazenda char(10) primary key,
 razaoSocial varchar(100),
-nomeFantasia varchar(100),
+nomeFazenda varchar(100),
 cnpj char(14),
 representanteLegal varchar(45),
 dtCadastro date,
@@ -33,9 +34,9 @@ UmidadeDoAr float,
 temperaturaMinima float,
 temperaturaMaxima float,
 dtHrColeta datetime,
-fkFazenda int,
+fkFazenda char(10),
 constraint fkFazendaClima foreign key (fkFazenda)
- references fazenda(idFazenda)
+ references fazenda(coodigoFazenda)
  );
 
 create table usuario(
@@ -98,7 +99,7 @@ constraint fkHistoricoAviso foreign key (fkHistorico)
 references historico(idHistorico)
 );       
 
-SELECT * FROM fazenda ;
+SELECT * FROM fazenda;
 
 insert into endereco (cep, complemento, numero, cidade, uf) values
 ('01414001',  'Andar 10', 595, 'São Paulo', 'SP'),
@@ -126,11 +127,11 @@ senha, fkUsuario, fkFazenda) values
 
 insert into reservatorio (raio, altura,  nivelAtual, nivelIdeal,
 nivelAlerta, nivelRisco, fkFazenda) values
-(2.5, 90, 80, 50, 25, 1, 1),
-(3.0, 40, 51, 50, 25, 2, 2),
-(2.5, 10, 51, 50, 25, 3, 3),
-(3.0, 30, 51, 50, 25,4, 4),
-(2.5, 90, 51, 50, 25, 5, 5);
+(2.5, 90, 80, 50, 25, 'BDC9D7'),
+(3.0, 40, 51, 50, 25, 'C7C4D8'),
+(2.5, 10, 51, 50, 25, 'D4C1D9'),
+(3.0, 30, 51, 50, 25, 'ADCCD7'),
+(2.5, 90, 51, 50, 25, 'E0BFDD');
 
 insert into clima (probabilidadeDeChuva, umidadeDoAr, 
 temperaturaMinima, temperaturaMaxima, dtHrColeta, fkFazenda) values
@@ -157,19 +158,19 @@ nivelCalculado, fkSensor) VALUES
 
 insert into aviso (idAviso, aviso, descricao, dtHrEmissao, 
 fkHistorico) values
-  (1, 'Risco', 'Nível baixo risco de cavitação', '2023-11-20 10:00:00', 1, 1),
-  (2, 'Alerta', 'Nível baixo ', '2023-11-21 15:30:00', 2, 2),
-  (3, 'Risco', 'Cuidado com as bombas', '2023-11-22 08:15:00', 3, 3),
-  (4, 'Alerta', 'Nível baixo', '2023-11-23 12:45:00', 1, 1),
-  (5, 'Risco', 'Entrada de ar nas bombas', '2023-11-24 18:00:00', 2, 2);
+  (1, 'Risco', 'Nível baixo risco de cavitação', '2023-11-20 10:00:00', 1),
+  (2, 'Alerta', 'Nível baixo ', '2023-11-21 15:30:00', 2),
+  (3, 'Risco', 'Cuidado com as bombas', '2023-11-22 08:15:00', 3),
+  (4, 'Alerta', 'Nível baixo', '2023-11-23 12:45:00', 1),
+  (5, 'Risco', 'Entrada de ar nas bombas', '2023-11-24 18:00:00', 2);
 
 select * from sensor join reservatorio on idReservatorio = fkReservatorio;
 
 select usuario.nome as Funcionario,
-fazenda.nomeFantasia as "Fazenda contratado"
+fazenda.nomeFazenda as "Fazenda contratado"
 from usuario
-join empresa
-on usuario.fkEmpresa = empresa.idEmpresa;
+join fazenda
+on usuario.fkFazenda = fazenda.codigoFazenda;
 
 select fazenda.nomeFazenda as Fazenda,
 clima.temperaturaMaxima as TemperaturaMaxima,
@@ -178,9 +179,9 @@ reservatorio.altura as AlturaReservatorio,
 endereco.tipo as EnderecoTipo	
 from fazenda
 join reservatorio
-on fazenda.idFazenda = reservatorio.fkFazenda
+on fazenda.codigoFazenda = reservatorio.fkFazenda
 join clima 
-on fazenda.idFazenda = clima.fkFazenda
+on fazenda.codigoFazenda = clima.fkFazenda
 join endereco
 on fazenda.fkEndereco = endereco.idEndereco;
 
