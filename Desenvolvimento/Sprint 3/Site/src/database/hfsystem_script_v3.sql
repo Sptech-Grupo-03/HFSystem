@@ -20,11 +20,8 @@ cnpj char(14),
 representanteLegal varchar(45),
 dtCadastro date,
 fkEndereco int,
-fkClima int,
 constraint fkFazendaEndereco foreign key (fkEndereco)
-references endereco(idEndereco),
-constraint fkFazendaClima foreign key (fkClima)
-references clima(idClima)
+references endereco(idEndereco)
 );
 
 create table clima (
@@ -36,7 +33,7 @@ temperaturaMaxima float,
 dtHrColeta datetime,
 fkFazenda char(10),
 constraint fkFazendaClima foreign key (fkFazenda)
- references fazenda(coodigoFazenda)
+ references fazenda(codigoFazenda)
  );
 
 create table usuario(
@@ -85,7 +82,7 @@ dtHrNivelCalculado timestamp default current_timestamp,
 nivelCalculado float, 
 fkSensor int,
 constraint fkSensorHistorico foreign key (fkSensor) 
-references sensor(idSensor)
+references sensor(idColeta)
 );
 
 create table aviso(
@@ -101,21 +98,21 @@ references historico(idHistorico)
 
 SELECT * FROM fazenda;
 
-insert into endereco (cep, complemento, numero, cidade, uf) values
-('01414001',  'Andar 10', 595, 'São Paulo', 'SP'),
-('24130000', 'Andar 11', 200, 'Teresópolis', 'RJ'),
-('01010000', 'Sede', 100, 'Mogi das Cruzes', 'SP'),
-('01310000', 'Sede', 500, 'Itapevi', 'SP'),
-('76500000', 'Bloco B', 250, 'Jataí', 'GO');
+insert into endereco (tipo, cep, complemento, numero, cidade, uf) values
+('Fazenda', '01414001', 'Andar 10', 595, 'São Paulo', 'SP'),
+('Galpão', '24130000', 'Andar 11', 200, 'Teresópolis', 'RJ'),
+('Sede', '01010000',  'Sede', 100, 'Mogi das Cruzes', 'SP'),
+('Fazenda', '01310000',  'Sede', 500, 'Itapevi', 'SP'),
+('Sede', '76500000', 'Bloco B', 250, 'Jataí', 'GO');
 
 
 insert into fazenda (codigoFazenda, razaoSocial, nomeFazenda, cnpj, representanteLegal, 
-dataCadastro, fkEndereco, fkClima) values
-( 'ADCCD7', 'JBS','JBS S/A', '98.765.432/0001-77', 'Ana Barrocal', '2024-10-10', 1, 1),
-( 'BDC9D7', 'BRF','BRF S/A', '12.345.678/0001-99', 'Leonardo Sardinha', '2024-10-12', 2, 2),
-( 'C7C4D8', 'Cargill Agrícola','Cargill Agrícola S/A', '87.654.321/0001-88', 'Matheus Martinez', '2024-10-14', 3, 3),
-( 'D4C1D9', 'Bunge Brasil','Bunge Brasil S/A', '45.678.901/0001-23', 'Nicolly Sousa', '2024-10-13', 4, 4),
-( 'E0BFDD', 'SLC Agrícola','SLC Agrícola S/A', '98.765.432/0001-12', 'Rennan Moura', '2024-10-15', 5, 5);
+dtCadastro, fkEndereco) values
+( 'ADCCD7', 'JBS','JBS S/A', '98765432000177', 'Ana Barrocal', '2024-10-10', 1),
+( 'BDC9D7', 'BRF','BRF S/A', '12345678000199', 'Leonardo Sardinha', '2024-10-12', 2),
+( 'C7C4D8', 'Cargill Agrícola','Cargill Agrícola S/A', '87654321000188', 'Matheus Martinez', '2024-10-14', 3),
+( 'D4C1D9', 'Bunge Brasil','Bunge Brasil S/A', '45678901000123', 'Nicolly Sousa', '2024-10-13', 4),
+( 'E0BFDD', 'SLC Agrícola','SLC Agrícola S/A', '98765432000112', 'Rennan Moura', '2024-10-15', 5);
 
 insert into usuario (username, nome, tipo, telefone, email, 
 senha, fkUsuario, fkFazenda) values
@@ -127,11 +124,11 @@ senha, fkUsuario, fkFazenda) values
 
 insert into reservatorio (raio, altura,  nivelAtual, nivelIdeal,
 nivelAlerta, nivelRisco, fkFazenda) values
-(2.5, 90, 80, 50, 25, 'BDC9D7'),
-(3.0, 40, 51, 50, 25, 'C7C4D8'),
-(2.5, 10, 51, 50, 25, 'D4C1D9'),
-(3.0, 30, 51, 50, 25, 'ADCCD7'),
-(2.5, 90, 51, 50, 25, 'E0BFDD');
+(2.5, 90, 80, 50, 25, 15, 'BDC9D7'),
+(3.0, 40, 51, 50, 25, 10, 'C7C4D8'),
+(2.5, 10, 51, 50, 25, 15, 'D4C1D9'),
+(3.0, 30, 51, 50, 25, 10, 'ADCCD7'),
+(2.5, 90, 51, 50, 25, 15, 'E0BFDD');
 
 insert into clima (probabilidadeDeChuva, umidadeDoAr, 
 temperaturaMinima, temperaturaMaxima, dtHrColeta, fkFazenda) values
@@ -172,7 +169,7 @@ from usuario
 join fazenda
 on usuario.fkFazenda = fazenda.codigoFazenda;
 
-select fazenda.nomeFazenda as Fazenda,
+select f.nomeFazenda as Fazenda,
 max(c.temperaturaMaxima) as TemperaturaMaxima,
 avg(c.umidadeDoAr) as Umidade,
 r.altura as AlturaReservatorio,
@@ -184,5 +181,6 @@ join clima c
 on f.codigoFazenda = c.fkFazenda
 join endereco e
 on f.fkEndereco = e.idEndereco
-group by f.nomeFazenda, e.tipo;
+group by f.nomeFazenda, e.tipo, 
+c.temperaturaMaxima, r.altura;
 
