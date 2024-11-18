@@ -44,53 +44,49 @@
                     <h2>CRIAR UMA CONTA</h2>
                     <form class="formulario" id="formulario_cadastro">
 
+                        <div class="input-container" id="div_input_codigo_fazenda">
+                            <i class="fa-solid fa-square-check"></i>
+                            <input type="text" id="input_input_codigo_fazenda" placeholder="CÓDIGO DE ACESSO:">
+                        </div>
+                        <div class="input-container" id="div_input_nome_completo">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="input_nome_completo" placeholder="NOME COMPLETO:">
+                        </div>
+
                         <div class="input-container" id="div_input_nome_usuario">
                             <i id="iconeLogin" class="fas fa-user"></i>
-                            <input type="text" id="input_nome_usuario" placeholder="|NOME USUÁRIO">
+                            <input type="text" id="input_nome_usuario" placeholder="NOME USUÁRIO:">
                         </div>
 
                         <div id="campo_mensagem_erro"></div>
 
                         <div class="input-container div_input_email">
                             <i class="fas fa-envelope"></i>
-                            <input type="text" id="input_email_cadastro" placeholder="| EMAIL">
+                            <input type="text" id="input_email_cadastro" placeholder="EMAIL:">
+                        </div>
+
+                        <div class="input-container" id="div_input_confirmacao_email">
+                            <i class="fas fa-envelope"></i>
+                            <input type="text" id="input_confirmacao_email" placeholder="CONFIRME SEU EMAIL:">
                         </div>
 
 
-                        <div class="input-container" id="div_input_razao_social">
-                            <i class="fas fa-building"></i>
-                            <input type="text" id="input_razao_social" placeholder="| RAZÃO SOCIAL">
+                        <div class="input-container" id="div_input_celular">
+                            <i class="fa-solid fa-phone"></i>
+                            <input type="text" id="input_celular" placeholder="CELULAR:">
                         </div>
 
 
-                        <div class="input-container" id="div_input_nome_fantasia">
-                            <i class="fas fa-store"></i>
-                            <input type="text" id="input_nome_fantasia" placeholder="| NOME FANTASIA">
-                        </div>
-
-
-                        <div class="input-container" id="div_input_cnpj">
-                            <i class="fas fa-id-card"></i>
-
-                            <input type="text" id="input_cnpj" placeholder="| CNPJ" maxlength="18" oninput="formatarCNPJ(this)">
-                            
-                        </div>
-
-
-                        <div class="input-container" id="div_input_representante_legal">
-                            <i class="fas fa-user-tie"></i>
-                            <input type="text" id="input_representante_legal" placeholder="| REPRESENTANTE LEGAL">
-                        </div>
                         <div class="input-container div_input_senha">
                             <i class="fas fa-lock"></i>
-                            <input type="password" id="input_senha_cadastro" placeholder="| SENHA">
+                            <input type="password" id="input_senha_cadastro" placeholder="SENHA: ">
                             <i class="fas fa-eye" id="toggle_senha_cadastro"
                                 onclick="ocultarExibirSenha('toggle_senha_cadastro', 'input_senha_cadastro')"></i>
                         </div>
 
                         <div class="input-container" id="div_input_confirmacao_senha">
                             <i class="fas fa-lock"></i>
-                            <input type="password" id="input_confirmacao_senha" placeholder="| CONFIRME SUA SENHA">
+                            <input type="password" id="input_confirmacao_senha" placeholder="CONFIRME SUA SENHA: ">
                             <i class="fas fa-eye" id="toggle_confirmacao_senha"
                                 onclick="ocultarExibirSenha('toggle_confirmacao_senha', 'input_confirmacao_senha')"></i>
                         </div>
@@ -161,6 +157,3 @@
 <script src="./js/login.js"></script>
 
 </html>
-
-
-

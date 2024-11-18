@@ -54,17 +54,14 @@ async function exibirDadosReservatorio(idReservatorio) {
     console.log("Executando a instrução SQL 5:\n" + instrucaoSql5);
     const resultado5 = await database.executar(instrucaoSql5);
 
-<<<<<<< HEAD
-  module.exports = {
-    exibirDadosReservatorio,
-=======
+
     // Retornando todos os resultados em um array
     console.log([resultado1, resultado2, resultado3, resultado4, resultado5])
     return [resultado1, resultado2, resultado3, resultado4, resultado5];
   } catch (error) {
     console.error("Erro ao executar instruções SQL:", error);
     throw error;
->>>>>>> 060676feeefee6ada03222dd0f586957093a2799
+
   }
 }
 

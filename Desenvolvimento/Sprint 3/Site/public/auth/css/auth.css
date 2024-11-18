@@ -384,19 +384,15 @@ h2 {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(5, auto);
     grid-template-areas:
-      "div_input_usuario div_input_email"
-      "div_input_razao_social div_input_nome_fantasia"
-      "div_input_cnpj div_input_representante_legal"
+      "div_input_codigo_fazenda div_input_celular"
+      "div_input_nome_completo div_input_nome_usuario"
+      "div_input_email div_input_confirmacao_email"
       "div_input_senha div_input_confirmacao_senha"
       "btn btn";
     justify-items: center;
     gap: 10px;
     width: 100%;
     height: 100%;
-
-    & #div_input_usuario {
-      grid-area: div_input_usuario;
-    }
 
     & #campo_mensagem_erro {
       grid-area: campo_mensagem_erro;
@@ -406,21 +402,28 @@ h2 {
       padding-left: 30px;
     }
 
-    & #div_input_razao_social {
-      grid-area: div_input_razao_social;
-    }
-    & #div_input_nome_fantasia {
-      grid-area: div_input_nome_fantasia;
-    }
-    & #div_input_cnpj {
-      grid-area: div_input_cnpj;
-    }
-    & #div_input_representante_legal {
-      grid-area: div_input_representante_legal;
+    & #div_input_codigo_fazenda {
+      grid-area: div_input_codigo_fazenda;
     }
 
+    & #div_input_celular {
+      grid-area: div_input_celular;
+    }
+
+    & #div_input_nome_completo {
+      grid-area: div_input_nome_completo;
+    }
+
+    & #div_input_nome_usuario {
+      grid-area: div_input_nome_usuario;
+    }
+    
     & .div_input_email {
       grid-area: div_input_email;
+    }
+
+    & #div_input_confirmacao_email {
+      grid-area: div_input_confirmacao_email;
     }
 
     & .div_input_senha {
