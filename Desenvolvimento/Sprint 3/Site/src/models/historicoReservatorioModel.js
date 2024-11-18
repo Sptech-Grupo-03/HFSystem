@@ -74,6 +74,6 @@ function exibirDadosReservatorio(idReservatorio) {
 
 
   module.exports = {
-    exibirDadosReservatorio
+    exibirDadosReservatorio,
   }
 }
