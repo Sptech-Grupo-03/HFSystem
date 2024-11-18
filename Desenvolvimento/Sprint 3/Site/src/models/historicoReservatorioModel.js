@@ -38,6 +38,21 @@ async function exibirDadosReservatorio(idReservatorio) {
                          JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
                          WHERE idReservatorio = ${idReservatorio}`;
 
+    var instrucaoSql6 = `
+                        SELECT 
+                        FLOOR(historico.nivelCalculado / 
+                        (SELECT AVG(historico.nivelCalculado)
+                        FROM historico
+                        JOIN sensor ON historico.fkSensor = sensor.idColeta
+                        JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
+                        WHERE reservatorio.idReservatorio = ${idReservatorio})) AS ConsumoEstimado
+                        FROM historico
+                        JOIN sensor ON historico.fkSensor = sensor.idColeta
+                        JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
+                        WHERE reservatorio.idReservatorio = ${idReservatorio} 
+                        ORDER BY historico.dtHrNivelCalculado limit 1;
+                        `
+
     // Executando as consultas com await
     console.log("Executando a instrução SQL 1:\n" + instrucaoSql1);
     const resultado1 = await database.executar(instrucaoSql1);
@@ -54,9 +69,12 @@ async function exibirDadosReservatorio(idReservatorio) {
     console.log("Executando a instrução SQL 5:\n" + instrucaoSql5);
     const resultado5 = await database.executar(instrucaoSql5);
 
+    console.log("Executando a instrução SQL 6:\n" + instrucaoSql6);
+    const resultado6 = await database.executar(instrucaoSql6);
+
     // Retornando todos os resultados em um array
-    console.log([resultado1, resultado2, resultado3, resultado4, resultado5])
-    return [resultado1, resultado2, resultado3, resultado4, resultado5];
+    console.log([resultado1, resultado2, resultado3, resultado4, resultado5, resultado6])
+    return [resultado1, resultado2, resultado3, resultado4, resultado5, resultado6];
   } catch (error) {
     console.error("Erro ao executar instruções SQL:", error);
     throw error;

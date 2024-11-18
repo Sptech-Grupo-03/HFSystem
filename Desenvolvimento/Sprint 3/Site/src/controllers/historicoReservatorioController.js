@@ -12,14 +12,14 @@ function exibirDadosReservatorio(req, res) {
     console.log('Entrei no controller');
     historicoReservatorioModel.exibirDadosReservatorio(idReservatorio)
             .then(
-                function (resultadoReservatorio) {
-                    if (resultadoReservatorio.length > 0) {
+                function (resultadoDadosReservatorio) {
+                    if (resultadoDadosReservatorio.length > 0) {
                         res.json({
-                            reservatorio: resultadoReservatorio,
+                            dadosReservatorio: resultadoDadosReservatorio,
                         });
-                    console.log(resultadoReservatorio)
+                    console.log(resultadoDadosReservatorio)
                     } else {
-                        res.status(204).json({ reservatorio: [] });
+                        res.status(204).json({ dadosReservatorio: [] });
                     }
                 }
             ).catch(
