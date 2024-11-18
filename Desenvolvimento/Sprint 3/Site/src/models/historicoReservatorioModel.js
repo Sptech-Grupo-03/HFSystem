@@ -1,79 +1,73 @@
 var database = require("../database/config");
 
-function exibirDadosReservatorio(idReservatorio) {
+async function exibirDadosReservatorio(idReservatorio) {
+  try {
+    // SQL Queries
+    var instrucaoSql1 = `SELECT nivelCalculado AS "Nivel Atual"
+                         FROM historico
+                         JOIN sensor ON historico.fkSensor = sensor.idColeta
+                         JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
+                         WHERE idReservatorio = ${idReservatorio}
+                         ORDER BY historico.dtHrNivelCalculado DESC
+                         LIMIT 1`;
 
-  console.log('Entrei no model')
+    var instrucaoSql2 = `SELECT situacaoAtual 
+                         FROM historico 
+                         JOIN sensor ON historico.fkSensor = sensor.idColeta
+                         JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
+                         WHERE idReservatorio = ${idReservatorio}
+                         ORDER BY historico.dtHrNivelCalculado DESC
+                         LIMIT 1`;
 
+    var instrucaoSql3 = `SELECT COUNT(historico.situacaoAtual) AS AtingiuNivelCritico
+                         FROM historico
+                         JOIN sensor ON historico.fkSensor = sensor.idColeta
+                         JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
+                         WHERE idReservatorio = ${idReservatorio} AND historico.situacaoAtual = 'Crítico'`;
 
-  // nivel atual do reservatorio
-  var instrucaoSql1 = `SELECT nivelCalculado AS "Nivel Atual"
-                        FROM historico
-                          JOIN sensor ON historico.fkSensor = sensor.idColeta
-                            JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
-                              WHERE idReservatorio = ${idReservatorio}
-                                ORDER BY historico.dtHrNivelCalculado DESC
-                                  LIMIT 1
-                      `
-  //situcao atual do reservatorio (critico,atencao,ideal)
-  var instrucaoSql2 = `select situacaoAtual from historico 
-                        JOIN sensor ON historico.fkSensor = sensor.idColeta
-                          JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
-                            WHERE idReservatorio = ${idReservatorio}
-                              ORDER BY historico.dtHrNivelCalculado DESC
-                                LIMIT 1;
-                        `
+    var instrucaoSql4 = `SELECT nivelCalculado AS Nivel, dtHrNivelCalculado AS dtHrNivel 
+                         FROM historico 
+                         JOIN sensor ON historico.fkSensor = sensor.idColeta
+                         JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
+                         WHERE idReservatorio = ${idReservatorio}
+                         ORDER BY historico.dtHrNivelCalculado`;
 
-  // contar aviso crítico
-  var instrucaoSql3 = `SELECT COUNT(historico.situacaoAtual) AS AtingiuNivelCritico
-                        FROM historico
-                          JOIN sensor ON historico.fkSensor = sensor.idColeta
-                            JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
-                              WHERE idReservatorio = ${idReservatorio} AND historico.situacaoAtual = 'Crítico';
-                      `
+    var instrucaoSql5 = `SELECT AVG(nivelCalculado) AS "Media Nivel Calculado"
+                         FROM historico
+                         JOIN sensor ON historico.fkSensor = sensor.idColeta
+                         JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
+                         WHERE idReservatorio = ${idReservatorio}`;
 
+    // Executando as consultas com await
+    console.log("Executando a instrução SQL 1:\n" + instrucaoSql1);
+    const resultado1 = await database.executar(instrucaoSql1);
 
-  // Dados para o gráfico
-  var instrucaoSql4 = `select nivelCalculado as Nivel, dtHrNivelCalculado as dtHrNivel from historico 
-                        JOIN sensor ON historico.fkSensor = sensor.idColeta
-                          JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
-                            WHERE idReservatorio = ${idReservatorio}
-                              order by historico.dtHrNivelCalculado;
-                      `
-
-  var instrucaoSql5 = `SELECT AVG(nivelCalculado) AS "Media Nivel Calculado"
-                        FROM historico
-                          JOIN sensor ON historico.fkSensor = sensor.idColeta
-                            JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
-                              WHERE idReservatorio = ${idReservatorio};
-                          `
-
-
-  var dadosRetornados = []
-
-
-  console.log("Executando a instrução SQL 1:\n" + instrucaoSql1);
-  dadosRetornados.push(database.executar(instrucaoSql1)).then(() => {
     console.log("Executando a instrução SQL 2:\n" + instrucaoSql2);
-    dadosRetornados.push(database.executar(instrucaoSql2)).then(() => {
-      console.log("Executando a instrução 3:\n" + instrucaoSql3);
-      dadosRetornados.push(database.executar(instrucaoSql3)).then(() => {
-        console.log("Executando a instrução 4:\n" + instrucaoSql4);
-        dadosRetornados.push(database.executar(instrucaoSql4)).then(() => {
-          console.log("Executando a instrução 5:\n" + instrucaoSql5);
-          dadosRetornados.push(database.executar(instrucaoSql5))
-          return dadosRetornados
-        })
-      });
-    })
-      .catch((error) => {
-        console.error("Erro ao executar instruções SQL:", error);
-      });
+    const resultado2 = await database.executar(instrucaoSql2);
 
+    console.log("Executando a instrução SQL 3:\n" + instrucaoSql3);
+    const resultado3 = await database.executar(instrucaoSql3);
 
-  })
+    console.log("Executando a instrução SQL 4:\n" + instrucaoSql4);
+    const resultado4 = await database.executar(instrucaoSql4);
 
+    console.log("Executando a instrução SQL 5:\n" + instrucaoSql5);
+    const resultado5 = await database.executar(instrucaoSql5);
 
+<<<<<<< HEAD
   module.exports = {
     exibirDadosReservatorio,
+=======
+    // Retornando todos os resultados em um array
+    console.log([resultado1, resultado2, resultado3, resultado4, resultado5])
+    return [resultado1, resultado2, resultado3, resultado4, resultado5];
+  } catch (error) {
+    console.error("Erro ao executar instruções SQL:", error);
+    throw error;
+>>>>>>> 060676feeefee6ada03222dd0f586957093a2799
   }
 }
+
+module.exports = {
+  exibirDadosReservatorio
+};
