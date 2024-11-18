@@ -30,6 +30,38 @@ function exibirDadosReservatorio(req, res) {
     });
 }
 
+<<<<<<< HEAD
 module.exports = {
   exibirDadosReservatorio,
 };
+=======
+    console.log('Entrei no controller');
+    historicoReservatorioModel.exibirDadosReservatorio(idReservatorio)
+            .then(
+                function (resultadoDadosReservatorio) {
+                    if (resultadoDadosReservatorio.length > 0) {
+                        res.json({
+                            dadosReservatorio: resultadoDadosReservatorio,
+                        });
+                    console.log(resultadoDadosReservatorio)
+                    } else {
+                        res.status(204).json({ dadosReservatorio: [] });
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar a exibição dos dados do reservatório (HistoricoController.js)! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+
+    }
+  
+  module.exports = {
+    exibirDadosReservatorio
+  }
+>>>>>>> b487bea62a5e6226d0d8d1132ab5d6f13f0525a3

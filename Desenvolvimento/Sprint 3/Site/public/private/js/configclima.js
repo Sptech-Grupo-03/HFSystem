@@ -45,9 +45,9 @@ function fetchWeatherData(city) {
 function setWheaterProbability(weatherProbability = []) {
 
   document.getElementById("probChuva").innerHTML = `${weatherProbability[0]}%`;
-  document.getElementById("tempMinima").innerHTML = `${weatherProbability[1]}°C`;
+  document.getElementById("tempMinima").innerHTML = `${weatherProbability[3]}°C`;
   document.getElementById("tempMaxima").innerHTML = `${weatherProbability[2]}°C`;
-  document.getElementById("umidadeAr").innerHTML = `${weatherProbability[3]}`;
+  document.getElementById("umidadeAr").innerHTML = `${weatherProbability[1]}`;
 }
 
 // Chamar a função de previsão ao carregar a página
