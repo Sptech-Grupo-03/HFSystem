@@ -147,6 +147,14 @@ nivelAlerta, nivelRisco, fkFazenda) values
 (3.0, 30, 51, 50, 25,4, 4),
 (2.5, 90, 51, 50, 25, 5, 5);
 
+insert into reservatorio (raio, altura,  nivelAtual, nivelIdeal,
+nivelAlerta, nivelRisco, fkFazenda) values
+(2.5, 90, 80, 50, 25, 1, 1),
+(3.0, 40, 51, 50, 25, 2, 2),
+(2.5, 10, 51, 50, 25, 3, 3),
+(3.0, 30, 51, 50, 25,4, 4),
+(2.5, 90, 51, 50, 25, 5, 5);
+
 insert into clima (probabilidadeDeChuva, umidadeDoAr, 
 temperaturaMinima, temperaturaMaxima, dtHrColeta, fkFazenda) values
 ('2 Dias', 80, 18, 20, '2024-10-18 07:00:00', 1),

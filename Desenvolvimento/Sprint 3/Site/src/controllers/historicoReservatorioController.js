@@ -28,13 +28,7 @@ function exibirDadosReservatorio(req, res) {
       );
       res.status(500).json(erro.sqlMessage);
     });
-}
 
-<<<<<<< HEAD
-module.exports = {
-  exibirDadosReservatorio,
-};
-=======
     console.log('Entrei no controller');
     historicoReservatorioModel.exibirDadosReservatorio(idReservatorio)
             .then(
@@ -64,4 +58,4 @@ module.exports = {
   module.exports = {
     exibirDadosReservatorio
   }
->>>>>>> b487bea62a5e6226d0d8d1132ab5d6f13f0525a3
+

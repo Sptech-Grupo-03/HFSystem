@@ -28,14 +28,14 @@ document
     let mensagemErro = "";
 
     const formulario = document.getElementById("formulario_cadastro");
-
+    
     if (
+      input_codigo_fazenda.value == "" ||
+      input_nome_completo.value == "" ||
       input_nome_usuario.value == "" ||
       input_email_cadastro.value == "" ||
-      input_razao_social.value == "" ||
-      input_nome_fantasia.value == "" ||
-      input_cnpj.value == "" ||
-      input_representante_legal.value == "" ||
+      input_celular.value == "" ||
+      input_confirmacao_email.value == "" ||
       input_senha_cadastro.value == "" ||
       input_confirmacao_senha.value == ""
     ) {
@@ -97,10 +97,10 @@ document
         campoMensagemErro.style.display = "block";
         formulario.style.gridTemplateRows = "repeat(6, auto)";
         formulario.style.gridTemplateAreas = `
-            "div_input_usuario div_input_email"
-            "div_input_razao_social div_input_nome_fantasia"
-            "div_input_cnpj div_input_representante_legal"
-            "div_input_senha div_input_confirmacao_senha"
+            "div_input_codigo_fazenda div_input_celular"
+      "div_input_nome_completo div_input_nome_usuario"
+      "div_input_email div_input_confirmacao_email"
+      "div_input_senha div_input_confirmacao_senha"
             "campo_mensagem_erro campo_mensagem_erro"
             "btn btn"`;
       }
@@ -112,38 +112,32 @@ document
 function cadastrar() {
   // aguardar();
 
-  // Recupera o valor do input com o ID 'input_nome_usuario'
-  const nomeUsuario = document.getElementById("input_nome_usuario").value;
-  // Recupera o valor do input com o ID 'input_email_cadastro'
+  const codigoAcesso = document.getElementById("input_codigo_fazenda").value;
+
+  const nomeComplemento = document.getElementById("input_nome_completo").value;
+
+  const userName = document.getElementById("input_nome_usuario").value;
+
   const email = document.getElementById("input_email_cadastro").value;
-  // Recupera o valor do input com o ID 'input_razao_social'
-  const razaoSocial = document.getElementById("input_razao_social").value;
-  // Recupera o valor do input com o ID 'input_nome_fantasia'
-  const nomeFantasia = document.getElementById("input_nome_fantasia").value;
-  // Recupera o valor do input com o ID 'input_cnpj' e  Remove todos os caracteres que não são dígitos (números) do valor do campo.
-  const cnpj = document.getElementById("input_cnpj").value.replace(/\D/g, "");
-  // Recupera o valor do input com o ID 'input_representante_legal'
-  const representanteLegal = document.getElementById(
-    "input_representante_legal"
-  ).value;
-  // Recupera o valor do input com o ID 'input_senha_cadastro'
+
+  const celular = document.getElementById("input_celular").value;
+
   const senha = document.getElementById("input_senha_cadastro").value;
 
-  // função cadastrar - router - controller - modulo 
+  // função cadastrar - router - controller - modulo
 
-  fetch("/empresas/cadastrar", {
+  fetch("/usuarios/cadastrar", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      nomeUsuarioServer: nomeUsuario, // Nome do usuário
-      emailServer: email, // E-mail do usuário
-      razaoSocialServer: razaoSocial, // Razão social
-      nomeFantasiaServer: nomeFantasia, // Nome fantasia
-      cnpjServer: cnpj, // CNPJ
-      representanteLegalServer: representanteLegal, // Representante legal
-      senhaServer: senha, // Senha do usuário
+      codigoAcessoServer: codigoAcesso,
+      nomeComplementoServer: nomeComplemento,
+      userNameServer: userName,
+      emailServer: email,
+      celularServer: celular,
+      senhaServer: senha,
     }),
   })
     .then(function (resposta) {
