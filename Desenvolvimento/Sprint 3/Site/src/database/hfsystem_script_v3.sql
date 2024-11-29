@@ -249,6 +249,5 @@ JOIN sensor ON historico.fkSensor = sensor.idColeta
 JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
 WHERE idReservatorio = 3;
 
-
-
+select * from usuario;
 
