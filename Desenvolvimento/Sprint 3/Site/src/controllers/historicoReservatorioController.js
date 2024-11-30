@@ -1,7 +1,7 @@
 var historicoReservatorioModel = require("../models/historicoReservatorioModel");
 
 function exibirDadosReservatorio(req, res) {
-  var idReservatorio = req.body.idReservatorioServer;
+  var idReservatorio = req.query.idReservatorio;
 
   if (idReservatorio == undefined) {
     res.status(400).send("idReservatorio undefined");
