@@ -73,7 +73,7 @@ async function exibirDadosReservatorio(idReservatorio) {
     console.log("Executando a instrução SQL 6:\n" + instrucaoSql6);
     const resultado6 = await database.executar(instrucaoSql6);
 
-    // Retornando todos os resultados em um array
+
     console.log([resultado1, resultado2, resultado3, resultado4, resultado5, resultado6])
     return [resultado1, resultado2, resultado3, resultado4, resultado5, resultado6];
   } catch (error) {
