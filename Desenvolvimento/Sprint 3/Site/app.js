@@ -19,6 +19,7 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var empresasRouter = require("./src/routes/empresas");
 var reservatoriosRouter = require("./src/routes/reservatorio");
+var gerenciarReservatorioRouter = require("./src/routes/gerenciarReservatorio");
 // var historicoMedicaoRouter =require("./src/routes/historicoMedicao");
 var climaRouter = require("./src/routes/clima");
 var historicoReservatorioRouter = require("./src/routes/historicoReservatorio")
@@ -33,10 +34,8 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/empresas", empresasRouter);
 app.use("/reservatorios", reservatoriosRouter);
-
-// app.use("/historicoMedicao", historicoMedicaoRouter);
+app.use("/gerenciarReservatorio", gerenciarReservatorioRouter);
 app.use("/historicoReservatorio", historicoReservatorioRouter);
-
 app.use("/clima", climaRouter);
 
 
