@@ -39,8 +39,42 @@ function cadastrarReservatorio(req, res) {
     );
 }
 
+function listarReservatorios(req, res) {
+    const codigoFazenda = req.query.codFazenda;
+
+    if (!codigoFazenda) {
+        return res.status(400).send("Código da fazenda não informado.");
+    }
+
+    gerenciarReservatorioModel.listarReservatorioDelete(codigoFazenda)
+        .then(reservatorios => {
+            res.status(200).json(reservatorios);
+        })
+        .catch(erro => {
+            console.error("Erro ao listar reservatórios para exclusão:", erro);
+            res.status(500).send("Erro ao listar reservatórios.");
+        });
+}
+
+function removerReservatorio(req, res){
+    const idReservatorio = req.query.idReservatorio
+
+    if (!idReservatorio) {
+        return res.status(400).send("Código do reservatório não fornecido.");
+    }
+
+    gerenciarReservatorioModel.removerReservatorio(idReservatorio).then(
+        () => res.status(200).send("Reservatório removido com sucesso.")
+    ).catch(erro => {
+        console.error("Erro ao remover reservatório:", erro);
+        res.status(500).send("Erro ao remover reservatório.");
+    });
+}
+
 module.exports = {
     listarFazenda,
-    cadastrarReservatorio
+    cadastrarReservatorio,
+    listarReservatorios,
+    removerReservatorio
 }
 

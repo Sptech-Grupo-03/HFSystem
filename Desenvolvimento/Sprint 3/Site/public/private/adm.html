@@ -15,7 +15,7 @@
 
 </head>
 
-<body onload="listarFazenda()">
+<body onload="listarFazenda(), excluirReservatorio()">
     <section class="container">
         <header>
             <div class="logo">
@@ -140,82 +140,131 @@
         });
     }
 
-
     function atualizarSelectFazendas() {
-    const selectFazendaAdd = document.getElementById("select_fazenda_add");
-    const selectFazendaRm = document.getElementById("select_fazenda_rm");
-    const fazendasString = sessionStorage.getItem("fazendas");
+        const selectFazendaAdd = document.getElementById("select_fazenda_add");
+        const selectFazendaRm = document.getElementById("select_fazenda_rm");
+        const fazendasString = sessionStorage.getItem("fazendas");
 
-    if (!fazendasString) {
-        console.error("Fazendas não encontradas no sessionStorage.");
-        return;
-    }
-
-    const fazendas = JSON.parse(fazendasString);
-
-    // Limpar os selects de fazenda
-    selectFazendaAdd.innerHTML = "<option value=''>Selecione uma fazenda</option>";
-    selectFazendaRm.innerHTML = "<option value=''>Selecione uma fazenda</option>";
-
-    // Adicionar as opções de fazendas aos selects
-    fazendas.forEach(fazenda => {
-        const optionAdd = document.createElement("option");
-        optionAdd.value = fazenda.codFazenda;
-        optionAdd.textContent = fazenda.nomeFazenda;
-        selectFazendaAdd.appendChild(optionAdd);
-
-        const optionRm = document.createElement("option");
-        optionRm.value = fazenda.codFazenda;
-        optionRm.textContent = fazenda.nomeFazenda;
-        selectFazendaRm.appendChild(optionRm);
-    });
-
-    // Chamar a função para atualizar os reservatórios após preencher o select de fazendas
-    selectFazendaRm.addEventListener("change", function() {
-        const codFazenda = this.value;
-        if (codFazenda) {
-            atualizarSelectReservatorios(codFazenda); // Atualiza os reservatórios ao mudar a fazenda
+        if (!fazendasString) {
+            console.error("Fazendas não encontradas no sessionStorage.");
+            return;
         }
-    });
-}
 
+        const fazendas = JSON.parse(fazendasString);
+
+        selectFazendaAdd.innerHTML = "<option value=''>Selecione uma fazenda</option>";
+        selectFazendaRm.innerHTML = "<option value=''>Selecione uma fazenda</option>";
+
+  
+        fazendas.forEach(fazenda => {
+            const optionAdd = document.createElement("option");
+            optionAdd.value = fazenda.codFazenda;
+            optionAdd.textContent = fazenda.nomeFazenda;
+            selectFazendaAdd.appendChild(optionAdd);
+
+            const optionRm = document.createElement("option");
+            optionRm.value = fazenda.codFazenda;
+            optionRm.textContent = fazenda.nomeFazenda;
+            selectFazendaRm.appendChild(optionRm);
+        });
+
+        selectFazendaRm.addEventListener("change", function () {
+            const codFazenda = this.value;
+            if (codFazenda) {
+                atualizarSelectReservatorios(codFazenda);
+            }
+        });
+    }
 
     function cadastrarReservatorio() {
-    var codFazenda = document.getElementById("select_fazenda_add").value;
-    var nomeReservatorio = document.getElementById("nome_reservatorio").value;
-    var alturaReservatorio = parseFloat(document.getElementById("altura").value); 
-    var raioReservatorio = parseFloat(document.getElementById("raio").value);     
+        var codFazenda = document.getElementById("select_fazenda_add").value;
+        var nomeReservatorio = document.getElementById("nome_reservatorio").value;
+        var alturaReservatorio = parseFloat(document.getElementById("altura").value);
+        var raioReservatorio = parseFloat(document.getElementById("raio").value);
 
-    if (codFazenda == "" || nomeReservatorio == "" || isNaN(alturaReservatorio) || isNaN(raioReservatorio)) {
-        return alert("Preencha todos os campos corretamente.");
+        if (codFazenda == "" || nomeReservatorio == "" || isNaN(alturaReservatorio) || isNaN(raioReservatorio)) {
+            return alert("Preencha todos os campos corretamente.");
+        }
+
+        console.log("codFazenda:", codFazenda);
+        console.log("alturaReservatorio:", alturaReservatorio);
+        console.log("raioReservatorio:", raioReservatorio);
+
+        fetch("/gerenciarReservatorio/cadastrarReservatorio", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nomeReservatorioServer: nomeReservatorio,
+                alturaReservatorioServer: alturaReservatorio,
+                raioReservatorioServer: raioReservatorio,
+                codFazendaServer: codFazenda
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log('Reservatório Cadastrado com Sucesso');
+                alert('Reservatório Cadastrado com Sucesso');
+            } else {
+                throw new Error("Houve um erro ao tentar cadastrar o reservatório!");
+            }
+        }).catch(function (erro) {
+            console.error("Erro ao cadastrar:", erro);
+            alert("Houve um erro ao realizar o cadastro do reservatório!");
+        });
     }
 
-    console.log("codFazenda:", codFazenda);
-    console.log("alturaReservatorio:", alturaReservatorio);
-    console.log("raioReservatorio:", raioReservatorio);
+    function atualizarSelectReservatorios(codFazenda) {
+        const selectReservatorio = document.getElementById("select_reservatorio");
 
-    fetch("/gerenciarReservatorio/cadastrarReservatorio", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            nomeReservatorioServer: nomeReservatorio,
-            alturaReservatorioServer: alturaReservatorio,
-            raioReservatorioServer: raioReservatorio,
-            codFazendaServer: codFazenda
-        })
-    }).then(function (resposta) {
-        if (resposta.ok) {
-            console.log('Reservatório Cadastrado com Sucesso');
-            alert('Reservatório Cadastrado com Sucesso');
-        } else {
-            throw new Error("Houve um erro ao tentar cadastrar o reservatório!");
-        }
-    }).catch(function (erro) {
-        console.error("Erro ao cadastrar:", erro);
-        alert("Houve um erro ao realizar o cadastro do reservatório!");
-    });
-}
+        selectReservatorio.innerHTML = "<option value=''>Selecione um reservatório</option>";
+
+        fetch(`/gerenciarReservatorio/listarReservatorios?codFazenda=${codFazenda}`).then(
+            function (resposta) {
+                if (!resposta) {
+                    throw new Error('Erro ao buscar reservatórios para exclusão')
+                }
+                return resposta.json();
+            }).then(reservatorios => {
+                reservatorios.forEach(reservatorio => {
+                    const option = document.createElement("option");
+                    option.value = reservatorio.idReservatorio;
+                    option.textContent = reservatorio.nome;
+                    selectReservatorio.appendChild(option);
+                })
+            }).catch(erro => {
+                console.error("Erro ao listar reservatórios:", erro);
+            });
+
+    }
+
+    function excluirReservatorio() {
+        document.getElementById("btn_remover").addEventListener("click", function () {
+            const idReservatorio = document.getElementById("select_reservatorio").value;
+
+            if (!idReservatorio) {
+                return alert("Selecione um reservatório para remover.");
+            }
+
+            fetch(`/gerenciarReservatorio/removerReservatorio?idReservatorio=${idReservatorio}`, {
+                method: "DELETE",
+            }).then(resposta => {
+                if (resposta.ok) {
+                    alert("Reservatório removido com sucesso.");
+                    const codFazenda = document.getElementById("select_fazenda_rm").value;
+                    if (codFazenda) {
+                        atualizarSelectReservatorios(codFazenda);
+                    }
+                } else {
+                    throw new Error("Erro ao remover o reservatório.");
+                }
+            }).catch(erro => {
+                console.error("Erro:", erro);
+                alert("Erro ao tentar remover o reservatório.");
+            });
+        });
+    }
 
 </script>
+
+<script src="js/menu.js"></script>

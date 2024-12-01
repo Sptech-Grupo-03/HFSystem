@@ -21,13 +21,40 @@ function cadastrarReservatorioFazenda(nomeReservatorio,alturaReservatorio,raioRe
 
     var instrucaoSql = 
     `
-    insert into reservatorio (nome,altura,raio,fkFazenda) values ('${nomeReservatorio}', ${alturaReservatorio},${raioReservatorio},'${codFazenda}');
+    insert into reservatorio
+     (nome,altura,raio,fkFazenda) 
+        values 
+            ('${nomeReservatorio}', ${alturaReservatorio},${raioReservatorio},'${codFazenda}');
     `
 
     return database.executar(instrucaoSql);
 }
 
+function listarReservatorioDelete(codigoFazenda){
+    
+    var instrucaoSql = 
+    `
+    select * 
+        from reservatorio
+            where fkFazenda = '${codigoFazenda}';
+    `
+    return database.executar(instrucaoSql)
+
+}
+
+function removerReservatorio(idReservatorio){
+    var instrucaoSql = 
+    `
+    delete from
+        reservatorio 
+            where idReservatorio = ${idReservatorio};
+    `
+    return database.executar(instrucaoSql)
+}
+
 module.exports = {
     listarReservatorioFazenda,
-    cadastrarReservatorioFazenda
+    cadastrarReservatorioFazenda,
+    listarReservatorioDelete,
+    removerReservatorio
 }
