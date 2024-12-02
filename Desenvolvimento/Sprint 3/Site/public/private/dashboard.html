@@ -170,6 +170,7 @@
     </main>
     </section>
 </body>
+
 </html>
 
 
@@ -182,9 +183,9 @@
 <script>
 
     function exibirHistoricoReservatorio() {
-       
+
         const idReservatorio = sessionStorage.idReservatorio
-        
+
         fetch(`/historicoReservatorio/exibirDadosReservatorio?idReservatorio=${idReservatorio}`)
             .then(function (resposta) {
                 console.log("resposta: ", resposta);
@@ -210,11 +211,11 @@
                 console.log(`#ERRO: ${resposta}`);
             });
         return false;
-        
+
     }
 
-    
-    function defineDadosReservatorio(){
+
+    function defineDadosReservatorio() {
         let dadosString = sessionStorage.getItem('dadosReservatorio');
         let dados = JSON.parse(dadosString);
 
@@ -227,140 +228,140 @@
         let labels = [];
         let dataNiveis = [];
         dados[3].forEach(entry => {
-            labels.push(entry.dtHrNivel); 
-            dataNiveis.push(entry.Nivel); 
-    });
+            labels.push(entry.dtHrNivel);
+            dataNiveis.push(entry.Nivel);
+        });
 
-    atualizarGrafico(labels, dataNiveis);
+        atualizarGrafico(labels, dataNiveis);
     }
 
     function atualizarGrafico(labels, dataNiveis) {
-    // Configurações dinâmicas do Chart.js
-    const ctx = document.getElementById('fluxoAgua').getContext('2d');
+        // Configurações dinâmicas do Chart.js
+        const ctx = document.getElementById('fluxoAgua').getContext('2d');
 
-    const data = {
-        labels: labels, 
-        datasets: [
-            {
-                label: 'Nível Atual (%)',
-                data: dataNiveis,
-                borderColor: 'cyan',
-                borderWidth: 2,
-                pointBackgroundColor: 'cyan',
-                pointBorderColor: 'black',
-                pointRadius: 5,
-                fill: true,
-                backgroundColor: 'rgba(0, 123, 167, 0.3)',
-            },
-            {
-                label: 'Nível Ideal',
-                data: Array(labels.length).fill(51),
-                borderColor: 'green',
-                borderWidth: 1,
-                borderDash: [0, 0],
-                fill: false,
-                pointRadius: 0
-            },
-            {
-                label: 'Nível de Alerta',
-                data: Array(labels.length).fill(50),
-                borderColor: 'yellow',
-                borderWidth: 2,
-                borderDash: [0, 0],
-                fill: false,
-                pointRadius: 0
-            },
-            {
-                label: 'Nível de risco',
-                data: Array(labels.length).fill(25),
-                borderColor: 'red',
-                borderWidth: 1,
-                borderDash: [0, 0],
-                fill: false,
-                pointRadius: 0
-            }
-        ]
-    };
-
-    const config = {
-        type: 'line',
-        data: data,
-        options: {
-            responsive: true,
-            scales: {
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Horário',
-                        font: {
-                            size: 20
-                        }
-                    },
-                    ticks: {
-                        font: {
-                            size: 16,
-                            weight: 'bold'
-                        },
-                        color: 'black'
-                    },
-                    grid: {
-                        display: false
-                    }
+        const data = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Nível Atual (%)',
+                    data: dataNiveis,
+                    borderColor: 'cyan',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'cyan',
+                    pointBorderColor: 'black',
+                    pointRadius: 5,
+                    fill: true,
+                    backgroundColor: 'rgba(0, 123, 167, 0.3)',
                 },
-                y: {
-                    title: {
-                        display: true,
-                        text: 'Nível de água (%)', font: {
-                            size: 20
+                {
+                    label: 'Nível Ideal',
+                    data: Array(labels.length).fill(51),
+                    borderColor: 'green',
+                    borderWidth: 1,
+                    borderDash: [0, 0],
+                    fill: false,
+                    pointRadius: 0
+                },
+                {
+                    label: 'Nível de Alerta',
+                    data: Array(labels.length).fill(50),
+                    borderColor: 'yellow',
+                    borderWidth: 2,
+                    borderDash: [0, 0],
+                    fill: false,
+                    pointRadius: 0
+                },
+                {
+                    label: 'Nível de risco',
+                    data: Array(labels.length).fill(25),
+                    borderColor: 'red',
+                    borderWidth: 1,
+                    borderDash: [0, 0],
+                    fill: false,
+                    pointRadius: 0
+                }
+            ]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Horário',
+                            font: {
+                                size: 20
+                            }
+                        },
+                        ticks: {
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            },
+                            color: 'black'
+                        },
+                        grid: {
+                            display: false
                         }
                     },
-                    min: 0,
-                    max: 100,
-                    ticks: {
-                        stepSize: 10,
-                        font: {
-                            size: 16,
-                            weight: 'bold'
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Nível de água (%)', font: {
+                                size: 20
+                            }
                         },
-                        color: 'black'
-                    },
-                    grid: {
-                        display: false
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    labels: {
-                        font: {
-                            size: 18
+                        min: 0,
+                        max: 100,
+                        ticks: {
+                            stepSize: 10,
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            },
+                            color: 'black'
                         },
-                        color: 'black',
-                        boxWidth: 20,
-                        padding: 15,
-                        generateLabels: function (chart) {
-                            const original = Chart.defaults.plugins.legend.labels.generateLabels;
-                            const labels = original.call(this, chart);
-                            labels.forEach((label, index) => {
-                                label.fillStyle = chart.data.datasets[index].borderColor;
-                            });
-                            return labels;
+                        grid: {
+                            display: false
                         }
                     }
                 },
-            },
-            elements: {
-                line: {
-                    borderCapStyle: 'round',
-                    borderJoinStyle: 'round',
+                plugins: {
+                    legend: {
+                        labels: {
+                            font: {
+                                size: 18
+                            },
+                            color: 'black',
+                            boxWidth: 20,
+                            padding: 15,
+                            generateLabels: function (chart) {
+                                const original = Chart.defaults.plugins.legend.labels.generateLabels;
+                                const labels = original.call(this, chart);
+                                labels.forEach((label, index) => {
+                                    label.fillStyle = chart.data.datasets[index].borderColor;
+                                });
+                                return labels;
+                            }
+                        }
+                    },
+                },
+                elements: {
+                    line: {
+                        borderCapStyle: 'round',
+                        borderJoinStyle: 'round',
+                    }
                 }
             }
-        }
-    };
+        };
 
-    // Inicializa o gráfico
-    new Chart(ctx, config);
-}
+        // Inicializa o gráfico
+        new Chart(ctx, config);
+    }
 
 
 </script>
