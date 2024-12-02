@@ -1,0 +1,232 @@
+@import url(../../config/css/style_padrao.css);
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 100px 1fr;
+  align-items: center;
+}
+
+header {
+  background: linear-gradient(
+    90deg,
+    #08232c,
+    #123942,
+    #215b63,
+    #2e7a81,
+    #499899
+  );
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+header .logo {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  padding: 3%;
+
+  & img {
+    width: 60%;
+  }
+}
+
+header .menu {
+  width: 55%;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px;
+  padding-right: 40px;
+
+  & span {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+  }
+
+  & i {
+    font-size: 30px;
+    padding: 20px;
+  }
+}
+
+header .user {
+  width: 25%;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  justify-content: center;
+  flex-direction: row;
+
+  & span {
+    padding: 10px;
+  }
+
+  & img{
+    width: 25%;
+  }
+
+}
+
+& #separador{
+  width: 3px;
+  height: 70px;
+  border-radius: 1px;
+  background-color: #ffffff;
+  margin-top: 15px;
+}
+
+header .user_info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+
+  & .name{
+    font-size: 20px;
+  }
+}
+
+header .hamburger {
+  width: 5%;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  padding: 3%;
+}
+
+body.sidebar-active main {
+  filter: blur(5px);
+}
+
+.sidebar {
+  position: fixed;
+  top: 100px;
+  right: -250px; /* Inicialmente fora da tela */
+  height: 100%;
+  width: 250px;
+  background-color: #edeef1;
+  transition: right 0.3s ease-in-out;
+  z-index: 999;
+  padding-top: 20px;
+  box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.1);
+  /* Adiciona padding para não colar no topo da tela */
+
+  & ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    font-size: 20px;
+    color: #0b5268;
+    margin: 0;
+  }
+
+  & li {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
+
+  & li i {
+    padding-right: 15px;
+    font-size: 20px;
+  }
+
+  .option {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  ul li:hover {
+    cursor: pointer;
+    background-color: #d8d8d8; /* Cor de fundo no hover */
+    width: 100%;
+    transition: 1s;
+  }
+}
+
+ul li.opcoes:hover {
+  background-color: transparent; /* Ou a cor original do fundo */
+  cursor: default; /* Remove o cursor de ponteiro */
+}
+
+.sidebar.active {
+  right: 0;
+  top: 100px;
+  box-shadow: -20px 0 10px rgba(0, 0, 0, 0.12);
+  filter: blur(0px);
+
+  & .hamburger {
+    font-size: 30px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+  }
+
+  & .hamburger i {
+    color: #0b5268;
+  }
+}
+
+#hamburger-icon {
+  transition: transform 0.3s ease;
+}
+
+#hamburger-icon.open {
+  transform: rotate(180deg); /* Rotaciona o ícone quando aberto */
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  background-color: #edeef1;
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+#container{
+  width: 70%;
+  height: 90%;
+  background-color: aqua;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+
+  & h1{
+    font-size: 35px;
+    text-align: center;
+    width: 200px;
+    margin-bottom: 10px;
+  }
+
+  & #pergunta{
+    background-color: #ffffff;
+    width: 400px;
+    height: 70px;
+  }
+
+  & button{
+    background-color: #DA2D58;
+    width: 100px;
+  }
+}

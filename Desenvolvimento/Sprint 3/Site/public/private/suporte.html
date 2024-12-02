@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HF System</title>
+
+    <link rel="shortcut icon" type="imagex/png" href="../config/assets/logotipo-texto-preto.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="./css/suporte.css" />
+
+</head>
+
+<body>
+    <section class="container">
+        <header>
+            <div class="logo">
+                <img src="assets/logotipo-texto-branco (1) 1.png" alt="">
+            </div>
+
+            <div class="menu">
+                <span>SUPORTE</span>
+            </div>
+            <div id="separador"></div>
+            <div class="user">
+                <img src="assets/user - sup.png" alt="">
+                <div class="user_info">
+                    <span class="name">Fulano de tal</span>
+                    <span class="">Suporte N3</span>
+                </div>
+            </div>
+            <div id="separador"></div>
+            <div class="hamburger">
+                <i class="fa-solid fa-bars" id="hamburger-icon"></i>
+            </div>
+
+            <div class="sidebar" id="sidebar">
+                <ul>
+                    <li class="option">OPÇÕES</li>
+                    <li><i class="fa-solid fa-gear"></i>Configurações</li>
+                    <li><i class="fa-solid fa-door-open"></i>Sair</li>
+                </ul>
+            </div>
+        </header>
+
+        <main>
+            <div id="container">
+                <h1>BobIA</h1>
+                <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
+                <br>
+                <button onclick="gerarResposta()">Gerar Resposta</button>
+                <h3>Resposta da IA:</h3>
+                <div id="resposta"></div>
+            </div>
+        </main>
+    </section>
+</body>
+
+</html>
+
+<script>
+
+async function gerarResposta() {
+        const pergunta = document.getElementById('pergunta').value;
+
+        const response = await fetch('http://localhost:3333/perguntar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ pergunta })
+        });
+
+        const data = await response.json();
+
+        resposta.style.display = 'block';
+        document.getElementById('resposta').innerText = data.resultado;
+    }
+
+</script>
