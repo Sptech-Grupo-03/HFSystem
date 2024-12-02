@@ -11,19 +11,22 @@
 
 body {
     background-color: #EDEEF1;
+    /* overflow: hidden; */
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
 header {
     background: linear-gradient(90deg, #08232C, #123942, #215B63, #2E7A81, #499899);
     display: flex;
     width: 100%;
-    height: 100px;
+    height: 86px;
 }
 
 header .logo {
@@ -33,7 +36,7 @@ header .logo {
     padding: 3%;
 
     & img {
-        width: 60%;
+        width: 56%;
     }
 }
 
@@ -45,6 +48,7 @@ header .menu {
     justify-content: flex-end;
     padding: 20px;
     padding-right: 40px;
+    gap: 2vh;
 
     & span{
         font-size: 20px;
@@ -62,11 +66,17 @@ header .user {
     display: flex;
     align-items: center;
     padding: 20px;
+    padding-left: 5vh;
     justify-content: center;
+    gap: 3vh;
 
     & span {
         padding: 10px;
     }
+}
+
+header .user img {
+    width: 6.8vh;
 }
 
 header .hamburger {
@@ -77,6 +87,10 @@ header .hamburger {
     justify-content: center;
     font-size: 40px;
     padding: 3%;
+}
+
+header .hamburger:hover {
+    cursor: pointer;
 }
 
 body.sidebar-active main{
@@ -167,18 +181,18 @@ ul li.opcoes:hover {
 }
 
 main {
-    width: 90%;
+    width: 85%;
     background-color: #EDEEF1;
 }
+
 main .pgAtual{
     display: flex;
-    margin-top: 2%; 
+    margin-top: 1.5%; 
     width: 100%;  
-    justify-content: space-between;
 }
 
 main .pgAtual .indicadorPagina{
-    font-size: 25px;
+    font-size: 20px;
     width: 50%;
     & i{
         padding-right: 2%;
@@ -198,30 +212,36 @@ main .pgAtual .caminhoPagina{
 
 main .kpis{
     display: flex;
-    margin-top: 3%;
-    width: 100%; 
-    gap: 3%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 1.5%;
 }
 
+/* começo kpi reservatorio */
 main .kpis .kpiPrincipal{
     display: flex;
     flex-direction: column;
+    width: 26vh;
+    height: 16vh;
     background-color: #ffffff;
     align-items: center;
     box-shadow: 4px 4px 20px #bbbbbb;
-    border-top-left-radius: 10px; /* Arredonda o canto superior esquerdo */
-    border-top-right-radius: 10px;
     border-radius: 10px;
 }
 
 main .kpis .kpiPrincipal select{
-    margin-top: 1%;
     width: 100%;
     font-size: 15px;
     border: none;
     outline: none;
-    
+    background-color: transparent;
     padding-right: 4%;
+    transform: translateY(-4vh);
+}
+
+main .kpis .kpiPrincipal select:hover {
+    cursor: pointer;
 }
 
 main .kpis .kpiPrincipal .tituloKpi{
@@ -233,11 +253,10 @@ main .kpis .kpiPrincipal .tituloKpi{
     background-color: #ffd900;
     color: #ffffff;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 15px;
     padding: 2%;
     border-top-left-radius: 10px; /* Arredonda o canto superior esquerdo */
     border-top-right-radius: 10px;
-
 
     & span{
         font-weight: bold;
@@ -246,10 +265,10 @@ main .kpis .kpiPrincipal .tituloKpi{
 
 main .kpis .kpiPrincipal .tituloKpi select{
     position: absolute;
-    right: 5px; /* Move o select para o lado direito */
+    right: 5px;
     top: 50%;
-    transform: translateY(-50%); /* Centraliza verticalmente o select */
-    font-size: 15px;
+    transform: translateY(-50%);
+    font-size: 10px;
     border: none;
     outline: none;
     padding-right: 4%;
@@ -257,28 +276,24 @@ main .kpis .kpiPrincipal .tituloKpi select{
     background-color: transparent;
 }
 
-main .kpis .kpiPrincipal img{
-    width: 500px;
-    height: 500px;
-    padding: 7%;
-}
-
-
 main .kpis .kpiPrincipal .nivelAtual{
-    position: absolute;
-    background-color: unset;
-    color: #0B5268;
-    top: 75%;
-    font-size: 60px;
+    position: relative;
+    background-color: blue;
+    color: black;
+    top: -37%;
+    font-size: 15vh;
     font-weight: bold;
+    z-index: 10
 }
+
+/* fim kpi reservatiorio */
 
 main .conjuntokpi {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
     flex: 1 1 calc(50% - 10px); 
-    justify-content: flex-end;
 }
 
 main .conjuntokpi .kpi1 {
@@ -287,33 +302,32 @@ main .conjuntokpi .kpi1 {
     flex-direction: column;
     align-items: center;
     flex: 1 1 45%;
-    height: auto; 
+    max-width: 30vh;
+    height: 16vh;
     box-shadow: 4px 4px 20px #bbbbbb;
-    border-top-left-radius: 10px; /* Arredonda o canto superior esquerdo */
-    border-top-right-radius: 10px;
     border-radius: 10px;
 }
 
+main .conjuntokpi .kpi1 img {
+    height: 10vh;
+    padding: 3%;
+    transform: translateY(-4vh);
+}
 
-/* 
-.consumo{
-    justify-content: space-between;
-
-
-    & .infoKpi{
-        padding: 0;
-    }
-} */
+main .conjuntokpi .kpi1 #kpiPrincipalImg {
+    height: 13vh;
+    padding: 3%;
+    transform: translateY(-4vh);
+}
 
 main .conjuntokpi .kpi1 .tituloKpi{
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    background-color: #ffd900;
-    color: #ffffff;
+    color: black;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 12.8px;
     text-align: center;
     padding: 2%;
     border-top-left-radius: 10px; /* Arredonda o canto superior esquerdo */
@@ -325,11 +339,10 @@ main .conjuntokpi .kpi1 .tituloKpi{
     justify-content: center;
     align-items: center;
     position: relative;
-    width: 100%;
-    background-color: #ffd900;
-    color: #ffffff;
+    width: 20vh;
+    color: rgb(0, 0, 0);
     font-weight: bold;
-    font-size: 25px;
+    font-size: 20px;
     padding: 2%;
 }
 
@@ -338,7 +351,7 @@ main .conjuntokpi .kpi1 .tituloKpi select{
     right: 5px; /* Move o select para o lado direito */
     top: 50%;
     transform: translateY(-50%); /* Centraliza verticalmente o select */
-    font-size: 15px;
+    font-size: 20px;
     border: none;
     outline: none;
     padding-right: 4%;
@@ -346,21 +359,18 @@ main .conjuntokpi .kpi1 .tituloKpi select{
     background-color: transparent;
 }
 
-
-
 main .conjuntokpi .kpi1 .infoKpi{
-    font-size: 25px;
+    font-size: 17px;
     font-weight: bold;
-    padding: 4%;
 }
 
 #nivelCritico .infoKpi{
-    font-size: 20px;
+    font-size: 13px;
 }
 
 main .conjuntokpi .kpi1 i{
-    font-size: 70px;
-    padding: 10%;
+    font-size: 45px;
+    padding: 7%;
 }
 
 main .conjuntokpi .kpi1 select{
@@ -374,9 +384,8 @@ main .conjuntokpi .kpi1 select{
 
 .icon{
     display: flex;
-    width: 100%;
+    width: 50vh;
     justify-content: center;
-    /* gap: 166px; */
     align-items: center
 }
 
@@ -396,18 +405,16 @@ main .conjuntokpi .kpi1 select{
 
 
 .graficos{
-    margin-top: 3%;
+    margin-top: 2%;
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 10%;
-    box-shadow: 4px 4px 20px #bbbbbb;
-    border-radius: 10px;
+    justify-content: space-evenly;
 }
 
 .graficos .grafico{
-    width: 70%;
+    width: 60%;
     display: flex;
     flex-direction: column;    
+    gap: 4%;
 }
 
 canvas {
@@ -422,7 +429,7 @@ canvas {
     background-color: #0B5268;
     color: #ffffff;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 20px;
     padding: 2%;
     align-items: center;
     justify-content: center;
@@ -431,12 +438,14 @@ canvas {
 }
 
 .graficos .previsaoClima{
-    width: 29%;
+    width: 20%;
+    height: 60vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #ffffff;
     border-radius: 10px;
+    gap: 1.5vh;
     
 }
 
@@ -445,7 +454,7 @@ canvas {
     width: 100%;
     color: #ffffff;
     padding: 2%;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
     text-align: center;
     border-top-left-radius: 10px; /* Arredonda o canto superior esquerdo */
@@ -454,31 +463,33 @@ canvas {
 
 .graficos .previsaoClima .infoTempo{
     width: 90%;
-    height: 100%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    gap: 1vh;
 }
 
 .graficos .previsaoClima .infoTempo .cardPrevisao{
     display: flex;
     background-color: #0B5268;
     color: #ffffff;
-    padding: 5%;
+    padding: 2%;
     align-items: center;
     justify-content: space-evenly;
+    text-align: center;
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: bold;
 
     & .infos{
         display: block;
         flex-direction: column;
         align-items: center;
-        
     }
 
     & i{
-        font-size: 30px;
+        font-size: 26px;
         padding: 2%;
     }
 }

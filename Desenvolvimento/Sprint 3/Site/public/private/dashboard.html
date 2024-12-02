@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - HFSystem</title>
-    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="stylesheet" href="./css/dashboardHF.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://assets.hgbrasil.com/weather/js/hg-weather-1.0.js" type="text/javascript"></script>
@@ -25,8 +25,10 @@
                 <span>Notificações</span>
             </div>
             <div class="user">
+                <spaN>|</span>
                 <img src="assets/user.png" alt="">
                 <span>Claudio Frizzarini</span>
+                <span>|</span>
             </div>
             <div class="hamburger">
                 <i class="fa-solid fa-bars" id="hamburger-icon"></i>
@@ -41,6 +43,7 @@
             </div>
         </header>
         <main>
+            <!-- navegador de paginas  -->
             <div class="pgAtual">
                 <div class="indicadorPagina">
                     <i class="fa-solid fa-laptop"></i>
@@ -52,27 +55,27 @@
                 </div>
             </div>
 
+            <!-- começo kpis -->
             <div class="kpis">
-                <div class="kpiPrincipal">
-                    <div class="tituloKpi">
-                        <span>ÁGUA DISPONÍVEL</span>
+                <div class="conjuntokpi">
+                    <div class="kpi1 kpiPrincipal">
+                        <span class="tituloKpi">ÁGUA DISPONÍVEL</span>
                         <select name="" id="">
-                            <option value="" disabled selected>Visualizar em:</option>
+                            <option value="" disabled selected></option>
                             <option value="">Metros cúbicos (m³)</option>
                             <option value="">Porcentagem (%)</option>
                             <option value="">Litros (L)</option>
                         </select>
+                        <img  id="kpiPrincipalImg" src="assets/reservatorio-kpi.png" alt="">
+                        <span id="nivelAtual" class="nivelAtual"></span>
                     </div>
-                    <img src="assets/reservatorio-kpi.png" alt="">
-                    <span id="nivelAtual" class="nivelAtual"></span>
-                </div>
 
-                <div class="conjuntokpi">
                     <div class="kpi1">
-                        <span class="tituloKpi">SITUAÇÃO ATUAL</span>
+                        <span class="tituloKpi">SITUAÇÃO RESERVATÓRIO</span>
                         <span id="situacaoAtual" class="infoKpi">AVISO</span>
-                        <i class="fa-solid fa-truck-droplet"></i>
+                        <img src="assets/reservatorio-kpi.png" alt="">
                     </div>
+
                     <div class="kpi1 consumo">
                         <div class="tituloKpi">
                             <span>CONSUMO MÉDIO</span>
@@ -93,13 +96,14 @@
                             </div>
                         </div>
                     </div>
+
                     <div id="nivelCritico" class="kpi1">
-                        <span class="tituloKpi">NÍVEL CRÍTICO</span>
-                        <span id="vezesNivelCritico" class="infoKpi">2 VEZES NOS ÚLTIMOS 30 DIAS</span>
+                        <span class="tituloKpi">VERIFICAÇÃO ESAVAZIAMENTO</span>
+                        <span id="vezesNivelCritico" class="infoKpi">2 VEZES</span>
                         <i class="fa-solid fa-droplet-slash"></i>
                     </div>
                     <div class="kpi1">
-                        <span class="tituloKpi">DIAS DE ÁGUA RESTANTE</span>
+                        <span class="tituloKpi">DIAS DE ÁGUA RESTANTES</span>
                         <span id="estimativaDias" class="infoKpi"></span>
                         <i class="fa-solid fa-faucet-drip"></i>
                     </div>
@@ -109,7 +113,7 @@
             <div class="graficos">
                 <div class="grafico">
                     <span>FLUXO DE ÁGUA NO RESERVATORIO</span>
-                    <canvas id="fluxoAgua" width="800" height="400"></canvas>
+                    <canvas id="fluxoAgua" width="220" height="100"></canvas>
                 </div>
 
                 <div class="previsaoClima">
@@ -124,7 +128,7 @@
                             <!-- Previsão de Chuva -->
                             <div class="cardPrevisao probChuva">
                                 <div class="infos">
-                                    <span>PROB. CHUVA:</span>
+                                    <span>PROB. CHUVA<br></span>
                                     <span id="probChuva">Obtendo...</span>
                                 </div>
                                 <i class="fa-solid fa-cloud-rain"></i>
@@ -133,34 +137,33 @@
                             <div class="cardPrevisao tempMaxima">
                                 <div class="infos">
                                     <div class="low-high">
-                                        <span>Temp. Máxima:</span>
+                                        <span>Temp. Máxima<br></span>
                                         <span id="tempMaxima"></span>
-                                        <i class="fa-solid fa-temperature-arrow-up"></i>
                                     </div>
-
                                 </div>
+                                <i class="fa-solid fa-temperature-arrow-up"></i>
                             </div>
 
                             <div class="cardPrevisao tempMinima">
                                 <div class="infos">
-                                    <span>TEMP. MINÍMA:</span>
+                                    <span>TEMP. MINÍMA<br></span>
                                     <span id="tempMinima"></span>
-                                    <i class="fa-solid fa-temperature-arrow-down"></i>
                                 </div>
+                                <i class="fa-solid fa-temperature-arrow-down"></i>
                             </div>
 
 
                             <div class="cardPrevisao umidadeAr">
                                 <div class="infos">
                                     <div class="hg-weather" data-key="c381e5f5" data-woeid="455827">
-                                        <span data-weather="message">Obtendo.<br></span>
-                                        <span>UMIDADE DO AR:</span>
-                                        <span data-weather="humidity" id="umidadeAr"></span> % <br>
+                                        <span data-weather="message"></span>
+                                        <span>UMIDADE DO AR<br></span>
+                                        <span data-weather="humidity" id="umidadeAr"></span> %
                                     </div>
-                                    <i class="fa-solid fa-wind"></i>
-                                    <img style="height: 1px;" data-weather="image"><br>
-                                    <img style="height: 1px;" data-weather="image"><br>
                                 </div>
+                                <i class="fa-solid fa-wind"></i>
+                                <!-- <img style="height: 1px;" data-weather="image">
+                                <img style="height: 1px;" data-weather="image"> -->
                             </div>
                         </div>
                 </div>
@@ -170,6 +173,7 @@
     </main>
     </section>
 </body>
+
 </html>
 
 
@@ -182,9 +186,9 @@
 <script>
 
     function exibirHistoricoReservatorio() {
-       
+
         const idReservatorio = sessionStorage.idReservatorio
-        
+
         fetch(`/historicoReservatorio/exibirDadosReservatorio?idReservatorio=${idReservatorio}`)
             .then(function (resposta) {
                 console.log("resposta: ", resposta);
@@ -210,11 +214,11 @@
                 console.log(`#ERRO: ${resposta}`);
             });
         return false;
-        
+
     }
 
-    
-    function defineDadosReservatorio(){
+
+    function defineDadosReservatorio() {
         let dadosString = sessionStorage.getItem('dadosReservatorio');
         let dados = JSON.parse(dadosString);
 
@@ -227,140 +231,140 @@
         let labels = [];
         let dataNiveis = [];
         dados[3].forEach(entry => {
-            labels.push(entry.dtHrNivel); 
-            dataNiveis.push(entry.Nivel); 
-    });
+            labels.push(entry.dtHrNivel);
+            dataNiveis.push(entry.Nivel);
+        });
 
-    atualizarGrafico(labels, dataNiveis);
+        atualizarGrafico(labels, dataNiveis);
     }
 
     function atualizarGrafico(labels, dataNiveis) {
-    // Configurações dinâmicas do Chart.js
-    const ctx = document.getElementById('fluxoAgua').getContext('2d');
+        // Configurações dinâmicas do Chart.js
+        const ctx = document.getElementById('fluxoAgua').getContext('2d');
 
-    const data = {
-        labels: labels, 
-        datasets: [
-            {
-                label: 'Nível Atual (%)',
-                data: dataNiveis,
-                borderColor: 'cyan',
-                borderWidth: 2,
-                pointBackgroundColor: 'cyan',
-                pointBorderColor: 'black',
-                pointRadius: 5,
-                fill: true,
-                backgroundColor: 'rgba(0, 123, 167, 0.3)',
-            },
-            {
-                label: 'Nível Ideal',
-                data: Array(labels.length).fill(51),
-                borderColor: 'green',
-                borderWidth: 1,
-                borderDash: [0, 0],
-                fill: false,
-                pointRadius: 0
-            },
-            {
-                label: 'Nível de Alerta',
-                data: Array(labels.length).fill(50),
-                borderColor: 'yellow',
-                borderWidth: 2,
-                borderDash: [0, 0],
-                fill: false,
-                pointRadius: 0
-            },
-            {
-                label: 'Nível de risco',
-                data: Array(labels.length).fill(25),
-                borderColor: 'red',
-                borderWidth: 1,
-                borderDash: [0, 0],
-                fill: false,
-                pointRadius: 0
-            }
-        ]
-    };
-
-    const config = {
-        type: 'line',
-        data: data,
-        options: {
-            responsive: true,
-            scales: {
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Horário',
-                        font: {
-                            size: 20
-                        }
-                    },
-                    ticks: {
-                        font: {
-                            size: 16,
-                            weight: 'bold'
-                        },
-                        color: 'black'
-                    },
-                    grid: {
-                        display: false
-                    }
+        const data = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Nível Atual (%)',
+                    data: dataNiveis,
+                    borderColor: 'cyan',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'cyan',
+                    pointBorderColor: 'black',
+                    pointRadius: 5,
+                    fill: true,
+                    backgroundColor: 'rgba(0, 123, 167, 0.3)',
                 },
-                y: {
-                    title: {
-                        display: true,
-                        text: 'Nível de água (%)', font: {
-                            size: 20
+                {
+                    label: 'Nível Ideal',
+                    data: Array(labels.length).fill(51),
+                    borderColor: 'green',
+                    borderWidth: 1,
+                    borderDash: [0, 0],
+                    fill: false,
+                    pointRadius: 0
+                },
+                {
+                    label: 'Nível de Alerta',
+                    data: Array(labels.length).fill(50),
+                    borderColor: 'yellow',
+                    borderWidth: 2,
+                    borderDash: [0, 0],
+                    fill: false,
+                    pointRadius: 0
+                },
+                {
+                    label: 'Nível de risco',
+                    data: Array(labels.length).fill(25),
+                    borderColor: 'red',
+                    borderWidth: 1,
+                    borderDash: [0, 0],
+                    fill: false,
+                    pointRadius: 0
+                }
+            ]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Horário',
+                            font: {
+                                size: 20
+                            }
+                        },
+                        ticks: {
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            },
+                            color: 'black'
+                        },
+                        grid: {
+                            display: false
                         }
                     },
-                    min: 0,
-                    max: 100,
-                    ticks: {
-                        stepSize: 10,
-                        font: {
-                            size: 16,
-                            weight: 'bold'
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Nível de água (%)', font: {
+                                size: 20
+                            }
                         },
-                        color: 'black'
-                    },
-                    grid: {
-                        display: false
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    labels: {
-                        font: {
-                            size: 18
+                        min: 0,
+                        max: 100,
+                        ticks: {
+                            stepSize: 10,
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            },
+                            color: 'black'
                         },
-                        color: 'black',
-                        boxWidth: 20,
-                        padding: 15,
-                        generateLabels: function (chart) {
-                            const original = Chart.defaults.plugins.legend.labels.generateLabels;
-                            const labels = original.call(this, chart);
-                            labels.forEach((label, index) => {
-                                label.fillStyle = chart.data.datasets[index].borderColor;
-                            });
-                            return labels;
+                        grid: {
+                            display: false
                         }
                     }
                 },
-            },
-            elements: {
-                line: {
-                    borderCapStyle: 'round',
-                    borderJoinStyle: 'round',
+                plugins: {
+                    legend: {
+                        labels: {
+                            font: {
+                                size: 18
+                            },
+                            color: 'black',
+                            boxWidth: 20,
+                            padding: 15,
+                            generateLabels: function (chart) {
+                                const original = Chart.defaults.plugins.legend.labels.generateLabels;
+                                const labels = original.call(this, chart);
+                                labels.forEach((label, index) => {
+                                    label.fillStyle = chart.data.datasets[index].borderColor;
+                                });
+                                return labels;
+                            }
+                        }
+                    },
+                },
+                elements: {
+                    line: {
+                        borderCapStyle: 'round',
+                        borderJoinStyle: 'round',
+                    }
                 }
             }
-        }
-    };
+        };
 
-    // Inicializa o gráfico
-    new Chart(ctx, config);
-}
+        // Inicializa o gráfico
+        new Chart(ctx, config);
+    }
 
-
+///ksksks
 </script>
