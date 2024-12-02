@@ -251,3 +251,14 @@ WHERE idReservatorio = 3;
 
 select * from usuario;
 
+select * from reservatorio where idReservatorio = 3;
+
+select * from reservatorio where fkFazenda = 'D4C1D9';
+
+
+desc fazenda;
+desc reservatorio;
+
+select * from fazenda;
+
+insert into reservatorio (nome,alturam,raio, fkFazenda) values ('Reservatorio Patio Sul', 5,3,'reservatorio');
