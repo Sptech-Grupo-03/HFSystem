@@ -44,16 +44,19 @@
         </header>
         <main>
             <!-- navegador de paginas  -->
-            <div class="pgAtual">
-                <div class="indicadorPagina">
-                    <i class="fa-solid fa-laptop"></i>
-                    <span>Dashboard</span>
-                </div>
-                <div class="caminhoPagina">
-                    <i class="fa-solid fa-house-circle-check"> </i>
-                    <span> / Reservatório 2 / Consultar reservatório</span>
-                </div>
+            <div class="caminhoPagina">
+                <i class="fa-solid fa-house-circle-check"> </i>
+                <span>/Menu /Consultar reservatório</span>
             </div>
+            <div>
+                <label for="incioConsulta"></label>
+                <input type="date" name="" id="">
+            </div>
+            <div>
+                <label for="fimConsulta"></label>
+                <input type="date" name="" id="">
+            </div>
+
 
             <!-- começo kpis -->
             <div class="kpis">
@@ -110,6 +113,8 @@
                 </div>
             </div>
 
+
+
             <div class="graficos">
                 <div class="grafico">
                     <span>FLUXO DE ÁGUA NO RESERVATORIO</span>
@@ -118,7 +123,7 @@
 
                 <div class="previsaoClima">
                     <span class="titulo">
-                        CLIMATEMPO HOJE
+                        CLIMATEMPO
                     </span>
 
                     <div class="infoTempo">
@@ -165,8 +170,7 @@
             </div>
         </main>
     </section>
-    </main>
-    </section>
+
 </body>
 
 </html>
@@ -230,126 +234,126 @@
     }
 
     function atualizarGrafico(labels, dataNiveis) {
-    const ctx = document.getElementById('fluxoAgua').getContext('2d');
+        const ctx = document.getElementById('fluxoAgua').getContext('2d');
 
-    const horarioLabels = ['01h', '02h', '03h', '04h', '05h', '06h', '07h', '08h', '09h', '10h', '11h'];
-    const dataNiveis1 = [4, 4, 3.50, 3, 2.50, 2, 2, 2, 2, 3, 4];
+        const horarioLabels = ['01h', '02h', '03h', '04h', '05h', '06h', '07h', '08h', '09h', '10h', '11h'];
+        const dataNiveis1 = [4, 4, 3.50, 3, 2.50, 2, 2, 2, 2, 3, 4];
 
-    const data = {
-        labels: horarioLabels,
-        datasets: [
-            {
-                label: 'Nível Atual',
-                data: dataNiveis1,
-                borderColor: 'cyan',
-                borderWidth: 2,
-                pointBackgroundColor: 'cyan',
-                pointBorderColor: 'black',
-                pointRadius: 5,
-                fill: true,
-                backgroundColor: 'rgba(0, 123, 167, 0.3)',
-                order: 1 // Garantir que fique atrás das métricas
-            },
-            {
-                label: 'Nível Ideal',
-                data: Array(horarioLabels.length).fill(4.50),
-                borderColor: 'green',
-                borderWidth: 2,
-                fill: false,
-                pointRadius: 0,
-                order: 2 // Garantir que fique visível
-            },
-            {
-                label: 'Nível Alerta',
-                data: Array(horarioLabels.length).fill(2.50),
-                borderColor: 'yellow',
-                borderWidth: 2,
-                fill: false,
-                pointRadius: 0,
-                order: 2
-            },
-            {
-                label: 'Nível de Risco',
-                data: Array(horarioLabels.length).fill(1.50),
-                borderColor: 'red',
-                borderWidth: 2,
-                fill: false,
-                pointRadius: 0,
-                order: 2
-            }
-        ]
-    };
-
-    const config = {
-        type: 'line',
-        data: data,
-        options: {
-            responsive: true,
-            scales: {
-                x: {
-                    ticks: {
-                        font: {
-                            size: 14,
-                            weight: 'bold'
-                        },
-                        color: 'black'
-                    },
-                    grid: { display: false }
+        const data = {
+            labels: horarioLabels,
+            datasets: [
+                {
+                    label: 'Nível Atual',
+                    data: dataNiveis1,
+                    borderColor: 'cyan',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'cyan',
+                    pointBorderColor: 'black',
+                    pointRadius: 5,
+                    fill: true,
+                    backgroundColor: 'rgba(0, 123, 167, 0.3)',
+                    order: 1 // Garantir que fique atrás das métricas
                 },
-                y: {
-                    position: 'left',
-                    title: {
-                        display: true,
-                        text: 'Volume (Metros)',
-                        font: { size: 15 }
-                    },
-                    min: 1.20,
-                    max: 5,
-                    ticks: {
-                        callback: function (value) {
-                            if (value === 1.50 || value === 2.50 || value === 4.50) {
-                                return value + 'm';
-                            }
-                        },
-                        font: {
-                            size: 16,
-                            weight: 'bold'
-                        },
-                        color: 'black'
-                    },
-                    grid: { display: false }
+                {
+                    label: 'Nível Ideal',
+                    data: Array(horarioLabels.length).fill(4.50),
+                    borderColor: 'green',
+                    borderWidth: 2,
+                    fill: false,
+                    pointRadius: 0,
+                    order: 2 // Garantir que fique visível
+                },
+                {
+                    label: 'Nível Alerta',
+                    data: Array(horarioLabels.length).fill(2.50),
+                    borderColor: 'yellow',
+                    borderWidth: 2,
+                    fill: false,
+                    pointRadius: 0,
+                    order: 2
+                },
+                {
+                    label: 'Nível de Risco',
+                    data: Array(horarioLabels.length).fill(1.50),
+                    borderColor: 'red',
+                    borderWidth: 2,
+                    fill: false,
+                    pointRadius: 0,
+                    order: 2
                 }
-            },
-            plugins: {
-                legend: {
-                    labels: {
-                        font: {
-                            size: 18
+            ]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        ticks: {
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            },
+                            color: 'black'
                         },
-                        color: 'black',
-                        boxWidth: 20,
-                        padding: 15,
-                        generateLabels: function (chart) {
-                            const original = Chart.defaults.plugins.legend.labels.generateLabels;
-                            const labels = original.call(this, chart);
-                            labels.forEach((label, index) => {
-                                label.fillStyle = chart.data.datasets[index].borderColor;
-                            });
-                            return labels;
-                        }
+                        grid: { display: false }
+                    },
+                    y: {
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Volume (Metros)',
+                            font: { size: 15 }
+                        },
+                        min: 1.20,
+                        max: 5,
+                        ticks: {
+                            callback: function (value) {
+                                if (value === 1.50 || value === 2.50 || value === 4.50) {
+                                    return value + 'm';
+                                }
+                            },
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            },
+                            color: 'black'
+                        },
+                        grid: { display: false }
                     }
                 },
-            },
-            elements: {
-                line: {
-                    borderCapStyle: 'round',
-                    borderJoinStyle: 'round'
+                plugins: {
+                    legend: {
+                        labels: {
+                            font: {
+                                size: 18
+                            },
+                            color: 'black',
+                            boxWidth: 20,
+                            padding: 15,
+                            generateLabels: function (chart) {
+                                const original = Chart.defaults.plugins.legend.labels.generateLabels;
+                                const labels = original.call(this, chart);
+                                labels.forEach((label, index) => {
+                                    label.fillStyle = chart.data.datasets[index].borderColor;
+                                });
+                                return labels;
+                            }
+                        }
+                    },
+                },
+                elements: {
+                    line: {
+                        borderCapStyle: 'round',
+                        borderJoinStyle: 'round'
+                    }
                 }
             }
-        }
-    };
+        };
 
-    // Inicializa o gráfico
-    new Chart(ctx, config);
-}
+        // Inicializa o gráfico
+        new Chart(ctx, config);
+    }
 </script>
