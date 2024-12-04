@@ -7,13 +7,15 @@ async function exibirDadosReservatorio(
 ) {
   try {
     // SQL Queries
-    var instrucaoSql1 = ` SELECT idColeta 
-                          FROM sensor 
-                          WHERE fkReservatorio = ${idReservatorio} 
+    var instrucaoSql1 = `  SELECT nivelCalculado 
+                         FROM historico
+                         JOIN sensor ON historico.fkSensor = sensor.idColeta
+                         JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
+                         WHERE fkReservatorio = ${idReservatorio} 
                           AND DATE(dtHrNivelCalculado) >= '${inicioConsulta}'
                           AND DATE(dtHrNivelCalculado) <= '${fimConsulta}'
-                          ORDER BY idColeta DESC 
-                          LIMIT 1 `;
+                         ORDER BY historico.dtHrNivelCalculado DESC
+                         LIMIT 1 `;
 
     var instrucaoSql2 = `SELECT situacaoAtual 
                          FROM historico 
@@ -25,14 +27,22 @@ async function exibirDadosReservatorio(
                          ORDER BY historico.dtHrNivelCalculado DESC
                          LIMIT 1 `;
 
-    var instrucaoSql3 = `SELECT COUNT(historico.situacaoAtual) AS AtingiuNivelCritico
-                        FROM historico
-                        JOIN sensor ON historico.fkSensor = sensor.idColeta
-                        JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
-                        WHERE fkReservatorio = ${idReservatorio} 
-                          AND DATE(dtHrNivelCalculado) >= '${inicioConsulta}'
-                          AND DATE(dtHrNivelCalculado) <= '${fimConsulta}'
-                          AND historico.situacaoAtual = 'Crítico'`;
+    var instrucaoSql3 = `SELECT COUNT(DISTINCT CASE
+                        WHEN historico.situacaoAtual = 'Crítico' AND
+                             (SELECT COUNT(*) FROM historico h2
+                              WHERE h2.fkSensor = historico.fkSensor
+                                AND h2.dtHrNivelCalculado < historico.dtHrNivelCalculado
+                                AND h2.situacaoAtual != 'Crítico') = 0
+                        THEN 1
+                        ELSE NULL
+                    END) AS AtingiuNivelCritico
+FROM historico
+JOIN sensor ON historico.fkSensor = sensor.idColeta
+JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
+WHERE fkReservatorio = ${idReservatorio}
+  AND DATE(dtHrNivelCalculado) >= '${inicioConsulta}'
+  AND DATE(dtHrNivelCalculado) <= '${fimConsulta}'
+  AND historico.situacaoAtual = 'Crítico'`;
 
     var instrucaoSql4 = `SELECT nivelCalculado AS Nivel, dtHrNivelCalculado AS dtHrNivel 
                          FROM historico 
@@ -63,8 +73,8 @@ async function exibirDadosReservatorio(
                         JOIN sensor ON historico.fkSensor = sensor.idColeta
                         JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
                         WHERE reservatorio.idReservatorio = ${idReservatorio} 
-                        AND DATE(dtHrColeta) >= '${inicioConsulta}'
-						            AND DATE(dtHrColeta) <= '${fimConsulta}'
+                        AND DATE(dtHrNivelCalculado) >= '${inicioConsulta}'
+						            AND DATE(dtHrNivelCalculado) <= '${fimConsulta}'
                         ORDER BY historico.dtHrNivelCalculado limit 1;
                         `;
 
