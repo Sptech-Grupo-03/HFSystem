@@ -24,6 +24,8 @@ var gerenciarReservatorioRouter = require("./src/routes/gerenciarReservatorio");
 var climaRouter = require("./src/routes/clima");
 var historicoReservatorioRouter = require("./src/routes/historicoReservatorio")
 
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));

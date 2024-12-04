@@ -1,4 +1,4 @@
-var climaModel = require("../models/climaModel");
+var climaModel = require("../models/ClimaModel");
 
 function registrarClima(req, res) {
   // probChuvaServer: probChuva, // Probabilidade de Chuva

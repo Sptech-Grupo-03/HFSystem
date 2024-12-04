@@ -11,7 +11,7 @@
     <script src="https://assets.hgbrasil.com/weather/js/hg-weather-1.0.js" type="text/javascript"></script>
 </head>
 
-<body onload="exibirHistoricoReservatorio()">
+<body>
 
     <header>
         <img class="logo" src="../config/assets/logotipo-texto-branco.svg" alt="">
@@ -57,7 +57,7 @@
                     <input type="date" name="" id="input_inicio_consulta">
                     <p>à</p>
                     <input type="date" name="" id="input_fim_consulta">
-                    <button id="consultar" onclick="exibirClima();">consultar</button>
+                    <button id="consultar" onclick="exibirClima(), exibirHistoricoReservatorio()">consultar</button>
                 </div>
             </section>
 
@@ -130,7 +130,6 @@
 
                 <span class="titulo">
                     CLIMATEMPO
-                    <input id="dataClima" type="date">
                 </span>
 
                 <div class="cardPrevisao probChuva">
@@ -187,10 +186,20 @@
 <script>
 
     document.addEventListener("DOMContentLoaded", () => {
-        const inputDate = document.querySelector("#dataClima");
+        const inputDate = document.querySelector("#input_fim_consulta");
         const today = new Date().toISOString().split("T")[0];
         inputDate.value = today;
     });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const inputDate = document.querySelector("#input_inicio_consulta");
+        const today = new Date().toISOString().split("T")[0];
+        inputDate.value = today;
+    });
+
+    // document.addEventListener("DOMContentLoaded", () => {
+    //     exibirHistoricoReservatorio();
+    // });
 
     username.innerHTML = sessionStorage.username
 
@@ -223,31 +232,43 @@
 
 
     function exibirHistoricoReservatorio() {
+        var idReservatorio = sessionStorage.idReservatorio;
+        console.log(idReservatorio)
+        
+        var inicioConsulta = input_inicio_consulta.value;
+        var fimConsulta = input_fim_consulta.value;
 
-        const idReservatorio = sessionStorage.idReservatorio
+        fetch(`/historicoReservatorio/exibirDadosReservatorio`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idReservatorioServer: idReservatorio,
+                inicioConsultaServer: inicioConsulta,
+                fimConsultaServer: fimConsulta,
+            }),
+        }).then(function (resposta) {
+            console.log("resposta: ", resposta);
 
-        fetch(`/historicoReservatorio/exibirDadosReservatorio?idReservatorio=${idReservatorio}`)
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
+            if (resposta.ok) {
+                console.log(
+                    "Dados recuperados com sucesso"
+                );
+                resposta.json().then(json => {
+                    console.log(resposta)
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.dadosReservatorio = JSON.stringify(json.reservatorio);
+                    defineDadosReservatorio();
 
-                if (resposta.ok) {
-                    console.log(
-                        "Dados recuperados com sucesso"
-                    );
-                    resposta.json().then(json => {
-                        console.log(resposta)
-                        console.log(json);
-                        console.log(JSON.stringify(json));
-                        sessionStorage.dadosReservatorio = JSON.stringify(json.reservatorio);
-                        defineDadosReservatorio();
+                });
 
-                    });
-
-                    return true;
-                } else {
-                    throw "Houve um erro ao tentar resgatar os dados!";
-                }
-            })
+                return true;
+            } else {
+                throw "Houve um erro ao tentar resgatar os dados!";
+            }
+        })
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
@@ -260,7 +281,9 @@
 
 
     function exibirClima() {
-        const idFazenda = sessionStorage.fazendaId;
+
+        var idReservatorio = sessionStorage.idReservatorio;
+        console.log(idReservatorio)
         var inicioConsulta = input_inicio_consulta.value;
         var fimConsulta = input_fim_consulta.value;
 
@@ -270,7 +293,7 @@
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                idFazendaServer: idFazenda,
+                idReservatorioServer: idReservatorio,
                 inicioConsultaServer: inicioConsulta,
                 fimConsultaServer: fimConsulta,
             }),
