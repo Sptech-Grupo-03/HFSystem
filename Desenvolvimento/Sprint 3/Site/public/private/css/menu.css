@@ -1,6 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Rubik+Wet+Paint&family=Russo+One&family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
-
-
 * {
     margin: 0;
     padding: 0;
@@ -9,11 +7,9 @@
     font-optical-sizing: auto;
     font-style: normal;
 }
-
 /* 
 // <uniquifier>: Use a unique and descriptive class name
 // <weight>: Use a value from 100 to 900
-
 .saira-<uniquifier> {
   font-family: "Saira", sans-serif;
   font-optical-sizing: auto;
@@ -22,41 +18,29 @@
   font-variation-settings:
     "wdth" 100;
 } */
-
 body {
     background-color: #EDEEF1;
 }
-
 .container {
-    display: grid;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    flex-direction: column;
-    /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
-    gap: 40px;
-    padding: 20px;
-    background-color: #EDEEF1;
 }
-
-
 header {
     background: linear-gradient(90deg, #08232C, #123942, #215B63, #2E7A81, #499899);
     display: flex;
     width: 100%;
     height: 100px;
 }
-
 header .logo {
     width: 25%;
     display: flex;
     align-items: center;
     padding: 3%;
-
     & img {
         width: 60%;
     }
 }
-
 header .menu {
     width: 55%;
     color: #ffffff;
@@ -65,13 +49,11 @@ header .menu {
     justify-content: flex-end;
     padding: 20px;
     padding-right: 40px;
-
     & i {
         font-size: 35px;
         padding: 20px;
     }
 }
-
 header .user {
     width: 25%;
     color: #ffffff;
@@ -79,12 +61,10 @@ header .user {
     align-items: center;
     padding: 20px;
     justify-content: center;
-
     & span {
         padding: 10px;
     }
 }
-
 header .hamburger {
     width: 5%;
     color: #ffffff;
@@ -94,11 +74,9 @@ header .hamburger {
     font-size: 40px;
     padding: 3%;
 }
-
 body.sidebar-active main{
     filter: blur(5px);
 }
-
 .sidebar {
     position: fixed;
     top: 100px;
@@ -111,7 +89,6 @@ body.sidebar-active main{
     padding-top: 20px;
     box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.1);
     /* Adiciona padding para não colar no topo da tela */
-
     & ul {
         list-style: none;
         display: flex;
@@ -122,25 +99,21 @@ body.sidebar-active main{
         color: #0B5268;
         margin: 0;
     }
-
     & li {
         padding: 10px 20px;
         display: flex;
         align-items: center;
         transition: background-color 0.3s ease;
     }
-
     & li i {
         padding-right: 15px;
         font-size: 20px;
     }
-
     .option {
         font-size: 25px;
         font-weight: bold;
         margin-bottom: 20px;
     }
-
     ul li:hover {
         cursor: pointer;
         background-color: #D8D8D8; /* Cor de fundo no hover */
@@ -148,18 +121,15 @@ body.sidebar-active main{
         transition: 1s;
     }
 }
-
 ul li.opcoes:hover {
     background-color: transparent; /* Ou a cor original do fundo */
     cursor: default; /* Remove o cursor de ponteiro */
 }
-
 .sidebar.active {
     right: 0;
     top: 100px;
     box-shadow: -20px 0 10px rgba(0, 0, 0, 0.12);
     filter: blur(0px);
-
     & .hamburger {
         font-size: 30px;
         cursor: pointer;
@@ -168,223 +138,130 @@ ul li.opcoes:hover {
         left: 20px;
         z-index: 1000;
     }
-
     & .hamburger i {
         color: #0B5268;
     }
 }
-
 #hamburger-icon {
     transition: transform 0.3s ease;
 }
-
 #hamburger-icon.open {
     transform: rotate(180deg); /* Rotaciona o ícone quando aberto */
 }
-
 main {
-    width: 100%;
+    width: 80%;
     background-color: #EDEEF1;
 }
-
 main .pgAtual {
     padding-top: 2%;
     font-size: 25px;
-
     & i {
         padding-right: 2%;
     }
 }
-
 main .alerta {
     background-color: rgb(255, 6, 6, 0.3);
     margin-top: 3%;
     padding: 10px;
     border-radius: 10px;
     font-size: 20px;
-
     & span {
         padding: 10px;
     }
 }
-
-main .grafico-reservatorio{
-    
-        position: absolute;
-        width: 600px;
-        height: 600px;
-
-    
-}
-
-main .grafico-reservatorio .reservatorio{
-    margin-left: 500px;
-    position: relative;
-    width: 80px;
-    height: 300px;
-    border: 2px solid #0044cc;
-    border-radius: 8px;
-    overflow: hidden;
-    background: #f0f0f0;
-}
-
-main .grafico-reservatorio .reservatorio .agua {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: #FFD700;
-}
-main .grafico-reservatorio .reservatorio .porcentagem{
-    position: absolute;
-    top: 50%; /* Centraliza verticalmente */
-    left: 50%; /* Centraliza horizontalmente */
-    transform: translate(-50%, -50%); /* Ajuste fino para garantir o centro exato */
-    font-size: 20px;
-    font-weight: bold;
-    color: #333; /* Cor do texto da porcentagem */
-}
-
-
 main .reservatorios {
     width: 100%;
-    height: 874px;
     display: flex;
     flex-wrap: wrap;
-    gap: 60px;
-    justify-content: space-around;
-    margin-top: 10%;
-    margin-bottom: 10%;
-    text-align: left;
-    /* display: flex;
-    flex-direction: column;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
     gap: 20px;
-    padding: 20px;
-    background-color: #EDEEF1
-    ;
-    & img{
-        max-width: 100%;
-        width: 200px;
-        height: 190px;
-        padding: 5px;
-        float: right;
-        margin-left: 390px;
-        position:absolute;
-        
-    }
+    justify-content: space-between;
+    margin-top: 7%;
+    margin-bottom: 10%;
 }
-
 main .reservatorios .reservatorio {
     background-color: #F8F8F8;
     display: flex;
     flex-direction: column;
     padding: 2%;
     box-shadow: 2px 2px 2px 3px #0000001e;
-    width: calc(40% - 5px);
+    width: 90%;
     border-radius: 10px;
 }
-
-
-/* .reservatorio1 .top {
+.reservatorio1 .top {
     color: #971E22;
-} */
-
-/* .reservatorio2 .top {
+}
+.reservatorio2 .top {
     color: #ffd900;
 }
-
 .reservatorio3 .top {
     color: #000000;
 }
-
 .reservatorio4 .top {
     color: #000000;
-} */
-
-/* main .reservatorios .reservatorio .top {
+}
+main .reservatorios .reservatorio .top {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     font-weight: bold;
     margin-bottom: 10%;
     margin-top: 5px;
     font-size: 30px;
-
-
-    & i{
-        padding-left: 15%;
-    }
-} */
-
+}
 main .reservatorios .reservatorio .mid {
     display: flex;
     
-    
 }
-
 main .reservatorios .reservatorio .mid .metricas {
     display: flex;
     flex-direction: column;
     gap: 15%;
     width: 30%;
     align-items: flex-start;
-    
 }
-
-main #reservatorio1  {
-    /* position: relative; */
+.reservatorio1 .mid .porcentagemAtual {
+    position: absolute;
     color: #971E22;
     font-size: 40px;
     font-weight: bold;
     top: 90%;
-
-    
 }
-
-main #reservatorio2  {
-    /* position: relative; */
+.reservatorio2 .mid .porcentagemAtual {
+    position: absolute;
     color: #ffd900;
     font-size: 40px;
     font-weight: bold;
     top: 90%;
 }
-
-main #reservatorio3 {
-    /* position: relative; */
-    color: #0B5268;
-    font-size: 40px;
-    font-weight: bold;
-    /* top: 10px; */
-}
-
-main #reservatorio4  {
-    /* position: relative; */
+.reservatorio3 .mid .porcentagemAtual {
+    position: absolute;
     color: #0B5268;
     font-size: 40px;
     font-weight: bold;
     top: 170%;
 }
-
+.reservatorio4 .mid .porcentagemAtual {
+    position: absolute;
+    color: #0B5268;
+    font-size: 40px;
+    font-weight: bold;
+    top: 170%;
+}
 .reservatorio2 .bottom {
     background-color: #ffd900;
+    
 }
-
 .reservatorio3 .bottom {
     background-color: #45A3E4;
 }
-
 .reservatorio4 .bottom {
     background-color: #45A3E4;
 }
-
-
 main .reservatorios .reservatorio .mid .imgReservatorio {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
 main .reservatorios .reservatorio .bottom {
     margin-top: 5px;
     color: #ffffff;
@@ -396,29 +273,15 @@ main .reservatorios .reservatorio .bottom {
     font-size: 25px;
     border-radius: 15px;
 }
-
-
 .reservatorio1 .bottom {
     background-color: #971E22;
 }
-
 .reservatorio2 .bottom {
     background-color: #ffd900;
 }
-
 .reservatorio3 .bottom {
     background-color: #45A3E4;
 }
-
 .reservatorio4 .bottom {
     background-color: #45A3E4;
 }
-
-main #reservatorio1 button{
-    background-color: #971E22;
-    color: black;
-    width: 267px;
-    height: 77px;
-    display: flex;
-}
-
