@@ -1,508 +1,368 @@
-@import url('https://fonts.googleapis.com/css2?family=Jersey+10&family=Rubik+Wet+Paint&family=Russo+One&family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Saira", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-}
+@import url(../../config/css/style_padrao.css);
 
 body {
-    background-color: #EDEEF1;
-    /* overflow: hidden; */
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content 1fr;
+  overflow-x: hidden;
 }
 
 header {
-    background: linear-gradient(90deg, #08232C, #123942, #215B63, #2E7A81, #499899);
-    display: flex;
-    width: 100%;
-    height: 86px;
+  background: linear-gradient(
+    90deg,
+    #08232c,
+    #123942,
+    #215b63,
+    #2e7a81,
+    #499899
+  );
+  display: grid;
+  grid-template-columns: min-content auto auto;
+  width: 100%;
+  height: 100%;
+  justify-items: end;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 70px;
 }
 
-header .logo {
-    width: 25%;
-    display: flex;
-    align-items: center;
-    padding: 3%;
-
-    & img {
-        width: 56%;
-    }
+header * {
+  color: var(--cor-primaria);
 }
 
-header .menu {
-    width: 55%;
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 20px;
-    padding-right: 40px;
-    gap: 2vh;
-
-    & span{
-        font-size: 20px;
-    }
-
-    & i {
-        font-size: 30px;
-        padding: 20px;
-    }
-
-    & a {
-        color: white;
-    }
+.logo {
+  height: 3rem;
 }
 
-header .user {
-    width: 25%;
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    padding-left: 5vh;
-    justify-content: center;
-    gap: 3vh;
-
-    & span {
-        font-size: 2.5vh;
-        padding: 10px;
-    }
-
-    & #barra {
-        font-size: 5vh;
-    }
+header h2 {
+  justify-self: center;
+  font-size: 2rem;
 }
 
-header .user img {
-    width: 6.8vh;
+header nav {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  grid-template-rows: auto;
+  gap: 20px;
 }
 
-header .hamburger {
-    width: 5%;
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 40px;
-    padding: 3%;
+header nav * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  gap: 10px;
 }
 
-header .hamburger:hover {
-    cursor: pointer;
+.notificacao {
+  cursor: pointer;
 }
 
-body.sidebar-active main{
-    filter: blur(3.5px);
+.user_img {
+  width: 3.8rem;
+  height: 3.8rem;
+  justify-content: center;
+  border: 3px solid var(--cor-primaria);
+  border-radius: 100%;
+}
+
+header #hamburger-icon {
+  align-self: center;
+  justify-self: center;
+  cursor: pointer;
+  font-size: 3rem;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+body.sidebar-active main {
+  filter: blur(3.5px);
 }
 
 .sidebar {
-    position: fixed;
-    top: 100px;
-    right: -250px; /* Inicialmente fora da tela */
+  position: absolute;
+  top: 0;
+  right: -250px;
+  height: 100%;
+  width: 250px;
+  background-color: #edeef1;
+  transition: right 0.3s ease-in-out;
+  z-index: 999;
+  padding-top: 20px;
+  box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.1);
+
+  & ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     height: 100%;
-    width: 250px;
-    background-color: #EDEEF1;
-    transition: right 0.3s ease-in-out;
-    z-index: 999;
-    padding-top: 20px;
-    box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+    color: #0b5268;
+    margin: 0;
+  }
 
-    & ul {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        height: 100%;
-        font-size: 20px;
-        color: #0B5268;
-        margin: 0;
-    }
+  & li {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
 
-    & li {
-        padding: 10px 20px;
-        display: flex;
-        align-items: center;
-        transition: background-color 0.3s ease;
-    }
+  & li i {
+    padding-right: 15px;
+    font-size: 20px;
+  }
 
-    & li i {
-        padding-right: 15px;
-        font-size: 20px;
-    }
+  .option {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
 
-    .option {
-        font-size: 25px;
-        font-weight: bold;
-        margin-bottom: 20px;
-    }
-
-    ul li:hover {
-        cursor: pointer;
-        background-color: #D8D8D8; /* Cor de fundo no hover */
-        width: 100%;
-        transition: 1s;
-    }
+  ul li:hover {
+    cursor: pointer;
+    background-color: #d8d8d8;
+    width: 100%;
+    transition: 1s;
+  }
 }
 
 ul li.opcoes:hover {
-    background-color: transparent; /* Ou a cor original do fundo */
-    cursor: default; /* Remove o cursor de ponteiro */
+  background-color: transparent;
+  cursor: default;
 }
 
 .sidebar.active {
-    right: 0;
-    top: 100px;
-    box-shadow: -20px 0 10px rgba(0, 0, 0, 0.12);
-    filter: blur(0px);
+  right: 0;
+  top: 0;
+  box-shadow: -20px 0 10px rgba(0, 0, 0, 0.12);
+  filter: blur(0px);
+  z-index: 999;
 
-    & .hamburger {
-        font-size: 30px;
-        cursor: pointer;
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        z-index: 1000;
-    }
+  & .hamburger-icon {
+    font-size: 30px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+  }
 
-    & .hamburger i {
-        color: #0B5268;
-    }
+  & .hamburger-icon i {
+    color: #0b5268;
+  }
 }
 
 #hamburger-icon {
-    transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 #hamburger-icon.open {
-    transform: rotate(180deg); /* Rotaciona o ícone quando aberto */
+  transform: rotate(180deg);
 }
 
 main {
-    width: 90%;
-    background-color: #EDEEF1;
+
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: min-content, min-content, 1fr;
+  grid-template-areas:
+    "header header"
+    "kpis kpis"
+    "grafico infoTempo";
+  padding: 20px 70px;
+  gap: 30px;
 }
 
-main .pgAtual{
-    display: flex;
-    margin-top: 1.5%; 
-    width: 100%;  
+.top {
+  grid-area: header;
+  width: 100%;
+  height: min-content;
+  display: flex;
+  justify-content: space-between;
 }
 
-main .pgAtual .indicadorPagina{
-    font-size: 20px;
-    width: 50%;
-    & i{
-        padding-right: 2%;
-    }
+.top * {
+  font-size: 1.5rem;
 }
 
-main .pgAtual .caminhoPagina{
-    width: 50%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-
-    & i{
-        padding-right: 1%;
-    }
+.top div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
 }
 
-main .kpis{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    margin-top: 1.5%;
+.top input {
+  border-bottom: solid 3px var(--cor-secundaria);
 }
 
-main .kpis .kpiPrincipal{
-    display: flex;
-    flex-direction: column;
-    width: 26vh;
-    height: 16vh;
-    background-color: #ffffff;
-    align-items: center;
-    box-shadow: 4px 4px 20px #bbbbbb;
-    border-radius: 10px;
+.top input:focus,
+input:active {
+  outline: none;
 }
 
-main .kpis .kpiPrincipal select{
-    width: 100%;
-    font-size: 15px;
-    border: none;
-    outline: none;
-    background-color: transparent;
-    padding-right: 4%;
-    transform: translateY(-4vh);
+.top p {
+  font-weight: bold;
 }
 
-main .kpis .kpiPrincipal select:hover {
-    cursor: pointer;
+main .kpis_container {
+  grid-area: kpis;
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  grid-template-rows: min-content;
+  column-gap: 30px;
 }
 
-main .kpis .kpiPrincipal .tituloKpi{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    width: 100%;
-    background-color: #ffd900;
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 15px;
-    padding: 2%;
-    border-top-left-radius: 10px; /* Arredonda o canto superior esquerdo */
-    border-top-right-radius: 10px;
-
-    & span{
-        font-weight: bold;
-    }
+main .kpis_container .kpi {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #ffffff;
+  align-items: center;
+  box-shadow: 4px 4px 20px #929292;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-main .kpis .kpiPrincipal .tituloKpi select{
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 10px;
-    border: none;
-    outline: none;
-    padding-right: 4%;
-    width: 5%;
-    background-color: transparent;
+main .kpis_container .kpi select {
+  padding: 5px;
+  width: min-content;
+  max-height: 100%;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: #000000;
+  font-weight: bold;
+  font-size: 1.3rem;
 }
 
-main .kpis .kpiPrincipal .nivelAtual{
-    position: relative;
-    color: black;
-    top: -78%;
-    right: 1%;
-    font-size: 2.5vh;
-    font-weight: bold;
+option {
+  color: #08232c;
 }
 
-main .conjuntokpi {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
-    flex: 1 1 calc(50% - 10px); 
+main .kpis_container .kpi select:hover {
+  cursor: pointer;
 }
 
-main .conjuntokpi .kpi1 {
-    display: flex;
-    background-color: #ffffff;
-    flex-direction: column;
-    align-items: center;
-    flex: 1 1 45%;
-    max-width: 30vh;
-    height: 16vh;
-    box-shadow: 4px 4px 20px #bbbbbb;
-    border-radius: 10px;
+main .kpis_container .kpi .titulo_kpi {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #ffd900;
+  padding: 5px;
+  min-height: 50px;
 }
 
-main .conjuntokpi .kpi1 img {
-    height: 9vh;
-    padding: 3%;
-    transform: translateY(-1vh);
+main .titulo {
+  color: #000000;
+  font-weight: bold;
+  font-size: 1.2rem;
+  width: 100%;
+  text-align: center;
 }
 
-main .conjuntokpi .kpi1 #kpiPrincipalImg {
-    height: 13.5vh;
-    padding: 3%;
-    transform: translateY(-4.4vh);
+.reservatorio_img {
+  height: 3rem;
 }
 
-main .conjuntokpi .kpi1 .tituloKpi{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    color: black;
-    font-weight: bold;
-    font-size: 12.8px;
-    text-align: center;
-    padding: 2%;
-    border-top-left-radius: 10px; /* Arredonda o canto superior esquerdo */
-    border-top-right-radius: 10px;
+.kpi_info {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
 
-.consumo .tituloKpi {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    width: 20vh;
-    color: rgb(0, 0, 0);
-    font-weight: bold;
-    font-size: 20px;
-    padding: 2%;
+.kpi_info span {
+  font-size: 2rem;
+  text-transform: uppercase;
 }
 
-.kpiPrincipal .tituloKpi select {
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 15px;
-    border: none;
-    outline: none;
-    padding-right: 4%;
-    width: 5%;
-    color: transparent;
-    background-color: transparent;
+.kpi_info i {
+  font-size: 3rem;
 }
 
-main .conjuntokpi .kpi1 .infoKpi{
-    font-size: 17px;
-    font-weight: bold;
-}
-
-#nivelCritico .infoKpi{
-    font-size: 13px;
-}
-
-main .conjuntokpi .kpi1 i{
-    font-size: 38px;
-    padding: 3%;
-}
-
-main .conjuntokpi .kpi1 .tituloKpi select{
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 15px;
-    border: none;
-    outline: none;
-    padding-right: 4%;
-    width: 5%;
-    color: transparent;
-    background-color: transparent;
-}
-
-.icon{
-    display: flex;
-    width: 50vh;
-    justify-content: center;
-    align-items: center
-}
-
-.upAndDown{
-    display: flex;
-    flex-direction: column;
-    font-size: 5px;
-    position: absolute;
-    right: 99vh;
-    bottom: 63vh;
-    align-items: center;
-}
-
-#up,#down {
-    font-size: 25px;
-    cursor: pointer;
-}
-
-.graficos{
-    margin-top: 1.1%;
-    display: flex;
-    justify-content: center;
-    gap: 8vh;
-}
-
-.graficos .grafico{
-    width: 60%;
-    max-height: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.grafico {
+  grid-area: grafico;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+ width: 100%;
+ background-color: #ffffff;
+ border-radius: 10px;
+ height: 55vh
 }
 
 canvas {
-    background-color: #ffffff;
-    padding: 10px;
-    border-radius: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  width: 100% !important; /* Garante que o canvas se adapte ao contêiner */
+  height: 80% !important;
 }
 
-.graficos .grafico span{
-    display: flex;
-    width: 100%;
-    background-color: #2C767D;
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 20px;
-    padding: 1%;
-    align-items: center;
-    justify-content: center;
-    border-top-left-radius: 10px; /* Arredonda o canto superior esquerdo */
-    border-top-right-radius: 10px;
+.infoTempo .titulo,
+.grafico .titulo {
+  background-color: #2c767d;
+  width: 100%;
+  color: #ffffff;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-size: 2rem;
 }
 
-.graficos .previsaoClima{
-    width: 20%;
-    height: 57vh;
-    display: flex;
+.infoTempo {
+  grid-area: infoTempo;
+  height: min-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding-bottom: 10px;
+  height: 100%;
+  
+}
+
+.infoTempo .cardPrevisao {
+  display: flex;
+  background-color: #2c767d;
+  color: #ffffff;
+  padding: 2%;
+  align-items: center;
+  justify-content: space-evenly;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-inline: 10px;
+
+  & .infos {
+    display: block;
     flex-direction: column;
     align-items: center;
-    background-color: #ffffff;
-    border-radius: 10px;
-    gap: 1.5vh;
-    
-}
+  }
 
-.graficos .previsaoClima .titulo{
-    background-color: #2C767D;
-    width: 100%;
-    color: #ffffff;
+  & i {
+    font-size: 26px;
     padding: 2%;
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    border-top-left-radius: 10px; /* Arredonda o canto superior esquerdo */
-    border-top-right-radius: 10px;
-}
-
-.graficos .previsaoClima .infoTempo{
-    width: 90%;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    gap: 1vh;
-}
-
-.graficos .previsaoClima .infoTempo .cardPrevisao{
-    display: flex;
-    background-color: #2C767D;
-    color: #ffffff;
-    padding: 2%;
-    align-items: center;
-    justify-content: space-evenly;
-    text-align: center;
-    border-radius: 10px;
-    font-size: 18px;
-    font-weight: bold;
-
-    & .infos{
-        display: block;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    & i{
-        font-size: 26px;
-        padding: 2%;
-    }
+  }
 }
