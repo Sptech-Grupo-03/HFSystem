@@ -62,30 +62,6 @@
 
 </html>
 <script>
-    //  function exibirReservatoriosDoUsuario() {
-    //     var reservatorios = JSON.parse(sessionStorage.reservatorio);
-    //     reservatorios.forEach(item => {
-    //         document.getElementById("graficos").innerHTML += `
-    //             <div id="grafico${item.id}" class="display-none">
-    //                 <h3 class="tituloGraficos">
-    //                     <span id="tituloAquario${item.id}">${item.nome}</span>
-    //                 </h3>
-    //                 <div class="graph">
-    //                     <canvas id="myChartCanvas${item.id}"></canvas>
-    //                 </div>
-    //                 <div class="label-captura">
-    //                     <p id="avisoCaptura${item.id}" style="color: white"></p>
-    //                 </div>
-    //             </div>
-    //         `
-
-    //         obterDadosGrafico(item.id)
-    //     });
-
-    //     if (reservatorios.length > 0) {
-    //         exibirDetalhesReservatorio(reservatorios[0].id)
-    //     }
-    // }
 
     function exibirReservatorios() {
         JSON.parse(sessionStorage.reservatorio).forEach(item => {
@@ -114,41 +90,12 @@
                     </div>
                     `
 
-                    sessionStorage.idReservatorio = item.idReservatorio
+            sessionStorage.idReservatorio = item.idReservatorio
         });
 
     }
 
     function exibirDetalhesReservatorio(idReservatorio) {
-        // let todosOsGraficos = JSON.parse(sessionStorage.reservatorios);
-
-        // for (i = 0; i < todosOsGraficos.length; i++) {
-        //     // exibindo - ou não - o gráfico
-        //     if (todosOsGraficos[i].id != idReservatorio) {
-        //         let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
-        //         if (elementoAtual.classList.contains("display-block")) {
-        //             elementoAtual.classList.remove("display-block")
-        //         }
-        //         elementoAtual.classList.add("display-none")
-
-        //         // alterando estilo do botão
-        //         let btnAtual = document.getElementById(`btnAquario${todosOsGraficos[i].id}`)
-        //         if (btnAtual.classList.contains("btn-pink")) {
-        //             btnAtual.classList.remove("btn-pink")
-        //         }
-        //         btnAtual.classList.add("btn-white")
-        //     }
-        // }
-
-        // // exibindo - ou não - o gráfico
-        // let graficoExibir = document.getElementById(`grafico${idReservatorio}`)
-        // graficoExibir.classList.remove("display-none")
-        // graficoExibir.classList.add("display-block")
-
-        // // alterando estilo do botão
-        // let btnExibir = document.getElementById(`btnAquario${idReservatorio}`)
-        // btnExibir.classList.remove("btn-white")
-        // btnExibir.classList.add("btn-pink")
 
         window.location = "../../private/dashboard.html";
     }
