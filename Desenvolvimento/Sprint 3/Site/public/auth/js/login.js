@@ -76,6 +76,7 @@ function login() {
                         destino = "../../private/menu.html"; 
                     }
 
+
                     setTimeout(function () {
                         sessionStorage.username = json.nome;
                         window.location = destino ;
