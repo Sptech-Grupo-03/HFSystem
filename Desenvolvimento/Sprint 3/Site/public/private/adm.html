@@ -30,7 +30,7 @@
             </div>
             <div class="user">
                 <img src="assets/user.png" alt="">
-                <span>Claudio Frizzarini</span>
+                <span id="username">Claudio Frizzarini</span>
             </div>
             <div class="hamburger">
                 <i class="fa-solid fa-bars" id="hamburger-icon"></i>
@@ -120,6 +120,9 @@
 </html>
 
 <script>
+
+    username.innerHTML = sessionStorage.username
+
     function listarFazenda() {
 
         fetch(`/gerenciarReservatorio/listarFazenda`).then(resposta => {

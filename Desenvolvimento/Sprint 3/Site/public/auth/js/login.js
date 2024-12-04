@@ -63,6 +63,7 @@ function login() {
                     console.log(JSON.stringify(json));
                     sessionStorage.reservatorio = JSON.stringify(json.reservatorio)
                     sessionStorage.fazendaId = json.reservatorio[0].fkFazenda;
+                    sessionStorage.username = json.nome;
                     var codigoAcesso = sessionStorage.fazendaId;
 
                     let destino = "";
@@ -76,17 +77,20 @@ function login() {
                     }
 
 
-                    // Verificação do tipo de usuario
-                    if(emailVar == 'suporte@hfsystem.com' && senhaVar == 'suporte123'){
-                        setTimeout(function () {
-                            window.location = "../../private/suporte.html";
-                        }, 1000); // apenas para exibir o loading
-                    } else{
-                        setTimeout(function () {
-                            window.location = "";
-                        }, 1000); // apenas para exibir o loading
-                    }
+                    // // Verificação do tipo de usuario
+                    // if(emailVar == 'suporte@hfsystem.com' && senhaVar == 'suporte123'){
+                    //     setTimeout(function () {
+                    //         window.location = "../../private/suporte.html";
+                    //     }, 1000); // apenas para exibir o loading
+                    // } else{
+                    //     setTimeout(function () {
+                    //         window.location = "";
+                    //     }, 1000); // apenas para exibir o loading
+                    // }
+
+
                     setTimeout(function () {
+                        sessionStorage.username = json.nome;
                         window.location = destino ;
                     }, 1000);
 

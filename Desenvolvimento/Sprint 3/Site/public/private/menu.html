@@ -25,7 +25,7 @@
             </div>
             <div class="user">
                 <img src="assets/user.png" alt="">
-                <span>Claudio Frizzarini</span>
+                <span id="usuario">Claudio Frizzarini</span>
             </div>
             <div class="hamburger">
                 <i class="fa-solid fa-bars" id="hamburger-icon"></i>
@@ -62,6 +62,8 @@
 
 </html>
 <script>
+
+    usuario.innerHTML = sessionStorage.username
 
     function exibirReservatorios() {
         JSON.parse(sessionStorage.reservatorio).forEach(item => {

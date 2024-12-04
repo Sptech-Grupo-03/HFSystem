@@ -289,5 +289,13 @@ select * from reservatorio where idReservatorio = 8;
 desc sensor;
 desc usuario;
 
- INSERT INTO usuario (username, nome, tipo, telefone, email, senha, fkFazenda) VALUES ('Claudio Frizzarini', 'Claudio Frizzarini', 'Cliente', '11996633123', 'claudio@sptech.school', '#Frizza1', 'SPTC01')
+ INSERT INTO usuario (username, nome, tipo, telefone, email, senha, fkFazenda) VALUES ('Claudio Frizzarini', 'Claudio Frizzarini', 'Cliente', '11996633123', 'claudio@sptech.school', '#Frizza1', 'SPTC01');
+ 
+ insert into usuario (username, nome, tipo, telefone, email, senha, fkUsuario, fkFazenda) values
+('Rena', 'Rennan', 'Fazenda', '11988242705', 'rennan@jbs.com', 'senha1234', 6, 'ADM001');
+
+desc reservatorio;
+
+insert into reservatorio (nome, fkFazenda) values
+('Rerervatorio Norte', 'ADM001');
  
