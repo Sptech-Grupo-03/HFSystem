@@ -28,9 +28,14 @@ body {
 }
 
 .container {
-    display: flex;
+    display: grid;
     flex-direction: column;
     align-items: center;
+    flex-direction: column;
+    /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
+    gap: 40px;
+    padding: 20px;
+    background-color: #EDEEF1;
 }
 
 
@@ -178,7 +183,7 @@ ul li.opcoes:hover {
 }
 
 main {
-    width: 80%;
+    width: 100%;
     background-color: #EDEEF1;
 }
 
@@ -203,14 +208,71 @@ main .alerta {
     }
 }
 
+main .grafico-reservatorio{
+    
+        position: absolute;
+        width: 600px;
+        height: 600px;
+
+    
+}
+
+main .grafico-reservatorio .reservatorio{
+    margin-left: 500px;
+    position: relative;
+    width: 80px;
+    height: 300px;
+    border: 2px solid #0044cc;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f0f0f0;
+}
+
+main .grafico-reservatorio .reservatorio .agua {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #FFD700;
+}
+main .grafico-reservatorio .reservatorio .porcentagem{
+    position: absolute;
+    top: 50%; /* Centraliza verticalmente */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Ajuste fino para garantir o centro exato */
+    font-size: 20px;
+    font-weight: bold;
+    color: #333; /* Cor do texto da porcentagem */
+}
+
+
 main .reservatorios {
     width: 100%;
+    height: 874px;
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-between;
-    margin-top: 7%;
+    gap: 60px;
+    justify-content: space-around;
+    margin-top: 10%;
     margin-bottom: 10%;
+    text-align: left;
+    /* display: flex;
+    flex-direction: column;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
+    gap: 20px;
+    padding: 20px;
+    background-color: #EDEEF1
+    ;
+    & img{
+        max-width: 100%;
+        width: 200px;
+        height: 190px;
+        padding: 5px;
+        float: right;
+        margin-left: 390px;
+        position:absolute;
+        
+    }
 }
 
 main .reservatorios .reservatorio {
@@ -219,16 +281,16 @@ main .reservatorios .reservatorio {
     flex-direction: column;
     padding: 2%;
     box-shadow: 2px 2px 2px 3px #0000001e;
-    width: calc(45% - 10px);
+    width: calc(40% - 5px);
     border-radius: 10px;
 }
 
 
-.reservatorio1 .top {
+/* .reservatorio1 .top {
     color: #971E22;
-}
+} */
 
-.reservatorio2 .top {
+/* .reservatorio2 .top {
     color: #ffd900;
 }
 
@@ -238,9 +300,9 @@ main .reservatorios .reservatorio {
 
 .reservatorio4 .top {
     color: #000000;
-}
+} */
 
-main .reservatorios .reservatorio .top {
+/* main .reservatorios .reservatorio .top {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -253,10 +315,11 @@ main .reservatorios .reservatorio .top {
     & i{
         padding-left: 15%;
     }
-}
+} */
 
 main .reservatorios .reservatorio .mid {
     display: flex;
+    
     
 }
 
@@ -266,34 +329,37 @@ main .reservatorios .reservatorio .mid .metricas {
     gap: 15%;
     width: 30%;
     align-items: flex-start;
+    
 }
 
-.reservatorio1 .mid .porcentagemAtual {
-    position: absolute;
+main #reservatorio1  {
+    /* position: relative; */
     color: #971E22;
     font-size: 40px;
     font-weight: bold;
     top: 90%;
+
+    
 }
 
-.reservatorio2 .mid .porcentagemAtual {
-    position: absolute;
+main #reservatorio2  {
+    /* position: relative; */
     color: #ffd900;
     font-size: 40px;
     font-weight: bold;
     top: 90%;
 }
 
-.reservatorio3 .mid .porcentagemAtual {
-    position: absolute;
+main #reservatorio3 {
+    /* position: relative; */
     color: #0B5268;
     font-size: 40px;
     font-weight: bold;
-    top: 170%;
+    /* top: 10px; */
 }
 
-.reservatorio4 .mid .porcentagemAtual {
-    position: absolute;
+main #reservatorio4  {
+    /* position: relative; */
     color: #0B5268;
     font-size: 40px;
     font-weight: bold;
@@ -347,3 +413,12 @@ main .reservatorios .reservatorio .bottom {
 .reservatorio4 .bottom {
     background-color: #45A3E4;
 }
+
+main #reservatorio1 button{
+    background-color: #971E22;
+    color: black;
+    width: 267px;
+    height: 77px;
+    display: flex;
+}
+

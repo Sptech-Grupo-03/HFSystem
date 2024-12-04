@@ -7,3 +7,4 @@ hamburgerIcon.addEventListener('click', () => {
     body.classList.toggle('sidebar-active');  // Aplica o efeito de desfoque no fundo
     hamburgerIcon.classList.toggle('open');  // Rotaciona o ícone do hamburger
 });
+
