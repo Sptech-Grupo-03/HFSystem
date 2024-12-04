@@ -66,10 +66,16 @@ function login() {
                     console.log(JSON.stringify(json));
                     sessionStorage.reservatorio = JSON.stringify(json.reservatorio)
 
-                    setTimeout(function () {
-                        window.location = "../../private/menu.html";
-                    }, 1000); // apenas para exibir o loading
-
+                    // Verificação do tipo de usuario
+                    if(emailVar == 'suporte@hfsystem.com' && senhaVar == 'suporte123'){
+                        setTimeout(function () {
+                            window.location = "../../private/suporte.html";
+                        }, 1000); // apenas para exibir o loading
+                    } else{
+                        setTimeout(function () {
+                            window.location = "";
+                        }, 1000); // apenas para exibir o loading
+                    }
                 });
 
             } else {
