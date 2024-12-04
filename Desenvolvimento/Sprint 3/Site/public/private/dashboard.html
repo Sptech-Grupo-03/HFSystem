@@ -24,7 +24,7 @@
                 <div class="user_img">
                     <i class="fa-solid fa-user"></i>
                 </div>
-                <p id="username">Claudio Frizzarini</p>
+                <span id="username">Claudio Frizzarini</span>
             </div>
             <span id="barra">|</span>
             <i class="fa-solid fa-bars" id="hamburger-icon"></i>
@@ -191,6 +191,9 @@
         const today = new Date().toISOString().split("T")[0];
         inputDate.value = today;
     });
+
+    username.innerHTML = sessionStorage.username
+
 
     document.getElementById("infoTempo").style.width = `${getDivWidth("kpi_dias_restantes")}px`
 
