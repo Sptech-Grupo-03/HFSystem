@@ -4,11 +4,7 @@ function buscarReservatoriosPorFazenda(req, res) {
     var idEmpresa = req.params.idEmpresa
 
     reservatorioModel.buscarReservatoriosPorFazenda(idEmpresa).then((resultado) => {
-        if (resultado.lenth > 0) {
-            res.status(200).json(resultado)
-        } else {
-            res.status(204).json([])
-        }
+        res.status(200).json(resultado)
     }).catch(function (erro){
         console.log(erro)
         console.log("Houve um erro ao buscar os reservatórios: ", erro.sqlMessage)

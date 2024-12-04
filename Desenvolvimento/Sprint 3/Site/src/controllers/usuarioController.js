@@ -10,17 +10,15 @@ function autenticar(req, res) {
   } else if (senha == undefined) {
     res.status(400).send("Sua senha está indefinida!");
   } else {
-    usuarioModel
-      .autenticar(email, senha)
+    usuarioModel.autenticar(email, senha)
       .then(function (resultadoAutenticar) {
         console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
-        console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
+        console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`);
 
         if (resultadoAutenticar.length == 1) {
           console.log(resultadoAutenticar);
 
-          reservatorioModel
-            .buscarReservatoriosPorFazenda(resultadoAutenticar[0].fazendaId)
+          reservatorioModel.buscarReservatoriosPorFazenda(resultadoAutenticar[0].fazendaId)
             .then((resultadoReservatorio) => {
               if (resultadoReservatorio.length > 0) {
                 res.json({
@@ -74,8 +72,7 @@ function cadastrar(req, res) {
   } else if (senha == undefined) {
     res.status(400).send("senha está undefined!");
   } else {
-    usuarioModel
-      .cadastrar(codigoAcesso, nomeComplemento, userName, email, celular, senha)
+    usuarioModel.cadastrar(codigoAcesso, nomeComplemento, userName, email, celular, senha)
       .then((resultado) => {
         res.status(201).json(resultado);
       })
