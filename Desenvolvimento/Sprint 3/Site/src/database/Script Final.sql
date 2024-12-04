@@ -290,6 +290,7 @@ desc sensor;
 desc usuario;
 
  INSERT INTO usuario (username, nome, tipo, telefone, email, senha, fkFazenda) VALUES ('Claudio Frizzarini', 'Claudio Frizzarini', 'Cliente', '11996633123', 'claudio@sptech.school', '#Frizza1', 'SPTC01');
+<<<<<<< HEAD
  desc historico;
  
  desc historico;
@@ -297,3 +298,14 @@ desc usuario;
  
  select * from usuario;
  select * from fazenda;
+=======
+ 
+ insert into usuario (username, nome, tipo, telefone, email, senha, fkUsuario, fkFazenda) values
+('Rena', 'Rennan', 'Fazenda', '11988242705', 'rennan@jbs.com', 'senha1234', 6, 'ADM001');
+
+desc reservatorio;
+
+insert into reservatorio (nome, fkFazenda) values
+('Rerervatorio Norte', 'ADM001');
+ 
+>>>>>>> c951461fe3be5cc3aef183486364a09545a1c781
