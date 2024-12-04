@@ -232,9 +232,13 @@
 
 
     function exibirHistoricoReservatorio() {
-        var idReservatorio = sessionStorage.idReservatorio;
-        console.log(idReservatorio)
         
+        var reservatorioString = sessionStorage.getItem("reservatorio");
+        var reservatorioArray = JSON.parse(reservatorioString);
+        var idReservatorio = reservatorioArray[0].idReservatorio;
+        console.log("ID do Reservatório:", idReservatorio);
+        console.log(idReservatorio)
+
         var inicioConsulta = input_inicio_consulta.value;
         var fimConsulta = input_fim_consulta.value;
 
@@ -356,7 +360,9 @@
         let dadosString = sessionStorage.getItem('dadosReservatorio');
         let dados = JSON.parse(dadosString);
 
-        document.getElementById("nivelAtual").innerHTML = `${dados[0][0]["Nivel Atual"]}%`;
+        console.log(dados);
+
+        document.getElementById("nivelAtual").innerHTML = `${dados[0][0]["nivelCalculado"]}%`;
         document.getElementById("situacaoAtual").innerHTML = `${dados[1][0]["situacaoAtual"]}`;
         document.getElementById("consumoMedio").innerHTML = `${dados[4][0]["Media Nivel Calculado"]}`;
         document.getElementById("vezesNivelCritico").innerHTML = `${dados[2][0]["AtingiuNivelCritico"]} VEZES`;
