@@ -57,6 +57,7 @@
                     <input type="date" name="" id="input_inicio_consulta">
                     <p>à</p>
                     <input type="date" name="" id="input_fim_consulta">
+                    <button id="consultar" onclick="exibirClima();">consultar</button>
                 </div>
             </section>
 
@@ -129,6 +130,7 @@
 
                 <span class="titulo">
                     CLIMATEMPO
+                    <input id="dataClima" type="date">
                 </span>
 
                 <div class="cardPrevisao probChuva">
@@ -162,7 +164,7 @@
                         <div class="hg-weather" data-key="c381e5f5" data-woeid="455827">
                             <span data-weather="message"></span>
                             <span>UMIDADE DO AR<br></span>
-                            <span data-weather="humidity" id="umidadeAr"></span> %
+                            <span data-weather="humidity" id="umidadeAr"></span>
                         </div>
                     </div>
                     <i class="fa-solid fa-wind"></i>
@@ -184,14 +186,21 @@
 
 <script>
 
+    document.addEventListener("DOMContentLoaded", () => {
+        const inputDate = document.querySelector("#dataClima");
+        const today = new Date().toISOString().split("T")[0];
+        inputDate.value = today;
+    });
+
     username.innerHTML = sessionStorage.username
+
 
     document.getElementById("infoTempo").style.width = `${getDivWidth("kpi_dias_restantes")}px`
 
     function getDivWidth(elementId) {
         const element = document.getElementById(elementId);
         if (element) {
-            
+
             return element.offsetWidth;
         } else {
             console.error("Elemento não encontrado.");
@@ -199,18 +208,18 @@
         }
     }
 
-//     document.getElementById("grafico").style.height = `${getDivHeight("infoTempo")}px`
+    //     document.getElementById("grafico").style.height = `${getDivHeight("infoTempo")}px`
 
-// function getDivHeight(elementId) {
-//     const element = document.getElementById(elementId);
-//     if (element) {
-        
-//         return element.offsetHeight;
-//     } else {
-//         console.error("Elemento não encontrado.");
-//         return null;
-//     }
-// }
+    // function getDivHeight(elementId) {
+    //     const element = document.getElementById(elementId);
+    //     if (element) {
+
+    //         return element.offsetHeight;
+    //     } else {
+    //         console.error("Elemento não encontrado.");
+    //         return null;
+    //     }
+    // }
 
 
     function exibirHistoricoReservatorio() {
@@ -231,6 +240,7 @@
                         console.log(JSON.stringify(json));
                         sessionStorage.dadosReservatorio = JSON.stringify(json.reservatorio);
                         defineDadosReservatorio();
+
                     });
 
                     return true;
@@ -241,8 +251,83 @@
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
+
         return false;
 
+
+
+    }
+
+
+    function exibirClima() {
+        const idFazenda = sessionStorage.fazendaId;
+        var inicioConsulta = input_inicio_consulta.value;
+        var fimConsulta = input_fim_consulta.value;
+
+        fetch("/clima/exibirClima", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idFazendaServer: idFazenda,
+                inicioConsultaServer: inicioConsulta,
+                fimConsultaServer: fimConsulta,
+            }),
+        })
+            .then(function (res) {
+                if (res.ok) {
+                    console.log(res)
+
+
+                    console.log("Dados do clima resgatados do banco com sucesso!")
+                    console.log({
+
+                    })
+
+                    var probabilidadeDeChuva
+                    var umidadeDoAr
+                    var temperaturaMinima
+                    var temperaturaMaxima
+
+                    res.json().then(json => {
+                        console.log(json);  // Exibe o conteúdo do JSON retornado
+
+                        // Aqui, json já é um array, então acessamos o primeiro elemento
+                        var resultado = json[0];
+
+                        // Acessando as propriedades corretamente
+                        probabilidadeDeChuva = resultado.mediaProbabilidadeDeChuva;
+                        umidadeDoAr = resultado.mediaUmidadeDoAr;
+                        temperaturaMinima = resultado.mediaTemperaturaMinima;
+                        temperaturaMaxima = resultado.mediaTemperaturaMaxima;
+
+                        console.log(probabilidadeDeChuva); // Exibe o valor
+                        console.log(umidadeDoAr);  // Exibe o valor
+                        console.log(temperaturaMinima);  // Exibe o valor
+                        console.log(temperaturaMaxima);  // Exibe o valor
+
+                        // Atualizando o DOM com os valores obtidos
+                        document.getElementById("probChuva").textContent = `${probabilidadeDeChuva}%`;
+                        document.getElementById("umidadeAr").textContent = `${umidadeDoAr}%`;
+                        document.getElementById("tempMinima").textContent = `${temperaturaMinima}°C`;
+                        document.getElementById("tempMaxima").textContent = `${temperaturaMaxima}°C`;
+
+                    });
+
+
+
+
+
+
+                } else {
+                    throw "Houve um erro ao tentar exibir os dados do clima do banco!";
+                }
+
+            })
+            .catch(function (erro) {
+                console.error(`#ERRO: ${erro}`);
+            });
     }
 
     function defineDadosReservatorio() {
