@@ -187,18 +187,7 @@ main .reservatorios .reservatorio {
     width: 90%;
     border-radius: 10px;
 }
-.reservatorio1 .top {
-    color: #971E22;
-}
-.reservatorio2 .top {
-    color: #ffd900;
-}
-.reservatorio3 .top {
-    color: #000000;
-}
-.reservatorio4 .top {
-    color: #000000;
-}
+
 main .reservatorios .reservatorio .top {
     display: flex;
     align-items: center;
@@ -219,44 +208,6 @@ main .reservatorios .reservatorio .mid .metricas {
     width: 30%;
     align-items: flex-start;
 }
-.reservatorio1 .mid .porcentagemAtual {
-    position: absolute;
-    color: #971E22;
-    font-size: 40px;
-    font-weight: bold;
-    top: 90%;
-}
-.reservatorio2 .mid .porcentagemAtual {
-    position: absolute;
-    color: #ffd900;
-    font-size: 40px;
-    font-weight: bold;
-    top: 90%;
-}
-.reservatorio3 .mid .porcentagemAtual {
-    position: absolute;
-    color: #0B5268;
-    font-size: 40px;
-    font-weight: bold;
-    top: 170%;
-}
-.reservatorio4 .mid .porcentagemAtual {
-    position: absolute;
-    color: #0B5268;
-    font-size: 40px;
-    font-weight: bold;
-    top: 170%;
-}
-.reservatorio2 .bottom {
-    background-color: #ffd900;
-    
-}
-.reservatorio3 .bottom {
-    background-color: #45A3E4;
-}
-.reservatorio4 .bottom {
-    background-color: #45A3E4;
-}
 main .reservatorios .reservatorio .mid .imgReservatorio {
     display: flex;
     align-items: center;
@@ -272,16 +223,4 @@ main .reservatorios .reservatorio .bottom {
     height: 77px;
     font-size: 25px;
     border-radius: 15px;
-}
-.reservatorio1 .bottom {
-    background-color: #971E22;
-}
-.reservatorio2 .bottom {
-    background-color: #ffd900;
-}
-.reservatorio3 .bottom {
-    background-color: #45A3E4;
-}
-.reservatorio4 .bottom {
-    background-color: #45A3E4;
 }
