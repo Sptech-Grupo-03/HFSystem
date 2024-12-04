@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-var climaController = require("../controllers/climaController");
+var climaController = require("../controllers/ClimaController");
 
 console.log("entrei no routes");
 
@@ -10,4 +10,10 @@ router.post("/registrarClima", function (req, res) {
     climaController.registrarClima(req, res);
 })
 
+router.post("/exibirClima", function (req, res) {
+    climaController.exibirClima(req, res);
+})
+
 module.exports = router;
+
+

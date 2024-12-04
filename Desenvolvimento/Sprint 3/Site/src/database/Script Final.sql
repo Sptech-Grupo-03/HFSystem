@@ -1,4 +1,3 @@
-create database HFSystem;
 
 use HFSystem;
 
@@ -65,6 +64,9 @@ fkFazenda char(10),
  constraint fkFazendaReservatorio foreign key (fkFazenda)
 	references fazenda(codigoFazenda) 
 );
+
+alter table reservatorio modify column raio float;
+alter table reservatorio modify column altura float;
 
 create table sensor(
 idColeta int primary key auto_increment,
@@ -257,17 +259,43 @@ select * from reservatorio where fkFazenda = 'D4C1D9';
 
 
 insert into reservatorio (nome,alturam,raio, fkFazenda) values ('Reservatorio Patio Sul', 5,3,'reservatorio');
-
 desc fazenda;
+desc reservatorio;
 insert into fazenda (codigoFazenda, razaoSocial,nomeFazenda)
 values
 ('SUP001', 'HFSYSTEM SUPORTE','HFSYSTEM SUPORTE' );
 
+select * from fazenda;
 insert into fazenda (codigoFazenda, razaoSocial,nomeFazenda)
 values
 ('ADM001', 'HFSYSTEM ADMINISTRADOR','ADMINISTRADOR' );
 
-
+insert into reservatorio (nome,alturam,raio, fkFazenda) values ('Reservatorio Patio Sul', 5,3,'reservatorio');
 desc reservatorio;
 insert into reservatorio (nome,fkFazenda, raio, altura) values ('Suporte HFSystem', 'SUP001',3,5);
 insert into reservatorio (nome,fkFazenda, raio, altura) values ('Administrador HFSystem', 'ADM001',3,5);
+
+insert into fazenda (codigoFazenda,razaoSocial,nomeFazenda,cnpj,representanteLegal, dtCadastro,fkEndereco)
+values
+('SPTC01', 'Fazenda de distribuição de grão', 'Fazenda Sptech','34360552000608','Claudio Frizzarini', curdate(),1);
+desc usuario;
+select * from fazenda where codigoFazenda = 'SPTC01';
+
+insert into reservatorio (raio,altura,nivelIdeal,nivelAlerta,nivelRisco,fkFazenda,nome)
+values (5,10,75,50,25,'SPTC01','Reservatorio Leste 1');
+
+select * from reservatorio where idReservatorio = 8;
+
+desc sensor;
+desc usuario;
+
+ INSERT INTO usuario (username, nome, tipo, telefone, email, senha, fkFazenda) VALUES ('Claudio Frizzarini', 'Claudio Frizzarini', 'Cliente', '11996633123', 'claudio@sptech.school', '#Frizza1', 'SPTC01');
+ 
+ insert into usuario (username, nome, tipo, telefone, email, senha, fkUsuario, fkFazenda) values
+('Rena', 'Rennan', 'Fazenda', '11988242705', 'rennan@jbs.com', 'senha1234', 6, 'ADM001');
+
+desc reservatorio;
+
+insert into reservatorio (nome, fkFazenda) values
+('Rerervatorio Norte', 'ADM001');
+ 

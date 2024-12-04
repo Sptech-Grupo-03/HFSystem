@@ -12,161 +12,170 @@
 </head>
 
 <body onload="exibirHistoricoReservatorio()">
-    <section class="container">
-        <header>
-            <div class="logo">
-                <img src="assets/logotipo-texto-branco (1) 1.png" alt="">
-            </div>
 
-            <div class="menu">
-                <a href="menu.html"><i class="fa-solid fa-house"></i></a>
-                <span>Menu</span>
-                <i class="fa-solid fa-bell"></i>
-                <span>Notificações</span>
-            </div>
+    <header>
+        <img class="logo" src="../config/assets/logotipo-texto-branco.svg" alt="">
+        <h2>Fazenda</h2>
+        <nav>
+            <a href="menu.html"><span><i class="fa-solid fa-house"></i>Menu</span></a>
+            <span class="notificacao"><i class="fa-solid fa-bell"></i>Notificações</span>
+            <span id="barra">|</span>
             <div class="user">
-                <span id="barra">|</span>
-                <img src="assets/user.png" alt="">
-                <span>Claudio Frizzarini</span>
-                <span id="barra">|</span>
-            </div>
-            <div class="hamburger">
-                <i class="fa-solid fa-bars" id="hamburger-icon"></i>
-            </div>
-
-            <div class="sidebar" id="sidebar">
-                <ul>
-                    <li class="option">OPÇÕES</li>
-                    <li><i class="fa-solid fa-gear"></i>Configurações</li>
-                    <li><i class="fa-solid fa-door-open"></i>Sair</li>
-                </ul>
-            </div>
-        </header>
-        <main>
-            <!-- navegador de paginas  -->
-            <div class="pgAtual">
-                <div class="indicadorPagina">
-                    <i class="fa-solid fa-laptop"></i>
-                    <span>Dashboard</span>
+                <div class="user_img">
+                    <i class="fa-solid fa-user"></i>
                 </div>
+                <span id="username">Claudio Frizzarini</span>
+            </div>
+            <span id="barra">|</span>
+            <i class="fa-solid fa-bars" id="hamburger-icon"></i>
+        </nav>
+
+
+
+    </header>
+
+    <section class="container">
+        <div class="sidebar" id="sidebar">
+            <ul>
+                <li class="option">OPÇÕES</li>
+                <li><i class="fa-solid fa-gear"></i>Configurações</li>
+                <li><a href="https://hydroflowsystem.atlassian.net/servicedesk/customer/portal/1">Suporte</a></li>
+                <li><i class="fa-solid fa-door-open"></i>Sair</li>
+            </ul>
+        </div>
+
+        <main>
+
+            <!-- navegador de paginas  -->
+            <section class="top">
                 <div class="caminhoPagina">
                     <i class="fa-solid fa-house-circle-check"> </i>
-                    <span> / Reservatório 2 / Consultar reservatório</span>
+                    <span>/ Menu / Consultar reservatório</span>
                 </div>
-            </div>
+                <div>
+                    <h2>Período:</h2>
+                    <input type="date" name="" id="input_inicio_consulta">
+                    <p>à</p>
+                    <input type="date" name="" id="input_fim_consulta">
+                    <button id="consultar" onclick="exibirClima();">consultar</button>
+                </div>
+            </section>
 
-            <!-- começo kpis -->
-            <div class="kpis">
-                <div class="conjuntokpi">
-                    <div class="kpi1 kpiPrincipal">
-                        <span class="tituloKpi">ÁGUA DISPONÍVEL</span>
-                        <select name="" id="">
-                            <option value="" disabled selected></option>
-                            <option value="">Metros cúbicos (m³)</option>
-                            <option value="">Porcentagem (%)</option>
-                            <option value="">Litros (L)</option>
+            <section class="kpis_container">
+
+                <div class="kpi">
+                    <div class="titulo_kpi">
+                        <span class="titulo">ÁGUA DISPONÍVEL</span>
+                        <select name="" id="select">
+                            <option value="">m³</option>
+                            <option value="">%</option>
+                            <option value="">L</option>
                         </select>
-                        <img id="kpiPrincipalImg" src="assets/reservatorio-kpi.png" alt="">
+                    </div>
+                    <div class="kpi_info">
                         <span id="nivelAtual" class="nivelAtual"></span>
+                        <img class="reservatorio_img" src="assets/cilindro_preto.svg" alt="">
                     </div>
+                </div>
 
-                    <div class="kpi1">
-                        <span class="tituloKpi">SITUAÇÃO RESERVATÓRIO</span>
+                <div class="kpi">
+                    <span class="titulo_kpi titulo">SITUAÇÃO RESERVATÓRIO</span>
+                    <div class="kpi_info">
                         <span id="situacaoAtual" class="infoKpi">AVISO</span>
-                        <img src="assets/reservatorio-kpi.png" alt="">
+                        <img class="reservatorio_img" src="assets/cilindro_preto.svg" alt="">
+                    </div>
+                </div>
+
+                <div class="kpi consumo">
+                    <div class="titulo_kpi">
+                        <span class="titulo">CONSUMO MÉDIO</span>
+                        <select name="" id="">
+                            <option value="">m³</option>
+                            <option value="">%</option>
+                            <option value="">L</option>
+
+                        </select>
                     </div>
 
-                    <div class="kpi1 consumo">
-                        <div class="tituloKpi">
-                            <span>CONSUMO MÉDIO</span>
-                            <select name="" id="">
-                                <option value="" disabled selected>Visualizar em:</option>
-                                <option value="">Metros cúbicos (m³)</option>
-                                <option value="">Porcentagem (%)</option>
-                                <option value="">Litros (L)</option>
-                            </select>
-                        </div>
-
+                    <div class="kpi_info">
                         <span id="consumoMedio" class="infoKpi"></span>
-                        <div class="icon">
-                            <i class="fa-solid fa-droplet"></i>
-                            <div class="upAndDown">
-                                <i id="up" class="fa-solid fa-caret-up"></i>
-                                <i id="down" class="fa-solid fa-caret-down"></i>
-                            </div>
-                        </div>
+                        <i class="fa-solid fa-droplet-slash"></i>
                     </div>
 
-                    <div id="nivelCritico" class="kpi1">
-                        <span class="tituloKpi">VERIFICAÇÃO ESAVAZIAMENTO</span>
+                </div>
+
+                <div id="nivelCritico" class="kpi">
+                    <span class="titulo_kpi titulo">VERIFICAÇÃO ESVAZIAMENTO</span>
+                    <div class="kpi_info">
                         <span id="vezesNivelCritico" class="infoKpi">2 VEZES</span>
                         <i class="fa-solid fa-droplet-slash"></i>
                     </div>
-                    <div class="kpi1">
-                        <span class="tituloKpi">DIAS DE ÁGUA RESTANTES</span>
+                </div>
+                <div class="kpi" id="kpi_dias_restantes">
+                    <span class="titulo_kpi titulo">DIAS DE ÁGUA RESTANTES</span>
+                    <div class="kpi_info">
                         <span id="estimativaDias" class="infoKpi"></span>
                         <i class="fa-solid fa-faucet-drip"></i>
                     </div>
                 </div>
-            </div>
 
-            <div class="graficos">
-                <div class="grafico">
-                    <span>FLUXO DE ÁGUA NO RESERVATORIO</span>
-                    <canvas id="fluxoAgua" width="500" height="210"></canvas>
+            </section>
+
+            <section class="grafico" id="grafico">
+                <span class="titulo">FLUXO DE ÁGUA NO RESERVATORIO</span>
+                <canvas width="600" height="400" id="fluxoAgua"></canvas>
+            </section>
+
+            <section class="infoTempo" id="infoTempo">
+
+                <span class="titulo">
+                    CLIMATEMPO
+                    <input id="dataClima" type="date">
+                </span>
+
+                <div class="cardPrevisao probChuva">
+                    <div class="infos">
+                        <span>PROB. CHUVA<br></span>
+                        <span id="probChuva">Obtendo...</span>
+                    </div>
+                    <i class="fa-solid fa-cloud-rain"></i>
                 </div>
 
-                <div class="previsaoClima">
-                    <span class="titulo">
-                        CLIMATEMPO HOJE
-                    </span>
-
-                    <div class="infoTempo">
-                        <div class="cardPrevisao probChuva">
-                            <div class="infos">
-                                <span>PROB. CHUVA<br></span>
-                                <span id="probChuva">Obtendo...</span>
-                            </div>
-                            <i class="fa-solid fa-cloud-rain"></i>
-                        </div>
-
-                        <div class="cardPrevisao tempMaxima">
-                            <div class="infos">
-                                <div class="low-high">
-                                    <span>Temp. Máxima<br></span>
-                                    <span id="tempMaxima"></span>
-                                </div>
-                            </div>
-                            <i class="fa-solid fa-temperature-arrow-up"></i>
-                        </div>
-
-                        <div class="cardPrevisao tempMinima">
-                            <div class="infos">
-                                <span>TEMP. MINÍMA<br></span>
-                                <span id="tempMinima"></span>
-                            </div>
-                            <i class="fa-solid fa-temperature-arrow-down"></i>
-                        </div>
-
-                        <div class="cardPrevisao umidadeAr">
-                            <div class="infos">
-                                <div class="hg-weather" data-key="c381e5f5" data-woeid="455827">
-                                    <span data-weather="message"></span>
-                                    <span>UMIDADE DO AR<br></span>
-                                    <span data-weather="humidity" id="umidadeAr"></span> %
-                                </div>
-                            </div>
-                            <i class="fa-solid fa-wind"></i>
-                            <!-- <img style="height: 1px;" data-weather="image">
-                                <img style="height: 1px;" data-weather="image"> -->
+                <div class="cardPrevisao tempMaxima">
+                    <div class="infos">
+                        <div class="low-high">
+                            <span>Temp. Máxima<br></span>
+                            <span id="tempMaxima"></span>
                         </div>
                     </div>
+                    <i class="fa-solid fa-temperature-arrow-up"></i>
                 </div>
-            </div>
+
+                <div class="cardPrevisao tempMinima">
+                    <div class="infos">
+                        <span>TEMP. MINÍMA<br></span>
+                        <span id="tempMinima"></span>
+                    </div>
+                    <i class="fa-solid fa-temperature-arrow-down"></i>
+                </div>
+
+                <div class="cardPrevisao umidadeAr">
+                    <div class="infos">
+                        <div class="hg-weather" data-key="c381e5f5" data-woeid="455827">
+                            <span data-weather="message"></span>
+                            <span>UMIDADE DO AR<br></span>
+                            <span data-weather="humidity" id="umidadeAr"></span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-wind"></i>
+                    <!-- <img style="height: 1px;" data-weather="image">
+                            <img style="height: 1px;" data-weather="image"> -->
+                </div>
+            </section>
         </main>
     </section>
-    </main>
-    </section>
+
+
 </body>
 
 </html>
@@ -176,6 +185,42 @@
 <script src="js/registerClima.js"></script>
 
 <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const inputDate = document.querySelector("#dataClima");
+        const today = new Date().toISOString().split("T")[0];
+        inputDate.value = today;
+    });
+
+    username.innerHTML = sessionStorage.username
+
+
+    document.getElementById("infoTempo").style.width = `${getDivWidth("kpi_dias_restantes")}px`
+
+    function getDivWidth(elementId) {
+        const element = document.getElementById(elementId);
+        if (element) {
+
+            return element.offsetWidth;
+        } else {
+            console.error("Elemento não encontrado.");
+            return null;
+        }
+    }
+
+    //     document.getElementById("grafico").style.height = `${getDivHeight("infoTempo")}px`
+
+    // function getDivHeight(elementId) {
+    //     const element = document.getElementById(elementId);
+    //     if (element) {
+
+    //         return element.offsetHeight;
+    //     } else {
+    //         console.error("Elemento não encontrado.");
+    //         return null;
+    //     }
+    // }
+
 
     function exibirHistoricoReservatorio() {
 
@@ -195,6 +240,7 @@
                         console.log(JSON.stringify(json));
                         sessionStorage.dadosReservatorio = JSON.stringify(json.reservatorio);
                         defineDadosReservatorio();
+
                     });
 
                     return true;
@@ -205,8 +251,83 @@
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
+
         return false;
 
+
+
+    }
+
+
+    function exibirClima() {
+        const idFazenda = sessionStorage.fazendaId;
+        var inicioConsulta = input_inicio_consulta.value;
+        var fimConsulta = input_fim_consulta.value;
+
+        fetch("/clima/exibirClima", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idFazendaServer: idFazenda,
+                inicioConsultaServer: inicioConsulta,
+                fimConsultaServer: fimConsulta,
+            }),
+        })
+            .then(function (res) {
+                if (res.ok) {
+                    console.log(res)
+
+
+                    console.log("Dados do clima resgatados do banco com sucesso!")
+                    console.log({
+
+                    })
+
+                    var probabilidadeDeChuva
+                    var umidadeDoAr
+                    var temperaturaMinima
+                    var temperaturaMaxima
+
+                    res.json().then(json => {
+                        console.log(json);  // Exibe o conteúdo do JSON retornado
+
+                        // Aqui, json já é um array, então acessamos o primeiro elemento
+                        var resultado = json[0];
+
+                        // Acessando as propriedades corretamente
+                        probabilidadeDeChuva = resultado.mediaProbabilidadeDeChuva;
+                        umidadeDoAr = resultado.mediaUmidadeDoAr;
+                        temperaturaMinima = resultado.mediaTemperaturaMinima;
+                        temperaturaMaxima = resultado.mediaTemperaturaMaxima;
+
+                        console.log(probabilidadeDeChuva); // Exibe o valor
+                        console.log(umidadeDoAr);  // Exibe o valor
+                        console.log(temperaturaMinima);  // Exibe o valor
+                        console.log(temperaturaMaxima);  // Exibe o valor
+
+                        // Atualizando o DOM com os valores obtidos
+                        document.getElementById("probChuva").textContent = `${probabilidadeDeChuva}%`;
+                        document.getElementById("umidadeAr").textContent = `${umidadeDoAr}%`;
+                        document.getElementById("tempMinima").textContent = `${temperaturaMinima}°C`;
+                        document.getElementById("tempMaxima").textContent = `${temperaturaMaxima}°C`;
+
+                    });
+
+
+
+
+
+
+                } else {
+                    throw "Houve um erro ao tentar exibir os dados do clima do banco!";
+                }
+
+            })
+            .catch(function (erro) {
+                console.error(`#ERRO: ${erro}`);
+            });
     }
 
     function defineDadosReservatorio() {
@@ -230,126 +351,127 @@
     }
 
     function atualizarGrafico(labels, dataNiveis) {
-    const ctx = document.getElementById('fluxoAgua').getContext('2d');
+        const ctx = document.getElementById('fluxoAgua').getContext('2d');
 
-    const horarioLabels = ['01h', '02h', '03h', '04h', '05h', '06h', '07h', '08h', '09h', '10h', '11h'];
-    const dataNiveis1 = [4, 4, 3.50, 3, 2.50, 2, 2, 2, 2, 3, 4];
+        const horarioLabels = ['01h', '02h', '03h', '04h', '05h', '06h', '07h', '08h', '09h', '10h', '11h'];
+        const dataNiveis1 = [4, 4, 3.50, 3, 2.50, 2, 2, 2, 2, 3, 4];
 
-    const data = {
-        labels: horarioLabels,
-        datasets: [
-            {
-                label: 'Nível Atual',
-                data: dataNiveis1,
-                borderColor: 'cyan',
-                borderWidth: 2,
-                pointBackgroundColor: 'cyan',
-                pointBorderColor: 'black',
-                pointRadius: 5,
-                fill: true,
-                backgroundColor: 'rgba(0, 123, 167, 0.3)',
-                order: 1 // Garantir que fique atrás das métricas
-            },
-            {
-                label: 'Nível Ideal',
-                data: Array(horarioLabels.length).fill(4.50),
-                borderColor: 'green',
-                borderWidth: 2,
-                fill: false,
-                pointRadius: 0,
-                order: 2 // Garantir que fique visível
-            },
-            {
-                label: 'Nível Alerta',
-                data: Array(horarioLabels.length).fill(2.50),
-                borderColor: 'yellow',
-                borderWidth: 2,
-                fill: false,
-                pointRadius: 0,
-                order: 2
-            },
-            {
-                label: 'Nível de Risco',
-                data: Array(horarioLabels.length).fill(1.50),
-                borderColor: 'red',
-                borderWidth: 2,
-                fill: false,
-                pointRadius: 0,
-                order: 2
-            }
-        ]
-    };
-
-    const config = {
-        type: 'line',
-        data: data,
-        options: {
-            responsive: true,
-            scales: {
-                x: {
-                    ticks: {
-                        font: {
-                            size: 14,
-                            weight: 'bold'
-                        },
-                        color: 'black'
-                    },
-                    grid: { display: false }
+        const data = {
+            labels: horarioLabels,
+            datasets: [
+                {
+                    label: 'Nível Atual',
+                    data: dataNiveis1,
+                    borderColor: 'cyan',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'cyan',
+                    pointBorderColor: 'black',
+                    pointRadius: 5,
+                    fill: true,
+                    backgroundColor: 'rgba(0, 123, 167, 0.3)',
+                    order: 1 // Garantir que fique atrás das métricas
                 },
-                y: {
-                    position: 'left',
-                    title: {
-                        display: true,
-                        text: 'Volume (Metros)',
-                        font: { size: 15 }
-                    },
-                    min: 1.20,
-                    max: 5,
-                    ticks: {
-                        callback: function (value) {
-                            if (value === 1.50 || value === 2.50 || value === 4.50) {
-                                return value + 'm';
-                            }
-                        },
-                        font: {
-                            size: 16,
-                            weight: 'bold'
-                        },
-                        color: 'black'
-                    },
-                    grid: { display: false }
+                {
+                    label: 'Nível Ideal',
+                    data: Array(horarioLabels.length).fill(75),
+                    borderColor: 'green',
+                    borderWidth: 2,
+                    fill: false,
+                    pointRadius: 0,
+                    order: 2 // Garantir que fique visível
+                },
+                {
+                    label: 'Nível Alerta',
+                    data: Array(horarioLabels.length).fill(50),
+                    borderColor: 'yellow',
+                    borderWidth: 2,
+                    fill: false,
+                    pointRadius: 0,
+                    order: 2
+                },
+                {
+                    label: 'Nível de Risco',
+                    data: Array(horarioLabels.length).fill(25),
+                    borderColor: 'red',
+                    borderWidth: 2,
+                    fill: false,
+                    pointRadius: 0,
+                    order: 2
                 }
-            },
-            plugins: {
-                legend: {
-                    labels: {
-                        font: {
-                            size: 18
+            ]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        ticks: {
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            },
+                            color: 'black'
                         },
-                        color: 'black',
-                        boxWidth: 20,
-                        padding: 15,
-                        generateLabels: function (chart) {
-                            const original = Chart.defaults.plugins.legend.labels.generateLabels;
-                            const labels = original.call(this, chart);
-                            labels.forEach((label, index) => {
-                                label.fillStyle = chart.data.datasets[index].borderColor;
-                            });
-                            return labels;
-                        }
+                        grid: { display: false }
+                    },
+                    y: {
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'Volume (Metros)',
+                            font: { size: 15 }
+                        },
+                        min: 1.20,
+                        max: 5,
+                        ticks: {
+                            callback: function (value) {
+                                if (value === 1.50 || value === 2.50 || value === 4.50) {
+                                    return value + 'm';
+                                }
+                            },
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            },
+                            color: 'black'
+                        },
+                        grid: { display: false }
                     }
                 },
-            },
-            elements: {
-                line: {
-                    borderCapStyle: 'round',
-                    borderJoinStyle: 'round'
+                plugins: {
+                    legend: {
+                        labels: {
+                            font: {
+                                size: 18
+                            },
+                            color: 'black',
+                            boxWidth: 20,
+                            padding: 15,
+                            generateLabels: function (chart) {
+                                const original = Chart.defaults.plugins.legend.labels.generateLabels;
+                                const labels = original.call(this, chart);
+                                labels.forEach((label, index) => {
+                                    label.fillStyle = chart.data.datasets[index].borderColor;
+                                });
+                                return labels;
+                            }
+                        }
+                    },
+                },
+                elements: {
+                    line: {
+                        borderCapStyle: 'round',
+                        borderJoinStyle: 'round'
+                    }
                 }
             }
-        }
-    };
+        };
 
-    // Inicializa o gráfico
-    new Chart(ctx, config);
-}
+        // Inicializa o gráfico
+        new Chart(ctx, config);
+    }
 </script>

@@ -1,0 +1,241 @@
+@import url(style_padrao.css);
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 100px 1fr;
+  align-items: center;
+}
+
+header {
+  background: linear-gradient(
+    90deg,
+    #08232c,
+    #123942,
+    #215b63,
+    #2e7a81,
+    #499899
+  );
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+header .logo {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  padding: 3%;
+
+  & img {
+    width: 60%;
+  }
+}
+
+header .menu {
+  width: 55%;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px;
+  padding-right: 40px;
+
+  & span {
+    font-size: 20px;
+  }
+
+  & i {
+    font-size: 30px;
+    padding: 20px;
+  }
+}
+
+header .user {
+  width: 25%;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  justify-content: center;
+
+  & span {
+    padding: 10px;
+  }
+}
+
+header .hamburger {
+  width: 5%;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  padding: 3%;
+}
+
+body.sidebar-active main {
+  filter: blur(5px);
+}
+
+.sidebar {
+  position: fixed;
+  top: 100px;
+  right: -250px; /* Inicialmente fora da tela */
+  height: 100%;
+  width: 250px;
+  background-color: #edeef1;
+  transition: right 0.3s ease-in-out;
+  z-index: 999;
+  padding-top: 20px;
+  box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.1);
+  /* Adiciona padding para não colar no topo da tela */
+
+  & ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    font-size: 20px;
+    color: #0b5268;
+    margin: 0;
+  }
+
+  & li {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
+
+  & li i {
+    padding-right: 15px;
+    font-size: 20px;
+  }
+
+  .option {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  ul li:hover {
+    cursor: pointer;
+    background-color: #d8d8d8; /* Cor de fundo no hover */
+    width: 100%;
+    transition: 1s;
+  }
+}
+
+ul li.opcoes:hover {
+  background-color: transparent; /* Ou a cor original do fundo */
+  cursor: default; /* Remove o cursor de ponteiro */
+}
+
+.sidebar.active {
+  right: 0;
+  top: 100px;
+  box-shadow: -20px 0 10px rgba(0, 0, 0, 0.12);
+  filter: blur(0px);
+
+  & .hamburger {
+    font-size: 30px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+  }
+
+  & .hamburger i {
+    color: #0b5268;
+  }
+}
+
+#hamburger-icon {
+  transition: transform 0.3s ease;
+}
+
+#hamburger-icon.open {
+  transform: rotate(180deg); /* Rotaciona o ícone quando aberto */
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  background-color: #edeef1;
+  padding: 50px;
+  display: flex;
+  gap: 50px;
+}
+
+main section {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  grid-template-rows: min-content min-content;
+  grid-template-areas: "h2 h2"
+  "div img";
+  row-gap: 20px;
+  column-gap: 50px;
+  background-color: #215b63;
+  padding: 50px;
+  border-radius: 50px;
+  justify-content: space-between;
+  align-content: space-between;
+  align-items: center;
+}
+
+main section h2 {
+  grid-area: h2;
+  text-align: center;
+  font-size: 3rem;
+  color: #edeef1;
+}
+
+main section #container_inputs {
+  grid-area: div;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+main section img {
+    grid-area: img;
+  max-height: 40vh;
+}
+
+.container_input{
+    padding: 10px;
+    background-color: #d8d8d8;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    font-size: 1.5rem;
+}
+
+.container_input label{
+    
+    width: fit-content;
+}
+
+.container_input input, .container_input select{
+    border-bottom: #08232c 1px solid;
+    width: 100%;
+}
+
+#nomeReservatorio{
+    display: flex;
+    flex-direction: column;
+}
+
+#btn_adicionar, #btn_remover{
+    padding: 10px;
+    font-size: 1.5rem;
+    background-color: #d8d8d8;
+    border-radius: 10px;
+}

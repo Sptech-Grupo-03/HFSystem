@@ -63,25 +63,12 @@ const serial = async (
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                `
-                INSERT INTO sensor (distanciaAgua,dtHrColeta,fkReservatorio) VALUES (?,curdate(),8);
-                `,
-                [sensorDigital]
-            );
-
-            await poolBancoDados.execute(
-                `
-                INSERT INTO reservatorio (idReservatorio, nivelAtual) 
-                VALUES (8, ?)
-                ON DUPLICATE KEY UPDATE nivelAtual = VALUES(nivelAtual);
-                `,
+                'INSERT INTO sensor (distanciaAgua) VALUES (?)',
                 [sensorDigital]
             );
             console.log("valores inseridos no banco: " + sensorDigital);
 
         }
-        await poolBancoDados.execute('COMMIT');
-        console.log("Valores inseridos com sucesso em ambas as tabelas: " + sensorDigital);
 
     });
 

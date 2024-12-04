@@ -24,8 +24,13 @@
                 Notificações
             </div>
             <div class="user">
+<<<<<<< HEAD
                 
                 <span>Claudio Frizzarini</span>
+=======
+                <img src="assets/user.png" alt="">
+                <span id="usuario">Claudio Frizzarini</span>
+>>>>>>> 1d3b90099c70a24bcc74704f20dfe6d59ebb2ea7
             </div>
             <div class="hamburger">
                 <i class="fa-solid fa-bars" id="hamburger-icon"></i>
@@ -116,30 +121,8 @@
 
 </html>
 <script>
-    //  function exibirReservatoriosDoUsuario() {
-    //     var reservatorios = JSON.parse(sessionStorage.reservatorio);
-    //     reservatorios.forEach(item => {
-    //         document.getElementById("graficos").innerHTML += `
-    //             <div id="grafico${item.id}" class="display-none">
-    //                 <h3 class="tituloGraficos">
-    //                     <span id="tituloAquario${item.id}">${item.nome}</span>
-    //                 </h3>
-    //                 <div class="graph">
-    //                     <canvas id="myChartCanvas${item.id}"></canvas>
-    //                 </div>
-    //                 <div class="label-captura">
-    //                     <p id="avisoCaptura${item.id}" style="color: white"></p>
-    //                 </div>
-    //             </div>
-    //         `
 
-    //         obterDadosGrafico(item.id)
-    //     });
-
-    //     if (reservatorios.length > 0) {
-    //         exibirDetalhesReservatorio(reservatorios[0].id)
-    //     }
-    // }
+    usuario.innerHTML = sessionStorage.username
 
 //     function exibirReservatorios() {
 //         document.getElementById("reservatorio").innerHTML = '';
@@ -151,6 +134,7 @@
 //                         <i class="fa-solid fa-ellipsis-vertical"></i>
 //                     </div>
 
+<<<<<<< HEAD
 //                     <div class="mid">
 //                         <div class="metricas">
 //                             <span id="nivel_atual_"><b>Nível Atual: ${item.nivelAtual}%</b></span>
@@ -169,10 +153,15 @@
 //                     <div id="alerta">
 //                     </div>
 //                     `
+=======
+            sessionStorage.idReservatorio = item.idReservatorio
+        });
+>>>>>>> 1d3b90099c70a24bcc74704f20dfe6d59ebb2ea7
 
 //                     sessionStorage.idReservatorio = item.idReservatorio
 //         });
 
+<<<<<<< HEAD
 //         if (!sessionStorage.reservatorio) {
 //     console.error('Nenhum dado de reservatório encontrado no sessionStorage.');
 //     return;
@@ -211,6 +200,9 @@
         // let btnExibir = document.getElementById(`btnAquario${idReservatorio}`)
         // btnExibir.classList.remove("btn-white")
         // btnExibir.classList.add("btn-pink")
+=======
+    function exibirDetalhesReservatorio(idReservatorio) {
+>>>>>>> 1d3b90099c70a24bcc74704f20dfe6d59ebb2ea7
 
     //     window.location = "../../private/dashboard.html";
     // }
