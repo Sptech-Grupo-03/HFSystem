@@ -20,6 +20,33 @@
         margin: 10px;
     }
 
+    main .reservatorios .reservatorio .mid .metricas {
+    display: flex;
+    flex-direction: column;
+    gap: 15%;
+    width: 30%;
+    align-items: flex-start;
+    margin-left: 5%;
+}
+
+main .reservatorios .reservatorio .mid img{
+    width: 20%;
+    margin-right: 10%;
+}
+
+    main .reservatorios .reservatorio {
+    background-color: #F8F8F8;
+    display: flex
+;
+    flex-direction: column;
+    /* padding: 2%; */
+    box-shadow: 2px 2px 2px 3px #0000001e;
+    width: 90%;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
     main .reservatorios .reservatorio .bottom{
     color: #ffffff;
     display: flex;
@@ -123,41 +150,35 @@
 
 </html>
 <script>
-    //  function exibirReservatoriosDoUsuario() {
-    //     var reservatorios = JSON.parse(sessionStorage.reservatorio);
-    //     reservatorios.forEach(item => {
-    //         document.getElementById("graficos").innerHTML += `
-    //             <div id="grafico${item.id}" class="display-none">
-    //                 <h3 class="tituloGraficos">
-    //                     <span id="tituloAquario${item.id}">${item.nome}</span>
-    //                 </h3>
-    //                 <div class="graph">
-    //                     <canvas id="myChartCanvas${item.id}"></canvas>
-    //                 </div>
-    //                 <div class="label-captura">
-    //                     <p id="avisoCaptura${item.id}" style="color: white"></p>
-    //                 </div>
-    //             </div>
-    //         `
-
-    //         obterDadosGrafico(item.id)
-    //     });
-
-    //     if (reservatorios.length > 0) {
-    //         exibirDetalhesReservatorio(reservatorios[0].id)
-    //     }
-    // }
 
     function exibirReservatorios() {
     const container = document.getElementById("reservatorio");
     const reservatorios = JSON.parse(sessionStorage.reservatorio);
+    const alertaDiv = document.querySelector(".alerta span");
+
+    const reservatoriosRisco = reservatorios.filter(item => item.nivelAtual < 25);
+    reservatorios.sort((a, b) => a.nivelAtual - b.nivelAtual);
+
+    if (reservatoriosRisco.length > 0) {
+        const nomesReservatorios = reservatoriosRisco.map(item => item.nome).join(", ");
+        alertaDiv.innerHTML = `Reservatórios em risco: ${nomesReservatorios}`;
+    } else {
+        alertaDiv.innerHTML = "Todos os reservatórios estão seguros.";
+    }
 
     reservatorios.forEach(item => {
-        // Cria um elemento div para o card
         const card = document.createElement("div");
         card.classList.add("reservatorio-card");
 
-        // Define o conteúdo do card
+        let imagemNivel;
+        if (item.nivelAtual > 50) {
+            imagemNivel = "assets/cilindro_verde.svg"; // Exemplo: Nível alto
+        } else if (item.nivelAtual > 25) {
+            imagemNivel = "assets/cilindro_amarelo.svg"; // Exemplo: Nível em alerta
+        } else {
+            imagemNivel = "assets/cilindro_vermelho.svg"; // Exemplo: Nível baixo
+        }
+
         card.innerHTML = `
             <div class="top">
                 <span>${item.nome}</span>
@@ -169,17 +190,16 @@
                     <span>Nível Alerta: 50%</span>
                     <span>Nível Risco: 25%</span>
                 </div>
-                <span class="porcentagemAtual_">${item.nivelAtual}%</span>
+
+                <img src="${imagemNivel}" alt="">
             </div>
             <div id="btnConsultar" class="bottom">
-                <button class="btn-chart" 
-                    onclick="exibirDetalhesReservatorio(${item.id})" 
+                <button class="btn-chart" onclick="exibirDetalhesReservatorio(${item.id})" 
                     id="btnConsultarReservatorio${item.id}">Consultar</button>
             </div>
             <div id="alerta"></div>
         `;
 
-        // Adiciona o card ao contêiner
         container.appendChild(card);
     });
 }
