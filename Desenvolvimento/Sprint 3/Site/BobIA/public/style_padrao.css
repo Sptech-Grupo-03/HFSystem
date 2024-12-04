@@ -50,15 +50,6 @@
 
 /*"RESETANDO"/RECONFIGURANDO ALGUMAS ESTILIZAÇÕES PADRÕES DOS NAVEGADORES EM TODOS OS COMPONENTES*/
 
-* {
-  margin: 0;
-  padding: 0;
-  font-family: "Saira", sans-serif;
-  box-sizing: border-box;
-  background: none;
-  border: none;
-  text-decoration: none;
-}
 
 a, button, input{
   cursor: pointer;
@@ -87,5 +78,7 @@ html, body {
   height: 100%;
   width: 100%;
   background-color: var(--cor-primaria);
+  margin: 0;
+  padding: 0;
 }
 
