@@ -3,13 +3,8 @@ var database = require("../database/config");
 async function exibirDadosReservatorio(idReservatorio) {
   try {
     // SQL Queries
-    var instrucaoSql1 = `SELECT nivelCalculado AS "Nivel Atual"
-                         FROM historico
-                         JOIN sensor ON historico.fkSensor = sensor.idColeta
-                         JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
-                         WHERE idReservatorio = ${idReservatorio}
-                         ORDER BY historico.dtHrNivelCalculado DESC
-                         LIMIT 1`;
+    var instrucaoSql1 = ` SELECT nivelAtual AS "Nivel Atual"
+                         FROM reservatorio where idReservatorio = ${idReservatorio};`;
 
     var instrucaoSql2 = `SELECT situacaoAtual 
                          FROM historico 

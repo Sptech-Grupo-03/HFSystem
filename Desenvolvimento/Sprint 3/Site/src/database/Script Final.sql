@@ -1,4 +1,4 @@
-
+create database HFSystem;
 use HFSystem;
 
 create table endereco(
@@ -79,7 +79,7 @@ constraint fkSensorReservatorio foreign key (fkReservatorio)
 );
 
 CREATE TABLE historico (
-idHistorico int primary key, 
+idHistorico int primary key auto_increment, 
 dtHrNivelCalculado timestamp default current_timestamp,
 nivelCalculado float, 
 fkSensor int,
@@ -289,5 +289,11 @@ select * from reservatorio where idReservatorio = 8;
 desc sensor;
 desc usuario;
 
- INSERT INTO usuario (username, nome, tipo, telefone, email, senha, fkFazenda) VALUES ('Claudio Frizzarini', 'Claudio Frizzarini', 'Cliente', '11996633123', 'claudio@sptech.school', '#Frizza1', 'SPTC01')
+ INSERT INTO usuario (username, nome, tipo, telefone, email, senha, fkFazenda) VALUES ('Claudio Frizzarini', 'Claudio Frizzarini', 'Cliente', '11996633123', 'claudio@sptech.school', '#Frizza1', 'SPTC01');
+ desc historico;
  
+ desc historico;
+ desc sensor;
+ 
+ select * from usuario;
+ select * from fazenda;

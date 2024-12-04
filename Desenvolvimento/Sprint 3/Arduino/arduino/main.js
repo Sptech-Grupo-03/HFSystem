@@ -52,22 +52,38 @@ const serial = async (
         console.log(data);
         const valores = data.split(';');
         const sensorDigital = parseInt(valores[0]);
-       // const sensorAnalogico = parseFloat(valores[1]);
-
-        // armazena os valores dos sensores nos arrays correspondentes
-       // valoresSensorAnalogico.push(sensorAnalogico);
         valoresSensorDigital.push(sensorDigital);
-
-        // insere os dados no banco de dados (se habilitado)
+    
+        // Busca altura e raio da tabela reservatorio
+        let altura, raio;
+        try {
+            const [resultado] = await poolBancoDados.execute(
+                `SELECT altura, raio FROM reservatorio WHERE idReservatorio = ?`,
+                [8] // ID do reservatório fixado como 8
+            );
+    
+            if (resultado.length > 0) {
+                altura = resultado[0].altura;
+                raio = resultado[0].raio;
+                console.log(`Altura: ${altura}, Raio: ${raio}`);
+            } else {
+                console.warn('Nenhum reservatório encontrado com o ID especificado.');
+            }
+        } catch (err) {
+            console.error('Erro ao buscar altura e raio:', err);
+            return;
+        }
+    
         if (HABILITAR_OPERACAO_INSERIR) {
-
-            // este insert irá inserir os dados na tabela "medida"
+            // Insere os dados na tabela sensor
             await poolBancoDados.execute(
                 `
-                INSERT INTO sensor (distanciaAgua,dtHrColeta,fkReservatorio) VALUES (?,curdate(),8);
+                INSERT INTO sensor (distanciaAgua, dtHrColeta, fkReservatorio) VALUES (?, CURDATE(), 8);
                 `,
                 [sensorDigital]
             );
+            const [lastInsertId] = await poolBancoDados.execute('SELECT LAST_INSERT_ID() AS id;');
+            const idSensor = lastInsertId[0].id; 
 
             await poolBancoDados.execute(
                 `
@@ -77,18 +93,36 @@ const serial = async (
                 `,
                 [sensorDigital]
             );
-            console.log("valores inseridos no banco: " + sensorDigital);
 
+            const volumeReservatorio = 3.14 * Math.pow(raio, 2) * altura
+    
+            const volumeCalculado = 3.14 * Math.pow(raio, 2) * altura - sensorDigital;
+
+            const volumePorcentagem = (volumeCalculado * 100) / volumeReservatorio
+    
+            let situacao;
+            if (volumePorcentagem < 25) {
+                situacao = 'Crítico';
+            } else if (volumePorcentagem < 50) {
+                situacao = 'Em atenção';
+            } else {
+                situacao = 'Ideal';
+            }
+
+            await poolBancoDados.execute(
+                `
+                INSERT INTO historico (fkSensor, nivelCalculado, situacaoAtual) 
+                VALUES (?, ?, ?)
+                `,
+                [idSensor, volumePorcentagem, situacao] 
+            );
+    
+            console.log("Valores inseridos no banco: " + sensorDigital);
         }
         await poolBancoDados.execute('COMMIT');
         console.log("Valores inseridos com sucesso em ambas as tabelas: " + sensorDigital);
-
     });
-
-    // evento para lidar com erros na comunicação serial
-    arduino.on('error', (mensagem) => {
-        console.error(`Erro no arduino (Mensagem: ${mensagem}`)
-    });
+    
 }
 
 // função para criar e configurar o servidor web
