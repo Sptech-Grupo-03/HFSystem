@@ -29,7 +29,7 @@
                 </div>
                 <div class="menu">
                     <i class="fa-solid fa-door-open"></i>
-                    <span href="menu.html">Sair</span>
+                    <a href="../../public/auth/auth.html">Sair</a>
                 </div>
             </div>
         </header>
@@ -53,6 +53,8 @@
 </html>
 
 <script>
+
+username.innerHTML = sessionStorage.username
 
 async function gerarResposta() {
         const pergunta = document.getElementById('pergunta').value;
