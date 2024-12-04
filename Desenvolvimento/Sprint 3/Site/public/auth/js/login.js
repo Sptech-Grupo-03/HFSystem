@@ -17,7 +17,6 @@ document.getElementById("input_senha_login").addEventListener("keydown", functio
 function login() {
     document.getElementById("formulario_login").addEventListener("submit", function (event) {
         event.preventDefault();
-    
         // if (emailValue == "hfsystem@sptech.school" && senhaValue == "admin123") {
         //   alert("Login realizado com sucesso");
         //   entrar()
@@ -25,12 +24,10 @@ function login() {
         // } else {
         //   alert("Email ou senha incorretos");
         // }
-
         entrar()
       });
   }
-  
-  //
+
 
    function entrar() {
      
@@ -65,7 +62,21 @@ function login() {
                     console.log(json);
                     console.log(JSON.stringify(json));
                     sessionStorage.reservatorio = JSON.stringify(json.reservatorio)
+                    sessionStorage.fazendaId = json.reservatorio[0].fkFazenda;
+                    var codigoAcesso = sessionStorage.fazendaId;
 
+                    let destino = "";
+
+                    if (codigoAcesso === "SUP001") {
+                        destino = "http://localhost:3001";
+                    } else if (codigoAcesso === "ADM001") {
+                        destino = "../../private/adm.html";
+                    }else {
+                        destino = "../../private/menu.html"; 
+                    }
+
+
+<<<<<<< HEAD
                     // Verificação do tipo de usuario
                     if(emailVar == 'suporte@hfsystem.com' && senhaVar == 'suporte123'){
                         setTimeout(function () {
@@ -76,12 +87,15 @@ function login() {
                             window.location = "";
                         }, 1000); // apenas para exibir o loading
                     }
+=======
+                    setTimeout(function () {
+                        window.location = destino ;
+                    }, 1000);
+>>>>>>> 79186b1edc3c9be36d05f06f268d648b7bd771c8
                 });
 
             } else {
-
                 console.log("Houve um erro ao tentar realizar o login!");
-
                 resposta.text().then(texto => {
                     console.error(texto);
                     

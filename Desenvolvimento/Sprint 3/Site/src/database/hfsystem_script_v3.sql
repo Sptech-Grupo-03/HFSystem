@@ -256,9 +256,18 @@ select * from reservatorio where idReservatorio = 3;
 select * from reservatorio where fkFazenda = 'D4C1D9';
 
 
-desc fazenda;
-desc reservatorio;
-
-select * from fazenda;
-
 insert into reservatorio (nome,alturam,raio, fkFazenda) values ('Reservatorio Patio Sul', 5,3,'reservatorio');
+
+desc fazenda;
+insert into fazenda (codigoFazenda, razaoSocial,nomeFazenda)
+values
+('SUP001', 'HFSYSTEM SUPORTE','HFSYSTEM SUPORTE' );
+
+insert into fazenda (codigoFazenda, razaoSocial,nomeFazenda)
+values
+('ADM001', 'HFSYSTEM ADMINISTRADOR','ADMINISTRADOR' );
+
+
+desc reservatorio;
+insert into reservatorio (nome,fkFazenda, raio, altura) values ('Suporte HFSystem', 'SUP001',3,5);
+insert into reservatorio (nome,fkFazenda, raio, altura) values ('Administrador HFSystem', 'ADM001',3,5);
