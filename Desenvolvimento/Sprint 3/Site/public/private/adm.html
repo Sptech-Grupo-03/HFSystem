@@ -157,6 +157,11 @@
 
   
         fazendas.forEach(fazenda => {
+            if (fazenda.nomeFazenda.toUpperCase() === "ADMINISTRADOR" || 
+                fazenda.nomeFazenda.toUpperCase() === "HFSYSTEM SUPORTE") {
+    return; 
+}
+
             const optionAdd = document.createElement("option");
             optionAdd.value = fazenda.codFazenda;
             optionAdd.textContent = fazenda.nomeFazenda;
