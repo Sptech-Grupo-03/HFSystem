@@ -52,5 +52,4 @@ function setWheaterProbability(weatherProbability = []) {
 
 // Chamar a função de previsão ao carregar a página
 
-window.addEventListener('load', fetchWeatherData("Belo Horizonte"));
-
+// s

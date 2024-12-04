@@ -197,9 +197,9 @@
         inputDate.value = today;
     });
 
-    // document.addEventListener("DOMContentLoaded", () => {
-    //     exibirHistoricoReservatorio();
-    // });
+    document.addEventListener("DOMContentLoaded", () => {
+        exibirHistoricoReservatorio();
+    });
 
     username.innerHTML = sessionStorage.username
 
@@ -282,8 +282,7 @@
 
     function exibirClima() {
 
-        var idReservatorio = sessionStorage.idReservatorio;
-        console.log(idReservatorio)
+        var idFazenda = sessionStorage.fazendaId;
         var inicioConsulta = input_inicio_consulta.value;
         var fimConsulta = input_fim_consulta.value;
 
@@ -293,7 +292,7 @@
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                idReservatorioServer: idReservatorio,
+                idFazendaServer: idFazenda,
                 inicioConsultaServer: inicioConsulta,
                 fimConsultaServer: fimConsulta,
             }),
