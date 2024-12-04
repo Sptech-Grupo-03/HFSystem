@@ -48,10 +48,10 @@ WHERE fkReservatorio = ${idReservatorio}
                          FROM historico 
                          JOIN sensor ON historico.fkSensor = sensor.idColeta
                          JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
-                         WHERE idReservatorio = 8
-                         AND DATE(dtHrColeta) >= '2024-12-04'
-						            AND DATE(dtHrColeta) <= '2024-12-04'
-                         ORDER BY historico.dtHrNivelCalculado`;
+                         WHERE fkReservatorio = ${idReservatorio} 
+                          AND DATE(dtHrNivelCalculado) >= '${inicioConsulta}'
+                          AND DATE(dtHrNivelCalculado) <= '${fimConsulta}'
+                         ORDER BY historico.dtHrNivelCalculado DESC limit 10`;
 
     var instrucaoSql5 = `SELECT AVG(nivelCalculado) AS "Media Nivel Calculado"
                          FROM historico

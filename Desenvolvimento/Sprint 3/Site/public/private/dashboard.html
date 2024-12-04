@@ -217,22 +217,17 @@
         }
     }
 
-    //     document.getElementById("grafico").style.height = `${getDivHeight("infoTempo")}px`
+    function atualizarDash() {
+        exibirHistoricoReservatorio();
+        // exibirClima();
+    }
 
-    // function getDivHeight(elementId) {
-    //     const element = document.getElementById(elementId);
-    //     if (element) {
-
-    //         return element.offsetHeight;
-    //     } else {
-    //         console.error("Elemento não encontrado.");
-    //         return null;
-    //     }
-    // }
-
+    setInterval(async () => {
+        await atualizarDash();
+    }, 1000);
 
     function exibirHistoricoReservatorio() {
-        
+
         var reservatorioString = sessionStorage.getItem("reservatorio");
         var reservatorioArray = JSON.parse(reservatorioString);
         var idReservatorio = reservatorioArray[0].idReservatorio;
@@ -356,40 +351,46 @@
             });
     }
 
+    // Variável para armazenar a instância do gráfico
+    let chartInstance;
+
     function defineDadosReservatorio() {
         let dadosString = sessionStorage.getItem('dadosReservatorio');
         let dados = JSON.parse(dadosString);
 
-        console.log(dados);
+        // Obtém os dados do gráfico
+        dadosChart = dados[3];
+        const niveis = dadosChart.map(item => item.Nivel); // Extrai os níveis
+        const horarios = dadosChart.map(item => new Date(item.dtHrNivel).toLocaleTimeString()); // Extrai e formata os horários
 
+        // Atualiza os textos nos elementos HTML
         document.getElementById("nivelAtual").innerHTML = `${dados[0][0]["nivelCalculado"]}%`;
         document.getElementById("situacaoAtual").innerHTML = `${dados[1][0]["situacaoAtual"]}`;
-        document.getElementById("consumoMedio").innerHTML = `${dados[4][0]["Media Nivel Calculado"]}`;
+        document.getElementById("consumoMedio").innerHTML = `${Math.floor(dados[4][0]["Media Nivel Calculado"])}`;
         document.getElementById("vezesNivelCritico").innerHTML = `${dados[2][0]["AtingiuNivelCritico"]} VEZES`;
         document.getElementById("estimativaDias").innerHTML = `${dados[5][0]["ConsumoEstimado"]} DIAS`;
 
-        let labels = [];
-        let dataNiveis = [];
-        dados[3].forEach(entry => {
-            labels.push(entry.dtHrNivel);
-            dataNiveis.push(entry.Nivel);
-        });
-
-        atualizarGrafico(labels, dataNiveis);
+        niveis.reverse();
+        horarios.reverse();
+        // Atualiza o gráfico
+        atualizarGrafico(horarios, niveis); // Ordem correta: labels (horários), data (níveis)
     }
 
     function atualizarGrafico(labels, dataNiveis) {
         const ctx = document.getElementById('fluxoAgua').getContext('2d');
 
-        const horarioLabels = ['01h', '02h', '03h', '04h', '05h', '06h', '07h', '08h', '09h', '10h', '11h'];
-        const dataNiveis1 = [4, 4, 3.50, 3, 2.50, 2, 2, 2, 2, 3, 4];
+        // Se o gráfico já existe, destrua-o antes de criar um novo
+        if (chartInstance) {
+            chartInstance.destroy();
+        }
 
+        // Configuração do gráfico
         const data = {
-            labels: horarioLabels,
+            labels: labels, // Rótulos do eixo X
             datasets: [
                 {
                     label: 'Nível Atual',
-                    data: dataNiveis1,
+                    data: dataNiveis, // Dados do eixo Y
                     borderColor: 'cyan',
                     borderWidth: 2,
                     pointBackgroundColor: 'cyan',
@@ -397,20 +398,20 @@
                     pointRadius: 5,
                     fill: true,
                     backgroundColor: 'rgba(0, 123, 167, 0.3)',
-                    order: 1 // Garantir que fique atrás das métricas
+                    order: 1
                 },
                 {
-                    label: 'Nível Ideal',
-                    data: Array(horarioLabels.length).fill(75),
+                    label: 'Nível Ideal - 75%',
+                    data: Array(dataNiveis.length).fill(75),
                     borderColor: 'green',
                     borderWidth: 2,
                     fill: false,
                     pointRadius: 0,
-                    order: 2 // Garantir que fique visível
+                    order: 2
                 },
                 {
-                    label: 'Nível Alerta',
-                    data: Array(horarioLabels.length).fill(50),
+                    label: 'Nível Alerta - 50%',
+                    data: Array(dataNiveis.length).fill(50),
                     borderColor: 'yellow',
                     borderWidth: 2,
                     fill: false,
@@ -418,8 +419,8 @@
                     order: 2
                 },
                 {
-                    label: 'Nível de Risco',
-                    data: Array(horarioLabels.length).fill(25),
+                    label: 'Nível de Risco - 25%',
+                    data: Array(dataNiveis.length).fill(25),
                     borderColor: 'red',
                     borderWidth: 2,
                     fill: false,
@@ -438,10 +439,7 @@
                 scales: {
                     x: {
                         ticks: {
-                            font: {
-                                size: 14,
-                                weight: 'bold'
-                            },
+                            font: { size: 14, weight: 'bold' },
                             color: 'black'
                         },
                         grid: { display: false }
@@ -450,32 +448,30 @@
                         position: 'left',
                         title: {
                             display: true,
-                            text: 'Volume (Metros)',
+                            text: 'Volume (%)',
                             font: { size: 15 }
                         },
-                        min: 1.20,
-                        max: 5,
+                        min: 0,
+                        max: 100,
                         ticks: {
+                            // Mostra os valores 25%, 50%, 75% e 100%
+                            stepSize: 25,
                             callback: function (value) {
-                                if (value === 1.50 || value === 2.50 || value === 4.50) {
-                                    return value + 'm';
-                                }
+                                return value + '%';
                             },
-                            font: {
-                                size: 16,
-                                weight: 'bold'
-                            },
+                            font: { size: 16, weight: 'bold' },
                             color: 'black'
                         },
-                        grid: { display: false }
+                        grid: {
+                            display: true, // Mostra as linhas do grid no eixo Y
+                            color: 'rgba(0, 0, 0, 0.1)' // Cor do grid
+                        }
                     }
                 },
                 plugins: {
                     legend: {
                         labels: {
-                            font: {
-                                size: 18
-                            },
+                            font: { size: 18 },
                             color: 'black',
                             boxWidth: 20,
                             padding: 15,
@@ -488,7 +484,7 @@
                                 return labels;
                             }
                         }
-                    },
+                    }
                 },
                 elements: {
                     line: {
@@ -499,7 +495,9 @@
             }
         };
 
-        // Inicializa o gráfico
-        new Chart(ctx, config);
+        // Cria a instância do gráfico
+        chartInstance = new Chart(ctx, config);
     }
+
+
 </script>
