@@ -9,4 +9,6 @@ router.post("/cadastrar", function (req, res) {
     reservatorioController.cadastrar(req, res)
 })
 
+
+
 module.exports = router 
