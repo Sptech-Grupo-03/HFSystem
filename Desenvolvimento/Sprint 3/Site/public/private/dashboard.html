@@ -15,10 +15,10 @@
 
     <header>
         <img class="logo" src="../config/assets/logotipo-texto-branco.svg" alt="">
-        <h2>Fazenda</h2>
+        <h2>DASHBOARD</h2>
         <nav>
             <a href="menu.html"><span><i class="fa-solid fa-house"></i>Menu</span></a>
-            <span class="notificacao"><i class="fa-solid fa-bell"></i>Notificações</span>
+            <!-- <span class="notificacao"><i class="fa-solid fa-bell"></i>Notificações</span> -->
             <span id="barra">|</span>
             <div class="user">
                 <div class="user_img">
@@ -39,8 +39,8 @@
             <ul>
                 <li class="option">OPÇÕES</li>
                 <li><i class="fa-solid fa-gear"></i>Configurações</li>
-                <li><a href="https://hydroflowsystem.atlassian.net/servicedesk/customer/portal/1">Suporte</a></li>
-                <li><i class="fa-solid fa-door-open"></i>Sair</li>
+                <li><a href="https://hydroflowsystem.atlassian.net/servicedesk/customer/portal/1"><i class="fa-solid fa-headset"></i>Suporte</a></li>
+                <li><a href="../auth/auth.html"><i class="fa-solid fa-door-open"></i>Sair</a></li>
             </ul>
         </div>
 
@@ -64,13 +64,13 @@
             <section class="kpis_container">
 
                 <div class="kpi">
-                    <div class="titulo_kpi">
+                    <div class="titulo_kpi" id="kpi_agua_disponivel">
                         <span class="titulo">ÁGUA DISPONÍVEL</span>
-                        <select name="" id="select">
+                        <!-- <select name="" id="select">
                             <option value="">m³</option>
                             <option value="">%</option>
                             <option value="">L</option>
-                        </select>
+                        </select> -->
                     </div>
                     <div class="kpi_info">
                         <span id="nivelAtual" class="nivelAtual"></span>
@@ -79,7 +79,7 @@
                 </div>
 
                 <div class="kpi">
-                    <span class="titulo_kpi titulo">SITUAÇÃO RESERVATÓRIO</span>
+                    <span class="titulo_kpi titulo" id="kpi_situacao_reservatorio">SITUAÇÃO RESERVATÓRIO</span>
                     <div class="kpi_info">
                         <span id="situacaoAtual" class="infoKpi">AVISO</span>
                         <img class="reservatorio_img" src="assets/cilindro_preto.svg" alt="">
@@ -89,12 +89,12 @@
                 <div class="kpi consumo">
                     <div class="titulo_kpi">
                         <span class="titulo">CONSUMO MÉDIO</span>
-                        <select name="" id="">
+                        <!-- <select name="" id="">
                             <option value="">m³</option>
                             <option value="">%</option>
                             <option value="">L</option>
 
-                        </select>
+                        </select> -->
                     </div>
 
                     <div class="kpi_info">
@@ -105,14 +105,14 @@
                 </div>
 
                 <div id="nivelCritico" class="kpi">
-                    <span class="titulo_kpi titulo">VERIFICAÇÃO ESVAZIAMENTO</span>
+                    <span class="titulo_kpi titulo" id="kpi_esvaziamento">VERIFICAÇÃO ESVAZIAMENTO</span>
                     <div class="kpi_info">
                         <span id="vezesNivelCritico" class="infoKpi">2 VEZES</span>
                         <i class="fa-solid fa-droplet-slash"></i>
                     </div>
                 </div>
                 <div class="kpi" id="kpi_dias_restantes">
-                    <span class="titulo_kpi titulo">DIAS DE ÁGUA RESTANTES</span>
+                    <span class="titulo_kpi titulo" id="kpi_dias_agua_restante">DIAS DE ÁGUA RESTANTES</span>
                     <div class="kpi_info">
                         <span id="estimativaDias" class="infoKpi"></span>
                         <i class="fa-solid fa-faucet-drip"></i>
@@ -171,6 +171,8 @@
                             <img style="height: 1px;" data-weather="image"> -->
                 </div>
             </section>
+
+
         </main>
     </section>
 
@@ -366,9 +368,46 @@
         // Atualiza os textos nos elementos HTML
         document.getElementById("nivelAtual").innerHTML = `${dados[0][0]["nivelCalculado"]}%`;
         document.getElementById("situacaoAtual").innerHTML = `${dados[1][0]["situacaoAtual"]}`;
-        document.getElementById("consumoMedio").innerHTML = `${Math.floor(dados[4][0]["Media Nivel Calculado"])}`;
-        document.getElementById("vezesNivelCritico").innerHTML = `${dados[2][0]["AtingiuNivelCritico"]} VEZES`;
+        document.getElementById("consumoMedio").innerHTML = `${Math.floor(dados[4][0]["Media Nivel Calculado"])} L`;
+
+        if(dados[2][0]["AtingiuNivelCritico"] == 1){
+            document.getElementById("vezesNivelCritico").innerHTML = `${dados[2][0]["AtingiuNivelCritico"]} VEZ`;
+        }else{
+            document.getElementById("vezesNivelCritico").innerHTML = `${dados[2][0]["AtingiuNivelCritico"]} VEZES`;
+        }
+        
         document.getElementById("estimativaDias").innerHTML = `${dados[5][0]["ConsumoEstimado"]} DIAS`;
+
+        var situacaoAtualCor, diasAguaRestanteCor, esvaziamentoCor
+
+        if (dados[1][0]["situacaoAtual"] == 'Crítico') {
+            situacaoAtualCor = '#E10004'
+        }else if(dados[1][0]["situacaoAtual"] == 'Alerta'){
+             situacaoAtualCor = '#FFD502'
+        }else{
+             situacaoAtualCor = '#00E104'
+        }
+
+        if (dados[2][0]["AtingiuNivelCritico"] > 1) {
+            esvaziamentoCor = '#E10004'
+        }else if(dados[2][0]["AtingiuNivelCritico"] == 1){
+            esvaziamentoCor = '#FFD502'
+        }else{
+            esvaziamentoCor = '#2c767d'
+        }
+
+        if (dados[5][0]["ConsumoEstimado"] < 2) {
+            diasAguaRestanteCor = '#E10004'
+        }else if(dados[5][0]["ConsumoEstimado"] < 4){
+            diasAguaRestanteCor = '#FFD502'
+        }else{
+            diasAguaRestanteCor = '#2c767d'
+        }
+
+        document.getElementById("kpi_agua_disponivel").style.backgroundColor = situacaoAtualCor
+        document.getElementById("kpi_dias_agua_restante").style.backgroundColor = diasAguaRestanteCor
+        document.getElementById("kpi_situacao_reservatorio").style.backgroundColor = situacaoAtualCor
+        document.getElementById("kpi_esvaziamento").style.backgroundColor = esvaziamentoCor
 
         niveis.reverse();
         horarios.reverse();
