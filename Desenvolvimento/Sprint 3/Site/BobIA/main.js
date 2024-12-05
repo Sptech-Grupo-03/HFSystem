@@ -1,72 +1,61 @@
-// importando os bibliotecas necessárias
-const { GoogleGenerativeAI } = require("@google/generative-ai");
-const express = require("express");
-const path = require("path");
+import dotenv from "dotenv";
+import express from "express";
+import path from "path";
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-// carregando as variáveis de ambiente do projeto do arquivo .env
-require("dotenv").config();
+// Definindo __filename e __dirname para ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-// configurando o servidor express
+// Carregando as variáveis de ambiente
+dotenv.config({ path: '.env' });
+
 const app = express();
-const PORTA_SERVIDOR = process.env.PORTA;
+const PORTA_SERVIDOR = 3001;
 
-// configurando o gemini (IA)
-const chatIA = new GoogleGenerativeAI(process.env.MINHA_CHAVE);
+console.log(PORTA_SERVIDOR);
 
-// configurando o servidor para receber requisições JSON
+// Configurando o gemini (IA)
+const chatIA = new GoogleGenerativeAI("AIzaSyAX0JcYgRESEp_6-lMjTfmsklSQVkDQCPA");
+
+// Configurando o servidor Express
 app.use(express.json());
-
-// configurando o servidor para servir arquivos estáticos
 app.use(express.static(path.join(__dirname, "public")));
 
-// configurando CORS
+// Configurando CORS
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept');
     next();
 });
 
-// inicializando o servidor
+// Iniciando o servidor
 app.listen(PORTA_SERVIDOR, () => {
-    console.info(
-        `
-        ######                ###    #    
-        #     #  ####  #####   #    # #   
-        #     # #    # #    #  #   #   #  
-        ######  #    # #####   #  #     # 
-        #     # #    # #    #  #  ####### 
-        #     # #    # #    #  #  #     # 
-        ######   ####  #####  ### #     # 
-        `
-    );
-    console.info(`A API BobIA iniciada, acesse http://10.18.32.92:${PORTA_SERVIDOR}`);
+    console.info(`Servidor iniciado em http://localhost:${PORTA_SERVIDOR}`);
 });
 
-// rota para receber perguntas e gerar respostas
+// Rota para perguntas
 app.post("/perguntar", async (req, res) => {
     const pergunta = req.body.pergunta;
 
     try {
         const resultado = await gerarResposta(pergunta);
-        res.json( { resultado } );
+        res.json({ resultado });
     } catch (error) {
         res.status(500).json({ error: 'Erro interno do servidor' });
     }
-
 });
 
-// função para gerar respostas usando o gemini
+// Função para gerar respostas usando o gemini
 async function gerarResposta(mensagem) {
-    // obtendo o modelo de IA
     const modeloIA = chatIA.getGenerativeModel({ model: "gemini-pro" });
 
     try {
-        // gerando conteúdo com base na pergunta
-        const resultado = await modeloIA.generateContent(`Em um paragráfo responda: ${mensagem}`);
+        const resultado = await modeloIA.generateContent(`Em um parágrafo, responda: ${mensagem}`);
         const resposta = await resultado.response.text();
-        
         console.log(resposta);
-
         return resposta;
     } catch (error) {
         console.error(error);
