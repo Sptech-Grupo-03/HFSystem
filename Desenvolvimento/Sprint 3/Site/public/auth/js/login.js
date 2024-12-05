@@ -69,7 +69,7 @@ function login() {
                     let destino = "";
 
                     if (codigoAcesso === "SUP001") {
-                        destino = "http://localhost:3001";
+                        destino = "http://localhoast:3001";
                     } else if (codigoAcesso === "ADM001") {
                         destino = "../../private/adm.html";
                     }else {
