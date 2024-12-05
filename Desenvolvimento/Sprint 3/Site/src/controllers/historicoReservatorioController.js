@@ -43,6 +43,23 @@ function exibirDadosReservatorio(req, res) {
     });
 }
 
+function resgatarNivel(req, res) {
+  const idsReservatorio = req.body.idsReservatorioServer;
+  console.log('entrando no Controller', idsReservatorio);
+
+  
+  historicoReservatorioModel.resgatarNivelReservatorios(idsReservatorio)
+    .then(function (resposta) {
+      res.json(resposta);
+      console.log('resposta do controller');
+    })
+    .catch(error => {
+      console.error('Erro ao processar a requisição:', error);
+      res.status(500).json({ error: 'Erro interno no servidor' });
+    });
+}
+
 module.exports = {
   exibirDadosReservatorio,
+  resgatarNivel
 };

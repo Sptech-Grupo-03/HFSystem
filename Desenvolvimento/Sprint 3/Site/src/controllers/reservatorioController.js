@@ -37,24 +37,9 @@ function cadastrar(req, res) {
     }
 }
 
-function enviarIdReservatorio(req, res){
-    const idReservatorio = JSON.parse(req.query.idReservatorio);
-    console.log("IDs recebidos:", idsReservatorios);
-
-reservatorioModel.resgatarNivelAtual(idReservatorio).then(
-    (resultado) => {
-        res.status(200).json(resultado)
-        console.log('Retorno model nivelAtual ', resultado)
-    }
-).catch(function (erro){
-    console.log(erro)
-    console.log("Houve um erro ao buscar os reservatórios: ", erro.sqlMessage)
-    res.status(500).json(erro.sqlMessage)
-})
-}
 
 module.exports = {
     buscarReservatoriosPorFazenda,
     cadastrar,
-    enviarIdReservatorio
+
 }

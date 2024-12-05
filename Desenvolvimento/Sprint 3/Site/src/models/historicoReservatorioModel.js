@@ -119,6 +119,33 @@ WHERE fkReservatorio = ${idReservatorio}
   }
 }
 
+function resgatarNivelReservatorios(idsReservatorio) {
+  var consultas = [];
+
+  for (var i = 0; i < idsReservatorio.length; i++) {
+    var instrucaoSql = `
+      SELECT 
+      fkReservatorio AS idReservatorio, 
+      MAX(historico.nivelCalculado) AS nivelCalculado, 
+      MAX(historico.dtHrNivelCalculado) AS ultimaAtualizacao
+      FROM historico
+      JOIN sensor ON historico.fkSensor = sensor.idColeta
+      JOIN reservatorio ON sensor.fkReservatorio = reservatorio.idReservatorio
+      WHERE fkReservatorio = ${idsReservatorio[i]} 
+      GROUP BY fkReservatorio
+      ORDER BY ultimaAtualizacao DESC;
+    `;
+    
+    consultas.push(database.executar(instrucaoSql)); 
+  }
+
+  return Promise.all(consultas); 
+}
+
+
+
+
 module.exports = {
   exibirDadosReservatorio,
+  resgatarNivelReservatorios
 };
